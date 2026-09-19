@@ -3,222 +3,248 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Booking Page - Medical Clinic</title>
+  <title>Online Appointment Booking | Clinic Care</title>
   <link rel="stylesheet" href="../dist/output.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- Google Fonts Imports -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
   
   <style>
-    body {
-      background-color: #f1f5f9;
-      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-      background-size: 20px 20px;
+    .playfair-display {
+      font-family: "Playfair Display", serif;
+      font-optical-sizing: auto;
+      font-style: normal;
     }
     .font-serif {
-      font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', Times, serif;
+      font-family: "Playfair Display", serif;
     }
   </style>
 </head>
-<body class="text-slate-800 font-sans antialiased min-h-screen flex flex-col p-0 m-0 w-full overflow-x-hidden">
+<body class="bg-[#F8FAFC] text-[#0F172A] font-sans antialiased min-h-screen flex flex-col p-0 m-0 w-full overflow-x-hidden">
 
   <!-- Top Global Navigation Bar -->
-  <header class="sticky top-0 z-50 w-full bg-[#083B36]/95 backdrop-blur-md border-b border-[#D4AF37]/30 shadow-lg px-6 sm:px-12 lg:px-20 pt-4 pb-3.5 flex flex-wrap justify-between items-center gap-4 transition duration-300">
-    <a href="home.html" class="flex items-center gap-2.5 font-serif font-bold text-2xl text-[#D4AF37] tracking-wide">
-      <span class="w-9 h-9 rounded-xl bg-[#D4AF37] text-[#083B36] flex items-center justify-center text-base shadow-md">
+  <header class="sticky top-0 z-50 w-full bg-[#1B365D]/95 backdrop-blur-md border-b border-white/10 shadow-md px-6 sm:px-12 lg:px-20 pt-4 pb-3.5 flex flex-wrap justify-between items-center gap-4 transition duration-300">
+    <a href="home.html" class="flex items-center gap-2.5 font-serif font-bold text-2xl text-white tracking-wide">
+      <span class="w-9 h-9 rounded-xl bg-[#0284C7] text-white flex items-center justify-center text-base shadow-md">
         <i class="fa-solid fa-heart-pulse"></i>
       </span>
-      <span>Clinic<span class="text-white">Care</span></span>
+      <span>Clinic<span class="text-[#38BDF8]">Care</span></span>
     </a>
     <nav class="flex flex-wrap items-center gap-3 sm:gap-8 text-sm sm:text-base font-serif font-medium">
-      <a href="home.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Home</a>
-      <a href="treatment.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Treatments</a>
-      <a href="about-clinic.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">About Clinic</a>
-      <a href="meet-doctor.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Meet Doctor</a>
-      <a href="contact.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Contact</a>
-      <a href="booking.html" class="text-[#D4AF37] border-b-2 border-[#D4AF37] pb-0.5 font-bold transition">Booking</a>
+      <a href="home.html" class="text-slate-200 hover:text-white active:text-white focus:text-white transition">Home</a>
+      <a href="treatment.html" class="text-slate-200 hover:text-white active:text-white focus:text-white transition">Treatments</a>
+      <a href="about-clinic.html" class="text-slate-200 hover:text-white active:text-white focus:text-white transition">About Clinic</a>
+      <a href="meet-doctor.html" class="text-slate-200 hover:text-white active:text-white focus:text-white transition">Meet Doctor</a>
+      <a href="contact.html" class="text-slate-200 hover:text-white active:text-white focus:text-white transition">Contact</a>
+      <a href="booking.html" class="bg-[#0284C7] hover:bg-[#0369A1] text-white active:bg-[#0284C7] font-bold px-4 py-2 rounded-xl transition text-xs sm:text-sm font-serif shadow-md">Booking</a>
     </nav>
   </header>
 
-  <!-- Page Main Content exactly matching Booking.png mockup -->
-  <main class="max-w-5xl mx-auto w-full space-y-6 px-4 sm:px-6 py-8 flex-grow">
-    
-    <!-- Title Pill Badge -->
-    <div>
-      <span class="bg-[#dbeafe] text-[#1e40af] px-6 py-2 rounded-full font-bold text-lg inline-block shadow-xs">
-        Booking Page
-      </span>
-    </div>
+  <!-- Page Main Content (Full Width Architecture) -->
+  <main class="w-full flex-grow flex flex-col p-0 m-0">
 
-    <!-- MAIN CONTAINER WITH FORM, CALENDAR, & CONFIRMATION -->
-    <div class="grid lg:grid-cols-12 gap-8 items-start">
-      
-      <!-- Left & Middle: Form + Calendar Container -->
-      <div class="lg:col-span-8 bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden p-6 sm:p-8">
-        <div class="grid md:grid-cols-2 gap-8">
+    <!-- APPOINTMENT RESERVATION SECTION (Blue Background, Complete Screen Fit) -->
+    <section class="w-full min-h-[calc(100vh-73px)] lg:h-[calc(100vh-73px)] bg-gradient-to-br from-[#1B365D] via-[#13294B] to-[#0B1A30] text-white pt-4 sm:pt-6 pb-6 sm:pb-8 px-4 sm:px-6 lg:px-10 flex flex-col justify-center border-b border-white/10 relative overflow-hidden">
+      <div class="max-w-6xl w-full mx-auto space-y-4 sm:space-y-5 relative z-10">
+        
+        <!-- Section Header -->
+        <div class="text-center space-y-1.5">
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-extrabold text-white tracking-tight">
+            Appointment Reservation
+          </h1>
+          <div class="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#38BDF8] rounded-full mx-auto"></div>
+        </div>
+
+        <!-- MAIN CONTAINER WITH FORM, CALENDAR, & CONFIRMATION -->
+        <div class="grid lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
           
-          <!-- LEFT: Patient Details -->
-          <div class="space-y-4">
-            <h2 class="text-2xl font-serif font-bold text-slate-900">Patient Details</h2>
-            
-            <form id="booking-form" class="space-y-3.5" onsubmit="handleFormSubmit(event)">
-              <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">Name</label>
-                <input type="text" id="patient-name" required placeholder="Enter your name" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm placeholder:text-slate-400">
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">Email</label>
-                <input type="email" id="patient-email" required placeholder="Enter your email" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm placeholder:text-slate-400">
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">Reason</label>
-                <select id="patient-reason" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white text-slate-700">
-                  <option value="Select reason">Select reason</option>
-                  <option value="General Consultation">General Consultation</option>
-                  <option value="Cardiology">Cardiology</option>
-                  <option value="Orthopedics">Orthopedics</option>
-                  <option value="Pediatrics">Pediatrics</option>
-                  <option value="Dermatology">Dermatology</option>
-                  <option value="Diagnostics">Diagnostics</option>
-                </select>
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">Message</label>
-                <textarea id="patient-message" rows="3" placeholder="Enter your detailed message here" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm placeholder:text-slate-400"></textarea>
-              </div>
-
-              <div>
-                <button type="submit" class="bg-[#083B36] hover:bg-[#0c4e48] text-[#D4AF37] font-serif font-bold px-8 py-2.5 rounded-xl shadow-sm transition text-sm">
-                  Send
-                </button>
-              </div>
-            </form>
-          </div>
-
-          <!-- RIGHT: Calendar & Payment Checkout -->
-          <div class="space-y-6">
-            
-            <!-- Calendar Section -->
-            <div class="space-y-3">
-              <h2 class="text-2xl font-serif font-bold text-slate-900">Calendar</h2>
-
-              <!-- Calendar Widget matching wireframe -->
-              <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-xs">
-                <!-- Month Header -->
-                <div class="flex justify-between items-center text-xs font-bold text-slate-800 mb-3 px-1">
-                  <button type="button" class="text-slate-400 hover:text-slate-700"><i class="fa-solid fa-chevron-left text-[10px]"></i></button>
-                  <span class="font-serif font-bold">June 2021</span>
-                  <button type="button" class="text-slate-400 hover:text-slate-700"><i class="fa-solid fa-chevron-right text-[10px]"></i></button>
-                </div>
-
-                <!-- Days of Week -->
-                <div class="grid grid-cols-7 text-center text-[10px] font-semibold text-slate-400 mb-2">
-                  <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
-                </div>
-
-                <!-- Dates Grid -->
-                <div class="grid grid-cols-7 text-center text-xs gap-y-1.5 font-medium text-slate-700">
-                  <span class="text-transparent">0</span>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">1</button>
-                  <button type="button" class="bg-[#083B36] text-[#D4AF37] font-bold rounded-lg py-1 shadow-xs">9</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">3</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">4</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">5</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">6</button>
-
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">14</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">15</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">16</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">17</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">18</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">19</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">20</button>
-
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">21</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">22</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">23</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">24</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">25</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">26</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">27</button>
-
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">28</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">29</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">30</button>
-                  <button type="button" class="hover:bg-slate-100 rounded-lg py-1">31</button>
-                </div>
-
-                <!-- Time Slot Pills -->
-                <div class="flex items-center gap-2 mt-4 pt-3 border-t border-slate-100">
-                  <button type="button" class="bg-[#083B36]/10 text-[#083B36] hover:bg-[#083B36]/20 text-[11px] font-semibold px-3 py-1 rounded-lg transition">
-                    Time slot
-                  </button>
-                  <button type="button" class="bg-[#083B36]/10 text-[#083B36] hover:bg-[#083B36]/20 text-[11px] font-semibold px-3 py-1 rounded-lg transition">
-                    Time
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Payment Checkout Section -->
-            <div class="space-y-3">
-              <h3 class="text-sm font-bold text-slate-900">Payment checkout</h3>
+          <!-- Left & Middle: Form + Calendar Container -->
+          <div class="lg:col-span-8 bg-white text-[#0F172A] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] transition-all duration-300 overflow-hidden p-5 sm:p-6">
+            <div class="grid md:grid-cols-2 gap-5 sm:gap-6">
               
-              <div>
-                <select class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white text-slate-700">
-                  <option>Select payment method</option>
-                  <option>Credit / Debit Card</option>
-                  <option>Cash at Clinic</option>
-                  <option>Health Insurance</option>
-                  <option>Online UPI / PayPal</option>
-                </select>
+              <!-- LEFT: Patient Details -->
+              <div class="space-y-3">
+                <div class="space-y-0.5">
+                  <span class="text-[10px] font-bold text-[#0284C7] uppercase tracking-wider block">Step 1</span>
+                  <h2 class="text-lg sm:text-xl font-serif font-bold text-[#0F172A]">Patient Details</h2>
+                </div>
+                
+                <form id="booking-form" class="space-y-2.5" onsubmit="handleFormSubmit(event)">
+                  <div>
+                    <label class="block text-xs font-bold text-[#0F172A] mb-0.5">Full Name</label>
+                    <input type="text" id="patient-name" required placeholder="Enter your full name" class="w-full px-3 py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm placeholder:text-[#64748B]">
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-[#0F172A] mb-0.5">Email Address</label>
+                    <input type="email" id="patient-email" required placeholder="Enter your email" class="w-full px-3 py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm placeholder:text-[#64748B]">
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-[#0F172A] mb-0.5">Consultation Reason</label>
+                    <select id="patient-reason" class="w-full px-3 py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm text-[#0F172A]">
+                      <option value="Select reason">Select reason</option>
+                      <option value="General Consultation">General Consultation</option>
+                      <option value="Cardiology">Cardiology</option>
+                      <option value="Orthopedics">Orthopedics</option>
+                      <option value="Pediatrics">Pediatrics</option>
+                      <option value="Dermatology">Dermatology</option>
+                      <option value="Diagnostics">Diagnostics</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-[#0F172A] mb-0.5">Medical Notes (Optional)</label>
+                    <textarea id="patient-message" rows="2" placeholder="Brief details about symptoms" class="w-full px-3 py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm placeholder:text-[#64748B] resize-none"></textarea>
+                  </div>
+
+                  <div class="pt-0.5">
+                    <button type="submit" class="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-6 py-2 rounded-xl shadow-md transition text-xs sm:text-sm cursor-pointer">
+                      <i class="fa-solid fa-arrow-right mr-1.5"></i> Proceed to Confirm
+                    </button>
+                  </div>
+                </form>
               </div>
 
-              <div>
-                <button type="button" onclick="triggerConfirmation()" class="w-full bg-[#083B36] hover:bg-[#0c4e48] text-[#D4AF37] font-serif font-bold py-3 rounded-xl shadow-md transition text-sm text-center">
-                  Payment
-                </button>
+              <!-- RIGHT: Calendar & Payment Checkout -->
+              <div class="space-y-4">
+                
+                <!-- Calendar Section -->
+                <div class="space-y-2">
+                  <div class="space-y-0.5">
+                    <span class="text-[10px] font-bold text-[#0284C7] uppercase tracking-wider block">Step 2</span>
+                    <h2 class="text-lg sm:text-xl font-serif font-bold text-[#0F172A]">Select Date</h2>
+                  </div>
+
+                  <!-- Calendar Widget -->
+                  <div class="bg-white rounded-2xl border border-slate-200 p-3 shadow-xs">
+                    <!-- Month Header -->
+                    <div class="flex justify-between items-center text-xs font-bold text-[#0F172A] mb-2 px-1">
+                      <button type="button" class="text-[#64748B] hover:text-[#0F172A] p-0.5"><i class="fa-solid fa-chevron-left text-[10px]"></i></button>
+                      <span class="font-serif font-bold text-[#0F172A] text-xs">June 2026</span>
+                      <button type="button" class="text-[#64748B] hover:text-[#0F172A] p-0.5"><i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+                    </div>
+
+                    <!-- Days of Week -->
+                    <div class="grid grid-cols-7 text-center text-[9px] font-semibold text-[#64748B] mb-1">
+                      <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                    </div>
+
+                    <!-- Dates Grid -->
+                    <div class="grid grid-cols-7 text-center text-[11px] gap-y-1 font-medium text-[#0F172A]">
+                      <span class="text-transparent">0</span>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">1</button>
+                      <button type="button" class="bg-[#0284C7] text-white font-bold rounded-lg py-0.5 shadow-xs">9</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">3</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">4</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">5</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">6</button>
+
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">14</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">15</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">16</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">17</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">18</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">19</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">20</button>
+
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">21</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">22</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">23</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">24</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">25</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">26</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">27</button>
+
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">28</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">29</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">30</button>
+                      <button type="button" class="hover:bg-[#F8FAFC] rounded-lg py-0.5">31</button>
+                    </div>
+
+                    <!-- Time Slot Pills -->
+                    <div class="flex items-center gap-1.5 mt-2 pt-2 border-t border-slate-100">
+                      <button type="button" class="bg-[#0284C7] text-white text-[10px] font-semibold px-2.5 py-0.5 rounded-lg transition shadow-xs">
+                        10:00 AM
+                      </button>
+                      <button type="button" class="bg-[#F8FAFC] border border-slate-200 text-[#0284C7] hover:bg-[#0284C7] hover:text-white text-[10px] font-semibold px-2.5 py-0.5 rounded-lg transition">
+                        02:30 PM
+                      </button>
+                      <button type="button" class="bg-[#F8FAFC] border border-slate-200 text-[#0284C7] hover:bg-[#0284C7] hover:text-white text-[10px] font-semibold px-2.5 py-0.5 rounded-lg transition">
+                        05:00 PM
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Payment Checkout Section -->
+                <div class="space-y-2">
+                  <div class="space-y-0.5">
+                    <span class="text-[10px] font-bold text-[#0284C7] uppercase tracking-wider block">Step 3</span>
+                    <h3 class="text-xs font-bold text-[#0F172A]">Payment & Insurance</h3>
+                  </div>
+                  
+                  <div>
+                    <select class="w-full px-3 py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs text-[#0F172A]">
+                      <option>Select payment method</option>
+                      <option>Credit / Debit Card</option>
+                      <option>Pay at Clinic Reception</option>
+                      <option>Health Insurance Verification</option>
+                      <option>Online UPI / PayPal</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <button type="button" onclick="triggerConfirmation()" class="w-full bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2.5 rounded-xl shadow-md transition text-xs sm:text-sm text-center cursor-pointer">
+                      <i class="fa-solid fa-lock mr-1.5"></i> Confirm & Book Appointment
+                    </button>
+                  </div>
+                </div>
+
               </div>
+
+            </div>
+          </div>
+
+          <!-- RIGHT: Confirmation Card Matching Mockup with Arrow Flow -->
+          <div class="lg:col-span-4 bg-white text-[#0F172A] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] transition-all duration-300 p-6 sm:p-7 text-center space-y-3 relative flex flex-col justify-center">
+            <div class="hidden lg:block absolute -left-5 top-1/2 -translate-y-1/2 text-[#38BDF8] text-2xl animate-pulse">
+              <i class="fa-solid fa-arrow-right"></i>
             </div>
 
+            <div class="w-14 h-14 mx-auto rounded-full bg-sky-50 border-2 border-[#0284C7] flex items-center justify-center text-[#0284C7] text-2xl shadow-sm">
+              <i class="fa-solid fa-check"></i>
+            </div>
+
+            <h2 class="text-xl sm:text-2xl font-serif font-bold text-[#0F172A]">Confirmation Status</h2>
+
+            <p class="text-xs text-[#64748B] leading-relaxed">
+              Your appointment booking request will be instantly processed and sent to your email.
+            </p>
+
+            <div class="space-y-1.5 max-w-[180px] mx-auto py-1">
+              <div class="h-1.5 bg-slate-100 rounded-full w-full"></div>
+              <div class="h-1.5 bg-slate-100 rounded-full w-2/3 mx-auto"></div>
+            </div>
+
+            <div id="confirmed-notice" class="hidden text-xs text-[#0284C7] bg-[#F8FAFC] p-3 rounded-xl border border-[#0284C7]/30 mt-1 font-medium">
+              <i class="fa-solid fa-circle-check text-green-500 mr-1.5"></i> Appointment confirmed for June 9!
+            </div>
           </div>
 
         </div>
+
       </div>
-
-      <!-- RIGHT: Confirmation Card Matching Mockup with Arrow Flow -->
-      <div class="lg:col-span-4 bg-white rounded-3xl border border-slate-200/90 shadow-xl p-8 text-center space-y-4 relative">
-        <div class="hidden lg:block absolute -left-6 top-1/2 -translate-y-1/2 text-slate-300 text-2xl">
-          <i class="fa-solid fa-arrow-right"></i>
-        </div>
-
-        <div class="w-16 h-16 mx-auto rounded-full bg-emerald-50 border-2 border-emerald-400 flex items-center justify-center text-emerald-500 text-3xl shadow-sm">
-          <i class="fa-solid fa-check"></i>
-        </div>
-
-        <h3 class="text-xl font-serif font-bold text-slate-900">Confirmation</h3>
-
-        <div class="space-y-2 max-w-[180px] mx-auto py-2">
-          <div class="h-2.5 bg-slate-200 rounded-full w-full"></div>
-          <div class="h-2.5 bg-slate-200 rounded-full w-2/3 mx-auto"></div>
-        </div>
-
-        <div id="confirmed-notice" class="hidden text-xs text-emerald-800 bg-emerald-50 p-3 rounded-xl border border-emerald-200 mt-2">
-          Appointment confirmed for June 9!
-        </div>
-      </div>
-
-    </div>
+    </section>
 
   </main>
 
-  <footer class="w-full text-center text-xs text-slate-400 py-6 border-t border-slate-200/60 font-serif">
+  <!-- Full Width Footer -->
+  <footer class="w-full bg-[#1B365D] text-white text-center text-xs sm:text-sm py-8 font-serif border-t border-white/10">
     &copy; 2026 Clinic Care. All rights reserved.
   </footer>
 

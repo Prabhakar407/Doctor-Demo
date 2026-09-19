@@ -3,198 +3,227 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Treatment Section Layout Examples</title>
+  <title>Treatments & Specialized Care | Clinic Care</title>
   <link rel="stylesheet" href="../dist/output.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- Google Fonts Imports -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
   
   <style>
-    body {
-      background-color: #f1f5f9;
-      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-      background-size: 20px 20px;
+    .playfair-display {
+      font-family: "Playfair Display", serif;
+      font-optical-sizing: auto;
+      font-style: normal;
     }
     .font-serif {
-      font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', Times, serif;
+      font-family: "Playfair Display", serif;
     }
   </style>
 </head>
-<body class="text-slate-800 font-sans antialiased min-h-screen flex flex-col p-0 m-0 w-full overflow-x-hidden">
+<body class="bg-[#F8FAFC] text-[#0F172A] font-sans antialiased min-h-screen flex flex-col p-0 m-0 w-full overflow-x-hidden">
 
   <!-- Top Global Navigation Bar -->
-  <header class="sticky top-0 z-50 w-full bg-[#083B36]/95 backdrop-blur-md border-b border-[#D4AF37]/30 shadow-lg px-6 sm:px-12 lg:px-20 pt-4 pb-3.5 flex flex-wrap justify-between items-center gap-4 transition duration-300">
-    <a href="home.html" class="flex items-center gap-2.5 font-serif font-bold text-2xl text-[#D4AF37] tracking-wide">
-      <span class="w-9 h-9 rounded-xl bg-[#D4AF37] text-[#083B36] flex items-center justify-center text-base shadow-md">
+  <header class="sticky top-0 z-50 w-full bg-[#1B365D]/95 backdrop-blur-md border-b border-white/10 shadow-md px-6 sm:px-12 lg:px-20 pt-4 pb-3.5 flex flex-wrap justify-between items-center gap-4 transition duration-300">
+    <a href="home.html" class="flex items-center gap-2.5 font-serif font-bold text-2xl text-white tracking-wide">
+      <span class="w-9 h-9 rounded-xl bg-[#0284C7] text-white flex items-center justify-center text-base shadow-md">
         <i class="fa-solid fa-heart-pulse"></i>
       </span>
-      <span>Clinic<span class="text-white">Care</span></span>
+      <span>Clinic<span class="text-[#38BDF8]">Care</span></span>
     </a>
     <nav class="flex flex-wrap items-center gap-3 sm:gap-8 text-sm sm:text-base font-serif font-medium">
-      <a href="home.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Home</a>
-      <a href="treatment.html" class="text-[#D4AF37] border-b-2 border-[#D4AF37] pb-0.5 font-bold transition">Treatments</a>
-      <a href="about-clinic.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">About Clinic</a>
-      <a href="meet-doctor.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Meet Doctor</a>
-      <a href="contact.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Contact</a>
-      <a href="booking.html" class="bg-[#D4AF37] hover:bg-amber-400 text-[#083B36] font-bold px-4 py-2 rounded-xl transition text-xs sm:text-sm font-serif shadow-md">Booking</a>
+      <a href="home.html" class="text-slate-200 hover:text-white active:text-white focus:text-white transition">Home</a>
+      <a href="treatment.html" class="text-white border-b-2 border-white pb-0.5 font-bold transition">Treatments</a>
+      <a href="about-clinic.html" class="text-slate-200 hover:text-white active:text-white focus:text-white transition">About Clinic</a>
+      <a href="meet-doctor.html" class="text-slate-200 hover:text-white active:text-white focus:text-white transition">Meet Doctor</a>
+      <a href="contact.html" class="text-slate-200 hover:text-white active:text-white focus:text-white transition">Contact</a>
+      <a href="booking.html" class="bg-[#0284C7] hover:bg-[#0369A1] text-white active:bg-[#0284C7] font-bold px-4 py-2 rounded-xl transition text-xs sm:text-sm font-serif shadow-md">Booking</a>
     </nav>
   </header>
 
-  <!-- Page Main Content exactly matching Treatment.png mockup -->
-  <main class="max-w-4xl mx-auto w-full space-y-6 px-4 sm:px-6 py-8 flex-grow">
-    
-    <!-- Top Titles -->
-    <div class="text-center space-y-1">
-      <h1 class="text-2xl sm:text-3xl font-serif font-extrabold text-slate-900 tracking-tight">
-        Treatment Section Layout Examples
-      </h1>
-      <p class="text-slate-600 text-sm">3 layout ideas to plan your page</p>
-    </div>
+  <!-- Page Main Content (Full Width Sections like Home Page) -->
+  <main class="w-full flex-grow flex flex-col p-0 m-0">
 
-    <!-- CARD 1: Healthcare Solutions -->
-    <div class="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden p-6 sm:p-8 space-y-6">
-      <h2 class="text-xl sm:text-2xl font-serif font-bold text-slate-900">Healthcare Solutions</h2>
-      
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+    <!-- SECTION 1: HEALTHCARE SOLUTIONS (Full Width) -->
+    <section class="w-full bg-[#F8FAFC] pt-6 sm:pt-8 pb-12 sm:pb-16 px-4 sm:px-8 lg:px-12 border-b border-slate-200">
+      <div class="max-w-7xl mx-auto space-y-8">
         
-        <!-- 1: Vaccines -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-4 text-center space-y-2 shadow-sm hover:shadow transition">
-          <div class="w-14 h-14 mx-auto rounded-full bg-blue-100/80 border border-blue-200 flex items-center justify-center text-blue-600 text-xl">
-            <i class="fa-solid fa-prescription-bottle"></i>
-          </div>
-          <h3 class="font-bold text-slate-900 text-sm">Vaccines</h3>
-          <p class="text-slate-500 text-xs">Short text</p>
+        <div class="text-center space-y-2">
+          <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#0F172A] tracking-tight">
+            Healthcare <span class="italic text-[#0284C7]">Solutions</span>
+          </h1>
+          <p class="text-[#64748B] text-sm sm:text-base max-w-xl mx-auto">Essential clinical categories and preventive care designed for your well-being.</p>
+          <div class="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
         </div>
 
-        <!-- 2: Wellness Care -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-4 text-center space-y-2 shadow-sm hover:shadow transition">
-          <div class="w-14 h-14 mx-auto rounded-full bg-blue-100/80 border border-blue-200 flex items-center justify-center text-blue-600 text-xl">
-            <i class="fa-solid fa-hand-holding-heart"></i>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- 1: Vaccines -->
+          <div class="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 p-6 text-center space-y-4 group">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-[#0284C7] text-2xl shadow-xs group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-prescription-bottle"></i>
+            </div>
+            <div class="space-y-1">
+              <h3 class="font-bold text-[#0F172A] text-lg">Vaccines</h3>
+              <p class="text-[#64748B] text-xs sm:text-sm leading-relaxed">Complete immunization and booster coverage for children and adults.</p>
+            </div>
           </div>
-          <h3 class="font-bold text-slate-900 text-sm">Wellness Care</h3>
-          <p class="text-slate-500 text-xs">Short text</p>
-        </div>
 
-        <!-- 3: Injectables -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-4 text-center space-y-2 shadow-sm hover:shadow transition">
-          <div class="w-14 h-14 mx-auto rounded-full bg-blue-100/80 border border-blue-200 flex items-center justify-center text-blue-600 text-xl">
-            <i class="fa-solid fa-syringe"></i>
+          <!-- 2: Wellness Care -->
+          <div class="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 p-6 text-center space-y-4 group">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-[#0284C7] text-2xl shadow-xs group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
+            <div class="space-y-1">
+              <h3 class="font-bold text-[#0F172A] text-lg">Wellness Care</h3>
+              <p class="text-[#64748B] text-xs sm:text-sm leading-relaxed">Holistic preventive wellness check-ups and custom health management.</p>
+            </div>
           </div>
-          <h3 class="font-bold text-slate-900 text-sm">Injectables</h3>
-          <p class="text-slate-500 text-xs">Short text</p>
-        </div>
 
-        <!-- 4: Nutraceuticals -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-4 text-center space-y-2 shadow-sm hover:shadow transition">
-          <div class="w-14 h-14 mx-auto rounded-full bg-blue-100/80 border border-blue-200 flex items-center justify-center text-blue-600 text-xl">
-            <i class="fa-solid fa-capsules"></i>
+          <!-- 3: Injectables -->
+          <div class="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 p-6 text-center space-y-4 group">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-[#0284C7] text-2xl shadow-xs group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-syringe"></i>
+            </div>
+            <div class="space-y-1">
+              <h3 class="font-bold text-[#0F172A] text-lg">Injectables</h3>
+              <p class="text-[#64748B] text-xs sm:text-sm leading-relaxed">Safe clinical administration of prescribed injectables and IV therapies.</p>
+            </div>
           </div>
-          <h3 class="font-bold text-slate-900 text-sm">Nutraceuticals</h3>
-          <p class="text-slate-500 text-xs">Short text</p>
-        </div>
 
+          <!-- 4: Nutraceuticals -->
+          <div class="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 p-6 text-center space-y-4 group">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-[#0284C7] text-2xl shadow-xs group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-capsules"></i>
+            </div>
+            <div class="space-y-1">
+              <h3 class="font-bold text-[#0F172A] text-lg">Nutraceuticals</h3>
+              <p class="text-[#64748B] text-xs sm:text-sm leading-relaxed">Targeted nutrition and supplements to strengthen immunity and vitality.</p>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- CARD 2: Specialized Treatments -->
-    <div class="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden p-6 sm:p-8 space-y-8">
-      <div>
-        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">SECTION TAG</span>
-        <h2 class="text-2xl font-serif font-bold text-slate-900">Specialized Treatments</h2>
-      </div>
-
-      <!-- Treatment Item 1 (Image Left, Text Right) -->
-      <div class="grid sm:grid-cols-2 gap-6 items-center">
-        <!-- Placeholder Box -->
-        <div class="w-full h-48 sm:h-52 bg-slate-300 rounded-2xl flex items-center justify-center text-slate-400 shadow-inner">
-          <svg class="w-14 h-14" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm0-2a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3H4zm14.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-13 8h13l-4-5-3 3.5-2-2.5-4 4z"/>
-          </svg>
-        </div>
+    <!-- SECTION 2: SPECIALIZED TREATMENTS (Full Width) -->
+    <section class="w-full bg-white py-12 sm:py-16 px-4 sm:px-8 lg:px-12 border-b border-slate-200">
+      <div class="max-w-7xl mx-auto space-y-8">
         
-        <div class="space-y-4">
-          <p class="text-slate-700 text-sm leading-relaxed">
-            Clean treatment description text and considerent ferting andesting treatment and caminua moms.
-          </p>
-          <div>
-            <a href="meet-doctor.html" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl border border-blue-300 bg-blue-50/50 hover:bg-blue-100 text-xs font-semibold text-blue-900 transition">
-              <span class="w-5 h-5 rounded-full bg-blue-200 text-blue-800 flex items-center justify-center text-[10px]">
-                <i class="fa-solid fa-user-doctor"></i>
-              </span>
-              Suggested Doctor: <strong class="text-slate-900">Dr. Smith</strong>
-            </a>
+        <div class="text-center space-y-2">
+          <span class="text-xs font-bold text-[#0284C7] uppercase tracking-widest block">Specialized Treatments</span>
+          <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#0F172A] tracking-tight">
+            Advanced Clinical Procedures
+          </h2>
+          <div class="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
+        </div>
+
+        <!-- Reduced width cards container -->
+        <div class="max-w-4xl mx-auto space-y-6">
+          
+          <!-- Treatment Item 1 (Blue Left, White Right) -->
+          <div class="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col md:flex-row items-stretch group">
+            <!-- Left Full-Height Blue Side with Centered Image -->
+            <div class="w-full md:w-64 bg-[#1B365D] p-5 sm:p-6 flex items-center justify-center shrink-0 border-b md:border-b-0 md:border-r border-[#13294B]">
+              <div class="w-full max-w-[200px] h-36 sm:h-40 bg-white rounded-2xl flex items-center justify-center text-[#1B365D] shadow-md transform group-hover:scale-105 transition-transform duration-300">
+                <i class="fa-solid fa-heart-pulse text-5xl text-[#0284C7]"></i>
+              </div>
+            </div>
+            <!-- Right White Side with Text -->
+            <div class="flex-1 bg-white p-6 sm:p-7 flex flex-col justify-center space-y-3">
+              <h3 class="text-xl sm:text-2xl font-serif font-bold text-[#0F172A]">Cardiology & Vascular Care</h3>
+              <p class="text-[#64748B] text-xs sm:text-sm leading-relaxed">
+                Comprehensive cardiovascular health diagnostics, stress testing, preventive monitoring, and tailored therapeutic care managed by senior cardiology specialists.
+              </p>
+              <div class="flex flex-wrap items-center gap-3 pt-1">
+                <a href="meet-doctor.html" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-slate-200 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] shadow-xs transition">
+                  <span class="w-5 h-5 rounded-full bg-[#0284C7] text-white flex items-center justify-center text-[10px]">
+                    <i class="fa-solid fa-user-doctor"></i>
+                  </span>
+                  Suggested Doctor: <strong class="text-[#0F172A]">Dr. Smith</strong>
+                </a>
+                <a href="booking.html" class="bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs transition">
+                  Book Treatment
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <!-- Treatment Item 2 (Text Left, Image Right) -->
-      <div class="grid sm:grid-cols-2 gap-6 items-center pt-4 border-t border-slate-100">
-        <div class="space-y-4 order-2 sm:order-1">
-          <p class="text-slate-700 text-sm leading-relaxed">
-            Clean treatment description text and considerentferting anc:esting treatment and caminua moms.
-          </p>
-          <div>
-            <a href="meet-doctor.html" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl border border-blue-300 bg-blue-50/50 hover:bg-blue-100 text-xs font-semibold text-blue-900 transition">
-              <span class="w-5 h-5 rounded-full bg-blue-200 text-blue-800 flex items-center justify-center text-[10px]">
-                <i class="fa-solid fa-user-doctor"></i>
-              </span>
-              Suggested Doctor: <strong class="text-slate-900">Dr. Jones</strong>
-            </a>
+          <!-- Treatment Item 2 (White Left, Blue Right - Alternating) -->
+          <div class="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col md:flex-row-reverse items-stretch group">
+            <!-- Right Full-Height Blue Side with Centered Image -->
+            <div class="w-full md:w-64 bg-[#1B365D] p-5 sm:p-6 flex items-center justify-center shrink-0 border-b md:border-b-0 md:border-l border-[#13294B]">
+              <div class="w-full max-w-[200px] h-36 sm:h-40 bg-white rounded-2xl flex items-center justify-center text-[#1B365D] shadow-md transform group-hover:scale-105 transition-transform duration-300">
+                <i class="fa-solid fa-bone text-5xl text-[#0284C7]"></i>
+              </div>
+            </div>
+            <!-- Left White Side with Text -->
+            <div class="flex-1 bg-white p-6 sm:p-7 flex flex-col justify-center space-y-3">
+              <h3 class="text-xl sm:text-2xl font-serif font-bold text-[#0F172A]">Orthopedic & Musculoskeletal Therapy</h3>
+              <p class="text-[#64748B] text-xs sm:text-sm leading-relaxed">
+                Precision diagnosis and non-invasive rehabilitation for joint health, spinal care, sports injury recovery, and mobility restoration.
+              </p>
+              <div class="flex flex-wrap items-center gap-3 pt-1">
+                <a href="meet-doctor.html" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-slate-200 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] shadow-xs transition">
+                  <span class="w-5 h-5 rounded-full bg-[#0284C7] text-white flex items-center justify-center text-[10px]">
+                    <i class="fa-solid fa-user-doctor"></i>
+                  </span>
+                  Suggested Doctor: <strong class="text-[#0F172A]">Dr. Jones</strong>
+                </a>
+                <a href="booking.html" class="bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs transition">
+                  Book Treatment
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <!-- Placeholder Box -->
-        <div class="w-full h-48 sm:h-52 bg-slate-300 rounded-2xl flex items-center justify-center text-slate-400 shadow-inner order-1 sm:order-2">
-          <svg class="w-14 h-14" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm0-2a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3H4zm14.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-13 8h13l-4-5-3 3.5-2-2.5-4 4z"/>
-          </svg>
-        </div>
-      </div>
-
-      <!-- Treatment Item 3 (Image Left, Text Right) -->
-      <div class="grid sm:grid-cols-2 gap-6 items-center pt-4 border-t border-slate-100">
-        <!-- Placeholder Box -->
-        <div class="w-full h-48 sm:h-52 bg-slate-300 rounded-2xl flex items-center justify-center text-slate-400 shadow-inner">
-          <svg class="w-14 h-14" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm0-2a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3H4zm14.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-13 8h13l-4-5-3 3.5-2-2.5-4 4z"/>
-          </svg>
-        </div>
-        
-        <div class="space-y-4">
-          <p class="text-slate-700 text-sm leading-relaxed">
-            Clean treatment description text and considerent ferting and corting treatment and caminua moms.
-          </p>
-          <div>
-            <a href="meet-doctor.html" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl border border-blue-300 bg-blue-50/50 hover:bg-blue-100 text-xs font-semibold text-blue-900 transition">
-              <span class="w-5 h-5 rounded-full bg-blue-200 text-blue-800 flex items-center justify-center text-[10px]">
-                <i class="fa-solid fa-user-doctor"></i>
-              </span>
-              Suggested Doctor: <strong class="text-slate-900">Dr. Lee</strong>
-            </a>
+          <!-- Treatment Item 3 (Blue Left, White Right - Alternating) -->
+          <div class="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col md:flex-row items-stretch group">
+            <!-- Left Full-Height Blue Side with Centered Image -->
+            <div class="w-full md:w-64 bg-[#1B365D] p-5 sm:p-6 flex items-center justify-center shrink-0 border-b md:border-b-0 md:border-r border-[#13294B]">
+              <div class="w-full max-w-[200px] h-36 sm:h-40 bg-white rounded-2xl flex items-center justify-center text-[#1B365D] shadow-md transform group-hover:scale-105 transition-transform duration-300">
+                <i class="fa-solid fa-dna text-5xl text-[#0284C7]"></i>
+              </div>
+            </div>
+            <!-- Right White Side with Text -->
+            <div class="flex-1 bg-white p-6 sm:p-7 flex flex-col justify-center space-y-3">
+              <h3 class="text-xl sm:text-2xl font-serif font-bold text-[#0F172A]">Dermatology & Regenerative Health</h3>
+              <p class="text-[#64748B] text-xs sm:text-sm leading-relaxed">
+                State-of-the-art dermatological procedures, clinical skincare treatments, and cellular therapies focused on long-term tissue restoration.
+              </p>
+              <div class="flex flex-wrap items-center gap-3 pt-1">
+                <a href="meet-doctor.html" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-slate-200 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] shadow-xs transition">
+                  <span class="w-5 h-5 rounded-full bg-[#0284C7] text-white flex items-center justify-center text-[10px]">
+                    <i class="fa-solid fa-user-doctor"></i>
+                  </span>
+                  Suggested Doctor: <strong class="text-[#0F172A]">Dr. Lee</strong>
+                </a>
+                <a href="booking.html" class="bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs transition">
+                  Book Treatment
+                </a>
+              </div>
+            </div>
           </div>
+
         </div>
+
+        <!-- Center Go on Top Button -->
+        <div class="text-center pt-6">
+          <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition cursor-pointer">
+            <i class="fa-solid fa-arrow-up mr-2"></i> Go on top
+          </button>
+        </div>
+
       </div>
-
-      <!-- Center Go on Top Button -->
-      <div class="text-center pt-4">
-        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="bg-[#083B36] hover:bg-[#0c4e48] text-[#D4AF37] font-serif font-bold px-8 py-3 rounded-xl shadow-md transition">
-          Go on top
-        </button>
-      </div>
-
-    </div>
-
-    <!-- Footer Note -->
-    <div class="text-center text-xs text-slate-500 py-4 font-medium">
-      Use as a starting point &bull; Keep it simple &bull; Adapt to your content
-    </div>
+    </section>
 
   </main>
 
-  <footer class="w-full text-center text-xs text-slate-400 py-6 border-t border-slate-200/60 font-serif">
+  <!-- Full Width Footer -->
+  <footer class="w-full bg-[#1B365D] text-white text-center text-xs sm:text-sm py-8 font-serif border-t border-white/10">
     &copy; 2026 Clinic Care. All rights reserved.
   </footer>
 
