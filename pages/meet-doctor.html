@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet Doctor</title>
+  <link rel="stylesheet" href="../dist/output.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      background-color: #f1f5f9;
+      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', Times, serif;
+    }
+  </style>
+</head>
+<body class="text-slate-800 font-sans antialiased min-h-screen flex flex-col p-0 m-0 w-full overflow-x-hidden">
+
+  <!-- Top Global Navigation Bar -->
+  <header class="sticky top-0 z-50 w-full bg-[#083B36]/95 backdrop-blur-md border-b border-[#D4AF37]/30 shadow-lg px-6 sm:px-12 lg:px-20 pt-4 pb-3.5 flex flex-wrap justify-between items-center gap-4 transition duration-300">
+    <a href="home.html" class="flex items-center gap-2.5 font-serif font-bold text-2xl text-[#D4AF37] tracking-wide">
+      <span class="w-9 h-9 rounded-xl bg-[#D4AF37] text-[#083B36] flex items-center justify-center text-base shadow-md">
+        <i class="fa-solid fa-heart-pulse"></i>
+      </span>
+      <span>Clinic<span class="text-white">Care</span></span>
+    </a>
+    <nav class="flex flex-wrap items-center gap-3 sm:gap-8 text-sm sm:text-base font-serif font-medium">
+      <a href="home.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Home</a>
+      <a href="treatment.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Treatments</a>
+      <a href="about-clinic.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">About Clinic</a>
+      <a href="meet-doctor.html" class="text-[#D4AF37] border-b-2 border-[#D4AF37] pb-0.5 font-bold transition">Meet Doctor</a>
+      <a href="contact.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Contact</a>
+      <a href="booking.html" class="bg-[#D4AF37] hover:bg-amber-400 text-[#083B36] font-bold px-4 py-2 rounded-xl transition text-xs sm:text-sm font-serif shadow-md">Booking</a>
+    </nav>
+  </header>
+
+  <!-- Page Main Content exactly matching Meet_Doctor.png mockup -->
+  <main class="max-w-4xl mx-auto w-full space-y-6 px-4 sm:px-6 py-8 flex-grow">
+    
+    <!-- Title Pill Badge -->
+    <div>
+      <span class="bg-[#dbeafe] text-[#1e40af] px-6 py-2 rounded-full font-bold text-lg inline-block shadow-xs">
+        Meet Doctor
+      </span>
+    </div>
+
+    <!-- MAIN CARD CONTAINER -->
+    <div class="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden p-6 sm:p-8 space-y-8">
+      
+      <!-- Top Doctor Profile Section -->
+      <div class="grid sm:grid-cols-12 gap-6 items-center">
+        <!-- Doctor Avatar/Placeholder Box -->
+        <div class="sm:col-span-5 flex justify-center">
+          <div class="w-48 h-56 sm:w-56 sm:h-64 rounded-3xl bg-slate-200 border border-slate-300 flex items-center justify-center text-slate-400 shadow-inner">
+            <i class="fa-solid fa-user-doctor text-7xl"></i>
+          </div>
+        </div>
+
+        <!-- Doctor Bio & Actions -->
+        <div class="sm:col-span-7 space-y-3">
+          <h2 class="text-2xl sm:text-3xl font-serif font-extrabold text-slate-900">
+            Dr. [Name]
+          </h2>
+          <p class="text-slate-700 font-medium text-base">[Qualifications]</p>
+          <p class="text-slate-700 font-medium text-base">[Specialty]</p>
+          
+          <div class="pt-1">
+            <span class="bg-[#dcfce7] text-[#15803d] font-semibold px-4 py-1 rounded-full text-xs inline-block">
+              Available in 20 mins
+            </span>
+          </div>
+
+          <div class="pt-2">
+            <a href="https://wa.me/" target="_blank" class="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold px-6 py-2.5 rounded-xl inline-flex items-center gap-2 text-sm shadow transition">
+              <i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="border-t border-slate-200"></div>
+
+      <!-- Bottom Reviews & Video/Media Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <!-- Column 1: Reviews -->
+        <div class="space-y-4">
+          <!-- Review 1 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2">
+            <div class="text-amber-400 text-xs">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-700 text-xs leading-relaxed">
+              Excellent care and attention, as highly recommended content onnwridies, with a relassament.
+            </p>
+            <p class="font-bold text-slate-900 text-xs pt-1">Dr. [Name]</p>
+          </div>
+
+          <!-- Review 2 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2">
+            <div class="text-amber-400 text-xs">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-700 text-xs leading-relaxed">
+              Have any tectoni'kad amen casteos ot of ocsna-axd caslioot mam enargnement.
+            </p>
+            <p class="font-bold text-slate-900 text-xs pt-1">Dr. [Name]</p>
+          </div>
+        </div>
+
+        <!-- Column 2: Reviews -->
+        <div class="space-y-4">
+          <!-- Review 3 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2">
+            <div class="text-amber-400 text-xs">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-700 text-xs leading-relaxed">
+              I love any acctomsal amon content at al scoonered consent ormeteles, alek a tasiatament.
+            </p>
+            <p class="font-bold text-slate-900 text-xs pt-1">Dr. [Name]</p>
+          </div>
+
+          <!-- Review 4 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-2">
+            <div class="text-amber-400 text-xs">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-700 text-xs leading-relaxed">
+              I love any eodomical omon contens at of reconered content cham pargesement.
+            </p>
+            <p class="font-bold text-slate-900 text-xs pt-1">Dr. [Name]</p>
+          </div>
+        </div>
+
+        <!-- Column 3: Video / Media Placeholder Column -->
+        <div class="space-y-4 flex flex-col justify-between">
+          <!-- Video Placeholder -->
+          <div class="w-full h-28 bg-slate-300 rounded-2xl flex items-center justify-center shadow-inner cursor-pointer hover:bg-slate-400/80 transition">
+            <div class="w-12 h-9 rounded-xl bg-slate-600/80 flex items-center justify-center text-white text-sm">
+              <i class="fa-solid fa-play ml-0.5"></i>
+            </div>
+          </div>
+
+          <!-- Image Placeholder -->
+          <div class="w-full h-28 bg-slate-300 rounded-2xl flex items-center justify-center text-slate-400 shadow-inner">
+            <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm0-2a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3H4zm14.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-13 8h13l-4-5-3 3.5-2-2.5-4 4z"/>
+            </svg>
+          </div>
+
+          <!-- Video play label -->
+          <div class="text-center">
+            <span class="text-xs text-slate-600 font-medium">Video play</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="w-full text-center text-xs text-slate-400 py-6 border-t border-slate-200/60 font-serif">
+    &copy; 2026 Clinic Care. All rights reserved.
+  </footer>
+
+</body>
+</html>

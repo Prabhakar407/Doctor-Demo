@@ -1,0 +1,22 @@
+{
+  "name": "doctor-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --minify",
+    "watch:css": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --watch",
+    "build": "npm run build:css",
+    "dev": "npm run watch:css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^4.3.3"
+  }
+}

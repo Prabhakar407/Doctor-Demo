@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinic Care | Modern Healthcare</title>
+  <link rel="stylesheet" href="./dist/output.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts Imports -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  
+  <style>
+    .playfair-display {
+      font-family: "Playfair Display", serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+    }
+    .font-serif {
+      font-family: "Playfair Display", serif;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-800 font-sans antialiased min-h-screen flex flex-col p-0 m-0 w-full overflow-x-hidden">
+
+  <!-- Top Global Navigation Bar -->
+  <header class="sticky top-0 z-50 w-full bg-[#083B36]/95 backdrop-blur-md border-b border-[#D4AF37]/30 shadow-lg px-6 sm:px-12 lg:px-20 pt-4 pb-3.5 flex flex-wrap justify-between items-center gap-4 transition duration-300">
+    <!-- Brand Logo -->
+    <a href="index.html" class="flex items-center gap-2.5 font-serif font-bold text-2xl text-[#D4AF37] tracking-wide">
+      <span class="w-9 h-9 rounded-xl bg-[#D4AF37] text-[#083B36] flex items-center justify-center text-base shadow-md">
+        <i class="fa-solid fa-heart-pulse"></i>
+      </span>
+      <span>Clinic<span class="text-white">Care</span></span>
+    </a>
+
+    <!-- Nav Links -->
+    <nav class="flex flex-wrap items-center gap-3 sm:gap-8 text-sm sm:text-base font-serif font-medium">
+      <a href="index.html" class="text-[#D4AF37] border-b-2 border-[#D4AF37] pb-0.5 font-bold transition">Home</a>
+      <a href="pages/treatment.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Treatments</a>
+      <a href="pages/about-clinic.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">About Clinic</a>
+      <a href="pages/meet-doctor.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Meet Doctor</a>
+      <a href="pages/contact.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Contact</a>
+      <a href="pages/booking.html" class="bg-[#D4AF37] hover:bg-amber-400 text-[#083B36] active:bg-[#D4AF37] font-bold px-4 py-2 rounded-xl transition text-xs sm:text-sm font-serif shadow-md">Booking</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="w-full flex-grow flex flex-col p-0 m-0">
+
+    <!-- HERO SECTION -->
+    <section class="w-full min-h-[calc(100vh-73px)] bg-[#083B36] text-white flex items-center relative overflow-hidden py-10 px-4 sm:px-8 lg:px-14">
+      
+      <!-- Right Background Image: 3/5 width on right with left fading effect -->
+      <div class="absolute right-0 top-0 bottom-0 w-full lg:w-3/5 h-full z-0 overflow-hidden pointer-events-none">
+        <img
+          src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1600&q=80"
+          alt="Medicine & Healthcare"
+          class="w-full h-full object-cover object-center [mask-image:linear-gradient(to_right,transparent,black_40%)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_40%)] opacity-70 lg:opacity-85"
+        />
+        <div class="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-[#083B36] to-transparent"></div>
+      </div>
+
+      <!-- Ambient Glows -->
+      <div class="absolute -top-32 -left-32 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Hero Grid: Left Content + Right Floating Glassmorphic Form -->
+      <div class="w-full max-w-7xl mx-auto relative z-10 grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        
+        <!-- Left Column: Headline & Action Buttons -->
+        <div class="lg:col-span-7 space-y-6">
+          <h1 class="playfair-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-white leading-tight not-italic">
+            Your Path to <span class="not-italic">Personalized</span> <span class="italic text-[#D4AF37] font-serif font-medium">Wellness</span>
+          </h1>
+          <p class="text-slate-200 text-base sm:text-xl font-normal leading-relaxed max-w-xl">
+            Expert care for your family.
+          </p>
+
+          <!-- Buttons Container (Reduced padding, thin border, No WhatsApp button) -->
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a href="pages/booking.html" class="bg-[#D4AF37] hover:bg-amber-400 text-[#083B36] text-sm sm:text-base font-serif font-bold px-5 py-2.5 rounded-xl shadow-lg hover:shadow-xl transition">
+              Book Now
+            </a>
+            <a href="pages/treatment.html" class="border border-[#D4AF37] hover:bg-[#D4AF37]/15 text-[#D4AF37] text-sm sm:text-base font-serif font-bold px-5 py-2.5 rounded-xl transition">
+              Our Services
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Glassmorphic "Book your Visit" Form with dark green thin border & dark green hover shadow -->
+        <div class="lg:col-span-5 flex justify-end w-full">
+          <div class="w-full max-w-sm bg-[#083B36]/85 backdrop-blur-md border border-[#042421] rounded-2xl p-5 sm:p-6 shadow-xl transition-all duration-300 hover:shadow-[0_20px_50px_rgba(3,26,24,0.85)] space-y-4">
+            
+            <div class="text-center pb-1 border-b border-[#042421]/60">
+              <h3 class="text-lg sm:text-xl font-serif font-bold text-[#D4AF37] tracking-wide">
+                Book your Visit
+              </h3>
+              <p class="text-[11px] text-slate-300">Quick and easy appointment scheduling</p>
+            </div>
+
+            <form class="space-y-3" onsubmit="event.preventDefault(); alert('Thank you! Your appointment request has been received.');">
+              <!-- Name -->
+              <div>
+                <label class="block text-[14px] font-serif font-medium text-slate-200 mb-1">User Name *</label>
+                <input type="text" required placeholder="Your full name" class="w-full px-3 py-2 text-[14px] placeholder:text-[14px] rounded-xl bg-white/10 border border-[#042421] text-white placeholder:text-slate-400 focus:outline-none focus:border-[#042421] focus:ring-1 focus:ring-[#042421]">
+              </div>
+
+              <!-- Phone & Email in 2 compact columns -->
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-[14px] font-serif font-medium text-slate-200 mb-1">Phone Number *</label>
+                  <input type="tel" required placeholder="+1 234 567" class="w-full px-3 py-2 text-[14px] placeholder:text-[14px] rounded-xl bg-white/10 border border-[#042421] text-white placeholder:text-slate-400 focus:outline-none focus:border-[#042421] focus:ring-1 focus:ring-[#042421]">
+                </div>
+                <div>
+                  <label class="block text-[14px] font-serif font-medium text-slate-200 mb-1">Email *</label>
+                  <input type="email" required placeholder="you@email.com" class="w-full px-3 py-2 text-[14px] placeholder:text-[14px] rounded-xl bg-white/10 border border-[#042421] text-white placeholder:text-slate-400 focus:outline-none focus:border-[#042421] focus:ring-1 focus:ring-[#042421]">
+                </div>
+              </div>
+
+              <!-- Preferred Date & Time -->
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-[14px] font-serif font-medium text-slate-200 mb-1">Preferred Date *</label>
+                  <input type="date" required class="w-full px-2.5 py-2 text-[14px] rounded-xl bg-white/10 border border-[#042421] text-white focus:outline-none focus:border-[#042421] focus:ring-1 focus:ring-[#042421]">
+                </div>
+                <div>
+                  <label class="block text-[14px] font-serif font-medium text-slate-200 mb-1">Preferred Time *</label>
+                  <select required class="w-full px-2.5 py-2 text-[14px] rounded-xl bg-[#083B36] border border-[#042421] text-white focus:outline-none focus:border-[#042421] focus:ring-1 focus:ring-[#042421]">
+                    <option value="">Select Time</option>
+                    <option value="Morning">09:00 AM - 12:00 PM</option>
+                    <option value="Afternoon">12:00 PM - 04:00 PM</option>
+                    <option value="Evening">04:00 PM - 08:00 PM</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Submit Button (width fitted to text) -->
+              <div class="flex justify-center pt-2">
+                <button type="submit" class="w-auto px-6 py-2.5 bg-[#D4AF37] hover:bg-amber-400 text-[#083B36] font-serif font-bold rounded-xl transition text-sm shadow-md">
+                  Book Appointment
+                </button>
+              </div>
+
+              <!-- Phone call fallback line -->
+              <div class="text-center pt-1">
+                <p class="text-[12px] text-slate-300 font-serif">
+                  Or call us at <a href="tel:+81888888888" class="text-[#D4AF37] font-bold hover:underline ml-0.5">+81888888888</a>
+                </p>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HEALTHCARE SOLUTIONS / SERVICES SECTION (Matching Services.png) -->
+    <section class="w-full bg-gradient-to-b from-slate-50/70 to-white pt-8 sm:pt-10 pb-16 sm:pb-20 px-4 sm:px-8 lg:px-12 border-b border-slate-100">
+      <div class="max-w-7xl mx-auto space-y-8">
+        
+        <!-- Section Header (Closer to top border) -->
+        <div class="text-center space-y-2.5">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#083B36] tracking-tight">
+            Healthcare Solutions
+          </h2>
+          <div class="w-16 h-1 bg-gradient-to-r from-sky-400 to-blue-600 rounded-full mx-auto"></div>
+        </div>
+
+        <!-- Bento Grid Layout with balanced proportions for left 4 boxes and right section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2.25fr_2.1fr_2.25fr_3.6fr] gap-5 items-stretch">
+          
+          <!-- Column 1: Vaccines (Bottom 1/3 Green Color) -->
+          <div class="bg-white rounded-3xl border border-[#083B36] shadow-[0_4px_20px_rgba(8,59,54,0.12)] hover:shadow-[0_24px_50px_rgba(8,59,54,0.55)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+            <!-- Top Visual Area (Upper 2/3) -->
+            <div class="bg-gradient-to-b from-sky-100/70 via-sky-50 to-white p-4 flex flex-col items-center justify-center min-h-[190px] relative flex-1">
+              <div class="w-20 h-32 bg-gradient-to-b from-cyan-400/20 via-sky-200/40 to-blue-400/30 rounded-2xl border border-sky-200/60 shadow-lg relative flex flex-col items-center justify-between p-1.5 backdrop-blur-sm">
+                <!-- Vial Cap -->
+                <div class="w-10 h-3.5 bg-slate-300 rounded-t-md border-b border-slate-400 shadow-sm flex items-center justify-center">
+                  <div class="w-5 h-0.5 bg-slate-400 rounded-full"></div>
+                </div>
+                <!-- Label on Vial -->
+                <div class="w-full bg-white/95 rounded py-1 px-0.5 text-center shadow-inner border border-sky-100 my-auto">
+                  <span class="block text-[7px] font-bold text-sky-800 tracking-wider">COVID-19</span>
+                  <span class="block text-[6px] text-slate-500 font-semibold">VACCINE</span>
+                </div>
+                <!-- Liquid Base -->
+                <div class="w-full h-7 bg-gradient-to-t from-sky-400/60 to-cyan-300/30 rounded-b-xl"></div>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+            </div>
+            <!-- Bottom Content (Bottom 1/3 Green #083B36) -->
+            <div class="p-4 sm:p-4.5 bg-[#083B36] text-white border-t border-[#062c28] mt-auto flex flex-col justify-center min-h-[95px]">
+              <h3 class="font-bold text-white text-lg mb-1">Vaccines</h3>
+              <p class="text-emerald-100/90 text-xs leading-relaxed">Vaccines, boosters, & immunizations for health.</p>
+            </div>
+          </div>
+
+          <!-- Column 2: Wellness Care Stack (Slightly Widened, Text closer to bottom) -->
+          <div class="flex flex-col gap-5 justify-between">
+            <!-- Top Dark Green Card: Wellness Care (Text at bottom) -->
+            <div class="flex-1 bg-gradient-to-br from-[#072f2b] via-[#083B36] to-[#041a18] rounded-3xl border border-[#083B36] p-4.5 sm:p-5 pt-8 pb-3 sm:pb-3.5 text-white shadow-[0_4px_20px_rgba(8,59,54,0.2)] hover:shadow-[0_24px_50px_rgba(8,59,54,0.65)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-end min-h-[170px] group">
+              <div class="absolute -right-2 -bottom-2 text-emerald-400/10 text-6xl pointer-events-none">
+                <i class="fa-solid fa-heart-pulse"></i>
+              </div>
+              <h3 class="font-bold text-white text-lg mb-1">Wellness Care</h3>
+              <p class="text-emerald-100/90 text-xs leading-relaxed relative z-10">Preventive care for a healthier, happier you.</p>
+            </div>
+
+            <!-- Bottom Light Card: Wellness Care (Text at bottom) -->
+            <div class="flex-1 bg-gradient-to-br from-white via-indigo-50/40 to-purple-50/50 rounded-3xl border border-[#083B36] p-4.5 sm:p-5 pt-8 pb-3 sm:pb-3.5 shadow-[0_4px_20px_rgba(8,59,54,0.12)] hover:shadow-[0_24px_50px_rgba(8,59,54,0.55)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-end min-h-[170px] group">
+              <h3 class="font-bold text-[#083B36] text-lg mb-1">Wellness Care</h3>
+              <p class="text-[#083B36]/80 text-xs leading-relaxed">Advanced treatments for better health & balance.</p>
+            </div>
+          </div>
+
+          <!-- Column 3: Injectables (Bottom 1/3 Green Color) -->
+          <div class="bg-white rounded-3xl border border-[#083B36] shadow-[0_4px_20px_rgba(8,59,54,0.12)] hover:shadow-[0_24px_50px_rgba(8,59,54,0.55)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+            <!-- Top Visual Area (Upper 2/3) -->
+            <div class="bg-gradient-to-b from-sky-50 via-white to-sky-50/30 p-5 flex items-center justify-center min-h-[190px] relative flex-1">
+              <div class="w-full flex items-center justify-center rotate-[-35deg] transform scale-110">
+                <!-- Syringe SVG Illustration -->
+                <svg class="w-28 h-28 text-cyan-500 drop-shadow-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 5L15 9" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M17 3L21 7" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M14 6L18 10L9 19L5 15L14 6Z" fill="#e0f2fe" stroke="#38bdf8" stroke-width="1.5"/>
+                  <path d="M7 17L12 12" stroke="#0284c7" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M5 15L2 18" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M3 21L1 23" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+            </div>
+            <!-- Bottom Content (Bottom 1/3 Green #083B36) -->
+            <div class="p-4 sm:p-5 bg-[#083B36] text-white border-t border-[#062c28] mt-auto flex flex-col justify-center min-h-[95px]">
+              <h3 class="font-bold text-white text-xl mb-1">Injectables</h3>
+              <p class="text-emerald-100/90 text-xs sm:text-sm leading-relaxed">Products, supplies and administration for injections.</p>
+            </div>
+          </div>
+
+          <!-- Column 4: Right Section (Nutraceuticals + Specialty Medicines) -->
+          <div class="flex flex-col gap-4 justify-between">
+            <!-- Top Wide Card: Nutraceuticals (Left 2/3 Green #083B36, Right 1/3 Light Visual) -->
+            <div class="rounded-3xl border border-[#083B36] shadow-[0_4px_20px_rgba(8,59,54,0.12)] hover:shadow-[0_24px_50px_rgba(8,59,54,0.55)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group min-h-[175px]">
+              <!-- Left 2/3 Content (Navbar Green #083B36) -->
+              <div class="w-full sm:w-2/3 bg-[#083B36] p-5 sm:p-6 text-white flex flex-col justify-center space-y-1.5 z-10">
+                <h3 class="font-bold text-white text-xl mb-0.5">Nutraceuticals</h3>
+                <p class="text-emerald-100/90 text-xs sm:text-sm leading-relaxed">Nutritional supplements for overall health, vitality, and wellness.</p>
+              </div>
+              <!-- Right 1/3 Supplement Bottle Graphic -->
+              <div class="w-full sm:w-1/3 bg-gradient-to-br from-indigo-50/70 via-blue-50/40 to-amber-50/50 p-4 flex items-center justify-center border-t sm:border-t-0 sm:border-l border-[#083B36]/15">
+                <div class="w-18 h-22 bg-white rounded-2xl border border-amber-100 shadow-md flex flex-col items-center justify-between p-2 relative z-10">
+                  <div class="w-9 h-3 bg-slate-200 rounded-t-sm"></div>
+                  <div class="w-12 h-9 bg-amber-50 rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-capsules text-amber-500 text-lg"></i>
+                  </div>
+                  <div class="w-9 h-1.5 bg-amber-400 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom 2 Split Cards (Increased Height) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Nutraceuticals (Soft Cyan Light Card, Increased Height) -->
+              <div class="bg-gradient-to-br from-cyan-50/90 via-sky-50/80 to-blue-100/60 rounded-3xl border border-[#083B36] p-5 sm:p-6 pt-7 pb-4 sm:pb-4.5 shadow-[0_4px_20px_rgba(8,59,54,0.12)] hover:shadow-[0_24px_50px_rgba(8,59,54,0.55)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-end min-h-[180px] group">
+                <h3 class="font-bold text-[#083B36] text-lg mb-1">Nutraceuticals</h3>
+                <p class="text-[#083B36]/80 text-xs sm:text-sm leading-relaxed">Functional nutrition for energy, immunity and vitality.</p>
+              </div>
+
+              <!-- Specialty Medicines (Dark Navy/Blue Card, Increased Height) -->
+              <div class="bg-gradient-to-br from-[#091e36] via-[#0b2545] to-[#041224] rounded-3xl border border-[#083B36] p-5 sm:p-6 pt-7 pb-4 sm:pb-4.5 text-white shadow-[0_4px_20px_rgba(8,59,54,0.2)] hover:shadow-[0_24px_50px_rgba(8,59,54,0.65)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-end min-h-[180px] group">
+                <div class="absolute -right-3 -bottom-3 text-pink-500/20 text-5xl pointer-events-none">
+                  <i class="fa-solid fa-tablets"></i>
+                </div>
+                <h3 class="font-bold text-white text-lg mb-1 relative z-10">Specialty Medicines</h3>
+                <p class="text-sky-100/90 text-xs sm:text-sm leading-relaxed relative z-10">Targeted therapies for complex conditions and rare diseases.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT DOCTOR SECTION (Full Width Edge-to-Edge) -->
+    <section class="w-full bg-slate-50 py-8 sm:py-12 px-4 sm:px-8 lg:px-12 border-b border-slate-100">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-12 gap-8 sm:gap-10 items-center">
+          <!-- Doctor Placeholder Box -->
+          <div class="lg:col-span-4 flex justify-center lg:justify-start">
+            <div class="w-52 h-52 sm:w-60 sm:h-60 rounded-3xl bg-slate-200 border border-slate-300 flex items-center justify-center text-slate-400 shadow-inner">
+              <i class="fa-solid fa-user-doctor text-7xl sm:text-8xl"></i>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="lg:col-span-8 space-y-4 sm:space-y-5">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold italic text-[#083B36] tracking-tight">About doctor section</h2>
+            <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+              Adnessed tricatments term of coocestetor moditer cadus, coot od binsoner aliginisid and procition, urnert, a taalstement.
+            </p>
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+              <a href="pages/booking.html" class="bg-[#D4AF37] hover:bg-[#c49e2a] text-[#083B36] font-serif text-base font-bold px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition">
+                Book Appointment
+              </a>
+              <a href="https://wa.me/" target="_blank" class="bg-[#25D366] hover:bg-[#20ba59] text-white text-base font-bold px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg flex items-center gap-2.5 transition">
+                <i class="fa-brands fa-whatsapp text-2xl text-white"></i> WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY BOOK OUR CONSULTATION SECTION (Exact Screen Height, 1/3 Reduced Box Width, Navbar Color #083B36) -->
+    <section class="w-full bg-[#f8fafc] h-screen max-h-screen flex flex-col justify-center px-4 sm:px-8 border-b border-slate-200/60 overflow-hidden py-4 sm:py-6">
+      <div class="max-w-3xl w-full mx-auto space-y-3 sm:space-y-4 flex flex-col justify-center">
+        
+        <!-- Section Header (Tight vertical spacing, Same font size as Healthcare Solutions) -->
+        <div class="text-center space-y-1.5">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#083B36] tracking-tight">
+            Why Book Appointment Online
+          </h2>
+          <div class="w-14 h-1 bg-gradient-to-r from-emerald-400 to-[#083B36] rounded-full mx-auto"></div>
+        </div>
+        
+        <!-- 2x2 Grid of Cards (1/3 reduced width, screen-height proportioned, horizontal spacing between columns) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-3.5 sm:gap-y-4 gap-x-6 sm:gap-x-8 items-stretch">
+          
+          <!-- Card 1: Instant Booking & Confirmation -->
+          <div class="bg-gradient-to-b from-[#0e4842] via-[#083B36] to-[#041e1b] rounded-2xl sm:rounded-3xl border border-[#083B36] text-white shadow-[0_4px_20px_rgba(8,59,54,0.12)] hover:shadow-[0_20px_45px_rgba(8,59,54,0.55)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group min-h-[185px] sm:min-h-[205px]">
+            <!-- Visual Top Graphic -->
+            <div class="relative w-full flex-1 p-2.5 sm:p-3 flex items-center justify-center">
+              <div class="w-44 sm:w-48 bg-white rounded-xl p-2.5 shadow-xl border border-emerald-100 flex flex-col items-center justify-center text-center space-y-1 transform group-hover:scale-105 transition-transform duration-300">
+                <div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-bold shadow-sm">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div>
+                  <span class="block text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Appointment Confirmed</span>
+                  <span class="block text-[9px] text-slate-500 font-medium">Patient Name</span>
+                </div>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#041e1b]/30 to-transparent pointer-events-none"></div>
+            </div>
+            
+            <!-- Bottom Text Content -->
+            <div class="p-3.5 sm:p-4 pt-1 bg-[#041e1b]/85 backdrop-blur-sm z-10 space-y-0.5 border-t border-emerald-500/10">
+              <h3 class="text-base sm:text-lg font-serif font-bold text-white tracking-tight">Instant Booking & Confirmation</h3>
+              <p class="text-emerald-100/90 text-[11px] sm:text-xs leading-relaxed">Schedule your visit in minutes. Instant digital confirmation, no calls needed.</p>
+            </div>
+          </div>
+
+          <!-- Card 2: 24/7 Access -->
+          <div class="bg-gradient-to-b from-[#0e4842] via-[#083B36] to-[#041e1b] rounded-2xl sm:rounded-3xl border border-[#083B36] text-white shadow-[0_4px_20px_rgba(8,59,54,0.12)] hover:shadow-[0_20px_45px_rgba(8,59,54,0.55)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group min-h-[185px] sm:min-h-[205px]">
+            <!-- Visual Top Graphic -->
+            <div class="relative w-full flex-1 p-2.5 sm:p-3 flex items-center justify-center">
+              <div class="w-48 sm:w-52 bg-white rounded-xl p-2.5 shadow-xl border border-emerald-100 text-slate-800 space-y-1.5 transform group-hover:scale-105 transition-transform duration-300">
+                <div class="flex items-center justify-between text-[11px] font-bold text-slate-900 pb-1 border-b border-slate-100">
+                  <span class="font-serif font-bold">Oct 12</span>
+                  <div class="flex items-center gap-1.5 text-slate-400">
+                    <i class="fa-solid fa-chevron-left text-[9px]"></i>
+                    <i class="fa-solid fa-chevron-right text-[9px]"></i>
+                  </div>
+                </div>
+                <div class="grid grid-cols-5 gap-1 text-center text-[9px]">
+                  <div class="p-0.5 rounded bg-slate-50 text-slate-600">Mon<br><strong class="text-[9px]">10</strong></div>
+                  <div class="p-0.5 rounded bg-slate-50 text-slate-600">Tue<br><strong class="text-[9px]">11</strong></div>
+                  <div class="p-0.5 rounded bg-[#083B36] text-white shadow-sm font-bold">Wed<br><strong class="text-[9px]">12</strong></div>
+                  <div class="p-0.5 rounded bg-slate-50 text-slate-600">Thu<br><strong class="text-[9px]">13</strong></div>
+                  <div class="p-0.5 rounded bg-slate-50 text-slate-600">Fri<br><strong class="text-[9px]">14</strong></div>
+                </div>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#041e1b]/30 to-transparent pointer-events-none"></div>
+            </div>
+            
+            <!-- Bottom Text Content -->
+            <div class="p-3.5 sm:p-4 pt-1 bg-[#041e1b]/85 backdrop-blur-sm z-10 space-y-0.5 border-t border-emerald-500/10">
+              <h3 class="text-base sm:text-lg font-serif font-bold text-white tracking-tight">24/7 Access</h3>
+              <p class="text-emerald-100/90 text-[11px] sm:text-xs leading-relaxed">Select available slots anytime, anywhere—even outside of business hours.</p>
+            </div>
+          </div>
+
+          <!-- Card 3: Time Efficiency -->
+          <div class="bg-gradient-to-b from-[#0e4842] via-[#083B36] to-[#041e1b] rounded-2xl sm:rounded-3xl border border-[#083B36] text-white shadow-[0_4px_20px_rgba(8,59,54,0.12)] hover:shadow-[0_20px_45px_rgba(8,59,54,0.55)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group min-h-[185px] sm:min-h-[205px]">
+            <!-- Visual Top Graphic -->
+            <div class="relative w-full flex-1 p-2.5 sm:p-3 flex flex-col items-center justify-center space-y-2">
+              <div class="w-40 sm:w-44 flex items-center justify-between relative px-2">
+                <div class="absolute left-3 right-3 h-0.5 bg-emerald-400/40 top-1/2 -translate-y-1/2 z-0"></div>
+                <div class="w-6 h-6 rounded-full bg-emerald-700 text-white flex items-center justify-center text-[9px] relative z-10 shadow">
+                  <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <div class="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[9px] relative z-10 shadow">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+                <div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[9px] relative z-10 shadow ring-1 ring-white">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+              </div>
+              
+              <div class="bg-white rounded-xl px-4 py-1.5 shadow-xl border border-emerald-100 flex items-center gap-1.5 transform group-hover:scale-105 transition-transform duration-300">
+                <div class="w-4 h-4 rounded bg-[#083B36] text-white flex items-center justify-center text-[10px] font-bold">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <span class="text-xs font-bold text-slate-900">No Wait</span>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#041e1b]/30 to-transparent pointer-events-none"></div>
+            </div>
+            
+            <!-- Bottom Text Content -->
+            <div class="p-3.5 sm:p-4 pt-1 bg-[#041e1b]/85 backdrop-blur-sm z-10 space-y-0.5 border-t border-emerald-500/10">
+              <h3 class="text-base sm:text-lg font-serif font-bold text-white tracking-tight">Time Efficiency</h3>
+              <p class="text-emerald-100/90 text-[11px] sm:text-xs leading-relaxed">Optimize your schedule. Minimal check-in time and direct care access upon arrival.</p>
+            </div>
+          </div>
+
+          <!-- Card 4: Total Flexibility -->
+          <div class="bg-gradient-to-b from-[#0e4842] via-[#083B36] to-[#041e1b] rounded-2xl sm:rounded-3xl border border-[#083B36] text-white shadow-[0_4px_20px_rgba(8,59,54,0.12)] hover:shadow-[0_20px_45px_rgba(8,59,54,0.55)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group min-h-[185px] sm:min-h-[205px]">
+            <!-- Visual Top Graphic -->
+            <div class="relative w-full flex-1 p-2.5 sm:p-3 flex items-center justify-center">
+              <div class="w-48 sm:w-52 bg-white rounded-xl p-2.5 shadow-xl border border-emerald-100 text-slate-800 space-y-1.5 transform group-hover:scale-105 transition-transform duration-300">
+                <div class="flex items-center justify-between text-[10px] font-bold text-slate-700 border-b border-slate-100 pb-0.5">
+                  <span class="flex items-center gap-1"><i class="fa-solid fa-table-columns text-emerald-600 text-[9px]"></i> Dashboard</span>
+                  <i class="fa-solid fa-bell text-slate-400 text-[9px]"></i>
+                </div>
+                <div class="space-y-0.5 py-0.5">
+                  <div class="w-full h-1 bg-slate-100 rounded-full"></div>
+                  <div class="w-3/4 h-1 bg-slate-100 rounded-full"></div>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-200 text-[#083B36] rounded-lg py-1 px-2.5 flex items-center justify-center gap-1.5 text-[10px] font-bold shadow-sm">
+                  <i class="fa-solid fa-arrows-rotate text-emerald-600 text-[9px]"></i>
+                  <span>Reschedule or Cancel</span>
+                </div>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#041e1b]/30 to-transparent pointer-events-none"></div>
+            </div>
+            
+            <!-- Bottom Text Content -->
+            <div class="p-3.5 sm:p-4 pt-1 bg-[#041e1b]/85 backdrop-blur-sm z-10 space-y-0.5 border-t border-emerald-500/10">
+              <h3 class="text-base sm:text-lg font-serif font-bold text-white tracking-tight">Total Flexibility</h3>
+              <p class="text-emerald-100/90 text-[11px] sm:text-xs leading-relaxed">Easily modify or cancel your booking with full control over upcoming visits.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PATIENT REVIEW SECTION (Solid Navbar Color Box, Golden Italic Names, Golden Avatar Hover Shadow, Green Box Hover Shadow) -->
+    <section class="w-full bg-slate-50 py-16 sm:py-24 px-6 sm:px-12 lg:px-20 border-b border-slate-200/60">
+      <div class="max-w-5xl mx-auto space-y-12">
+        
+        <!-- Section Header (Same font size as Healthcare Solutions) -->
+        <div class="space-y-2">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold italic text-[#083B36] tracking-tight">
+            Patient review section
+          </h2>
+          <div class="w-16 h-1 bg-gradient-to-r from-emerald-400 to-[#083B36] rounded-full"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 pt-4">
+          
+          <!-- Review 1 -->
+          <div class="relative bg-[#083B36] rounded-3xl border border-[#083B36] p-6 sm:p-8 pt-7 sm:pt-8 text-white shadow-[0_4px_20px_rgba(8,59,54,0.2)] hover:shadow-[0_24px_50px_rgba(8,59,54,0.9),0_10px_25px_rgba(16,185,129,0.35)] hover:-translate-y-1.5 transition-all duration-300 space-y-3 group">
+            <!-- Circular Image at Top-Left Corner with Golden Hover Shadow -->
+            <div class="absolute -top-6 -left-4 sm:-top-7 sm:-left-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#083B36] border border-[#D4AF37] p-0.5 shadow-xl group-hover:shadow-[0_0_25px_rgba(212,175,55,0.95),0_0_10px_rgba(212,175,55,0.7)] hover:shadow-[0_0_30px_rgba(212,175,55,1)] flex items-center justify-center overflow-hidden z-20 transition-all duration-300">
+              <div class="w-full h-full rounded-full bg-[#042421] flex items-center justify-center text-[#D4AF37] text-2xl sm:text-3xl font-bold">
+                <i class="fa-solid fa-user"></i>
+              </div>
+            </div>
+            <div class="flex items-center justify-between gap-4 pl-12 sm:pl-16">
+              <h3 class="text-xl font-serif font-bold italic text-[#D4AF37] tracking-wide">Name L.</h3>
+              <div class="text-amber-400 text-sm flex gap-1">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+            </div>
+            <p class="text-emerald-100/90 text-sm sm:text-base leading-relaxed pt-1">
+              Lorem ipsum dolor sit omet, consostetur adsseracy ait isamet dollere magna.
+            </p>
+          </div>
+
+          <!-- Review 2 -->
+          <div class="relative bg-[#083B36] rounded-3xl border border-[#083B36] p-6 sm:p-8 pt-7 sm:pt-8 text-white shadow-[0_4px_20px_rgba(8,59,54,0.2)] hover:shadow-[0_24px_50px_rgba(8,59,54,0.9),0_10px_25px_rgba(16,185,129,0.35)] hover:-translate-y-1.5 transition-all duration-300 space-y-3 group">
+            <!-- Circular Image at Top-Left Corner with Golden Hover Shadow -->
+            <div class="absolute -top-6 -left-4 sm:-top-7 sm:-left-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#083B36] border border-[#D4AF37] p-0.5 shadow-xl group-hover:shadow-[0_0_25px_rgba(212,175,55,0.95),0_0_10px_rgba(212,175,55,0.7)] hover:shadow-[0_0_30px_rgba(212,175,55,1)] flex items-center justify-center overflow-hidden z-20 transition-all duration-300">
+              <div class="w-full h-full rounded-full bg-[#042421] flex items-center justify-center text-[#D4AF37] text-2xl sm:text-3xl font-bold">
+                <i class="fa-solid fa-user"></i>
+              </div>
+            </div>
+            <div class="flex items-center justify-between gap-4 pl-12 sm:pl-16">
+              <h3 class="text-xl font-serif font-bold italic text-[#D4AF37] tracking-wide">Name D.</h3>
+              <div class="text-amber-400 text-sm flex gap-1">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+            </div>
+            <p class="text-emerald-100/90 text-sm sm:text-base leading-relaxed pt-1">
+              Lorem ipsum doda sit amet, consostetur olle sed red cleamed dolliere magns.
+            </p>
+          </div>
+
+          <!-- Review 3 -->
+          <div class="relative bg-[#083B36] rounded-3xl border border-[#083B36] p-6 sm:p-8 pt-7 sm:pt-8 text-white shadow-[0_4px_20px_rgba(8,59,54,0.2)] hover:shadow-[0_24px_50px_rgba(8,59,54,0.9),0_10px_25px_rgba(16,185,129,0.35)] hover:-translate-y-1.5 transition-all duration-300 space-y-3 group">
+            <!-- Circular Image at Top-Left Corner with Golden Hover Shadow -->
+            <div class="absolute -top-6 -left-4 sm:-top-7 sm:-left-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#083B36] border border-[#D4AF37] p-0.5 shadow-xl group-hover:shadow-[0_0_25px_rgba(212,175,55,0.95),0_0_10px_rgba(212,175,55,0.7)] hover:shadow-[0_0_30px_rgba(212,175,55,1)] flex items-center justify-center overflow-hidden z-20 transition-all duration-300">
+              <div class="w-full h-full rounded-full bg-[#042421] flex items-center justify-center text-[#D4AF37] text-2xl sm:text-3xl font-bold">
+                <i class="fa-solid fa-user"></i>
+              </div>
+            </div>
+            <div class="flex items-center justify-between gap-4 pl-12 sm:pl-16">
+              <h3 class="text-xl font-serif font-bold italic text-[#D4AF37] tracking-wide">Nams D.</h3>
+              <div class="text-amber-400 text-sm flex gap-1">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+            </div>
+            <p class="text-emerald-100/90 text-sm sm:text-base leading-relaxed pt-1">
+              Lorem ipsum dolor alt omet, semosdotur adipising, sed kumet dollere magns.
+            </p>
+          </div>
+
+          <!-- Review 4 -->
+          <div class="relative bg-[#083B36] rounded-3xl border border-[#083B36] p-6 sm:p-8 pt-7 sm:pt-8 text-white shadow-[0_4px_20px_rgba(8,59,54,0.2)] hover:shadow-[0_24px_50px_rgba(8,59,54,0.9),0_10px_25px_rgba(16,185,129,0.35)] hover:-translate-y-1.5 transition-all duration-300 space-y-3 group">
+            <!-- Circular Image at Top-Left Corner with Golden Hover Shadow -->
+            <div class="absolute -top-6 -left-4 sm:-top-7 sm:-left-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#083B36] border border-[#D4AF37] p-0.5 shadow-xl group-hover:shadow-[0_0_25px_rgba(212,175,55,0.95),0_0_10px_rgba(212,175,55,0.7)] hover:shadow-[0_0_30px_rgba(212,175,55,1)] flex items-center justify-center overflow-hidden z-20 transition-all duration-300">
+              <div class="w-full h-full rounded-full bg-[#042421] flex items-center justify-center text-[#D4AF37] text-2xl sm:text-3xl font-bold">
+                <i class="fa-solid fa-user"></i>
+              </div>
+            </div>
+            <div class="flex items-center justify-between gap-4 pl-12 sm:pl-16">
+              <h3 class="text-xl font-serif font-bold italic text-[#D4AF37] tracking-wide">Rather K.</h3>
+              <div class="text-amber-400 text-sm flex gap-1">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+            </div>
+            <p class="text-emerald-100/90 text-sm sm:text-base leading-relaxed pt-1">
+              Lorem ipsum dolor sit omet, sonsostetur olit, sed red cleamed dolliere magns.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Full Width Footer -->
+  <footer class="w-full bg-[#083B36] text-[#D4AF37] text-center text-xs sm:text-sm py-8 font-serif border-t border-[#D4AF37]/30">
+    &copy; 2026 Clinic Care. All rights reserved.
+  </footer>
+
+</body>
+</html>

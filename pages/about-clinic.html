@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Clinic</title>
+  <link rel="stylesheet" href="../dist/output.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      background-color: #f1f5f9;
+      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', Times, serif;
+    }
+  </style>
+</head>
+<body class="text-slate-800 font-sans antialiased min-h-screen flex flex-col p-0 m-0 w-full overflow-x-hidden">
+
+  <!-- Top Global Navigation Bar -->
+  <header class="sticky top-0 z-50 w-full bg-[#083B36]/95 backdrop-blur-md border-b border-[#D4AF37]/30 shadow-lg px-6 sm:px-12 lg:px-20 pt-4 pb-3.5 flex flex-wrap justify-between items-center gap-4 transition duration-300">
+    <a href="home.html" class="flex items-center gap-2.5 font-serif font-bold text-2xl text-[#D4AF37] tracking-wide">
+      <span class="w-9 h-9 rounded-xl bg-[#D4AF37] text-[#083B36] flex items-center justify-center text-base shadow-md">
+        <i class="fa-solid fa-heart-pulse"></i>
+      </span>
+      <span>Clinic<span class="text-white">Care</span></span>
+    </a>
+    <nav class="flex flex-wrap items-center gap-3 sm:gap-8 text-sm sm:text-base font-serif font-medium">
+      <a href="home.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Home</a>
+      <a href="treatment.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Treatments</a>
+      <a href="about-clinic.html" class="text-[#D4AF37] border-b-2 border-[#D4AF37] pb-0.5 font-bold transition">About Clinic</a>
+      <a href="meet-doctor.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Meet Doctor</a>
+      <a href="contact.html" class="text-white hover:text-[#D4AF37] active:text-[#D4AF37] focus:text-[#D4AF37] transition">Contact</a>
+      <a href="booking.html" class="bg-[#D4AF37] hover:bg-amber-400 text-[#083B36] font-bold px-4 py-2 rounded-xl transition text-xs sm:text-sm font-serif shadow-md">Booking</a>
+    </nav>
+  </header>
+
+  <!-- Page Main Content exactly matching About_Clinic.png mockup -->
+  <main class="max-w-4xl mx-auto w-full space-y-6 px-4 sm:px-6 py-8 flex-grow">
+    
+    <!-- Title Pill Badge -->
+    <div>
+      <span class="bg-[#dbeafe] text-[#1e40af] px-6 py-2 rounded-full font-bold text-lg inline-block shadow-xs">
+        About Clinic
+      </span>
+    </div>
+
+    <!-- CARD 1: Leading Care Facility & Awards -->
+    <div class="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden p-6 sm:p-8">
+      <div class="grid md:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left Image Placeholder Box -->
+        <div class="md:col-span-6 w-full h-56 sm:h-64 bg-slate-300 rounded-2xl flex items-center justify-center text-slate-400 shadow-inner">
+          <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm0-2a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3H4zm14.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-13 8h13l-4-5-3 3.5-2-2.5-4 4z"/>
+          </svg>
+        </div>
+
+        <!-- Right Content -->
+        <div class="md:col-span-6 space-y-4">
+          <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900 leading-tight">
+            Leading Care Facility
+          </h2>
+          <p class="text-slate-700 text-sm leading-relaxed">
+            Advanced treatments to modern medical care, standard of professional clinical treatments and procedure
+          </p>
+
+          <!-- 3 Official Awards Badges -->
+          <div class="grid grid-cols-3 gap-2 pt-2 text-center text-[10px] text-slate-800">
+            
+            <!-- Award 1 -->
+            <div class="flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 border border-slate-100">
+              <i class="fa-solid fa-award text-2xl text-slate-800 mb-1"></i>
+              <span class="text-[8px] uppercase tracking-wider text-slate-500 font-bold">OFFICIAL</span>
+              <span class="font-extrabold text-[9px] uppercase leading-tight">AWARDSINGS</span>
+              <span class="text-[7px] text-slate-500 uppercase">OF PRESTMIAIT</span>
+            </div>
+
+            <!-- Award 2 -->
+            <div class="flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 border border-slate-100">
+              <i class="fa-solid fa-award text-2xl text-slate-800 mb-1"></i>
+              <span class="text-[8px] uppercase tracking-wider text-slate-500 font-bold">OFFICIAL</span>
+              <span class="font-extrabold text-[9px] uppercase leading-tight">AWARDSINGS</span>
+              <span class="text-[7px] text-slate-500 uppercase">OF PREATMENT</span>
+            </div>
+
+            <!-- Award 3 -->
+            <div class="flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 border border-slate-100">
+              <i class="fa-solid fa-award text-2xl text-slate-800 mb-1"></i>
+              <span class="text-[8px] uppercase tracking-wider text-slate-500 font-bold">OFFICIAL</span>
+              <span class="font-extrabold text-[9px] uppercase leading-tight">AWARDSINGS</span>
+              <span class="text-[7px] text-slate-500 uppercase">OF PROCEDURE</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CARD 2: Video & Action Buttons -->
+    <div class="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden p-6 sm:p-8">
+      <div class="grid md:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left Video Placeholder Box with Play Icon -->
+        <div class="md:col-span-6 w-full h-44 sm:h-52 bg-slate-300 rounded-2xl flex items-center justify-center shadow-inner relative group cursor-pointer">
+          <div class="w-16 h-12 rounded-2xl bg-slate-600/80 flex items-center justify-center text-white text-xl shadow-md group-hover:scale-110 transition">
+            <i class="fa-solid fa-play ml-0.5"></i>
+          </div>
+        </div>
+
+        <!-- Right Action Buttons -->
+        <div class="md:col-span-6 space-y-4">
+          <a href="booking.html" class="block w-full bg-[#083B36] hover:bg-[#0c4e48] text-[#D4AF37] font-serif font-bold py-3.5 px-6 rounded-xl shadow text-center transition text-sm sm:text-base">
+            Book In-person Consultation
+          </a>
+          <button onclick="alert('Virtual Tour will open here!')" class="block w-full border-2 border-[#083B36] hover:bg-slate-50 text-[#083B36] font-serif font-bold py-3.5 px-6 rounded-xl shadow-xs text-center transition text-sm sm:text-base">
+            Take a Virtual Tour
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="w-full text-center text-xs text-slate-400 py-6 border-t border-slate-200/60 font-serif">
+    &copy; 2026 Clinic Care. All rights reserved.
+  </footer>
+
+</body>
+</html>
