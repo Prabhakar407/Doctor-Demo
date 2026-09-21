@@ -1,29 +1,31 @@
 {
   "name": "doctor-demo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Clinic Care Doctor Web Application in React",
+  "type": "module",
   "scripts": {
-    "build:css": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --minify",
-    "watch:css": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --watch",
-    "build": "npm run build:css",
-    "dev": "npm run watch:css"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "devDependencies": {
-    "@tailwindcss/cli": "^4.3.3",
-    "autoprefixer": "^10.6.1",
-    "postcss": "^8.5.28",
-    "tailwindcss": "^4.3.3"
-  },
   "dependencies": {
     "@reduxjs/toolkit": "^2.12.0",
     "framer-motion": "^13.4.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "react-redux": "^9.3.0"
+    "react-redux": "^9.3.0",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.1",
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.0"
   }
 }
