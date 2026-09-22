@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import hero1 from '../Images/hero1.png';
@@ -10,10 +10,48 @@ import accessImg from '../Images/24 by 7 Access.png';
 import timeEfficiencyImg from '../Images/Time Efficiency.png';
 import totalFlexibilityImg from '../Images/Total Flexibility.png';
 import prescriptionBannerImg from '../Images/prescription-banner.jpg';
+import gynecologyImg from '../Images/gynecology-service.jpg';
+import ultrasoundImg from '../Images/ultrasound-service.jpg';
+import sonographyScanImg from '../Images/sonography-scan.jpg';
+import pregnancyImg from '../Images/pregnancy-service.jpg';
+import physicianImg from '../Images/physician-service.jpg';
+import glucometerImg from '../Images/glucometer.jpg';
 
 export default function Home() {
   const heroImages = [hero1, hero2, hero3];
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+
+  const [solutionsInView, setSolutionsInView] = useState(false);
+  const [whyInView, setWhyInView] = useState(false);
+  const solutionsRef = useRef(null);
+  const whyRef = useRef(null);
+
+  const reviews = [
+    {
+      name: "Ananya Sharma",
+      image: "https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?auto=format&fit=crop&w=200&h=200&q=80",
+      rating: 5,
+      text: "\"Dr. Sharma's diagnosis was extremely accurate and comforting. The clinic staff was polite, and the digital appointment booking saved me so much waiting time.\""
+    },
+    {
+      name: "Rajesh Patel",
+      image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=200&h=200&q=80",
+      rating: 5,
+      text: "\"Outstanding healthcare experience! The consultation was detailed, thorough, and every test result was explained with utmost clarity. Highly recommended.\""
+    },
+    {
+      name: "Pooja Iyer",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&h=200&q=80",
+      rating: 5,
+      text: "\"The online slot booking made the whole process effortless. The doctor is compassionate, attentive, and provided a clear, personalized recovery plan.\""
+    },
+    {
+      name: "Vikram Sengupta",
+      image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=200&h=200&q=80",
+      rating: 5,
+      text: "\"Prompt attention, state-of-the-art facility, and genuine care from the entire medical team. Truly grateful for the excellent consultation and guidance.\""
+    }
+  ];
 
   // 10-second automatic hero background crossfade rotation
   useEffect(() => {
@@ -23,11 +61,43 @@ export default function Home() {
     return () => clearInterval(timer);
   }, [heroImages.length]);
 
+  // Scroll entrance observer for Healthcare Solutions and Why Book Online sections
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      setSolutionsInView(true);
+      setWhyInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target === solutionsRef.current) {
+              setSolutionsInView(true);
+              observer.unobserve(entry.target);
+            }
+            if (entry.target === whyRef.current) {
+              setWhyInView(true);
+              observer.unobserve(entry.target);
+            }
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    if (solutionsRef.current) observer.observe(solutionsRef.current);
+    if (whyRef.current) observer.observe(whyRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main className="w-full flex-grow flex flex-col p-0 m-0">
 
       {/* HERO SECTION */}
-      <section className="w-full min-h-[calc(100vh-68px)] lg:h-[calc(100vh-68px)] lg:max-h-[calc(100vh-68px)] bg-gradient-to-br from-[#1B365D] via-[#13294B] to-[#0B1A30] text-white flex flex-col justify-center relative overflow-hidden py-3 sm:py-5 lg:py-4 px-4 sm:px-8 lg:px-14">
+      <section className="w-full min-h-[calc(100svh-var(--nav-height,72px))] lg:h-[calc(100svh-var(--nav-height,72px))] lg:max-h-[calc(100svh-var(--nav-height,72px))] hero-ambient-glow short-laptop-compact text-white flex flex-col justify-center relative overflow-hidden py-4 sm:py-6 lg:py-4 px-4 sm:px-8 lg:px-14">
         
         {/* Right Background Image: seamlessly blended with high clarity on right */}
         <div id="hero-bg-slider" className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
@@ -42,19 +112,24 @@ export default function Home() {
             />
           ))}
           {/* Subtle gradient overlay to protect readability on left while keeping right side crisp and bright */}
-          <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#1B365D] via-[#13294B]/70 via-40% to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute inset-y-0 left-0 w-full sm:w-2/3 lg:w-1/2 bg-gradient-to-r from-[#1B365D] via-[#13294B]/70 via-40% to-transparent z-10 pointer-events-none"></div>
           {/* Subtle vertical gradients */}
           <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#1B365D]/50 to-transparent z-10 pointer-events-none"></div>
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0B1A30]/60 to-transparent z-10 pointer-events-none"></div>
         </div>
 
         {/* Hero Grid: Left Content + Right Floating Form (Same Level, Upward Shifted) */}
-        <div className="w-full max-w-7xl mx-auto relative z-10 grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+        <div className="w-full max-w-7xl 2xl:max-w-[100rem] mx-auto relative z-10 grid lg:grid-cols-12 gap-6 lg:gap-10 2xl:gap-16 items-center">
           
           {/* Left Column: Headline & Action Buttons */}
-          <div className="lg:col-span-7 space-y-4 sm:space-y-4.5 flex flex-col justify-center">
-            <h1 className="playfair-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-tight not-italic">
-              Your Path to <span className="inline-block whitespace-nowrap">Personalized <span className="italic text-[#38BDF8] font-serif font-medium">Wellness</span></span>
+          <div className="lg:col-span-7 space-y-3.5 sm:space-y-4.5 flex flex-col justify-center">
+            <h1 className="playfair-display text-[clamp(1.95rem,3.8vw,3.65rem)] font-semibold text-white leading-tight not-italic tracking-tight">
+              <span className="2xl:block 2xl:text-[4.75rem] 3xl:text-[5.5rem] 2xl:leading-none 2xl:mb-3 2xl:font-bold">
+                Your Path to
+              </span>{" "}
+              <span className="inline-block whitespace-nowrap 2xl:block 2xl:text-[3.25rem] 3xl:text-[3.65rem] 2xl:leading-tight">
+                Personalized <span className="italic text-[#38BDF8] font-serif font-medium">Wellness</span>
+              </span>
             </h1>
             
             <div className="space-y-1.5 max-w-xl lg:max-w-2xl">
@@ -62,7 +137,7 @@ export default function Home() {
                 We combine advanced medical technology with caring, personalized service to keep you and your family healthy. Expert care for your family with trusted clinical professionals.
               </p>
               <p className="text-white text-xs sm:text-sm md:text-base font-normal leading-relaxed">
-                <strong className="font-bold text-white">Your Health, Our Priority</strong>—Experience Expert Care You Can Trust.
+                <strong className="font-bold text-white italic">Your Health, Our Priority</strong>—Experience Expert Care You Can Trust.
               </p>
             </div>
 
@@ -111,8 +186,8 @@ export default function Home() {
           </div>
 
           {/* Right Column: Glassmorphic Floating Form */}
-          <div className="lg:col-span-5 flex justify-end items-center w-full">
-            <div className="w-full max-w-sm bg-white/10 backdrop-blur-xl text-white rounded-2xl p-5 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_65px_rgba(2,132,199,0.4)] border border-white/20 hover:border-[#0284C7] transition-all duration-300 space-y-3">
+          <div className="lg:col-span-5 flex justify-center lg:justify-end items-center w-full">
+            <div className="w-full max-w-sm 2xl:max-w-md bg-white/10 backdrop-blur-xl text-white rounded-2xl p-5 sm:p-6 2xl:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_65px_rgba(2,132,199,0.4)] border border-white/20 hover:border-[#0284C7] transition-all duration-300 space-y-3 2xl:space-y-4">
               
               <div className="text-center pb-1.5 border-b border-white/15">
                 <h3 className="text-xl sm:text-2xl font-serif font-bold text-white tracking-tight">
@@ -189,7 +264,7 @@ export default function Home() {
                 <div className="flex justify-center pt-1.5">
                   <button
                     type="submit"
-                    className="w-full sm:w-auto px-7 py-2 bg-[#0284C7] hover:bg-[#0369A1] border border-transparent hover:border-slate-300 text-white font-serif font-bold rounded-xl transition-all duration-200 text-xs sm:text-sm shadow-[0_8px_20px_-4px_rgba(2,132,199,0.5)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.7)] hover:scale-105 active:scale-95 transform cursor-pointer"
+                    className="w-full sm:w-auto px-7 py-2 bg-[#0284C7] hover:bg-[#0369A1] border border-transparent hover:border-slate-300 text-white font-serif font-bold rounded-lg transition-all duration-200 text-xs sm:text-sm shadow-[0_8px_20px_-4px_rgba(2,132,199,0.5)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.7)] hover:scale-105 active:scale-95 transform cursor-pointer"
                   >
                     Book Appointment
                   </button>
@@ -209,109 +284,176 @@ export default function Home() {
       </section>
 
       {/* HEALTHCARE SOLUTIONS / SERVICES SECTION */}
-      <section className="w-full bg-[#F8FAFC] pt-8 sm:pt-10 pb-16 sm:pb-20 px-4 sm:px-8 lg:px-12 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto space-y-8">
+      <section 
+        ref={solutionsRef}
+        id="healthcare-solutions"
+        className="w-full bg-[#F8FAFC] py-10 sm:py-12 lg:py-16 2xl:py-20 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200 relative"
+      >
+        <div className="max-w-7xl 2xl:max-w-[100rem] w-full mx-auto space-y-6 sm:space-y-8 2xl:space-y-10">
           
           {/* Section Header */}
-          <div className="text-center space-y-2.5">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#0F172A] tracking-tight">
+          <div className={`text-center space-y-2 sm:space-y-2.5 2xl:space-y-3 transition-all duration-700 ${solutionsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-serif font-bold text-[#0F172A] tracking-tight">
               Healthcare Solutions
             </h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
+            <div className="w-16 2xl:w-24 h-1 2xl:h-1.5 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
           </div>
 
           {/* Bento Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2.25fr_2.1fr_2.25fr_3.6fr] gap-5 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2.25fr_2.1fr_2.25fr_3.6fr] gap-5 2xl:gap-8 items-stretch">
             
-            {/* Column 1: Vaccines */}
-            <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
-              <div className="bg-gradient-to-b from-[#F8FAFC] to-white p-4 flex flex-col items-center justify-center min-h-[190px] relative flex-1">
-                <div className="w-20 h-32 bg-white rounded-2xl border border-slate-200 shadow-md relative flex flex-col items-center justify-between p-1.5">
-                  <div className="w-10 h-3.5 bg-slate-300 rounded-t-md border-b border-slate-400 shadow-sm flex items-center justify-center">
-                    <div className="w-5 h-0.5 bg-slate-400 rounded-full"></div>
+            {/* Column 1: Obstetrician & Gynaecologist */}
+            <Link 
+              to="/treatment"
+              className={`bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-700 delay-100 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px] ${
+                solutionsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <div className="w-full flex-1 min-h-[220px] 2xl:min-h-[300px] bg-slate-50 relative overflow-hidden flex items-center justify-center">
+                <img 
+                  src={gynecologyImg} 
+                  alt="Obstetrician - Gynaecologist" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-[#1B365D] text-white border-t border-[#13294B] mt-auto shrink-0 flex items-center justify-between gap-2">
+                <div className="min-w-0">
+                  <h3 className="font-bold text-white text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-sky-300 transition-colors duration-300">Obstetrician - Gynaecologist</h3>
+                  <p className="text-slate-200 text-xs sm:text-sm 2xl:text-base leading-snug">Women’s health, pelvic wellness, & gynaecology.</p>
+                </div>
+                <div className="w-8 h-8 2xl:w-10 2xl:h-10 rounded-full bg-white/10 group-hover:bg-[#0284C7] text-white flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs shrink-0">
+                  <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-0.5"></i>
+                </div>
+              </div>
+            </Link>
+
+            {/* Column 2: Ultrasound Stack */}
+            <div className={`flex flex-col gap-5 2xl:gap-6 justify-between transition-all duration-700 delay-200 ${
+              solutionsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              {/* Ultrasound Card: Full-bleed image with dark gradient overlay and cleanly positioned text */}
+              <Link 
+                to="/treatment"
+                className="h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden flex flex-col justify-end p-4 sm:p-4.5 2xl:p-5 group cursor-pointer"
+              >
+                <img 
+                  src={ultrasoundImg} 
+                  alt="Ultrasound" 
+                  className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1B365D]/95 via-[#1B365D]/75 to-transparent"></div>
+                <div className="relative z-10 flex items-center justify-between gap-2">
+                  <div className="space-y-0.5 min-w-0">
+                    <h3 className="font-bold text-white text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-sky-300 transition-colors duration-300">Ultrasound</h3>
+                    <p className="text-slate-200 text-xs sm:text-sm 2xl:text-base leading-snug">High-resolution 3D/4D diagnostic sonography.</p>
                   </div>
-                  <div className="w-full bg-white rounded py-1 px-0.5 text-center shadow-xs border border-slate-100 my-auto">
-                    <span className="block text-[7px] font-bold text-[#0284C7] tracking-wider">COVID-19</span>
-                    <span className="block text-[6px] text-[#64748B] font-semibold">VACCINE</span>
+                  <div className="w-8 h-8 2xl:w-10 2xl:h-10 rounded-full bg-white/15 backdrop-blur-xs group-hover:bg-[#0284C7] text-white flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs shrink-0">
+                    <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-0.5"></i>
                   </div>
-                  <div className="w-full h-7 bg-gradient-to-t from-[#0284C7] to-[#38BDF8]/60 rounded-b-xl"></div>
                 </div>
-              </div>
-              <div className="p-4 sm:p-4.5 bg-[#1B365D] text-white border-t border-[#13294B] mt-auto flex flex-col justify-center min-h-[95px]">
-                <h3 className="font-bold text-white text-lg mb-1">Vaccines</h3>
-                <p className="text-slate-200 text-xs leading-relaxed">Vaccines, boosters, & immunizations for health.</p>
-              </div>
+              </Link>
+
+              {/* Advanced Sonography & Scans Card */}
+              <Link 
+                to="/treatment"
+                className="h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between overflow-hidden group relative cursor-pointer"
+              >
+                <div className="w-full flex-1 min-h-0 overflow-hidden bg-slate-100 relative">
+                  <img 
+                    src={sonographyScanImg} 
+                    alt="Advanced Sonography & Scans" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-white border-t border-slate-100 shrink-0 flex items-center justify-between gap-2">
+                  <h3 className="font-bold text-[#0F172A] text-sm sm:text-base 2xl:text-lg m-0 leading-tight group-hover:text-[#0284C7] transition-colors duration-300">Advanced Sonography &amp; Scans</h3>
+                  <div className="w-7 h-7 2xl:w-9 2xl:h-9 rounded-full bg-slate-100 group-hover:bg-[#0284C7] text-slate-600 group-hover:text-white flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs shrink-0">
+                    <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-0.5"></i>
+                  </div>
+                </div>
+              </Link>
             </div>
 
-            {/* Column 2: Wellness Care Stack */}
-            <div className="flex flex-col gap-5 justify-between">
-              <div className="flex-1 bg-gradient-to-br from-[#1B365D] to-[#0284C7] rounded-3xl border border-slate-200 p-4.5 sm:p-5 pt-8 pb-3 sm:pb-3.5 text-white shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-end min-h-[170px] group">
-                <div className="absolute -right-2 -bottom-2 text-white/10 text-6xl pointer-events-none">
-                  <i className="fa-solid fa-heart-pulse"></i>
+            {/* Column 3: Pregnancy Management */}
+            <Link 
+              to="/treatment"
+              className={`bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-700 delay-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px] ${
+                solutionsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <div className="w-full flex-1 min-h-[220px] 2xl:min-h-[300px] bg-slate-50 relative overflow-hidden flex items-center justify-center">
+                <img 
+                  src={pregnancyImg} 
+                  alt="Pregnancy Management" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-[#1B365D] text-white border-t border-[#13294B] mt-auto shrink-0 flex items-center justify-between gap-2">
+                <div className="min-w-0">
+                  <h3 className="font-bold text-white text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-sky-300 transition-colors duration-300">Pregnancy Management</h3>
+                  <p className="text-slate-200 text-xs sm:text-sm 2xl:text-base leading-snug">Prenatal, antenatal, & postnatal maternal care.</p>
                 </div>
-                <h3 className="font-bold text-white text-lg mb-1">Wellness Care</h3>
-                <p className="text-slate-200 text-xs leading-relaxed relative z-10">Preventive care for a healthier, happier you.</p>
-              </div>
-
-              <div className="flex-1 bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] p-4.5 sm:p-5 pt-8 pb-3 sm:pb-3.5 shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-end min-h-[170px] group">
-                <h3 className="font-bold text-[#0F172A] text-lg mb-1">Wellness Care</h3>
-                <p className="text-[#64748B] text-xs leading-relaxed">Advanced treatments for better health & balance.</p>
-              </div>
-            </div>
-
-            {/* Column 3: Injectables */}
-            <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
-              <div className="bg-gradient-to-b from-[#F8FAFC] to-slate-50 p-5 flex items-center justify-center min-h-[190px] relative flex-1">
-                <div className="w-full flex items-center justify-center rotate-[-35deg] transform scale-110">
-                  <svg className="w-28 h-28 text-[#0284C7] drop-shadow-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 5L15 9" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round"/>
-                    <path d="M17 3L21 7" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round"/>
-                    <path d="M14 6L18 10L9 19L5 15L14 6Z" fill="#e0f2fe" stroke="#0284C7" strokeWidth="1.5"/>
-                    <path d="M7 17L12 12" stroke="#0369A1" strokeWidth="1.5" strokeLinecap="round"/>
-                    <path d="M5 15L2 18" stroke="#64748B" strokeWidth="1.5" strokeLinecap="round"/>
-                    <path d="M3 21L1 23" stroke="#94a3b8" strokeWidth="1.5" strokeLinecap="round"/>
-                  </svg>
+                <div className="w-8 h-8 2xl:w-10 2xl:h-10 rounded-full bg-white/10 group-hover:bg-[#0284C7] text-white flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs shrink-0">
+                  <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-0.5"></i>
                 </div>
               </div>
-              <div className="p-4 sm:p-5 bg-[#1B365D] text-white border-t border-[#13294B] mt-auto flex flex-col justify-center min-h-[95px]">
-                <h3 className="font-bold text-white text-xl mb-1">Injectables</h3>
-                <p className="text-slate-200 text-xs sm:text-sm leading-relaxed">Products, supplies and administration for injections.</p>
-              </div>
-            </div>
+            </Link>
 
-            {/* Column 4: Right Section */}
-            <div className="flex flex-col gap-4 justify-between">
-              <div className="rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group min-h-[175px]">
-                <div className="w-full sm:w-2/3 bg-[#1B365D] p-5 sm:p-6 text-white flex flex-col justify-center space-y-1.5 z-10">
-                  <h3 className="font-bold text-white text-xl mb-0.5">Nutraceuticals</h3>
-                  <p className="text-slate-200 text-xs sm:text-sm leading-relaxed">Nutritional supplements for overall health, vitality, and wellness.</p>
+            {/* Column 4: Physician and Diabetologist */}
+            <div className={`flex flex-col gap-4 2xl:gap-6 justify-between transition-all duration-700 delay-[350ms] ${
+              solutionsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              <Link 
+                to="/treatment"
+                className="h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-500 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer"
+              >
+                <div className="w-full sm:w-2/5 flex-1 sm:flex-initial min-h-0 sm:min-h-full bg-slate-100 overflow-hidden relative order-1 sm:order-2">
+                  <img 
+                    src={physicianImg} 
+                    alt="Consulting Physician" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
-                <div className="w-full sm:w-1/3 bg-[#F8FAFC] p-4 flex items-center justify-center border-t sm:border-t-0 sm:border-l border-slate-200">
-                  <div className="w-18 h-22 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center justify-between p-2 relative z-10">
-                    <div className="w-9 h-3 bg-slate-200 rounded-t-sm"></div>
-                    <div className="w-12 h-9 bg-sky-50 rounded-lg flex items-center justify-center">
-                      <i className="fa-solid fa-capsules text-[#0284C7] text-lg"></i>
+                <div className="w-full sm:w-3/5 bg-[#1B365D] py-3 sm:py-3.5 2xl:py-4 px-4 sm:px-5 2xl:px-6 text-white flex flex-col justify-center space-y-1 z-10 shrink-0 sm:shrink order-2 sm:order-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="font-bold text-white text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-sky-300 transition-colors duration-300">Consulting Physician</h3>
+                    <div className="w-7 h-7 2xl:w-9 2xl:h-9 rounded-full bg-white/10 group-hover:bg-[#0284C7] text-white flex sm:hidden items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs shrink-0">
+                      <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-0.5"></i>
                     </div>
-                    <span className="text-[7px] font-bold text-slate-500 uppercase tracking-widest">PURE</span>
+                  </div>
+                  <p className="text-slate-200 text-xs sm:text-sm 2xl:text-base leading-snug">Comprehensive internal medicine & preventive clinical care.</p>
+                  <div className="hidden sm:flex items-center gap-1.5 pt-1 text-xs 2xl:text-sm text-[#38BDF8] group-hover:text-white font-medium transition-colors">
+                    <span>Explore details</span>
+                    <i className="fa-solid fa-arrow-right text-[10px] 2xl:text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
                   </div>
                 </div>
-              </div>
+              </Link>
 
-              <div className="rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group min-h-[175px]">
-                <div className="w-full sm:w-2/3 bg-[#1B365D] p-5 sm:p-6 text-white flex flex-col justify-center space-y-1.5 z-10">
-                  <h3 className="font-bold text-white text-xl mb-0.5">Specialty Medicines</h3>
-                  <p className="text-slate-200 text-xs sm:text-sm leading-relaxed">Specialized pharmaceutical treatments and care management.</p>
+              <Link 
+                to="/treatment"
+                className="h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-500 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer"
+              >
+                <div className="w-full sm:w-2/5 flex-1 sm:flex-initial min-h-0 sm:min-h-full bg-slate-100 overflow-hidden relative order-1 sm:order-2">
+                  <img 
+                    src={glucometerImg} 
+                    alt="Diabetologist Care" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
-                <div className="w-full sm:w-1/3 bg-[#F8FAFC] p-4 flex items-center justify-center border-t sm:border-t-0 sm:border-l border-slate-200">
-                  <div className="w-18 h-22 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center justify-between p-2 relative z-10">
-                    <div className="w-8 h-4 bg-sky-600 rounded-t-lg"></div>
-                    <div className="w-12 h-9 bg-sky-50 rounded-lg flex items-center justify-center">
-                      <i className="fa-solid fa-prescription text-[#0284C7] text-lg"></i>
+                <div className="w-full sm:w-3/5 bg-[#1B365D] py-3 sm:py-3.5 2xl:py-4 px-4 sm:px-5 2xl:px-6 text-white flex flex-col justify-center space-y-1 z-10 shrink-0 sm:shrink order-2 sm:order-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="font-bold text-white text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-sky-300 transition-colors duration-300">Diabetologist Care</h3>
+                    <div className="w-7 h-7 2xl:w-9 2xl:h-9 rounded-full bg-white/10 group-hover:bg-[#0284C7] text-white flex sm:hidden items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs shrink-0">
+                      <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-0.5"></i>
                     </div>
-                    <span className="text-[7px] font-bold text-slate-500 uppercase tracking-widest">RX ONLY</span>
+                  </div>
+                  <p className="text-slate-200 text-xs sm:text-sm 2xl:text-base leading-snug">Advanced blood sugar monitoring & diabetes management.</p>
+                  <div className="hidden sm:flex items-center gap-1.5 pt-1 text-xs 2xl:text-sm text-[#38BDF8] group-hover:text-white font-medium transition-colors">
+                    <span>Explore details</span>
+                    <i className="fa-solid fa-arrow-right text-[10px] 2xl:text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
 
           </div>
@@ -319,120 +461,217 @@ export default function Home() {
       </section>
 
       {/* ABOUT DOCTOR SECTION (Expanded Height with Detailed Credentials) */}
-      <section className="w-full bg-white py-12 sm:py-16 lg:py-20 px-4 sm:px-8 lg:px-14 border-b border-slate-200">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <section className="w-full bg-white py-12 sm:py-16 lg:py-20 2xl:py-24 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 relative">
+        <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 2xl:gap-16 items-center">
             
-            {/* Doctor Photo Card */}
-            <div className="lg:col-span-5 flex justify-center lg:justify-start">
-              <div className="w-full max-w-[340px] sm:max-w-[380px] bg-gradient-to-b from-[#F8FAFC] to-slate-100 rounded-3xl border border-slate-200 p-3 sm:p-4 shadow-[0_12px_35px_-5px_rgba(2,132,199,0.22)] relative overflow-hidden group">
-                <div className="w-full h-80 sm:h-96 rounded-2xl overflow-hidden relative bg-[#1B365D]">
+            {/* Doctor Photo Card (With Mobile Header placed above image on small screens) */}
+            <div className="lg:col-span-5 flex flex-col items-center lg:items-start justify-center lg:justify-start">
+              
+              {/* Mobile Doctor Header (Visible only on mobile/tablet < lg, placed above image with padding) */}
+              <div className="w-full max-w-[340px] sm:max-w-[380px] lg:hidden space-y-2 mb-4 sm:mb-5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 bg-[#0284C7]/10 text-[#0284C7] px-3 py-0.5 rounded-full text-xs font-bold border border-[#0284C7]/25 shadow-xs">
+                    <i className="fa-solid fa-user-doctor"></i> Senior Medical Specialist
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80 shadow-xs">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    Accepting Patients
+                  </span>
+                </div>
+
+                <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#0F172A] tracking-tight">
+                  About Dr. Arun Sharma
+                </h2>
+
+                <div className="inline-flex flex-wrap items-center gap-1.5 pt-0.5 text-xs sm:text-sm">
+                  <span className="bg-[#1B365D] text-white font-serif font-semibold px-3 py-1 rounded-lg shadow-xs text-xs">
+                    MBBS, MD (Medicine), DM (Specialist)
+                  </span>
+                  <span className="text-slate-400 hidden sm:inline">•</span>
+                  <span className="bg-sky-50 text-[#0284C7] font-semibold px-2.5 py-1 rounded-lg border border-sky-200/80 flex items-center gap-1.5 text-xs">
+                    <i className="fa-solid fa-building-columns text-xs"></i> AIIMS Alumnus
+                  </span>
+                </div>
+              </div>
+
+              {/* Doctor Photo Card Container - Significantly Increased Size on 2K/3K screens */}
+              <div className="w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[440px] 2xl:max-w-[620px] 3xl:max-w-[700px] bg-gradient-to-b from-[#F8FAFC] to-slate-100 rounded-3xl border border-slate-200 p-3 sm:p-4 2xl:p-5 shadow-[0_12px_35px_-5px_rgba(2,132,199,0.22)] relative overflow-hidden group">
+                <div className="w-full h-80 sm:h-96 lg:h-[28rem] 2xl:h-[38rem] 3xl:h-[44rem] rounded-2xl overflow-hidden relative bg-[#1B365D]">
                   <img
-                    src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=700&q=80"
+                    src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1400&q=85"
                     alt="Dr. Arun Sharma"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1B365D]/90 via-transparent to-transparent"></div>
                   
                   {/* Bottom Image Floating Tag */}
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-[#1B365D]/90 backdrop-blur-md text-white px-3.5 py-2 rounded-xl border border-white/20 text-xs shadow-md">
+                  <div className="absolute bottom-3 left-3 right-3 2xl:bottom-4 2xl:left-4 2xl:right-4 flex items-center justify-between bg-[#1B365D]/90 backdrop-blur-md text-white px-3.5 py-2 2xl:px-5 2xl:py-3 rounded-xl border border-white/20 text-xs 2xl:text-sm shadow-md">
                     <span className="font-bold flex items-center gap-1.5">
                       <i className="fa-solid fa-circle-check text-emerald-400"></i> Verified Specialist
                     </span>
-                    <span className="text-[#38BDF8] font-semibold text-[11px]">10+ Yrs Exp</span>
+                    <span className="text-[#38BDF8] font-semibold text-[11px] 2xl:text-xs">10+ Yrs Exp</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Content & Credentials */}
-            <div className="lg:col-span-7 space-y-5 sm:space-y-6">
-              <div className="space-y-2">
-                <div className="inline-flex items-center gap-2 bg-sky-50 text-[#0284C7] px-3.5 py-1 rounded-full text-xs font-bold border border-sky-200">
-                  <i className="fa-solid fa-user-doctor"></i> Senior Medical Specialist
+            <div className="lg:col-span-7 space-y-4 sm:space-y-5 2xl:space-y-6 flex flex-col justify-center">
+              
+              {/* Desktop Doctor Header & Designation Pill (Hidden on mobile < lg, visible on desktop lg+) */}
+              <div className="hidden lg:block space-y-1.5 2xl:space-y-2.5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 bg-[#0284C7]/10 text-[#0284C7] px-3.5 py-1 2xl:px-4 2xl:py-1.5 rounded-full text-xs 2xl:text-sm font-bold border border-[#0284C7]/25 shadow-xs">
+                    <i className="fa-solid fa-user-doctor"></i> Senior Medical Specialist
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-[11px] 2xl:text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 2xl:px-3.5 2xl:py-1.5 rounded-full border border-emerald-200/80 shadow-xs">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    Accepting Patients
+                  </span>
                 </div>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#0F172A] tracking-tight">
+
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-serif font-bold text-[#0F172A] tracking-tight">
                   About Dr. Arun Sharma
                 </h2>
-                <p className="text-[#0284C7] font-semibold text-base sm:text-lg">
-                  MBBS, MD (Medicine), DM (Specialist) • AIIMS Alumnus
-                </p>
-              </div>
 
-              <p className="text-[#64748B] text-sm sm:text-base leading-relaxed">
-                Dedicated senior specialist with over 10+ years of distinguished clinical experience providing evidence-based healthcare, precision diagnosis, and tailored treatment plans for chronic and acute conditions.
-              </p>
-
-              {/* 4 Feature Badges / Credential Pills */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                {/* 10+ Years Experience */}
-                <div className="flex items-center gap-3 bg-[#F8FAFC] border border-slate-200 rounded-2xl p-3 shadow-xs hover:border-[#0284C7] transition-colors">
-                  <div className="w-10 h-10 rounded-xl bg-sky-100 text-[#0284C7] flex items-center justify-center shrink-0">
-                    <i className="fa-solid fa-award text-lg"></i>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-[#0F172A]">10+ Years Experience</h4>
-                    <p className="text-[11px] text-slate-500 leading-tight">Extensive clinical practice</p>
-                  </div>
-                </div>
-
-                {/* Studied from Top Medical College */}
-                <div className="flex items-center gap-3 bg-[#F8FAFC] border border-slate-200 rounded-2xl p-3 shadow-xs hover:border-[#0284C7] transition-colors">
-                  <div className="w-10 h-10 rounded-xl bg-sky-100 text-[#0284C7] flex items-center justify-center shrink-0">
-                    <i className="fa-solid fa-graduation-cap text-lg"></i>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-[#0F172A]">AIIMS New Delhi</h4>
-                    <p className="text-[11px] text-slate-500 leading-tight">Top Tier Medical Education</p>
-                  </div>
-                </div>
-
-                {/* Cardiology & Internal Medicine Specialist */}
-                <div className="flex items-center gap-3 bg-[#F8FAFC] border border-slate-200 rounded-2xl p-3 shadow-xs hover:border-[#0284C7] transition-colors">
-                  <div className="w-10 h-10 rounded-xl bg-sky-100 text-[#0284C7] flex items-center justify-center shrink-0">
-                    <i className="fa-solid fa-stethoscope text-lg"></i>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-[#0F172A]">Senior Specialist</h4>
-                    <p className="text-[11px] text-slate-500 leading-tight">Cardiology &amp; General Medicine</p>
-                  </div>
-                </div>
-
-                {/* Available 6 Days a Week */}
-                <div className="flex items-center gap-3 bg-[#F8FAFC] border border-slate-200 rounded-2xl p-3 shadow-xs hover:border-[#0284C7] transition-colors">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-                    <i className="fa-solid fa-calendar-days text-lg"></i>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-[#0F172A]">Mon – Sat (6 Days / Wk)</h4>
-                    <p className="text-[11px] text-emerald-600 font-semibold leading-tight">9:00 AM – 7:00 PM Slots</p>
-                  </div>
+                <div className="inline-flex flex-wrap items-center gap-2 pt-0.5">
+                  <span className="bg-[#1B365D] text-white font-serif font-semibold text-xs sm:text-sm 2xl:text-base px-3.5 py-1 2xl:px-4 2xl:py-1.5 rounded-lg shadow-xs">
+                    MBBS, MD (Medicine), DM (Specialist)
+                  </span>
+                  <span className="text-slate-400 hidden sm:inline">•</span>
+                  <span className="bg-sky-50 text-[#0284C7] font-semibold text-xs sm:text-sm 2xl:text-base px-3 py-1 2xl:px-3.5 2xl:py-1.5 rounded-lg border border-sky-200/80 flex items-center gap-1.5">
+                    <i className="fa-solid fa-building-columns text-xs 2xl:text-sm"></i> AIIMS Alumnus
+                  </span>
                 </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3.5 pt-2">
+              {/* Clinical Philosophy Quote Box */}
+              <div className="relative bg-gradient-to-r from-sky-50/60 via-slate-50/80 to-white rounded-2xl p-3.5 sm:p-4 2xl:p-5 border-l-4 border-[#0284C7] border-y border-r border-slate-200/80 shadow-xs">
+                <div className="flex gap-2.5 2xl:gap-3 items-start">
+                  <i className="fa-solid fa-quote-left text-[#0284C7]/30 text-xl 2xl:text-2xl shrink-0 mt-0.5"></i>
+                  <p className="text-[#334155] text-xs sm:text-sm md:text-base 2xl:text-lg leading-relaxed font-sans">
+                    Dedicated senior specialist with over 10+ years of distinguished clinical experience providing evidence-based healthcare, precision diagnosis, and tailored treatment plans for chronic and acute conditions.
+                  </p>
+                </div>
+              </div>
+
+              {/* 4 Interactive Feature Credential Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 2xl:gap-4 pt-0">
+                
+                {/* 1. 10+ Years Experience */}
+                <div className="bg-gradient-to-br from-white to-slate-50/90 rounded-2xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-slate-200/90 shadow-sm hover:border-[#0284C7] hover:shadow-[0_8px_25px_-5px_rgba(2,132,199,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 2xl:w-11 2xl:h-11 rounded-xl bg-gradient-to-br from-sky-50 to-sky-100 text-[#0284C7] flex items-center justify-center shrink-0 border border-sky-200/60 shadow-xs group-hover:scale-105 group-hover:bg-[#0284C7] group-hover:text-white transition-all duration-300">
+                        <i className="fa-solid fa-award text-base sm:text-lg"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-sm 2xl:text-base font-serif font-bold text-[#0F172A] group-hover:text-[#0284C7] transition-colors leading-tight">
+                          10+ Years Experience
+                        </h4>
+                        <p className="text-xs 2xl:text-sm text-slate-500 mt-0.5 leading-tight">Extensive clinical practice</p>
+                      </div>
+                    </div>
+                    <span className="text-[9px] 2xl:text-[10px] font-bold uppercase tracking-wider text-[#0284C7] bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200/60 shrink-0">
+                      Verified
+                    </span>
+                  </div>
+                </div>
+
+                {/* 2. Studied from Top Medical College */}
+                <div className="bg-gradient-to-br from-white to-slate-50/90 rounded-2xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-slate-200/90 shadow-sm hover:border-[#0284C7] hover:shadow-[0_8px_25px_-5px_rgba(2,132,199,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 2xl:w-11 2xl:h-11 rounded-xl bg-gradient-to-br from-indigo-50 to-indigo-100 text-[#1B365D] flex items-center justify-center shrink-0 border border-indigo-200/60 shadow-xs group-hover:scale-105 group-hover:bg-[#1B365D] group-hover:text-white transition-all duration-300">
+                        <i className="fa-solid fa-graduation-cap text-base sm:text-lg"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-sm 2xl:text-base font-serif font-bold text-[#0F172A] group-hover:text-[#0284C7] transition-colors leading-tight">
+                          AIIMS New Delhi
+                        </h4>
+                        <p className="text-xs 2xl:text-sm text-slate-500 mt-0.5 leading-tight">Top Tier Medical Education</p>
+                      </div>
+                    </div>
+                    <span className="text-[9px] 2xl:text-[10px] font-bold uppercase tracking-wider text-[#1B365D] bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200/60 shrink-0">
+                      Alumnus
+                    </span>
+                  </div>
+                </div>
+
+                {/* 3. Cardiology & General Medicine Specialist */}
+                <div className="bg-gradient-to-br from-white to-slate-50/90 rounded-2xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-slate-200/90 shadow-sm hover:border-[#0284C7] hover:shadow-[0_8px_25px_-5px_rgba(2,132,199,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 2xl:w-11 2xl:h-11 rounded-xl bg-gradient-to-br from-cyan-50 to-sky-100 text-[#0284C7] flex items-center justify-center shrink-0 border border-cyan-200/60 shadow-xs group-hover:scale-105 group-hover:bg-[#0284C7] group-hover:text-white transition-all duration-300">
+                        <i className="fa-solid fa-heart-pulse text-base sm:text-lg"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-sm 2xl:text-base font-serif font-bold text-[#0F172A] group-hover:text-[#0284C7] transition-colors leading-tight">
+                          Senior Specialist
+                        </h4>
+                        <p className="text-xs 2xl:text-sm text-slate-500 mt-0.5 leading-tight">Cardiology &amp; General Medicine</p>
+                      </div>
+                    </div>
+                    <span className="text-[9px] 2xl:text-[10px] font-bold uppercase tracking-wider text-[#0284C7] bg-cyan-50 px-1.5 py-0.5 rounded border border-cyan-200/60 shrink-0">
+                      Specialty
+                    </span>
+                  </div>
+                </div>
+
+                {/* 4. Available on days in weeks */}
+                <div className="bg-gradient-to-br from-white to-emerald-50/30 rounded-2xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-emerald-200/80 shadow-sm hover:border-emerald-500 hover:shadow-[0_8px_25px_-5px_rgba(16,185,129,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-200/60 shadow-xs group-hover:scale-105 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
+                        <i className="fa-solid fa-calendar-check text-base sm:text-lg"></i>
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-serif font-bold text-[#0F172A] group-hover:text-emerald-700 transition-colors leading-tight">
+                          Mon – Sat (6 Days / Wk)
+                        </h4>
+                        <p className="text-xs text-emerald-600 font-semibold mt-0.5 leading-tight">9:00 AM – 7:00 PM Slots</p>
+                      </div>
+                    </div>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/60 shrink-0">
+                      Active
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Action Buttons Hub (Tightly connected to divs above) */}
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 pt-1">
                 <Link
                   to="/booking"
-                  className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif text-sm font-bold px-7 py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform inline-block"
+                  className="w-full sm:w-auto justify-center bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif text-sm font-bold px-7 py-3 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform inline-flex items-center gap-2 border border-transparent hover:border-slate-300 text-center"
                 >
-                  Book Appointment
+                  <i className="fa-solid fa-calendar-check text-xs"></i>
+                  <span>Book Appointment</span>
                 </Link>
                 
                 <Link
                   to="/dr-arun-sharma"
-                  className="bg-slate-100 hover:bg-slate-200 text-[#1B365D] font-serif text-sm font-bold px-6 py-3 rounded-xl border border-slate-300 hover:border-[#0284C7] hover:scale-105 active:scale-95 transition-all duration-200 transform inline-block"
+                  className="bg-slate-100 hover:bg-slate-200 text-[#1B365D] font-serif text-sm font-bold px-6 py-3 rounded-lg border border-slate-300 hover:border-[#0284C7] hover:scale-105 active:scale-95 transition-all duration-200 transform inline-flex items-center gap-2"
                 >
-                  Doctor Profile
+                  <i className="fa-solid fa-user-doctor text-xs text-[#0284C7]"></i>
+                  <span>Doctor Profile</span>
                 </Link>
 
                 <a
                   href="https://wa.me/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-bold px-6 py-3 rounded-xl shadow-md hover:shadow-lg flex items-center gap-2 hover:scale-105 active:scale-95 transition-all duration-200 transform"
+                  className="bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-bold px-6 py-3 rounded-lg shadow-md hover:shadow-lg flex items-center gap-2 hover:scale-105 active:scale-95 transition-all duration-200 transform"
                 >
-                  <i className="fa-brands fa-whatsapp text-xl text-white"></i> WhatsApp
+                  <i className="fa-brands fa-whatsapp text-lg text-white"></i> WhatsApp
                 </a>
               </div>
             </div>
@@ -442,57 +681,44 @@ export default function Home() {
       </section>
 
       {/* APPOINTMENT BOOKING & DIGITAL PRESCRIPTIONS BANNER SECTION */}
-      <section className="w-full bg-[#F8FAFC] py-4 sm:py-6 md:py-7 px-4 sm:px-8 lg:px-14 border-b border-slate-200">
-        <div className="max-w-6xl mx-auto">
-          <div className="relative w-full rounded-3xl overflow-hidden shadow-[0_12px_35px_-10px_rgba(2,132,199,0.3)] border border-slate-200 group">
+      <section className="w-full bg-[#F8FAFC] py-6 sm:py-8 2xl:py-12 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200">
+        <div className="max-w-6xl 2xl:max-w-[100rem] mx-auto">
+          <div className="interactive-lift relative w-full rounded-3xl overflow-hidden shadow-[0_12px_35px_-10px_rgba(2,132,199,0.3)] border border-slate-200 group flex items-center min-h-[16rem] sm:min-h-[17.5rem] md:min-h-[19rem] lg:min-h-[18rem] 2xl:min-h-[22rem]">
             {/* Background Generated 3D Banner Image */}
             <img
               src={prescriptionBannerImg}
               alt="Book Doctor Consultations & Access Digital Prescriptions"
-              className="w-full h-56 sm:h-64 md:h-72 lg:h-[225px] object-cover object-center transform group-hover:scale-102 transition-transform duration-500"
+              className="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-102 transition-transform duration-500 pointer-events-none"
             />
             
-            {/* Content Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1B365D]/95 via-[#1B365D]/85 md:via-[#1B365D]/55 to-transparent flex items-center p-4 sm:p-6 md:p-8">
-              <div className="max-w-xl space-y-1.5 sm:space-y-2 text-white">
-                <span className="bg-[#0284C7]/80 backdrop-blur-md text-white text-[10px] sm:text-xs font-semibold px-3 py-0.5 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5 border border-white/20 shadow-xs">
+            {/* Dark Gradient Overlay for optimal contrast & readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1B365D]/95 via-[#1B365D]/85 md:via-[#1B365D]/65 to-transparent pointer-events-none"></div>
+
+            {/* Content in Normal Flow - Auto-scaling and Zero Overflow */}
+            <div className="relative z-10 w-full p-5 sm:p-7 md:p-8 2xl:p-12 text-white">
+              <div className="max-w-xl 2xl:max-w-3xl space-y-2 2xl:space-y-3">
+                <span className="bg-[#0284C7]/80 backdrop-blur-md text-white text-[10px] sm:text-xs 2xl:text-sm font-semibold px-3 py-0.5 2xl:px-4 2xl:py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5 border border-white/20 shadow-xs">
                   <i className="fa-solid fa-calendar-check text-[#38BDF8]"></i> Verified Doctor Appointments
                 </span>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-white tracking-tight leading-tight">
-                  Book Doctor Consultation &amp; <br />
-                  <span className="text-[#38BDF8] italic">Get Digital Prescriptions</span>
-                </h2>
-                <p className="text-slate-100 text-xs sm:text-sm leading-tight sm:leading-snug max-w-lg">
-                  Schedule appointments with senior healthcare specialists, access verified digital prescriptions, and receive comprehensive personalized medical care.
-                </p>
                 
-                <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <div className="space-y-1 2xl:space-y-2">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl 2xl:text-4xl font-serif font-bold text-white tracking-tight leading-tight m-0">
+                    Book Doctor Consultation &amp; <br className="hidden sm:inline" />
+                    <span className="text-[#38BDF8] italic">Get Digital Prescriptions</span>
+                  </h2>
+                  <p className="text-slate-100 text-xs sm:text-sm md:text-base 2xl:text-lg leading-relaxed max-w-lg 2xl:max-w-2xl m-0">
+                    Schedule appointments with senior healthcare specialists, access verified digital prescriptions, and receive comprehensive personalized medical care.
+                  </p>
+                </div>
+                
+                <div className="flex flex-wrap items-center gap-2.5 pt-1.5 2xl:pt-3">
                   <Link
                     to="/booking"
-                    className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold text-xs sm:text-sm px-5 py-2 sm:py-2.5 rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform flex items-center gap-2 border border-transparent"
+                    className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold text-xs sm:text-sm 2xl:text-base px-5 py-2 sm:py-2.5 2xl:px-7 2xl:py-3 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform flex items-center gap-2 border border-transparent hover:border-slate-300"
                   >
-                    <i className="fa-solid fa-calendar-check text-xs"></i>
+                    <i className="fa-solid fa-calendar-check text-xs 2xl:text-sm"></i>
                     <span>Book Appointment Now</span>
                   </Link>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const input = document.createElement('input');
-                      input.type = 'file';
-                      input.accept = 'image/*,.pdf';
-                      input.onchange = (e) => {
-                        if (e.target.files.length > 0) {
-                          alert(`Medical record "${e.target.files[0].name}" uploaded successfully for your doctor consultation!`);
-                        }
-                      };
-                      input.click();
-                    }}
-                    className="bg-white text-[#1B365D] hover:bg-sky-50 font-serif font-bold text-xs sm:text-sm px-5 py-2 sm:py-2.5 rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform flex items-center gap-2 cursor-pointer border border-white/80"
-                  >
-                    <span>Upload Medical Records</span>
-                    <i className="fa-solid fa-arrow-up-from-bracket text-xs text-[#0284C7]"></i>
-                  </button>
                 </div>
               </div>
             </div>
@@ -500,74 +726,114 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHY BOOK OUR CONSULTATION SECTION (Full Screen Height on Laptop/Desktop Screens) */}
-      <section className="w-full bg-[#F8FAFC] py-4 md:py-0 md:h-screen md:max-h-screen flex flex-col justify-start px-4 sm:px-6 md:px-8 border-b border-slate-200 md:overflow-hidden md:pt-2 md:pb-3 lg:pt-3 lg:pb-4">
-        <div className="max-w-3xl w-full mx-auto flex-1 flex flex-col justify-start gap-2 sm:gap-3 h-full min-h-0">
+      {/* WHY BOOK OUR CONSULTATION SECTION */}
+      <section 
+        ref={whyRef}
+        id="why-book-online"
+        className="w-full bg-[#F8FAFC] py-10 sm:py-12 md:py-14 lg:py-16 2xl:py-20 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200 flex flex-col justify-center"
+      >
+        <div className="max-w-7xl 2xl:max-w-[100rem] w-full mx-auto space-y-6 sm:space-y-8 2xl:space-y-10">
           
           {/* Section Header (Exact typography as Healthcare Solutions) */}
-          <div className="text-center space-y-1 sm:space-y-1.5 shrink-0 pt-0">
+          <div className={`text-center space-y-1 sm:space-y-1.5 shrink-0 pt-0 transition-all duration-700 ${whyInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#0F172A] tracking-tight">
               Why Book Appointment Online
             </h2>
             <div className="w-16 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
           </div>
           
-          {/* 2x2 Grid of Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 sm:gap-y-3.5 gap-x-14 sm:gap-x-20 md:gap-x-24 lg:gap-x-28 w-full items-stretch">
+          {/* Grid of Cards: 1 col on mobile, 2 cols on tablet/small laptop, 4 cols in a single row on screen > laptop */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6 2xl:gap-8 w-full items-stretch">
             
             {/* Card 1: Instant Booking & Confirmation */}
-            <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_12px_28px_-4px_rgba(2,132,199,0.32)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[180px] sm:h-[195px] md:h-[205px] lg:h-[215px]">
+            <div className={`bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-700 delay-100 flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] xl:h-[16.5rem] 2xl:h-[19rem] ${
+              whyInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              {/* Glass Numbered Step Badge */}
+              <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
+                01
+              </div>
+
               {/* Visual Top Graphic / Uploaded Image */}
               <div className="relative w-full flex-1 min-h-0 min-w-0 overflow-hidden bg-white flex items-center justify-center">
-                <img src={instantBookingImg} alt="Instant Booking & Confirmation" className="w-full h-full object-cover max-w-full max-h-full block transform group-hover:scale-105 transition-transform duration-300" />
+                <img src={instantBookingImg} alt="Instant Booking & Confirmation" className="w-full h-full object-cover max-w-full max-h-full block transform group-hover:scale-105 transition-transform duration-500" />
               </div>
               
               {/* Bottom Text Content */}
-              <div className="shrink-0 w-full py-1 sm:py-1.5 px-3 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
-                <h3 className="text-xs sm:text-sm font-serif font-bold text-white tracking-tight leading-snug">Instant Booking &amp; Confirmation</h3>
-                <p className="text-slate-200 text-[10px] sm:text-[11px] md:text-xs leading-snug">Schedule your visit in minutes. Instant digital confirmation, no calls needed.</p>
+              <div className="shrink-0 w-full py-2 sm:py-2.5 px-3.5 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
+                {/* Glowing accent line on hover */}
+                <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                <h3 className="text-xs sm:text-sm 2xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Instant Booking &amp; Confirmation</h3>
+                <p className="text-slate-200 text-[11px] sm:text-xs 2xl:text-sm leading-snug">Schedule your visit in minutes. Instant digital confirmation, no calls needed.</p>
               </div>
             </div>
 
             {/* Card 2: 24/7 Access */}
-            <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_12px_28px_-4px_rgba(2,132,199,0.32)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[180px] sm:h-[195px] md:h-[205px] lg:h-[215px]">
+            <div className={`bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-700 delay-200 flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] xl:h-[16.5rem] 2xl:h-[19rem] ${
+              whyInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              {/* Glass Numbered Step Badge */}
+              <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
+                02
+              </div>
+
               {/* Visual Top Graphic / Uploaded Image */}
               <div className="relative w-full flex-1 min-h-0 min-w-0 overflow-hidden bg-white flex items-center justify-center">
-                <img src={accessImg} alt="24/7 Access" className="w-full h-full object-cover max-w-full max-h-full block transform group-hover:scale-105 transition-transform duration-300" />
+                <img src={accessImg} alt="24/7 Access" className="w-full h-full object-cover max-w-full max-h-full block transform group-hover:scale-105 transition-transform duration-500" />
               </div>
               
               {/* Bottom Text Content */}
-              <div className="shrink-0 w-full py-1 sm:py-1.5 px-3 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
-                <h3 className="text-xs sm:text-sm font-serif font-bold text-white tracking-tight leading-snug">24/7 Access</h3>
-                <p className="text-slate-200 text-[10px] sm:text-[11px] md:text-xs leading-snug">Select available slots anytime, anywhere—even outside of business hours.</p>
+              <div className="shrink-0 w-full py-2 sm:py-2.5 px-3.5 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
+                {/* Glowing accent line on hover */}
+                <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                <h3 className="text-xs sm:text-sm 2xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">24/7 Access</h3>
+                <p className="text-slate-200 text-[11px] sm:text-xs 2xl:text-sm leading-snug">Select available slots anytime, anywhere—even outside of business hours.</p>
               </div>
             </div>
 
             {/* Card 3: Time Efficiency */}
-            <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_12px_28px_-4px_rgba(2,132,199,0.32)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[180px] sm:h-[195px] md:h-[205px] lg:h-[215px]">
+            <div className={`bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-700 delay-300 flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] xl:h-[16.5rem] 2xl:h-[19rem] ${
+              whyInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              {/* Glass Numbered Step Badge */}
+              <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
+                03
+              </div>
+
               {/* Visual Top Graphic / Uploaded Image */}
               <div className="relative w-full flex-1 min-h-0 min-w-0 overflow-hidden bg-white flex items-center justify-center">
-                <img src={timeEfficiencyImg} alt="Time Efficiency" className="w-full h-full object-cover max-w-full max-h-full block transform group-hover:scale-105 transition-transform duration-300" />
+                <img src={timeEfficiencyImg} alt="Time Efficiency" className="w-full h-full object-cover max-w-full max-h-full block transform group-hover:scale-105 transition-transform duration-500" />
               </div>
               
               {/* Bottom Text Content */}
-              <div className="shrink-0 w-full py-1 sm:py-1.5 px-3 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
-                <h3 className="text-xs sm:text-sm font-serif font-bold text-white tracking-tight leading-snug">Time Efficiency</h3>
-                <p className="text-slate-200 text-[10px] sm:text-[11px] md:text-xs leading-snug">Optimize your schedule. Minimal check-in time and direct care access upon arrival.</p>
+              <div className="shrink-0 w-full py-2 sm:py-2.5 px-3.5 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
+                {/* Glowing accent line on hover */}
+                <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                <h3 className="text-xs sm:text-sm 2xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Time Efficiency</h3>
+                <p className="text-slate-200 text-[11px] sm:text-xs 2xl:text-sm leading-snug">Optimize your schedule. Minimal check-in time and direct care access upon arrival.</p>
               </div>
             </div>
 
             {/* Card 4: Total Flexibility */}
-            <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_12px_28px_-4px_rgba(2,132,199,0.32)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[180px] sm:h-[195px] md:h-[205px] lg:h-[215px]">
+            <div className={`bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-700 delay-[350ms] flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] xl:h-[16.5rem] 2xl:h-[19rem] ${
+              whyInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              {/* Glass Numbered Step Badge */}
+              <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
+                04
+              </div>
+
               {/* Visual Top Graphic / Uploaded Image */}
               <div className="relative w-full flex-1 min-h-0 min-w-0 overflow-hidden bg-white flex items-center justify-center">
-                <img src={totalFlexibilityImg} alt="Total Flexibility" className="w-full h-full object-cover max-w-full max-h-full block transform group-hover:scale-105 transition-transform duration-300" />
+                <img src={totalFlexibilityImg} alt="Total Flexibility" className="w-full h-full object-cover max-w-full max-h-full block transform group-hover:scale-105 transition-transform duration-500" />
               </div>
               
               {/* Bottom Text Content */}
-              <div className="shrink-0 w-full py-1 sm:py-1.5 px-3 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
-                <h3 className="text-xs sm:text-sm font-serif font-bold text-white tracking-tight leading-snug">Total Flexibility</h3>
-                <p className="text-slate-200 text-[10px] sm:text-[11px] md:text-xs leading-snug">Easily modify or cancel your booking with full control over upcoming visits.</p>
+              <div className="shrink-0 w-full py-2 sm:py-2.5 px-3.5 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
+                {/* Glowing accent line on hover */}
+                <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                <h3 className="text-xs sm:text-sm 2xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Total Flexibility</h3>
+                <p className="text-slate-200 text-[11px] sm:text-xs 2xl:text-sm leading-snug">Easily modify or cancel your booking with full control over upcoming visits.</p>
               </div>
             </div>
 
@@ -575,83 +841,82 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PATIENT REVIEW SECTION */}
-      <section className="w-full bg-white pt-8 sm:pt-10 pb-16 sm:pb-24 px-6 sm:px-12 lg:px-20 border-b border-slate-200">
-        <div className="max-w-5xl mx-auto space-y-8 sm:space-y-10">
+      {/* PATIENT REVIEW SECTION (Continuous Seamless Infinite Marquee with Dual Gradient Mask) */}
+      <section className="w-full bg-white pt-4 sm:pt-6 pb-12 sm:pb-16 2xl:pb-24 border-b border-slate-200 overflow-hidden">
+        <div className="max-w-7xl 2xl:max-w-[100rem] mx-auto px-4 sm:px-8 lg:px-14 2xl:px-20 space-y-4 sm:space-y-6 2xl:space-y-8">
           
-          <div className="space-y-1.5 sm:space-y-2">
+          <div className="space-y-1 sm:space-y-1.5 text-center md:text-left">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#0F172A] tracking-tight">
               Patient review section
             </h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full"></div>
+            <div className="w-16 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto md:mx-0"></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 pt-4">
-            
-            {/* Review 1: Ananya Sharma */}
-            <div className="relative bg-[#1B365D] rounded-3xl border border-[#1B365D] px-6 py-4 sm:py-5 pt-5 sm:pt-6 text-white shadow-[0_12px_35px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_50px_-5px_rgba(56,189,248,0.45)] hover:-translate-y-1.5 transition-all duration-300 space-y-2 group">
-              <div className="absolute -top-6 -left-4 sm:-top-7 sm:-left-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#1B365D] border-2 border-[#38BDF8] p-0.5 shadow-lg group-hover:shadow-[0_0_25px_rgba(56,189,248,0.5)] flex items-center justify-center overflow-hidden z-20 transition-all duration-300">
-                <img src="https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?auto=format&fit=crop&w=200&h=200&q=80" alt="Ananya Sharma" className="w-full h-full object-cover rounded-full" />
-              </div>
-              <div className="flex items-center justify-between gap-4 pl-12 sm:pl-16">
-                <h3 className="text-xl font-serif font-bold text-white tracking-wide">Ananya Sharma</h3>
-                <div className="text-amber-400 text-sm flex gap-1">
-                  <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
-                </div>
-              </div>
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-                "Dr. Sharma's diagnosis was extremely accurate and comforting. The clinic staff was polite, and the digital appointment booking saved me so much waiting time."
-              </p>
-            </div>
+          {/* Continuous Seamless Infinite Marquee */}
+          <div className="marquee-container py-3">
+            <div className="marquee-track">
+              {[...reviews, ...reviews].map((review, idx) => (
+                <div 
+                  key={idx}
+                  className="interactive-lift w-[280px] min-[360px]:w-[320px] sm:w-[380px] md:w-[430px] 2xl:w-[520px] 3xl:w-[580px] shrink-0 bg-gradient-to-br from-[#1B365D] to-[#122543] rounded-2xl sm:rounded-3xl border border-sky-400/25 hover:border-[#38BDF8] p-4 min-[360px]:p-5 sm:p-6 2xl:p-7 text-white shadow-[0_12px_35px_-5px_rgba(2,132,199,0.3)] flex flex-col justify-between min-h-[225px] sm:min-h-[240px] md:min-h-[250px] 2xl:min-h-[270px] group transition-all duration-300"
+                >
+                  {/* Top Row: Avatar, Identity & Rating Badge */}
+                  <div className="flex items-center justify-between gap-3 shrink-0">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="relative shrink-0">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden border-2 border-[#38BDF8] p-0.5 bg-[#13294B] shadow-md group-hover:border-white transition-all duration-300">
+                          <img 
+                            src={review.image} 
+                            alt={review.name} 
+                            className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-300" 
+                          />
+                        </div>
+                        <span className="absolute -bottom-1 -right-1 bg-emerald-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center border-2 border-[#1B365D] shadow" title="Verified Patient">
+                          <i className="fa-solid fa-check"></i>
+                        </span>
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="text-sm sm:text-base font-serif font-bold text-white tracking-wide truncate">
+                          {review.name}
+                        </h3>
+                        <p className="text-[#38BDF8] text-[11px] sm:text-xs font-semibold flex items-center gap-1 mt-0.5">
+                          <i className="fa-solid fa-circle-check text-[10px] text-emerald-400"></i>
+                          <span>Verified Patient</span>
+                        </p>
+                      </div>
+                    </div>
 
-            {/* Review 2: Rajesh Patel */}
-            <div className="relative bg-[#1B365D] rounded-3xl border border-[#1B365D] px-6 py-4 sm:py-5 pt-5 sm:pt-6 text-white shadow-[0_12px_35px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_50px_-5px_rgba(56,189,248,0.45)] hover:-translate-y-1.5 transition-all duration-300 space-y-2 group">
-              <div className="absolute -top-6 -left-4 sm:-top-7 sm:-left-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#1B365D] border-2 border-[#38BDF8] p-0.5 shadow-lg group-hover:shadow-[0_0_25px_rgba(56,189,248,0.5)] flex items-center justify-center overflow-hidden z-20 transition-all duration-300">
-                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=200&h=200&q=80" alt="Rajesh Patel" className="w-full h-full object-cover rounded-full" />
-              </div>
-              <div className="flex items-center justify-between gap-4 pl-12 sm:pl-16">
-                <h3 className="text-xl font-serif font-bold text-white tracking-wide">Rajesh Patel</h3>
-                <div className="text-amber-400 text-sm flex gap-1">
-                  <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
-                </div>
-              </div>
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-                "Outstanding healthcare experience! The consultation was detailed, thorough, and every test result was explained with utmost clarity. Highly recommended."
-              </p>
-            </div>
+                    <div className="shrink-0 bg-[#13294B]/90 border border-sky-400/30 px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-inner">
+                      <div className="text-amber-400 text-xs flex gap-0.5">
+                        {[...Array(review.rating)].map((_, i) => (
+                          <i key={i} className="fa-solid fa-star"></i>
+                        ))}
+                      </div>
+                      <span className="text-[11px] font-bold text-white pl-0.5">5.0</span>
+                    </div>
+                  </div>
 
-            {/* Review 3: Pooja Iyer */}
-            <div className="relative bg-[#1B365D] rounded-3xl border border-[#1B365D] px-6 py-4 sm:py-5 pt-5 sm:pt-6 text-white shadow-[0_12px_35px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_50px_-5px_rgba(56,189,248,0.45)] hover:-translate-y-1.5 transition-all duration-300 space-y-2 group">
-              <div className="absolute -top-6 -left-4 sm:-top-7 sm:-left-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#1B365D] border-2 border-[#38BDF8] p-0.5 shadow-lg group-hover:shadow-[0_0_25px_rgba(56,189,248,0.5)] flex items-center justify-center overflow-hidden z-20 transition-all duration-300">
-                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&h=200&q=80" alt="Pooja Iyer" className="w-full h-full object-cover rounded-full" />
-              </div>
-              <div className="flex items-center justify-between gap-4 pl-12 sm:pl-16">
-                <h3 className="text-xl font-serif font-bold text-white tracking-wide">Pooja Iyer</h3>
-                <div className="text-amber-400 text-sm flex gap-1">
-                  <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
-                </div>
-              </div>
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-                "The online slot booking made the whole process effortless. The doctor is compassionate, attentive, and provided a clear, personalized recovery plan."
-              </p>
-            </div>
+                  {/* Testimonial Quote */}
+                  <div className="my-2.5 sm:my-3 flex-1 flex items-center">
+                    <p className="text-slate-200 text-xs sm:text-sm md:text-base leading-relaxed italic font-sans">
+                      "{review.text.replace(/^["']|["']$/g, '')}"
+                    </p>
+                  </div>
 
-            {/* Review 4: Vikram Sengupta */}
-            <div className="relative bg-[#1B365D] rounded-3xl border border-[#1B365D] px-6 py-4 sm:py-5 pt-5 sm:pt-6 text-white shadow-[0_12px_35px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_50px_-5px_rgba(56,189,248,0.45)] hover:-translate-y-1.5 transition-all duration-300 space-y-2 group">
-              <div className="absolute -top-6 -left-4 sm:-top-7 sm:-left-5 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#1B365D] border-2 border-[#38BDF8] p-0.5 shadow-lg group-hover:shadow-[0_0_25px_rgba(56,189,248,0.5)] flex items-center justify-center overflow-hidden z-20 transition-all duration-300">
-                <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=200&h=200&q=80" alt="Vikram Sengupta" className="w-full h-full object-cover rounded-full" />
-              </div>
-              <div className="flex items-center justify-between gap-4 pl-12 sm:pl-16">
-                <h3 className="text-xl font-serif font-bold text-white tracking-wide">Vikram Sengupta</h3>
-                <div className="text-amber-400 text-sm flex gap-1">
-                  <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
+                  {/* Bottom Verification Footer */}
+                  <div className="pt-2.5 border-t border-white/10 flex items-center justify-between text-[10px] sm:text-[11px] text-slate-300 shrink-0">
+                    <span className="flex items-center gap-1 text-slate-400">
+                      <i className="fa-solid fa-notes-medical text-[#38BDF8]"></i>
+                      <span>Clinical Consultation</span>
+                    </span>
+                    <span className="text-emerald-400 font-semibold flex items-center gap-1">
+                      <i className="fa-solid fa-award text-[10px]"></i>
+                      <span>100% Recommended</span>
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-                "Prompt attention, state-of-the-art facility, and genuine care from the entire medical team. Truly grateful for the excellent consultation and guidance."
-              </p>
+              ))}
             </div>
-
           </div>
         </div>
       </section>

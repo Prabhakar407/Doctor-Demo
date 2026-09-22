@@ -51,7 +51,7 @@ export default function MeetDoctor() {
               </div>
 
               <div className="flex flex-wrap items-center gap-4 pt-3">
-                <Link to="/booking" className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition text-sm">
+                <Link to="/booking" className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition text-sm border border-transparent hover:border-slate-300">
                   <i className="fa-solid fa-calendar-check mr-2"></i> Book Appointment
                 </Link>
                 <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold px-8 py-3.5 rounded-xl inline-flex items-center gap-2 text-sm shadow-lg hover:shadow-xl transition">

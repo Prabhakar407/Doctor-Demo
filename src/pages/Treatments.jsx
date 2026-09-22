@@ -1,78 +1,218 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import gynecologyImg from '../Images/gynecology-service.jpg';
+import ultrasoundImg from '../Images/ultrasound-service.jpg';
+import pregnancyImg from '../Images/pregnancy-service.jpg';
+import physicianImg from '../Images/physician-service.jpg';
+import sonographyScanImg from '../Images/sonography-scan.jpg';
+import glucometerImg from '../Images/glucometer.jpg';
+
 export default function Treatments() {
+  const [selectedService, setSelectedService] = useState('all');
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleServiceClick = (serviceId) => {
+    setSelectedService(serviceId);
+    const element = document.getElementById('advanced-procedures');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const procedures = [
+    {
+      id: 'gynecology',
+      title: "Obstetrician & Gynaecology Care",
+      image: gynecologyImg,
+      alt: "Obstetrician & Gynaecology Care",
+      doctorName: "Dr. Priya Nair",
+      doctorLink: "/dr-priya-nair",
+      description: "Comprehensive reproductive healthcare, menstrual disorder management, PCOS/PCOD therapy, pelvic examinations, and preventive health screenings."
+    },
+    {
+      id: 'ultrasound',
+      title: "3D/4D Ultrasound & Imaging",
+      image: sonographyScanImg,
+      alt: "3D/4D Ultrasound & Imaging",
+      doctorName: "Dr. Priya Nair",
+      doctorLink: "/dr-priya-nair",
+      description: "Advanced diagnostic sonography including fetal anomaly scans, early pregnancy dating, pelvic ultrasound, follicular monitoring, and color Doppler."
+    },
+    {
+      id: 'pregnancy',
+      title: "Pregnancy Management & Maternal Care",
+      image: pregnancyImg,
+      alt: "Pregnancy Management & Maternal Care",
+      doctorName: "Dr. Priya Nair",
+      doctorLink: "/dr-priya-nair",
+      description: "End-to-end maternity care encompassing trimesters monitoring, gestational wellness, nutritional guidance, high-risk pregnancy protocols, and postpartum care."
+    },
+    {
+      id: 'physician',
+      title: "Physician & Diabetology Care",
+      image: glucometerImg,
+      alt: "Physician & Diabetology Care",
+      doctorName: "Dr. Arun Sharma",
+      doctorLink: "/dr-arun-sharma",
+      description: "Expert clinical evaluation for diabetes mellitus (Type 1 & 2), hypertension, metabolic syndrome, thyroid disorders, and acute/chronic adult illnesses."
+    }
+  ];
+
+  const displayedProcedures = selectedService === 'all' 
+    ? procedures 
+    : procedures.filter(p => p.id === selectedService);
+
   return (
     <div className="w-full flex-grow flex flex-col p-0 m-0">
       {/* SECTION 1: HEALTHCARE SOLUTIONS (Full Width) */}
-      <section className="w-full bg-[#F8FAFC] pt-6 sm:pt-8 pb-12 sm:pb-16 px-4 sm:px-8 lg:px-12 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto space-y-8">
+      <section className="w-full bg-[#F8FAFC] pt-6 sm:pt-8 pb-12 sm:pb-16 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200">
+        <div className="max-w-7xl 2xl:max-w-[100rem] mx-auto space-y-8 2xl:space-y-12">
           
           <div className="text-center space-y-2">
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#0F172A] tracking-tight">
               Healthcare <span className="italic text-[#0284C7]">Solutions</span>
             </h1>
-            <p className="text-[#64748B] text-sm sm:text-base max-w-xl mx-auto">
-              Essential clinical categories and preventive care designed for your well-being.
+            <p className="text-[#64748B] text-xs sm:text-sm md:text-base font-normal leading-relaxed max-w-xl mx-auto">
+              Essential clinical categories and preventive care designed for your well-being. Click any service below to view its clinical procedure details.
             </p>
             <div className="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            {/* 1: Vaccines */}
-            <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 p-6 text-center space-y-4 group">
-              <div className="w-16 h-16 mx-auto rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-[#0284C7] text-2xl shadow-xs group-hover:scale-110 transition-transform duration-300">
-                <i className="fa-solid fa-prescription-bottle"></i>
+            {/* 1: Obstetrician - Gynaecologist */}
+            <div 
+              onClick={() => handleServiceClick('gynecology')}
+              className={`bg-white rounded-3xl border ${
+                selectedService === 'gynecology' 
+                  ? 'border-[#0284C7] ring-2 ring-[#0284C7] shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] -translate-y-1' 
+                  : 'border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
+              } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer`}
+            >
+              <div className="p-3 pb-0">
+                <div className="w-full h-44 sm:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
+                  <img 
+                    src={gynecologyImg} 
+                    alt="Obstetrician - Gynaecologist" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                </div>
               </div>
-              <div className="space-y-1">
-                <h3 className="font-bold text-[#0F172A] text-lg">Vaccines</h3>
-                <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed">
-                  Complete immunization and booster coverage for children and adults.
-                </p>
-              </div>
-            </div>
-
-            {/* 2: Wellness Care */}
-            <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 p-6 text-center space-y-4 group">
-              <div className="w-16 h-16 mx-auto rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-[#0284C7] text-2xl shadow-xs group-hover:scale-110 transition-transform duration-300">
-                <i className="fa-solid fa-hand-holding-heart"></i>
-              </div>
-              <div className="space-y-1">
-                <h3 className="font-bold text-[#0F172A] text-lg">Wellness Care</h3>
-                <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed">
-                  Holistic preventive wellness check-ups and custom health management.
-                </p>
-              </div>
-            </div>
-
-            {/* 3: Injectables */}
-            <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 p-6 text-center space-y-4 group">
-              <div className="w-16 h-16 mx-auto rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-[#0284C7] text-2xl shadow-xs group-hover:scale-110 transition-transform duration-300">
-                <i className="fa-solid fa-syringe"></i>
-              </div>
-              <div className="space-y-1">
-                <h3 className="font-bold text-[#0F172A] text-lg">Injectables</h3>
-                <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed">
-                  Safe clinical administration of prescribed injectables and IV therapies.
-                </p>
+              <div className="p-4 pt-3 flex flex-col items-center space-y-1.5 text-center flex-1 justify-between">
+                <div className="space-y-1">
+                  <h3 className="font-bold text-[#0F172A] text-base sm:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
+                    Obstetrician - Gynaecologist
+                  </h3>
+                  <p className="text-[#64748B] text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+                    Comprehensive women's healthcare, pelvic wellness, and clinical gynaecological diagnostics.
+                  </p>
+                </div>
+                <span className="text-xs font-semibold text-[#0284C7] inline-flex items-center gap-1 group-hover:underline pt-1">
+                  View procedure <i className="fa-solid fa-arrow-down text-[10px]"></i>
+                </span>
               </div>
             </div>
 
-            {/* 4: Nutraceuticals */}
-            <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 p-6 text-center space-y-4 group">
-              <div className="w-16 h-16 mx-auto rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-[#0284C7] text-2xl shadow-xs group-hover:scale-110 transition-transform duration-300">
-                <i className="fa-solid fa-capsules"></i>
+            {/* 2: Ultrasound */}
+            <div 
+              onClick={() => handleServiceClick('ultrasound')}
+              className={`bg-white rounded-3xl border ${
+                selectedService === 'ultrasound' 
+                  ? 'border-[#0284C7] ring-2 ring-[#0284C7] shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] -translate-y-1' 
+                  : 'border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
+              } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer`}
+            >
+              <div className="p-3 pb-0">
+                <div className="w-full h-44 sm:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
+                  <img 
+                    src={ultrasoundImg} 
+                    alt="Ultrasound Diagnostics" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                </div>
               </div>
-              <div className="space-y-1">
-                <h3 className="font-bold text-[#0F172A] text-lg">Nutraceuticals</h3>
-                <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed">
-                  Targeted nutrition and supplements to strengthen immunity and vitality.
-                </p>
+              <div className="p-4 pt-3 flex flex-col items-center space-y-1.5 text-center flex-1 justify-between">
+                <div className="space-y-1">
+                  <h3 className="font-bold text-[#0F172A] text-base sm:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
+                    Ultrasound
+                  </h3>
+                  <p className="text-[#64748B] text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+                    High-definition 3D/4D ultrasound imaging, pelvic sonography, and color Doppler scans.
+                  </p>
+                </div>
+                <span className="text-xs font-semibold text-[#0284C7] inline-flex items-center gap-1 group-hover:underline pt-1">
+                  View procedure <i className="fa-solid fa-arrow-down text-[10px]"></i>
+                </span>
+              </div>
+            </div>
+
+            {/* 3: Pregnancy Management */}
+            <div 
+              onClick={() => handleServiceClick('pregnancy')}
+              className={`bg-white rounded-3xl border ${
+                selectedService === 'pregnancy' 
+                  ? 'border-[#0284C7] ring-2 ring-[#0284C7] shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] -translate-y-1' 
+                  : 'border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
+              } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer`}
+            >
+              <div className="p-3 pb-0">
+                <div className="w-full h-44 sm:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
+                  <img 
+                    src={pregnancyImg} 
+                    alt="Pregnancy Management" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                </div>
+              </div>
+              <div className="p-4 pt-3 flex flex-col items-center space-y-1.5 text-center flex-1 justify-between">
+                <div className="space-y-1">
+                  <h3 className="font-bold text-[#0F172A] text-base sm:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
+                    Pregnancy Management
+                  </h3>
+                  <p className="text-[#64748B] text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+                    Dedicated prenatal, antenatal, high-risk pregnancy monitoring, and maternal care.
+                  </p>
+                </div>
+                <span className="text-xs font-semibold text-[#0284C7] inline-flex items-center gap-1 group-hover:underline pt-1">
+                  View procedure <i className="fa-solid fa-arrow-down text-[10px]"></i>
+                </span>
+              </div>
+            </div>
+
+            {/* 4: Physician and Diabetologist */}
+            <div 
+              onClick={() => handleServiceClick('physician')}
+              className={`bg-white rounded-3xl border ${
+                selectedService === 'physician' 
+                  ? 'border-[#0284C7] ring-2 ring-[#0284C7] shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] -translate-y-1' 
+                  : 'border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
+              } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer`}
+            >
+              <div className="p-3 pb-0">
+                <div className="w-full h-44 sm:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
+                  <img 
+                    src={glucometerImg} 
+                    alt="Physician & Diabetologist" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
+                </div>
+              </div>
+              <div className="p-4 pt-3 flex flex-col items-center space-y-1.5 text-center flex-1 justify-between">
+                <div className="space-y-1">
+                  <h3 className="font-bold text-[#0F172A] text-base sm:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
+                    Physician &amp; Diabetologist
+                  </h3>
+                  <p className="text-[#64748B] text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+                    Evidence-based internal medicine, diabetes control, and metabolic wellness therapies.
+                  </p>
+                </div>
+                <span className="text-xs font-semibold text-[#0284C7] inline-flex items-center gap-1 group-hover:underline pt-1">
+                  View procedure <i className="fa-solid fa-arrow-down text-[10px]"></i>
+                </span>
               </div>
             </div>
 
@@ -80,9 +220,9 @@ export default function Treatments() {
         </div>
       </section>
 
-      {/* SECTION 2: SPECIALIZED TREATMENTS (Full Width) */}
-      <section className="w-full bg-white py-12 sm:py-16 px-4 sm:px-8 lg:px-12 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto space-y-8">
+      {/* SECTION 2: SPECIALIZED TREATMENTS / ADVANCED CLINICAL PROCEDURES */}
+      <section id="advanced-procedures" className="w-full bg-white py-12 sm:py-16 2xl:py-24 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200">
+        <div className="max-w-7xl 2xl:max-w-[100rem] mx-auto space-y-8 2xl:space-y-12">
           
           <div className="text-center space-y-2">
             <span className="text-xs font-bold text-[#0284C7] uppercase tracking-widest block">Specialized Treatments</span>
@@ -92,100 +232,137 @@ export default function Treatments() {
             <div className="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
           </div>
 
-          {/* Reduced width cards container */}
-          <div className="max-w-4xl mx-auto space-y-6">
-            
-            {/* Treatment Item 1 (Blue Left, White Right) */}
-            <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col md:flex-row items-stretch group">
-              {/* Left Full-Height Blue Side with Centered Image */}
-              <div className="w-full md:w-64 bg-[#1B365D] p-5 sm:p-6 flex items-center justify-center shrink-0 border-b md:border-b-0 md:border-r border-[#13294B]">
-                <div className="w-full max-w-[200px] h-36 sm:h-40 bg-white rounded-2xl flex items-center justify-center text-[#1B365D] shadow-md transform group-hover:scale-105 transition-transform duration-300">
-                  <i className="fa-solid fa-heart-pulse text-5xl text-[#0284C7]"></i>
-                </div>
-              </div>
-              {/* Right White Side with Text */}
-              <div className="flex-1 bg-white p-6 sm:p-7 flex flex-col justify-center space-y-3">
-                <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#0F172A]">Cardiology & Vascular Care</h3>
-                <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed">
-                  Comprehensive cardiovascular health diagnostics, stress testing, preventive monitoring, and tailored therapeutic care managed by senior cardiology specialists.
-                </p>
-                <div className="flex flex-wrap items-center gap-3 pt-1">
-                  <Link to="/dr-arun-sharma" className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-slate-200 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] shadow-xs transition">
-                    <span className="w-5 h-5 rounded-full bg-[#0284C7] text-white flex items-center justify-center text-[10px]">
-                      <i className="fa-solid fa-user-doctor"></i>
-                    </span>
-                    Suggested Doctor: <strong className="text-[#0F172A]">Dr. Arun Sharma</strong>
-                  </Link>
-                  <Link to="/booking" className="bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs transition">
-                    Book Treatment
-                  </Link>
-                </div>
-              </div>
-            </div>
+          {/* Quick Filter Tabs */}
+          <div className="flex flex-wrap items-center justify-center gap-2 max-w-4xl mx-auto">
+            <button
+              type="button"
+              onClick={() => setSelectedService('all')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-serif font-bold transition-all cursor-pointer ${
+                selectedService === 'all'
+                  ? 'bg-[#1B365D] text-white shadow-md'
+                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              All Procedures ({procedures.length})
+            </button>
+            <button
+              type="button"
+              onClick={() => setSelectedService('gynecology')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-serif font-bold transition-all cursor-pointer ${
+                selectedService === 'gynecology'
+                  ? 'bg-[#0284C7] text-white shadow-md'
+                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              Obstetrician &amp; Gynaecology
+            </button>
+            <button
+              type="button"
+              onClick={() => setSelectedService('ultrasound')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-serif font-bold transition-all cursor-pointer ${
+                selectedService === 'ultrasound'
+                  ? 'bg-[#0284C7] text-white shadow-md'
+                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              Ultrasound &amp; Imaging
+            </button>
+            <button
+              type="button"
+              onClick={() => setSelectedService('pregnancy')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-serif font-bold transition-all cursor-pointer ${
+                selectedService === 'pregnancy'
+                  ? 'bg-[#0284C7] text-white shadow-md'
+                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              Pregnancy Management
+            </button>
+            <button
+              type="button"
+              onClick={() => setSelectedService('physician')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-serif font-bold transition-all cursor-pointer ${
+                selectedService === 'physician'
+                  ? 'bg-[#0284C7] text-white shadow-md'
+                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              Physician &amp; Diabetology
+            </button>
+          </div>
 
-            {/* Treatment Item 2 (White Left, Blue Right - Alternating) */}
-            <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col md:flex-row-reverse items-stretch group">
-              {/* Right Full-Height Blue Side with Centered Image */}
-              <div className="w-full md:w-64 bg-[#1B365D] p-5 sm:p-6 flex items-center justify-center shrink-0 border-b md:border-b-0 md:border-l border-[#13294B]">
-                <div className="w-full max-w-[200px] h-36 sm:h-40 bg-white rounded-2xl flex items-center justify-center text-[#1B365D] shadow-md transform group-hover:scale-105 transition-transform duration-300">
-                  <i className="fa-solid fa-bone text-5xl text-[#0284C7]"></i>
-                </div>
-              </div>
-              {/* Left White Side with Text */}
-              <div className="flex-1 bg-white p-6 sm:p-7 flex flex-col justify-center space-y-3">
-                <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#0F172A]">Orthopedic & Musculoskeletal Therapy</h3>
-                <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed">
-                  Precision diagnosis and non-invasive rehabilitation for joint health, spinal care, sports injury recovery, and mobility restoration.
-                </p>
-                <div className="flex flex-wrap items-center gap-3 pt-1">
-                  <Link to="/dr-priya-nair" className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-slate-200 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] shadow-xs transition">
-                    <span className="w-5 h-5 rounded-full bg-[#0284C7] text-white flex items-center justify-center text-[10px]">
-                      <i className="fa-solid fa-user-doctor"></i>
-                    </span>
-                    Suggested Doctor: <strong className="text-[#0F172A]">Dr. Priya Nair</strong>
-                  </Link>
-                  <Link to="/booking" className="bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs transition">
-                    Book Treatment
-                  </Link>
-                </div>
-              </div>
+          {/* If filtered, show helper indicator */}
+          {selectedService !== 'all' && (
+            <div className="max-w-4xl mx-auto flex items-center justify-between bg-sky-50 border border-sky-200 rounded-2xl px-4 py-2.5 text-xs text-[#0284C7]">
+              <span className="font-semibold flex items-center gap-1.5">
+                <i className="fa-solid fa-filter text-[#0284C7]"></i>
+                Showing selected service in clinical procedures
+              </span>
+              <button
+                type="button"
+                onClick={() => setSelectedService('all')}
+                className="font-bold underline hover:text-[#0369A1] cursor-pointer"
+              >
+                Show All Procedures &rarr;
+              </button>
             </div>
+          )}
 
-            {/* Treatment Item 3 (Blue Left, White Right - Alternating) */}
-            <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col md:flex-row items-stretch group">
-              {/* Left Full-Height Blue Side with Centered Image */}
-              <div className="w-full md:w-64 bg-[#1B365D] p-5 sm:p-6 flex items-center justify-center shrink-0 border-b md:border-b-0 md:border-r border-[#13294B]">
-                <div className="w-full max-w-[200px] h-36 sm:h-40 bg-white rounded-2xl flex items-center justify-center text-[#1B365D] shadow-md transform group-hover:scale-105 transition-transform duration-300">
-                  <i className="fa-solid fa-dna text-5xl text-[#0284C7]"></i>
+          {/* Procedures List */}
+          <div className="max-w-4xl 2xl:max-w-[75rem] mx-auto space-y-6 2xl:space-y-8">
+            {displayedProcedures.map((proc, index) => {
+              const isEven = index % 2 === 0;
+              return (
+                <div 
+                  key={proc.id}
+                  className={`bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col ${
+                    isEven ? 'md:flex-row' : 'md:flex-row-reverse'
+                  } items-stretch group h-[390px] sm:h-[405px] md:h-56 lg:h-56 2xl:h-64`}
+                >
+                  <div className="w-full md:w-64 lg:w-72 2xl:w-80 h-44 sm:h-48 md:h-full bg-slate-100 shrink-0 relative overflow-hidden">
+                    <img 
+                      src={proc.image} 
+                      alt={proc.alt} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                    />
+                  </div>
+                  <div className="flex-1 bg-white p-4 sm:p-5 md:py-4 md:px-6 flex flex-col justify-between space-y-2 h-full">
+                    <div className="space-y-1 sm:space-y-1.5">
+                      <h3 className="text-base sm:text-lg md:text-xl font-serif font-bold text-[#0F172A] leading-tight group-hover:text-[#0284C7] transition-colors">
+                        {proc.title}
+                      </h3>
+                      <p className="text-[#64748B] text-xs sm:text-sm md:text-sm font-normal leading-relaxed line-clamp-3 sm:line-clamp-2 md:line-clamp-3">
+                        {proc.description}
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1 shrink-0">
+                      <Link 
+                        to={proc.doctorLink} 
+                        className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl border border-slate-200 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] shadow-xs transition"
+                      >
+                        <span className="w-4 h-4 rounded-full bg-[#0284C7] text-white flex items-center justify-center text-[9px]">
+                          <i className="fa-solid fa-user-doctor"></i>
+                        </span>
+                        Suggested Doctor: <strong className="text-[#0F172A]">{proc.doctorName}</strong>
+                      </Link>
+                      <Link 
+                        to="/booking" 
+                        className="bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold px-3.5 py-1.5 rounded-xl shadow-xs transition border border-transparent hover:border-slate-300"
+                      >
+                        Book Treatment
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              {/* Right White Side with Text */}
-              <div className="flex-1 bg-white p-6 sm:p-7 flex flex-col justify-center space-y-3">
-                <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#0F172A]">Dermatology & Regenerative Health</h3>
-                <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed">
-                  State-of-the-art dermatological procedures, clinical skincare treatments, and cellular therapies focused on long-term tissue restoration.
-                </p>
-                <div className="flex flex-wrap items-center gap-3 pt-1">
-                  <Link to="/dr-arun-sharma" className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-slate-200 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] shadow-xs transition">
-                    <span className="w-5 h-5 rounded-full bg-[#0284C7] text-white flex items-center justify-center text-[10px]">
-                      <i className="fa-solid fa-user-doctor"></i>
-                    </span>
-                    Suggested Doctor: <strong className="text-[#0F172A]">Dr. Arun Sharma</strong>
-                  </Link>
-                  <Link to="/booking" className="bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs transition">
-                    Book Treatment
-                  </Link>
-                </div>
-              </div>
-            </div>
-
+              );
+            })}
           </div>
 
           {/* Center Go on Top Button */}
           <div className="text-center pt-6">
             <button 
               onClick={scrollToTop} 
-              className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition cursor-pointer"
+              className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition cursor-pointer border border-transparent hover:border-slate-300"
             >
               <i className="fa-solid fa-arrow-up mr-2"></i> Go on top
             </button>

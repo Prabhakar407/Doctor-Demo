@@ -9,23 +9,23 @@ export default function AboutClinic() {
   return (
     <div className="w-full flex-grow flex flex-col p-0 m-0">
       {/* LEADING CARE FACILITY HERO SECTION (Screen Height Blue Background) */}
-      <section className="w-full min-h-[calc(100vh-73px)] lg:h-[calc(100vh-73px)] bg-gradient-to-br from-[#1B365D] via-[#13294B] to-[#0B1A30] text-white pt-3 sm:pt-4 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-14 flex flex-col justify-center border-b border-white/10 relative overflow-hidden">
-        <div className="max-w-6xl w-full mx-auto space-y-4 sm:space-y-6 relative z-10">
+      <section className="w-full min-h-[calc(100vh-73px)] lg:h-[calc(100vh-73px)] bg-gradient-to-br from-[#1B365D] via-[#13294B] to-[#0B1A30] text-white pt-3 sm:pt-4 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-14 2xl:px-20 flex flex-col justify-center border-b border-white/10 relative overflow-hidden">
+        <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto space-y-4 sm:space-y-6 2xl:space-y-10 relative z-10">
           
           {/* Section Header (Closer to Navbar) */}
           <div className="text-center space-y-1.5">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-white tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-serif font-extrabold text-white tracking-tight">
               Leading Care <span className="italic text-[#38BDF8]">Facility</span>
             </h1>
             <div className="w-16 h-1 bg-gradient-to-r from-[#0284C7] to-[#38BDF8] rounded-full mx-auto"></div>
           </div>
 
           {/* Facility Image + Overview & Awards */}
-          <div className="grid md:grid-cols-12 gap-6 lg:gap-10 items-center">
+          <div className="grid md:grid-cols-12 gap-6 lg:gap-10 2xl:gap-16 items-center">
             
             {/* Left Image Placeholder Box (Increased Size Equal Width & Height Square) */}
             <div className="md:col-span-6 flex justify-center">
-              <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-[22rem] lg:h-[22rem] aspect-square bg-white border border-white/30 rounded-3xl flex items-center justify-center text-[#1B365D] shadow-[0_20px_50px_-10px_rgba(2,132,199,0.5)] relative overflow-hidden group">
+              <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-[22rem] lg:h-[22rem] 2xl:w-[28rem] 2xl:h-[28rem] aspect-square bg-white border border-white/30 rounded-3xl flex items-center justify-center text-[#1B365D] shadow-[0_20px_50px_-10px_rgba(2,132,199,0.5)] relative overflow-hidden group">
                 <i className="fa-solid fa-hospital text-8xl sm:text-9xl text-[#0284C7]/80 group-hover:scale-105 transition-transform duration-300"></i>
                 <div className="absolute bottom-4 bg-[#1B365D] text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold shadow-md border border-white/20 whitespace-nowrap">
                   <i className="fa-solid fa-shield-halved text-[#38BDF8] mr-1.5"></i> Certified ISO 9001 Facility
@@ -75,16 +75,16 @@ export default function AboutClinic() {
       </section>
 
       {/* SECTION 2: VIRTUAL TOUR & CONSULTATION (White Background) */}
-      <section className="w-full bg-white py-12 sm:py-16 px-4 sm:px-8 lg:px-12 border-b border-slate-200">
-        <div className="max-w-6xl w-full mx-auto space-y-8">
+      <section className="w-full bg-white py-12 sm:py-16 2xl:py-24 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200">
+        <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto space-y-8 2xl:space-y-12">
           
-          <div className="grid md:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="grid md:grid-cols-12 gap-8 lg:gap-12 2xl:gap-16 items-center">
             
             {/* Left Video Placeholder Box with Play Icon (Equal Width & Height Square) */}
             <div className="md:col-span-6 flex justify-center">
               <div 
                 onClick={handleVirtualTour}
-                className="w-60 h-60 sm:w-72 sm:h-72 aspect-square bg-[#F8FAFC] border border-slate-200 hover:border-[#0284C7] rounded-3xl flex flex-col items-center justify-center shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 relative group cursor-pointer transition-all duration-300 overflow-hidden"
+                className="w-60 h-60 sm:w-72 sm:h-72 2xl:w-96 2xl:h-96 aspect-square bg-[#F8FAFC] border border-slate-200 hover:border-[#0284C7] rounded-3xl flex flex-col items-center justify-center shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 relative group cursor-pointer transition-all duration-300 overflow-hidden"
               >
                 <div className="w-16 h-14 rounded-2xl bg-[#0284C7] flex items-center justify-center text-white text-2xl shadow-md group-hover:scale-110 transition-transform duration-300">
                   <i className="fa-solid fa-play ml-1"></i>
@@ -109,7 +109,7 @@ export default function AboutClinic() {
               <div className="space-y-3 pt-1">
                 <Link 
                   to="/booking" 
-                  className="block w-full sm:w-72 max-w-xs bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-3 px-6 rounded-xl shadow-[0_8px_20px_-4px_rgba(2,132,199,0.4)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.5)] text-center transition text-xs sm:text-sm"
+                  className="block w-full sm:w-72 max-w-xs bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-3 px-6 rounded-xl shadow-[0_8px_20px_-4px_rgba(2,132,199,0.4)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.5)] text-center transition text-xs sm:text-sm border border-transparent hover:border-slate-300"
                 >
                   <i className="fa-solid fa-calendar-check mr-2"></i> Book Consultation
                 </Link>

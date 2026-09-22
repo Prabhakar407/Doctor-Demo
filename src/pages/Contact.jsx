@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -17,19 +18,19 @@ export default function Contact() {
   return (
     <div className="w-full flex-grow flex flex-col p-0 m-0">
       {/* SECTION 1: CONTACT FORM & MAP (Full Width) */}
-      <section className="w-full bg-[#F8FAFC] pt-3 sm:pt-5 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8 border-b border-slate-200">
-        <div className="max-w-4xl mx-auto space-y-3.5 sm:space-y-4">
+      <section className="w-full bg-[#F8FAFC] pt-3 sm:pt-5 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8 2xl:px-16 border-b border-slate-200">
+        <div className="max-w-4xl 2xl:max-w-6xl 3xl:max-w-[75rem] mx-auto space-y-3.5 sm:space-y-4 2xl:space-y-6">
           
           {/* Section Header (Closer to Navbar) */}
           <div className="text-center space-y-1.5">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#0F172A] tracking-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl font-serif font-bold text-[#0F172A] tracking-tight">
               Send a Message or Visit Us
             </h1>
             <div className="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
           </div>
 
           {/* Main Card Container (Reduced Width, Visible on Page Load) */}
-          <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] transition-all duration-300 overflow-hidden p-5 sm:p-7">
+          <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] transition-all duration-300 overflow-hidden p-5 sm:p-7 2xl:p-10">
             <div className="grid md:grid-cols-12 gap-6 lg:gap-8 items-start">
               
               {/* Left: Contact form */}
@@ -88,8 +89,9 @@ export default function Contact() {
                   </div>
 
                   <div className="pt-0.5">
-                    <button type="submit" className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-7 py-2.5 rounded-xl shadow-md hover:shadow-lg transition text-xs sm:text-sm cursor-pointer">
-                      <i className="fa-regular fa-paper-plane mr-1.5"></i> Submit Message
+                    <button type="submit" className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-7 py-2.5 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform text-xs sm:text-sm cursor-pointer border border-transparent hover:border-slate-300 inline-flex items-center gap-2">
+                      <i className="fa-regular fa-paper-plane"></i>
+                      <span>Submit Message</span>
                     </button>
                   </div>
                 </form>
@@ -145,14 +147,24 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Buttons: WhatsApp & Give Feedback */}
+                {/* Buttons: WhatsApp & Book Appointment */}
                 <div className="grid grid-cols-2 gap-2.5 pt-1">
-                  <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold py-2 px-3 rounded-xl flex items-center justify-center gap-1.5 text-xs shadow transition">
-                    <i className="fa-brands fa-whatsapp text-base"></i> WhatsApp Us
+                  <a 
+                    href="https://wa.me/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300"
+                  >
+                    <i className="fa-brands fa-whatsapp text-base"></i>
+                    <span>WhatsApp Us</span>
                   </a>
-                  <button onClick={() => alert('Thank you for your feedback!')} className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2 px-3 rounded-xl flex items-center justify-center gap-1.5 text-xs shadow transition cursor-pointer">
-                    <i className="fa-regular fa-comment-dots text-sm"></i> Give Feedback
-                  </button>
+                  <Link 
+                    to="/booking" 
+                    className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 text-center"
+                  >
+                    <i className="fa-solid fa-calendar-check text-xs"></i>
+                    <span>Book Appointment</span>
+                  </Link>
                 </div>
 
               </div>
