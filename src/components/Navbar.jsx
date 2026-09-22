@@ -169,7 +169,7 @@ export default function Navbar() {
                     <div className="flex items-center gap-3">
                       <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0">
                         <img
-                          src="https://images.unsplash.com/photo-1594824813627-7ef9cf58f8b0?auto=format&fit=crop&w=150&q=80"
+                          src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=150&q=80"
                           alt="Dr. Priya Nair"
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                         />

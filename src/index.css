@@ -275,3 +275,43 @@
     -webkit-mask-image: none !important;
   }
 }
+
+/* 3.7 Doctor Pages 2K and Greater Layout (Exactly 1/2 height each for Hero and Testimonial) */
+@media (min-width: 1536px) {
+  .doctor-profile-hero-2k {
+    height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
+    min-height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
+    max-height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .doctor-testimonials-2k {
+    height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
+    min-height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
+    max-height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .contact-section-2k {
+    height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
+    min-height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
+    max-height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+}
+

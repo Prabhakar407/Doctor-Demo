@@ -187,17 +187,17 @@ export default function Home() {
 
           {/* Right Column: Glassmorphic Floating Form */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end items-center w-full">
-            <div className="w-full max-w-sm 2xl:max-w-md bg-white/10 backdrop-blur-xl text-white rounded-2xl p-5 sm:p-6 2xl:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_65px_rgba(2,132,199,0.4)] border border-white/20 hover:border-[#0284C7] transition-all duration-300 space-y-3 2xl:space-y-4">
+            <div className="w-full max-w-sm 2xl:max-w-[28rem] 3xl:max-w-[32rem] bg-white/10 backdrop-blur-xl text-white rounded-2xl 2xl:rounded-3xl p-5 sm:p-6 2xl:p-7 3xl:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_65px_rgba(2,132,199,0.4)] border border-white/20 hover:border-[#0284C7] transition-all duration-300 space-y-3 2xl:space-y-4">
               
-              <div className="text-center pb-1.5 border-b border-white/15">
-                <h3 className="text-xl sm:text-2xl font-serif font-bold text-white tracking-tight">
+              <div className="text-center pb-1.5 2xl:pb-2.5 border-b border-white/15">
+                <h3 className="text-xl sm:text-2xl 2xl:text-3xl 3xl:text-4xl font-serif font-bold text-white tracking-tight">
                   Book your <span className="italic text-[#38BDF8]">Visit</span>
                 </h3>
-                <p className="text-xs font-medium text-slate-100 mt-0.5">Quick and easy appointment scheduling</p>
+                <p className="text-xs 2xl:text-sm 3xl:text-base font-medium text-slate-100 mt-0.5">Quick and easy appointment scheduling</p>
               </div>
 
               <form
-                className="space-y-2.5 sm:space-y-3"
+                className="space-y-2.5 sm:space-y-3 2xl:space-y-3.5"
                 onSubmit={(e) => {
                   e.preventDefault();
                   alert('Thank you! Your appointment request has been received.');
@@ -205,52 +205,52 @@ export default function Home() {
               >
                 {/* Name */}
                 <div>
-                  <label className="block text-xs font-bold text-white mb-0.5 tracking-wide">User Name *</label>
+                  <label className="block text-xs 2xl:text-sm font-bold text-white mb-0.5 2xl:mb-1 tracking-wide">User Name *</label>
                   <input
                     type="text"
                     required
                     placeholder="Your full name"
-                    className="w-full px-3 py-1.5 sm:py-2 text-xs font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
+                    className="w-full px-3 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3.5 text-xs 2xl:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
                   />
                 </div>
 
                 {/* Phone & Email in 2 compact columns */}
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2 2xl:gap-3">
                   <div>
-                    <label className="block text-xs font-bold text-white mb-0.5 tracking-wide">Phone Number *</label>
+                    <label className="block text-xs 2xl:text-sm font-bold text-white mb-0.5 2xl:mb-1 tracking-wide">Phone Number *</label>
                     <input
                       type="tel"
                       required
                       placeholder="+1 234 567"
-                      className="w-full px-3 py-1.5 sm:py-2 text-xs font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
+                      className="w-full px-3 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3.5 text-xs 2xl:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-white mb-0.5 tracking-wide">Email *</label>
+                    <label className="block text-xs 2xl:text-sm font-bold text-white mb-0.5 2xl:mb-1 tracking-wide">Email *</label>
                     <input
                       type="email"
                       required
                       placeholder="you@email.com"
-                      className="w-full px-3 py-1.5 sm:py-2 text-xs font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
+                      className="w-full px-3 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3.5 text-xs 2xl:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
                     />
                   </div>
                 </div>
 
                 {/* Preferred Date & Time */}
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2 2xl:gap-3">
                   <div>
-                    <label className="block text-xs font-bold text-white mb-0.5 tracking-wide">Preferred Date *</label>
+                    <label className="block text-xs 2xl:text-sm font-bold text-white mb-0.5 2xl:mb-1 tracking-wide">Preferred Date *</label>
                     <input
                       type="date"
                       required
-                      className="w-full px-2 py-1.5 sm:py-2 text-xs font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
+                      className="w-full px-2 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3 text-xs 2xl:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-white mb-0.5 tracking-wide">Preferred Time *</label>
+                    <label className="block text-xs 2xl:text-sm font-bold text-white mb-0.5 2xl:mb-1 tracking-wide">Preferred Time *</label>
                     <select
                       required
-                      className="w-full px-2 py-1.5 sm:py-2 text-xs font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
+                      className="w-full px-2 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3 text-xs 2xl:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
                     >
                       <option value="" className="text-slate-500">Select Time</option>
                       <option value="Morning" className="text-[#0F172A]">09:00 AM - 12:00 PM</option>
@@ -261,10 +261,10 @@ export default function Home() {
                 </div>
 
                 {/* Submit Button */}
-                <div className="flex justify-center pt-1.5">
+                <div className="flex justify-center pt-1.5 2xl:pt-2">
                   <button
                     type="submit"
-                    className="w-full sm:w-auto px-7 py-2 bg-[#0284C7] hover:bg-[#0369A1] border border-transparent hover:border-slate-300 text-white font-serif font-bold rounded-lg transition-all duration-200 text-xs sm:text-sm shadow-[0_8px_20px_-4px_rgba(2,132,199,0.5)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.7)] hover:scale-105 active:scale-95 transform cursor-pointer"
+                    className="w-full sm:w-auto px-7 2xl:px-9 py-2 2xl:py-2.5 bg-[#0284C7] hover:bg-[#0369A1] border border-transparent hover:border-slate-300 text-white font-serif font-bold rounded-lg 2xl:rounded-xl transition-all duration-200 text-xs sm:text-sm 2xl:text-base shadow-[0_8px_20px_-4px_rgba(2,132,199,0.5)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.7)] hover:scale-105 active:scale-95 transform cursor-pointer"
                   >
                     Book Appointment
                   </button>
@@ -272,8 +272,8 @@ export default function Home() {
 
                 {/* Phone call fallback line */}
                 <div className="text-center pt-1">
-                  <p className="text-xs sm:text-sm font-medium text-white font-serif">
-                    Or call us at <a href="tel:+81888888888" className="text-[#38BDF8] hover:text-white font-bold text-xs sm:text-sm underline underline-offset-4 decoration-[#38BDF8]/60 hover:decoration-white transition ml-1 inline-block">+81888888888</a>
+                  <p className="text-xs sm:text-sm 2xl:text-base font-medium text-white font-serif">
+                    Or call us at <a href="tel:+81888888888" className="text-[#38BDF8] hover:text-white font-bold text-xs sm:text-sm 2xl:text-base underline underline-offset-4 decoration-[#38BDF8]/60 hover:decoration-white transition ml-1 inline-block">+81888888888</a>
                   </p>
                 </div>
               </form>
