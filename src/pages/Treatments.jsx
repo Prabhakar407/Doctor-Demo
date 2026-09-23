@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import gynecologyImg from '../Images/gynecology-service.jpg';
 import ultrasoundImg from '../Images/ultrasound-service.jpg';
@@ -8,8 +8,30 @@ import physicianImg from '../Images/physician-service.jpg';
 import sonographyScanImg from '../Images/sonography-scan.jpg';
 import glucometerImg from '../Images/glucometer.jpg';
 
+// Distinct curated images for Healthcare Solutions section (iPad and greater)
+import healthcareGynecologyImg from '../Images/healthcare-gynecology.jpg';
+import healthcareUltrasoundImg from '../Images/healthcare-ultrasound.jpg';
+import healthcarePregnancyImg from '../Images/healthcare-pregnancy.jpg';
+
 export default function Treatments() {
   const [selectedService, setSelectedService] = useState('all');
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const serviceParam = params.get('service');
+    if (serviceParam && ['gynecology', 'ultrasound', 'pregnancy', 'physician'].includes(serviceParam)) {
+      setSelectedService(serviceParam);
+    }
+    if (location.hash === '#advanced-procedures' || window.innerWidth < 768) {
+      const element = document.getElementById('advanced-procedures');
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+      }
+    }
+  }, [location]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -68,15 +90,15 @@ export default function Treatments() {
 
   return (
     <div className="w-full flex-grow flex flex-col p-0 m-0">
-      {/* SECTION 1: HEALTHCARE SOLUTIONS (Full Width) */}
-      <section className="w-full bg-[#F8FAFC] pt-6 sm:pt-8 pb-12 sm:pb-16 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200">
+      {/* SECTION 1: HEALTHCARE SOLUTIONS (Hidden on Mobile, Visible on iPad/Tablet and Greater) */}
+      <section className="hidden md:block w-full bg-[#F8FAFC] pt-6 sm:pt-8 pb-12 sm:pb-16 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200">
         <div className="max-w-7xl 2xl:max-w-[100rem] mx-auto space-y-8 2xl:space-y-12">
           
           <div className="text-center space-y-2">
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#0F172A] tracking-tight">
               Healthcare <span className="italic text-[#0284C7]">Solutions</span>
             </h1>
-            <p className="text-[#64748B] text-xs sm:text-sm md:text-base font-normal leading-relaxed max-w-xl mx-auto">
+            <p className="text-black text-xs sm:text-sm md:text-base font-normal leading-relaxed max-w-xl mx-auto">
               Essential clinical categories and preventive care designed for your well-being. Click any service below to view its clinical procedure details.
             </p>
             <div className="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
@@ -96,7 +118,7 @@ export default function Treatments() {
               <div className="p-3 pb-0">
                 <div className="w-full h-44 sm:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
-                    src={gynecologyImg} 
+                    src={healthcareGynecologyImg} 
                     alt="Obstetrician - Gynaecologist" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                   />
@@ -107,7 +129,7 @@ export default function Treatments() {
                   <h3 className="font-bold text-[#0F172A] text-base sm:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
                     Obstetrician - Gynaecologist
                   </h3>
-                  <p className="text-[#64748B] text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+                  <p className="text-black text-xs sm:text-sm md:text-base font-normal leading-relaxed">
                     Comprehensive women's healthcare, pelvic wellness, and clinical gynaecological diagnostics.
                   </p>
                 </div>
@@ -129,7 +151,7 @@ export default function Treatments() {
               <div className="p-3 pb-0">
                 <div className="w-full h-44 sm:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
-                    src={ultrasoundImg} 
+                    src={healthcareUltrasoundImg} 
                     alt="Ultrasound Diagnostics" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                   />
@@ -140,7 +162,7 @@ export default function Treatments() {
                   <h3 className="font-bold text-[#0F172A] text-base sm:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
                     Ultrasound
                   </h3>
-                  <p className="text-[#64748B] text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+                  <p className="text-black text-xs sm:text-sm md:text-base font-normal leading-relaxed">
                     High-definition 3D/4D ultrasound imaging, pelvic sonography, and color Doppler scans.
                   </p>
                 </div>
@@ -162,7 +184,7 @@ export default function Treatments() {
               <div className="p-3 pb-0">
                 <div className="w-full h-44 sm:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
-                    src={pregnancyImg} 
+                    src={healthcarePregnancyImg} 
                     alt="Pregnancy Management" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                   />
@@ -173,7 +195,7 @@ export default function Treatments() {
                   <h3 className="font-bold text-[#0F172A] text-base sm:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
                     Pregnancy Management
                   </h3>
-                  <p className="text-[#64748B] text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+                  <p className="text-black text-xs sm:text-sm md:text-base font-normal leading-relaxed">
                     Dedicated prenatal, antenatal, high-risk pregnancy monitoring, and maternal care.
                   </p>
                 </div>
@@ -195,7 +217,7 @@ export default function Treatments() {
               <div className="p-3 pb-0">
                 <div className="w-full h-44 sm:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
-                    src={glucometerImg} 
+                    src={physicianImg} 
                     alt="Physician & Diabetologist" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                   />
@@ -206,7 +228,7 @@ export default function Treatments() {
                   <h3 className="font-bold text-[#0F172A] text-base sm:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
                     Physician &amp; Diabetologist
                   </h3>
-                  <p className="text-[#64748B] text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+                  <p className="text-black text-xs sm:text-sm md:text-base font-normal leading-relaxed">
                     Evidence-based internal medicine, diabetes control, and metabolic wellness therapies.
                   </p>
                 </div>
@@ -221,7 +243,7 @@ export default function Treatments() {
       </section>
 
       {/* SECTION 2: SPECIALIZED TREATMENTS / ADVANCED CLINICAL PROCEDURES */}
-      <section id="advanced-procedures" className="w-full bg-white py-12 sm:py-16 2xl:py-24 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200">
+      <section id="advanced-procedures" className="w-full bg-white pt-5 sm:pt-6 md:pt-5 lg:pt-6 2xl:pt-8 pb-12 sm:pb-16 2xl:pb-24 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200">
         <div className="max-w-7xl 2xl:max-w-[100rem] mx-auto space-y-8 2xl:space-y-12">
           
           <div className="text-center space-y-2">
@@ -331,7 +353,7 @@ export default function Treatments() {
                       <h3 className="text-base sm:text-lg md:text-xl font-serif font-bold text-[#0F172A] leading-tight group-hover:text-[#0284C7] transition-colors">
                         {proc.title}
                       </h3>
-                      <p className="text-[#64748B] text-xs sm:text-sm md:text-sm font-normal leading-relaxed line-clamp-3 sm:line-clamp-2 md:line-clamp-3">
+                      <p className="text-black text-xs sm:text-sm md:text-sm font-normal leading-relaxed line-clamp-3 sm:line-clamp-2 md:line-clamp-3">
                         {proc.description}
                       </p>
                     </div>
