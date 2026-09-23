@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function AboutClinic() {
   const handleVirtualTour = () => {
@@ -13,28 +14,43 @@ export default function AboutClinic() {
         <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto space-y-4 sm:space-y-6 2xl:space-y-10 relative z-10">
           
           {/* Section Header (Closer to Navbar) */}
-          <div className="text-center space-y-1.5">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="text-center space-y-1.5"
+          >
             <h1 className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-serif font-extrabold text-white tracking-tight">
               Leading Care <span className="italic text-[#38BDF8]">Facility</span>
             </h1>
             <div className="w-16 h-1 bg-gradient-to-r from-[#0284C7] to-[#38BDF8] rounded-full mx-auto"></div>
-          </div>
+          </motion.div>
 
           {/* Facility Image + Overview & Awards */}
           <div className="grid md:grid-cols-12 gap-6 lg:gap-10 2xl:gap-16 items-center">
             
             {/* Left Image Placeholder Box (Increased Size Equal Width & Height Square) */}
-            <div className="md:col-span-6 flex justify-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -60, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="md:col-span-6 flex justify-center"
+            >
               <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-[22rem] lg:h-[22rem] 2xl:w-[28rem] 2xl:h-[28rem] aspect-square bg-white border border-white/30 rounded-3xl flex items-center justify-center text-[#1B365D] shadow-[0_20px_50px_-10px_rgba(2,132,199,0.5)] relative overflow-hidden group">
                 <i className="fa-solid fa-hospital text-8xl sm:text-9xl text-[#0284C7]/80 group-hover:scale-105 transition-transform duration-300"></i>
                 <div className="absolute bottom-4 bg-[#1B365D] text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold shadow-md border border-white/20 whitespace-nowrap">
                   <i className="fa-solid fa-shield-halved text-[#38BDF8] mr-1.5"></i> Certified ISO 9001 Facility
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right Content */}
-            <div className="md:col-span-6 space-y-5 text-white">
+            <motion.div 
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="md:col-span-6 space-y-5 text-white"
+            >
               <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
                 Advanced treatments to modern medical care, standard of professional clinical treatments and procedures.
               </p>
@@ -43,31 +59,46 @@ export default function AboutClinic() {
               <div className="grid grid-cols-3 gap-3 pt-1 text-center text-xs">
                 
                 {/* Award 1 */}
-                <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white text-[#0F172A] border border-slate-100 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300">
+                <motion.div 
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.35, ease: "easeOut" }}
+                  className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white text-[#0F172A] border border-slate-100 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300"
+                >
                   <i className="fa-solid fa-award text-2xl text-[#0284C7] mb-1"></i>
                   <span className="text-[8px] uppercase tracking-wider text-[#64748B] font-bold">OFFICIAL</span>
                   <span className="font-extrabold text-[9px] uppercase leading-tight text-[#0F172A]">PREMIUM CARE</span>
                   <span className="text-[7px] text-[#64748B] uppercase">ACCREDITATION</span>
-                </div>
+                </motion.div>
 
                 {/* Award 2 */}
-                <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white text-[#0F172A] border border-slate-100 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300">
+                <motion.div 
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.45, ease: "easeOut" }}
+                  className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white text-[#0F172A] border border-slate-100 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300"
+                >
                   <i className="fa-solid fa-medal text-2xl text-[#0284C7] mb-1"></i>
                   <span className="text-[8px] uppercase tracking-wider text-[#64748B] font-bold">TOP RATED</span>
                   <span className="font-extrabold text-[9px] uppercase leading-tight text-[#0F172A]">TREATMENTS</span>
                   <span className="text-[7px] text-[#64748B] uppercase">EXCELLENCE</span>
-                </div>
+                </motion.div>
 
                 {/* Award 3 */}
-                <div className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white text-[#0F172A] border border-slate-100 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300">
+                <motion.div 
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.55, ease: "easeOut" }}
+                  className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white text-[#0F172A] border border-slate-100 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300"
+                >
                   <i className="fa-solid fa-certificate text-2xl text-[#0284C7] mb-1"></i>
                   <span className="text-[8px] uppercase tracking-wider text-[#64748B] font-bold">VERIFIED</span>
                   <span className="font-extrabold text-[9px] uppercase leading-tight text-[#0F172A]">PROCEDURES</span>
                   <span className="text-[7px] text-[#64748B] uppercase">SAFETY FIRST</span>
-                </div>
+                </motion.div>
 
               </div>
-            </div>
+            </motion.div>
 
           </div>
 
@@ -81,7 +112,13 @@ export default function AboutClinic() {
           <div className="grid md:grid-cols-12 gap-8 lg:gap-12 2xl:gap-16 items-center">
             
             {/* Left Video Placeholder Box with Play Icon (Equal Width & Height Square) */}
-            <div className="md:col-span-6 flex justify-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -50, scale: 0.95 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="md:col-span-6 flex justify-center"
+            >
               <div 
                 onClick={handleVirtualTour}
                 className="w-60 h-60 sm:w-72 sm:h-72 2xl:w-96 2xl:h-96 aspect-square bg-[#F8FAFC] border border-slate-200 hover:border-[#0284C7] rounded-3xl flex flex-col items-center justify-center shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 relative group cursor-pointer transition-all duration-300 overflow-hidden"
@@ -93,10 +130,16 @@ export default function AboutClinic() {
                   Click to play 360&deg; clinic overview
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right Action Buttons & Overview */}
-            <div className="md:col-span-6 space-y-4">
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="md:col-span-6 space-y-4"
+            >
               <div className="space-y-1.5">
                 <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#0F172A]">
                   Experience Quality Care
@@ -120,7 +163,7 @@ export default function AboutClinic() {
                   <i className="fa-solid fa-vr-cardboard mr-2"></i> Take a Virtual Tour
                 </button>
               </div>
-            </div>
+            </motion.div>
 
           </div>
 

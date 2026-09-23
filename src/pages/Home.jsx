@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import hero1 from '../Images/hero1.png';
 import hero2 from '../Images/hero2.png';
@@ -17,6 +18,8 @@ import pregnancyImg from '../Images/pregnancy-service.jpg';
 import physicianImg from '../Images/physician-service.jpg';
 import glucometerImg from '../Images/glucometer.jpg';
 
+const MotionLink = motion.create(Link);
+
 export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,6 +30,21 @@ export default function Home() {
   const [whyInView, setWhyInView] = useState(false);
   const solutionsRef = useRef(null);
   const whyRef = useRef(null);
+
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Requirement 1: On small screen size (mobile), direct clicks to Treatment page Advanced Clinical Procedures section
   const handleServiceClick = (e, serviceId) => {
@@ -220,41 +238,110 @@ export default function Home() {
           {/* Left Column: Headline & Action Buttons */}
           <div className="lg:col-span-7 space-y-3.5 sm:space-y-4.5 flex flex-col justify-center">
             <h1 className="playfair-display text-[clamp(1.95rem,3.8vw,3.65rem)] font-semibold text-white leading-tight not-italic tracking-tight">
-              <span className="2xl:block 2xl:text-[4.75rem] 3xl:text-[5.5rem] 2xl:leading-none 2xl:mb-3 2xl:font-bold">
+              <motion.span
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                className="block 2xl:text-[4.75rem] 3xl:text-[5.5rem] 2xl:leading-none 2xl:mb-3 2xl:font-bold"
+              >
                 Your Path to
-              </span>{" "}
-              <span className="inline-block whitespace-nowrap 2xl:block 2xl:text-[3.25rem] 3xl:text-[3.65rem] 2xl:leading-tight">
-                Personalized <span className="italic text-[#38BDF8] font-serif font-medium">Wellness</span>
-              </span>
+              </motion.span>
+              <div className="block 2xl:text-[3.25rem] 3xl:text-[3.65rem] 2xl:leading-tight">
+                <motion.span
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  className="inline-block whitespace-nowrap mr-2"
+                >
+                  Personalized
+                </motion.span>
+                <motion.span
+                  className="italic text-[#38BDF8] font-serif font-medium inline-block whitespace-nowrap"
+                  variants={{
+                    hidden: {},
+                    visible: {
+                      transition: {
+                        delayChildren: 0.85,
+                        staggerChildren: 0.08,
+                      },
+                    },
+                  }}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  {"Wellness".split("").map((char, index) => (
+                    <motion.span
+                      key={index}
+                      variants={{
+                        hidden: { opacity: 0, y: 6 },
+                        visible: { opacity: 1, y: 0 },
+                      }}
+                      transition={{ duration: 0.06 }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 1, 0] }}
+                    transition={{ delay: 0.85, duration: 0.5, repeat: 3, ease: "easeInOut" }}
+                    className="inline-block text-[#38BDF8] ml-0.5 font-sans font-light"
+                  >
+                    |
+                  </motion.span>
+                </motion.span>
+              </div>
             </h1>
             
-            <div className="space-y-1.5 max-w-xl lg:max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.6, ease: "easeInOut" }}
+              className="space-y-1.5 max-w-xl lg:max-w-2xl"
+            >
               <p className="text-slate-100 text-xs sm:text-sm md:text-base font-normal leading-relaxed">
                 We combine advanced medical technology with caring, personalized service to keep you and your family healthy. Expert care for your family with trusted clinical professionals.
               </p>
               <p className="text-white text-xs sm:text-sm md:text-base font-normal leading-relaxed">
                 <strong className="font-bold text-white italic">Your Health, Our Priority</strong>—Experience Expert Care You Can Trust.
               </p>
-            </div>
+            </motion.div>
 
             {/* Buttons Container */}
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <Link
-                to="/booking"
-                className="bg-[#0284C7] hover:bg-[#0369A1] border border-transparent hover:border-slate-300 text-white text-xs sm:text-sm md:text-base font-serif font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg shadow-lg hover:shadow-[0_12px_28px_rgba(2,132,199,0.45)] hover:scale-105 active:scale-95 transition-all duration-200 transform inline-block text-center cursor-pointer"
+            <div className="flex flex-wrap items-center gap-3 pt-1 overflow-visible">
+              <motion.div
+                initial={{ opacity: 0, x: -220 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 3.1, ease: "easeInOut" }}
               >
-                Book Now
-              </Link>
-              <Link
-                to="/treatment"
-                className="bg-slate-300 hover:bg-slate-200 text-[#1B365D] border-2 border-transparent hover:border-[#0284C7] text-xs sm:text-sm md:text-base font-serif font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg shadow-md hover:shadow-[0_12px_28px_rgba(2,132,199,0.35)] hover:scale-105 active:scale-95 transition-all duration-200 transform inline-block text-center cursor-pointer"
+                <Link
+                  to="/booking"
+                  className="bg-[#0284C7] hover:bg-[#0369A1] border border-transparent hover:border-slate-300 text-white text-xs sm:text-sm md:text-base font-serif font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg shadow-lg hover:shadow-[0_12px_28px_rgba(2,132,199,0.45)] hover:scale-105 active:scale-95 transition-all duration-200 transform inline-block text-center cursor-pointer"
+                >
+                  Book Now
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: -220 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 2.4, ease: "easeInOut" }}
               >
-                Our Services
-              </Link>
+                <Link
+                  to="/treatment"
+                  className="bg-slate-300 hover:bg-slate-200 text-[#1B365D] border-2 border-transparent hover:border-[#0284C7] text-xs sm:text-sm md:text-base font-serif font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg shadow-md hover:shadow-[0_12px_28px_rgba(2,132,199,0.35)] hover:scale-105 active:scale-95 transition-all duration-200 transform inline-block text-center cursor-pointer"
+                >
+                  Our Services
+                </Link>
+              </motion.div>
             </div>
 
             {/* 3 Key Highlights / Trust Points (Vertical Layout: Icon Top-Middle, Topic Name Below) */}
-            <div className="pt-3 sm:pt-3.5 grid grid-cols-3 gap-3 sm:gap-6 border-t border-white/15 max-w-lg">
+            <motion.div
+              initial={{ opacity: 0, y: 70 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 3.8, ease: "easeInOut" }}
+              className="pt-3 sm:pt-3.5 grid grid-cols-3 gap-3 sm:gap-6 border-t border-white/15 max-w-lg"
+            >
               {/* Point 1: High Quality Standard */}
               <div className="flex flex-col items-center text-center gap-1.5 group">
                 <span className="w-11 h-11 rounded-2xl bg-[#0284C7]/20 border border-[#38BDF8]/40 flex items-center justify-center text-[#38BDF8] shadow-md group-hover:scale-110 group-hover:bg-[#0284C7]/30 transition-all duration-300">
@@ -278,7 +365,7 @@ export default function Home() {
                 </span>
                 <span className="text-slate-100 text-xs sm:text-sm font-semibold leading-snug">Affordable Healthcare</span>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Right Column: Glassmorphic Floating Form */}
@@ -499,22 +586,33 @@ export default function Home() {
           {/* Bento Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2.25fr_2.1fr_2.25fr_3.6fr] gap-5 2xl:gap-8 items-stretch">
             
-            {/* Column 1: Obstetrician & Gynaecologist */}
-            <Link 
+            {/* Column 1: Card 1 (Obstetrician & Gynaecologist) */}
+            <MotionLink 
               to={getTreatmentLink('gynecology')}
               onClick={(e) => handleServiceClick(e, 'gynecology')}
-              className={`healthcare-se-card bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-700 delay-100 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px] ${
-                solutionsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
+              initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
+              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={isMobile ? { duration: 0.5, delay: 0.08, ease: "easeOut" } : { duration: 0.6, delay: 0.1 }}
+              className="healthcare-se-card bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
             >
               <div className="healthcare-se-img w-full flex-1 min-h-[220px] 2xl:min-h-[300px] bg-slate-50 relative overflow-hidden flex items-center justify-center">
-                <img 
-                  src={gynecologyImg} 
-                  alt="Obstetrician - Gynaecologist" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+                <motion.div 
+                  initial={!isMobile ? { scaleY: 0, opacity: 0 } : false}
+                  whileInView={!isMobile ? { scaleY: 1, opacity: 1 } : false}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.75, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ transformOrigin: "bottom" }}
+                  className="w-full h-full"
+                >
+                  <img 
+                    src={gynecologyImg} 
+                    alt="Obstetrician - Gynaecologist" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </motion.div>
               </div>
-              <div className="healthcare-se-body py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-[#1B365D] text-white border-t border-[#13294B] mt-auto shrink-0 flex items-center justify-between gap-2">
+              <div className="healthcare-se-body py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-[#1B365D] text-white border-t border-[#13294B] mt-auto shrink-0 flex items-center justify-between gap-2 z-10">
                 <div className="min-w-0">
                   <h3 className="font-bold text-white text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-sky-300 transition-colors duration-300">Obstetrician - Gynaecologist</h3>
                   <p className="text-slate-200 text-xs sm:text-sm 2xl:text-base leading-snug">Women’s health, pelvic wellness, & gynaecology.</p>
@@ -523,24 +621,35 @@ export default function Home() {
                   <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-0.5"></i>
                 </div>
               </div>
-            </Link>
+            </MotionLink>
 
-            {/* Column 2: Ultrasound Stack */}
-            <div className={`flex flex-col gap-5 2xl:gap-6 justify-between transition-all duration-700 delay-200 ${
-              solutionsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
-              {/* Ultrasound Card: Full-bleed image with dark gradient overlay and cleanly positioned text */}
-              <Link 
+            {/* Column 2: Cards 2 & 3 (Ultrasound Stack) */}
+            <div className="flex flex-col gap-5 2xl:gap-6 justify-between">
+              {/* Card 2: Ultrasound */}
+              <MotionLink 
                 to={getTreatmentLink('ultrasound')}
                 onClick={(e) => handleServiceClick(e, 'ultrasound')}
-                className="healthcare-se-card healthcare-se-card-fullbleed h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden flex flex-col justify-end p-4 sm:p-4.5 2xl:p-5 group cursor-pointer"
+                initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
+                whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={isMobile ? { duration: 0.5, delay: 0.18, ease: "easeOut" } : { duration: 0.6, delay: 0.3 }}
+                className="healthcare-se-card healthcare-se-card-fullbleed h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden flex flex-col justify-end p-4 sm:p-4.5 2xl:p-5 group cursor-pointer"
               >
-                <img 
-                  src={ultrasoundImg} 
-                  alt="Ultrasound" 
-                  className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1B365D]/95 via-[#1B365D]/75 to-transparent"></div>
+                <motion.div
+                  initial={!isMobile ? { scaleY: 0, opacity: 0 } : false}
+                  whileInView={!isMobile ? { scaleY: 1, opacity: 1 } : false}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.75, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ transformOrigin: "bottom" }}
+                  className="absolute inset-0 w-full h-full overflow-hidden"
+                >
+                  <img 
+                    src={ultrasoundImg} 
+                    alt="Ultrasound" 
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1B365D]/95 via-[#1B365D]/75 to-transparent"></div>
+                </motion.div>
                 <div className="relative z-10 flex items-center justify-between gap-2">
                   <div className="space-y-0.5 min-w-0">
                     <h3 className="font-bold text-white text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-sky-300 transition-colors duration-300">Ultrasound</h3>
@@ -550,46 +659,70 @@ export default function Home() {
                     <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-0.5"></i>
                   </div>
                 </div>
-              </Link>
+              </MotionLink>
 
-              {/* Advanced Sonography & Scans Card */}
-              <Link 
+              {/* Card 3: Advanced Sonography & Scans */}
+              <MotionLink 
                 to={getTreatmentLink('ultrasound')}
                 onClick={(e) => handleServiceClick(e, 'ultrasound')}
-                className="healthcare-se-card h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between overflow-hidden group relative cursor-pointer"
+                initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
+                whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={isMobile ? { duration: 0.5, delay: 0.28, ease: "easeOut" } : { duration: 0.6, delay: 0.5 }}
+                className="healthcare-se-card h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group relative cursor-pointer"
               >
                 <div className="healthcare-se-img w-full flex-1 min-h-0 overflow-hidden bg-slate-100 relative">
-                  <img 
-                    src={sonographyScanImg} 
-                    alt="Advanced Sonography & Scans" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                  <motion.div 
+                    initial={!isMobile ? { scaleY: 0, opacity: 0 } : false}
+                    whileInView={!isMobile ? { scaleY: 1, opacity: 1 } : false}
+                    viewport={{ once: true, amount: 0.15 }}
+                    transition={{ duration: 0.75, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ transformOrigin: "bottom" }}
+                    className="w-full h-full"
+                  >
+                    <img 
+                      src={sonographyScanImg} 
+                      alt="Advanced Sonography & Scans" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </motion.div>
                 </div>
-                <div className="healthcare-se-body py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-white border-t border-slate-100 shrink-0 flex items-center justify-between gap-2">
+                <div className="healthcare-se-body py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-white border-t border-slate-100 shrink-0 flex items-center justify-between gap-2 z-10">
                   <h3 className="font-bold text-[#0F172A] text-sm sm:text-base 2xl:text-lg m-0 leading-tight group-hover:text-[#0284C7] transition-colors duration-300">Advanced Sonography &amp; Scans</h3>
                   <div className="w-7 h-7 2xl:w-9 2xl:h-9 rounded-full bg-slate-100 group-hover:bg-[#0284C7] text-slate-600 group-hover:text-white flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs shrink-0">
                     <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-0.5"></i>
                   </div>
                 </div>
-              </Link>
+              </MotionLink>
             </div>
 
-            {/* Column 3: Pregnancy Management */}
-            <Link 
+            {/* Column 3: Card 4 (Pregnancy Management) */}
+            <MotionLink 
               to={getTreatmentLink('pregnancy')}
               onClick={(e) => handleServiceClick(e, 'pregnancy')}
-              className={`healthcare-se-card bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-700 delay-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px] ${
-                solutionsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
+              initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
+              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={isMobile ? { duration: 0.5, delay: 0.38, ease: "easeOut" } : { duration: 0.6, delay: 0.7 }}
+              className="healthcare-se-card bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
             >
               <div className="healthcare-se-img w-full flex-1 min-h-[220px] 2xl:min-h-[300px] bg-slate-50 relative overflow-hidden flex items-center justify-center">
-                <img 
-                  src={pregnancyImg} 
-                  alt="Pregnancy Management" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+                <motion.div 
+                  initial={!isMobile ? { scaleY: 0, opacity: 0 } : false}
+                  whileInView={!isMobile ? { scaleY: 1, opacity: 1 } : false}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.75, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ transformOrigin: "bottom" }}
+                  className="w-full h-full"
+                >
+                  <img 
+                    src={pregnancyImg} 
+                    alt="Pregnancy Management" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </motion.div>
               </div>
-              <div className="healthcare-se-body py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-[#1B365D] text-white border-t border-[#13294B] mt-auto shrink-0 flex items-center justify-between gap-2">
+              <div className="healthcare-se-body py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-[#1B365D] text-white border-t border-[#13294B] mt-auto shrink-0 flex items-center justify-between gap-2 z-10">
                 <div className="min-w-0">
                   <h3 className="font-bold text-white text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-sky-300 transition-colors duration-300">Pregnancy Management</h3>
                   <p className="text-slate-200 text-xs sm:text-sm 2xl:text-base leading-snug">Prenatal, antenatal, & postnatal maternal care.</p>
@@ -598,23 +731,35 @@ export default function Home() {
                   <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-0.5"></i>
                 </div>
               </div>
-            </Link>
+            </MotionLink>
 
-            {/* Column 4: Physician and Diabetologist */}
-            <div className={`flex flex-col gap-4 2xl:gap-6 justify-between transition-all duration-700 delay-[350ms] ${
-              solutionsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
-              <Link 
+            {/* Column 4: Cards 5 & 6 (Physician & Diabetologist) */}
+            <div className="flex flex-col gap-4 2xl:gap-6 justify-between">
+              {/* Card 5: Consulting Physician */}
+              <MotionLink 
                 to={getTreatmentLink('physician')}
                 onClick={(e) => handleServiceClick(e, 'physician')}
-                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-500 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer"
+                initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
+                whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={isMobile ? { duration: 0.5, delay: 0.48, ease: "easeOut" } : { duration: 0.6, delay: 0.9 }}
+                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer"
               >
                 <div className="healthcare-se-img w-full sm:w-2/5 flex-1 sm:flex-initial min-h-0 sm:min-h-full bg-slate-100 overflow-hidden relative order-1 sm:order-2">
-                  <img 
-                    src={physicianImg} 
-                    alt="Consulting Physician" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                  <motion.div 
+                    initial={!isMobile ? { scaleX: 0, opacity: 0 } : false}
+                    whileInView={!isMobile ? { scaleX: 1, opacity: 1 } : false}
+                    viewport={{ once: true, amount: 0.15 }}
+                    transition={{ duration: 0.8, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ transformOrigin: "right" }}
+                    className="w-full h-full"
+                  >
+                    <img 
+                      src={physicianImg} 
+                      alt="Consulting Physician" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </motion.div>
                 </div>
                 <div className="healthcare-se-body w-full sm:w-3/5 bg-[#1B365D] py-3 sm:py-3.5 2xl:py-4 px-4 sm:px-5 2xl:px-6 text-white flex flex-col justify-center space-y-1 z-10 shrink-0 sm:shrink order-2 sm:order-1">
                   <div className="flex items-center justify-between gap-2">
@@ -629,19 +774,33 @@ export default function Home() {
                     <i className="fa-solid fa-arrow-right text-[10px] 2xl:text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
                   </div>
                 </div>
-              </Link>
+              </MotionLink>
 
-              <Link 
+              {/* Card 6: Diabetologist Care */}
+              <MotionLink 
                 to={getTreatmentLink('physician')}
                 onClick={(e) => handleServiceClick(e, 'physician')}
-                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-500 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer"
+                initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
+                whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={isMobile ? { duration: 0.5, delay: 0.58, ease: "easeOut" } : { duration: 0.6, delay: 1.1 }}
+                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer"
               >
                 <div className="healthcare-se-img w-full sm:w-2/5 flex-1 sm:flex-initial min-h-0 sm:min-h-full bg-slate-100 overflow-hidden relative order-1 sm:order-2">
-                  <img 
-                    src={glucometerImg} 
-                    alt="Diabetologist Care" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                  <motion.div 
+                    initial={!isMobile ? { scaleX: 0, opacity: 0 } : false}
+                    whileInView={!isMobile ? { scaleX: 1, opacity: 1 } : false}
+                    viewport={{ once: true, amount: 0.15 }}
+                    transition={{ duration: 0.8, delay: 1.15, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ transformOrigin: "right" }}
+                    className="w-full h-full"
+                  >
+                    <img 
+                      src={glucometerImg} 
+                      alt="Diabetologist Care" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </motion.div>
                 </div>
                 <div className="healthcare-se-body w-full sm:w-3/5 bg-[#1B365D] py-3 sm:py-3.5 2xl:py-4 px-4 sm:px-5 2xl:px-6 text-white flex flex-col justify-center space-y-1 z-10 shrink-0 sm:shrink order-2 sm:order-1">
                   <div className="flex items-center justify-between gap-2">
@@ -656,7 +815,7 @@ export default function Home() {
                     <i className="fa-solid fa-arrow-right text-[10px] 2xl:text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
                   </div>
                 </div>
-              </Link>
+              </MotionLink>
             </div>
 
           </div>
@@ -669,7 +828,13 @@ export default function Home() {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 2xl:gap-16 items-center">
             
             {/* Doctor Photo Card (With Mobile Header placed above image on small screens) */}
-            <div className="lg:col-span-5 flex flex-col items-center lg:items-start justify-center lg:justify-start">
+            <motion.div 
+              initial={{ opacity: 0, x: -60, scale: 0.96 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="lg:col-span-5 flex flex-col items-center lg:items-start justify-center lg:justify-start"
+            >
               
               {/* Mobile Doctor Header (Visible only on mobile/tablet < lg, placed above image with padding) */}
               <div className="w-full max-w-[340px] sm:max-w-[380px] lg:hidden space-y-2 mb-4 sm:mb-5">
@@ -720,10 +885,16 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Content & Credentials */}
-            <div className="lg:col-span-7 space-y-4 sm:space-y-5 2xl:space-y-6 flex flex-col justify-center">
+            <motion.div 
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="lg:col-span-7 space-y-4 sm:space-y-5 2xl:space-y-6 flex flex-col justify-center"
+            >
               
               {/* Desktop Doctor Header & Designation Pill (Hidden on mobile < lg, visible on desktop lg+) */}
               <div className="hidden lg:block space-y-1.5 2xl:space-y-2.5">
@@ -852,32 +1023,56 @@ export default function Home() {
 
               {/* Action Buttons Hub (Tightly connected to divs above) */}
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 pt-1">
-                <Link
-                  to="/booking"
-                  className="w-full sm:w-auto justify-center bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif text-sm font-bold px-7 py-3 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform inline-flex items-center gap-2 border border-transparent hover:border-slate-300 text-center"
+                <motion.div
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.75, delay: 0.15, ease: "easeInOut" }}
+                  className="w-full sm:w-auto"
                 >
-                  <i className="fa-solid fa-calendar-check text-xs"></i>
-                  <span>Book Appointment</span>
-                </Link>
+                  <Link
+                    to="/booking"
+                    className="w-full sm:w-auto justify-center bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif text-sm font-bold px-7 py-3 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform inline-flex items-center gap-2 border border-transparent hover:border-slate-300 text-center cursor-pointer"
+                  >
+                    <i className="fa-solid fa-calendar-check text-xs"></i>
+                    <span>Book Appointment</span>
+                  </Link>
+                </motion.div>
                 
-                <Link
-                  to="/dr-arun-sharma"
-                  className="bg-slate-100 hover:bg-slate-200 text-[#1B365D] font-serif text-sm font-bold px-6 py-3 rounded-lg border border-slate-300 hover:border-[#0284C7] hover:scale-105 active:scale-95 transition-all duration-200 transform inline-flex items-center gap-2"
+                <motion.div
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.75, delay: 0.3, ease: "easeInOut" }}
+                  className="w-full sm:w-auto"
                 >
-                  <i className="fa-solid fa-user-doctor text-xs text-[#0284C7]"></i>
-                  <span>Doctor Profile</span>
-                </Link>
+                  <Link
+                    to="/dr-arun-sharma"
+                    className="w-full sm:w-auto justify-center bg-slate-100 hover:bg-slate-200 text-[#1B365D] font-serif text-sm font-bold px-6 py-3 rounded-lg border border-slate-300 hover:border-[#0284C7] hover:scale-105 active:scale-95 transition-all duration-200 transform inline-flex items-center gap-2 text-center cursor-pointer"
+                  >
+                    <i className="fa-solid fa-user-doctor text-xs text-[#0284C7]"></i>
+                    <span>Doctor Profile</span>
+                  </Link>
+                </motion.div>
 
-                <a
-                  href="https://wa.me/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-bold px-6 py-3 rounded-lg shadow-md hover:shadow-lg flex items-center gap-2 hover:scale-105 active:scale-95 transition-all duration-200 transform"
+                <motion.div
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.75, delay: 0.45, ease: "easeInOut" }}
+                  className="w-full sm:w-auto"
                 >
-                  <i className="fa-brands fa-whatsapp text-lg text-white"></i> WhatsApp
-                </a>
+                  <a
+                    href="https://wa.me/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto justify-center bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-bold px-6 py-3 rounded-lg shadow-md hover:shadow-lg inline-flex items-center gap-2 hover:scale-105 active:scale-95 transition-all duration-200 transform text-center cursor-pointer"
+                  >
+                    <i className="fa-brands fa-whatsapp text-lg text-white"></i> WhatsApp
+                  </a>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
@@ -886,7 +1081,13 @@ export default function Home() {
       {/* APPOINTMENT BOOKING & DIGITAL PRESCRIPTIONS BANNER SECTION */}
       <section id="consultation-prescriptions" className="w-full bg-[#F8FAFC] py-6 sm:py-8 2xl:py-12 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 consultation-banner-laptop">
         <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto h-full flex flex-col justify-center">
-          <div className="banner-inner-card interactive-lift relative w-full rounded-3xl overflow-hidden shadow-[0_12px_35px_-10px_rgba(2,132,199,0.3)] border border-slate-200 group flex items-center min-h-[16rem] sm:min-h-[17.5rem] md:min-h-[19rem] lg:min-h-0 2xl:min-h-[22rem]">
+          <motion.div 
+            initial={{ opacity: 0, y: 40, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="banner-inner-card interactive-lift relative w-full rounded-3xl overflow-hidden shadow-[0_12px_35px_-10px_rgba(2,132,199,0.3)] border border-slate-200 group flex items-center min-h-[16rem] sm:min-h-[17.5rem] md:min-h-[19rem] lg:min-h-0 2xl:min-h-[22rem]"
+          >
             {/* Background Generated 3D Banner Image */}
             <img
               src={prescriptionBannerImg}
@@ -925,7 +1126,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -933,25 +1134,39 @@ export default function Home() {
       <section 
         ref={whyRef}
         id="why-book-online"
-        className="w-full bg-[#F8FAFC] py-10 sm:py-12 md:py-14 lg:py-2 2xl:py-20 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200 flex flex-col justify-center why-book-online-laptop"
+        className="w-full bg-[#F8FAFC] py-10 sm:py-12 md:py-14 lg:py-2 2xl:py-20 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200 flex flex-col justify-center overflow-hidden why-book-online-laptop"
       >
         <div className="why-container max-w-7xl 2xl:max-w-[100rem] w-full mx-auto space-y-6 sm:space-y-8 lg:space-y-1.5 xl:space-y-2.5 2xl:space-y-10">
           
-          {/* Section Header (Exact typography as Healthcare Solutions) */}
-          <div className={`why-header text-center space-y-1 sm:space-y-1.5 shrink-0 pt-0 transition-all duration-700 ${whyInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+          {/* Section Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="why-header text-center space-y-1 sm:space-y-1.5 shrink-0 pt-0"
+          >
             <h2 className="text-3xl sm:text-4xl lg:text-2xl xl:text-3xl 2xl:text-5xl font-serif font-bold text-[#0F172A] tracking-tight">
               Why Book Appointment Online
             </h2>
             <div className="w-16 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
-          </div>
+          </motion.div>
           
           {/* Grid of Cards: 1 col on mobile, 2 cols on tablet/small laptop, 4 cols in a single row on screen > laptop */}
           <div className="why-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-2.5 xl:gap-3.5 2xl:gap-8 w-full items-stretch">
             
-            {/* Card 1: Instant Booking & Confirmation */}
-            <div className={`why-card bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-700 delay-100 flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] lg:h-full xl:h-[15rem] 2xl:h-[19rem] ${
-              whyInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
+            {/* Card 1: Instant Booking & Confirmation (Slides in from extreme left AFTER cards 2 & 3) */}
+            <motion.div 
+              initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, x: -180 }}
+              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={
+                isMobile 
+                  ? { duration: 0.5, delay: 0.1, ease: "easeOut" }
+                  : { duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }
+              }
+              className="why-card bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] lg:h-full xl:h-[15rem] 2xl:h-[19rem]"
+            >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
                 01
@@ -964,17 +1179,24 @@ export default function Home() {
               
               {/* Bottom Text Content */}
               <div className="why-card-bottom shrink-0 w-full py-2 sm:py-2.5 lg:py-1.5 xl:py-2 px-3.5 lg:px-2.5 xl:px-3 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
-                {/* Glowing accent line on hover */}
                 <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 <h3 className="text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Instant Booking &amp; Confirmation</h3>
                 <p className="text-slate-200 text-[11px] sm:text-xs lg:text-[10px] xl:text-xs 2xl:text-sm leading-snug">Schedule your visit in minutes. Instant digital confirmation, no calls needed.</p>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Card 2: 24/7 Access */}
-            <div className={`why-card bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-700 delay-200 flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] lg:h-full xl:h-[15rem] 2xl:h-[19rem] ${
-              whyInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
+            {/* Card 2: 24/7 Access (Slides in from left FIRST) */}
+            <motion.div 
+              initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, x: -140 }}
+              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={
+                isMobile 
+                  ? { duration: 0.5, delay: 0.25, ease: "easeOut" }
+                  : { duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }
+              }
+              className="why-card bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] lg:h-full xl:h-[15rem] 2xl:h-[19rem]"
+            >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
                 02
@@ -987,17 +1209,24 @@ export default function Home() {
               
               {/* Bottom Text Content */}
               <div className="why-card-bottom shrink-0 w-full py-2 sm:py-2.5 lg:py-1.5 xl:py-2 px-3.5 lg:px-2.5 xl:px-3 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
-                {/* Glowing accent line on hover */}
                 <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 <h3 className="text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">24/7 Access</h3>
                 <p className="text-slate-200 text-[11px] sm:text-xs lg:text-[10px] xl:text-xs 2xl:text-sm leading-snug">Select available slots anytime, anywhere—even outside of business hours.</p>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Card 3: Time Efficiency */}
-            <div className={`why-card bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-700 delay-300 flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] lg:h-full xl:h-[15rem] 2xl:h-[19rem] ${
-              whyInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
+            {/* Card 3: Time Efficiency (Slides in from right FIRST) */}
+            <motion.div 
+              initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, x: 140 }}
+              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={
+                isMobile 
+                  ? { duration: 0.5, delay: 0.4, ease: "easeOut" }
+                  : { duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }
+              }
+              className="why-card bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] lg:h-full xl:h-[15rem] 2xl:h-[19rem]"
+            >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
                 03
@@ -1010,17 +1239,24 @@ export default function Home() {
               
               {/* Bottom Text Content */}
               <div className="why-card-bottom shrink-0 w-full py-2 sm:py-2.5 lg:py-1.5 xl:py-2 px-3.5 lg:px-2.5 xl:px-3 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
-                {/* Glowing accent line on hover */}
                 <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 <h3 className="text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Time Efficiency</h3>
                 <p className="text-slate-200 text-[11px] sm:text-xs lg:text-[10px] xl:text-xs 2xl:text-sm leading-snug">Optimize your schedule. Minimal check-in time and direct care access upon arrival.</p>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Card 4: Total Flexibility */}
-            <div className={`why-card bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-700 delay-[350ms] flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] lg:h-full xl:h-[15rem] 2xl:h-[19rem] ${
-              whyInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
+            {/* Card 4: Total Flexibility (Slides in from extreme right AFTER cards 2 & 3) */}
+            <motion.div 
+              initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, x: 180 }}
+              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={
+                isMobile 
+                  ? { duration: 0.5, delay: 0.55, ease: "easeOut" }
+                  : { duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }
+              }
+              className="why-card bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] lg:h-full xl:h-[15rem] 2xl:h-[19rem]"
+            >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
                 04
@@ -1033,12 +1269,11 @@ export default function Home() {
               
               {/* Bottom Text Content */}
               <div className="why-card-bottom shrink-0 w-full py-2 sm:py-2.5 lg:py-1.5 xl:py-2 px-3.5 lg:px-2.5 xl:px-3 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
-                {/* Glowing accent line on hover */}
                 <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 <h3 className="text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Total Flexibility</h3>
                 <p className="text-slate-200 text-[11px] sm:text-xs lg:text-[10px] xl:text-xs 2xl:text-sm leading-snug">Easily modify or cancel your booking with full control over upcoming visits.</p>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Booking() {
   // Stepper state: Step 1, 2, 3
@@ -112,15 +113,25 @@ export default function Booking() {
         <div className="max-w-4xl 2xl:max-w-5xl 3xl:max-w-[72rem] w-full mx-auto space-y-2 sm:space-y-3 lg:space-y-2 2xl:space-y-5 relative z-10">
           
           {/* Section Header */}
-          <div className="text-center space-y-1 lg:space-y-0.5">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center space-y-1 lg:space-y-0.5"
+          >
             <h1 className="text-xl sm:text-2xl lg:text-2xl 2xl:text-4xl font-serif font-extrabold text-white tracking-tight leading-tight">
               Appointment Reservation
             </h1>
             <div className="w-12 2xl:w-16 h-0.5 2xl:h-1 bg-gradient-to-r from-[#0284C7] to-[#38BDF8] rounded-full mx-auto"></div>
-          </div>
+          </motion.div>
 
           {/* Requirement 5: 3 NUMBERS STEPPER FEATURE (All Screen Sizes) */}
-          <div className="flex items-center justify-center max-w-sm sm:max-w-md mx-auto w-full px-2 py-1 lg:py-1 mb-1 lg:mb-1.5">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="flex items-center justify-center max-w-sm sm:max-w-md mx-auto w-full px-2 py-1 lg:py-1 mb-1 lg:mb-1.5"
+          >
             
             {/* Step 1 Indicator */}
             <button
@@ -223,15 +234,24 @@ export default function Booking() {
               </span>
             </div>
 
-          </div>
+          </motion.div>
 
           {/* MAIN CONTAINER: Dynamic Step Views */}
           <div className="bg-white text-[#0F172A] rounded-2xl lg:rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 overflow-hidden p-4 sm:p-5 lg:p-4 2xl:p-8 3xl:p-10">
             
-            {/* ================= STEP 1: BOOKING FORM ================= */}
-            {currentStep === 1 && (
-              <form onSubmit={handleStep1Submit} className="animate-fadeIn">
-                <div className="grid md:grid-cols-2 gap-4 lg:gap-5 2xl:gap-8 items-start">
+            <AnimatePresence mode="wait">
+              {/* ================= STEP 1: BOOKING FORM ================= */}
+              {currentStep === 1 && (
+                <motion.form 
+                  key="step1"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  onSubmit={handleStep1Submit} 
+                  className="animate-fadeIn"
+                >
+                  <div className="grid md:grid-cols-2 gap-4 lg:gap-5 2xl:gap-8 items-start">
                   
                   {/* LEFT: Patient Details */}
                   <div className="space-y-2.5 lg:space-y-2 2xl:space-y-3.5">
@@ -420,12 +440,20 @@ export default function Booking() {
                   </div>
 
                 </div>
-              </form>
+              </motion.form>
             )}
 
             {/* ================= STEP 2: PAYMENT & VERIFICATION PAGE ================= */}
             {currentStep === 2 && (
-              <form onSubmit={handlePaymentSubmit} className="animate-fadeIn space-y-4">
+              <motion.form 
+                key="step2"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                onSubmit={handlePaymentSubmit} 
+                className="animate-fadeIn space-y-4"
+              >
                 <div className="flex items-center justify-between border-b border-slate-100 pb-2">
                   <div>
                     <span className="text-[10px] font-bold text-orange-500 uppercase tracking-wider block">Step 2 of 3</span>
@@ -613,111 +641,119 @@ export default function Booking() {
                       </>
                     )}
                   </button>
-                </div>
-              </form>
-            )}
+                  </div>
+                </motion.form>
+              )}
 
-            {/* ================= STEP 3: CONFIRMATION PAGE ================= */}
-            {currentStep === 3 && (
-              <div className="animate-fadeIn space-y-4 text-center py-2">
-                {/* Green Success Badge */}
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-600 flex items-center justify-center text-2xl sm:text-3xl mx-auto shadow-md animate-bounce">
-                  <i className="fa-solid fa-circle-check"></i>
-                </div>
-
-                <div className="space-y-1">
-                  <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest block">Step 3: Confirmed</span>
-                  <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#0F172A]">
-                    Appointment Successfully Confirmed!
-                  </h2>
-                  <p className="text-xs sm:text-sm text-[#64748B] max-w-md mx-auto">
-                    Your appointment has been registered and verified. A confirmation receipt has been sent to <strong>{patientData.email}</strong>.
-                  </p>
-                </div>
-
-                {/* Booking Reference Card */}
-                <div className="max-w-lg mx-auto bg-slate-50 border border-slate-200 rounded-2xl p-4 text-left space-y-2.5 shadow-xs">
-                  <div className="flex items-center justify-between border-b border-slate-200 pb-2">
-                    <span className="text-xs text-[#64748B] font-medium">Booking ID:</span>
-                    <strong className="text-xs font-mono font-bold text-[#0284C7] bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200">
-                      {bookingId || 'CC-948271'}
-                    </strong>
+              {/* ================= STEP 3: CONFIRMATION PAGE ================= */}
+              {currentStep === 3 && (
+                <motion.div 
+                  key="step3"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  className="animate-fadeIn space-y-4 text-center py-2"
+                >
+                  {/* Green Success Badge */}
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-600 flex items-center justify-center text-2xl sm:text-3xl mx-auto shadow-md animate-bounce">
+                    <i className="fa-solid fa-circle-check"></i>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div>
-                      <span className="text-[#64748B] block text-[10px]">Patient Name</span>
-                      <strong className="text-[#0F172A]">{patientData.name || 'Patient'}</strong>
-                    </div>
-                    <div>
-                      <span className="text-[#64748B] block text-[10px]">Specialist Doctor</span>
-                      <strong className="text-[#0F172A]">{patientData.doctor}</strong>
-                    </div>
-                    <div>
-                      <span className="text-[#64748B] block text-[10px]">Appointment Time</span>
-                      <strong className="text-[#0F172A]">June {selectedDate}, 2026 at {selectedTime}</strong>
-                    </div>
-                    <div>
-                      <span className="text-[#64748B] block text-[10px]">Payment Status</span>
-                      <strong className="inline-flex items-center gap-1 text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                        <i className="fa-solid fa-circle-check text-[10px]"></i> Verified &amp; Paid
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest block">Step 3: Confirmed</span>
+                    <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#0F172A]">
+                      Appointment Successfully Confirmed!
+                    </h2>
+                    <p className="text-xs sm:text-sm text-[#64748B] max-w-md mx-auto">
+                      Your appointment has been registered and verified. A confirmation receipt has been sent to <strong>{patientData.email}</strong>.
+                    </p>
+                  </div>
+
+                  {/* Booking Reference Card */}
+                  <div className="max-w-lg mx-auto bg-slate-50 border border-slate-200 rounded-2xl p-4 text-left space-y-2.5 shadow-xs">
+                    <div className="flex items-center justify-between border-b border-slate-200 pb-2">
+                      <span className="text-xs text-[#64748B] font-medium">Booking ID:</span>
+                      <strong className="text-xs font-mono font-bold text-[#0284C7] bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200">
+                        {bookingId || 'CC-948271'}
                       </strong>
                     </div>
+
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div>
+                        <span className="text-[#64748B] block text-[10px]">Patient Name</span>
+                        <strong className="text-[#0F172A]">{patientData.name || 'Patient'}</strong>
+                      </div>
+                      <div>
+                        <span className="text-[#64748B] block text-[10px]">Specialist Doctor</span>
+                        <strong className="text-[#0F172A]">{patientData.doctor}</strong>
+                      </div>
+                      <div>
+                        <span className="text-[#64748B] block text-[10px]">Appointment Time</span>
+                        <strong className="text-[#0F172A]">June {selectedDate}, 2026 at {selectedTime}</strong>
+                      </div>
+                      <div>
+                        <span className="text-[#64748B] block text-[10px]">Payment Status</span>
+                        <strong className="inline-flex items-center gap-1 text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                          <i className="fa-solid fa-circle-check text-[10px]"></i> Verified &amp; Paid
+                        </strong>
+                      </div>
+                    </div>
                   </div>
-                </div>
 
-                {receiptDownloaded && (
-                  <div className="max-w-md mx-auto p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center justify-center gap-2">
-                    <i className="fa-solid fa-circle-check text-emerald-600"></i>
-                    <span>Digital confirmation receipt has been saved to your downloads.</span>
+                  {receiptDownloaded && (
+                    <div className="max-w-md mx-auto p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center justify-center gap-2">
+                      <i className="fa-solid fa-circle-check text-emerald-600"></i>
+                      <span>Digital confirmation receipt has been saved to your downloads.</span>
+                    </div>
+                  )}
+
+                  {/* Action & Move Back Navigation Buttons */}
+                  <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
+                    {/* Option to move back to Step 2 */}
+                    <button
+                      type="button"
+                      onClick={handleGoBackToStep2}
+                      className="px-3.5 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-semibold text-[#0284C7] transition cursor-pointer flex items-center gap-1"
+                    >
+                      <i className="fa-solid fa-arrow-left text-[10px]"></i>
+                      <span>Back to Payment (Step 2)</span>
+                    </button>
+
+                    {/* Option to move back to Step 1 */}
+                    <button
+                      type="button"
+                      onClick={handleGoBackToStep1}
+                      className="px-3.5 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-semibold text-[#64748B] hover:text-[#0F172A] transition cursor-pointer flex items-center gap-1"
+                    >
+                      <i className="fa-solid fa-pen text-[10px]"></i>
+                      <span>Edit Booking Details (Step 1)</span>
+                    </button>
+
+                    {/* Download Receipt */}
+                    <button
+                      type="button"
+                      onClick={handleDownloadReceipt}
+                      className="px-4 py-1.5 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold shadow-xs hover:shadow-md transition cursor-pointer flex items-center gap-1.5"
+                    >
+                      <i className="fa-solid fa-download text-[10px]"></i>
+                      <span>Download Receipt</span>
+                    </button>
+
+                    {/* Book Another Appointment */}
+                    <button
+                      type="button"
+                      onClick={handleResetBooking}
+                      className="px-4 py-1.5 rounded-xl bg-[#1B365D] hover:bg-[#13294B] text-white text-xs font-bold shadow-xs hover:shadow-md transition cursor-pointer flex items-center gap-1.5"
+                    >
+                      <i className="fa-solid fa-plus text-[10px]"></i>
+                      <span>Book Another Slot</span>
+                    </button>
                   </div>
-                )}
 
-                {/* Action & Move Back Navigation Buttons */}
-                <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
-                  {/* Option to move back to Step 2 */}
-                  <button
-                    type="button"
-                    onClick={handleGoBackToStep2}
-                    className="px-3.5 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-semibold text-[#0284C7] transition cursor-pointer flex items-center gap-1"
-                  >
-                    <i className="fa-solid fa-arrow-left text-[10px]"></i>
-                    <span>Back to Payment (Step 2)</span>
-                  </button>
-
-                  {/* Option to move back to Step 1 */}
-                  <button
-                    type="button"
-                    onClick={handleGoBackToStep1}
-                    className="px-3.5 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-semibold text-[#64748B] hover:text-[#0F172A] transition cursor-pointer flex items-center gap-1"
-                  >
-                    <i className="fa-solid fa-pen text-[10px]"></i>
-                    <span>Edit Booking Details (Step 1)</span>
-                  </button>
-
-                  {/* Download Receipt */}
-                  <button
-                    type="button"
-                    onClick={handleDownloadReceipt}
-                    className="px-4 py-1.5 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold shadow-xs hover:shadow-md transition cursor-pointer flex items-center gap-1.5"
-                  >
-                    <i className="fa-solid fa-download text-[10px]"></i>
-                    <span>Download Receipt</span>
-                  </button>
-
-                  {/* Book Another Appointment */}
-                  <button
-                    type="button"
-                    onClick={handleResetBooking}
-                    className="px-4 py-1.5 rounded-xl bg-[#1B365D] hover:bg-[#13294B] text-white text-xs font-bold shadow-xs hover:shadow-md transition cursor-pointer flex items-center gap-1.5"
-                  >
-                    <i className="fa-solid fa-plus text-[10px]"></i>
-                    <span>Book Another Slot</span>
-                  </button>
-                </div>
-
-              </div>
-            )}
+                </motion.div>
+              )}
+            </AnimatePresence>
 
           </div>
 

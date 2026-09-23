@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -22,19 +23,29 @@ export default function Contact() {
         <div className="max-w-4xl 2xl:max-w-5xl 3xl:max-w-[70rem] mx-auto space-y-3.5 sm:space-y-4 2xl:space-y-2.5 w-full">
           
           {/* Section Header (Closer to Navbar) */}
-          <div className="text-center space-y-1.5 2xl:space-y-0.5">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="text-center space-y-1.5 2xl:space-y-0.5"
+          >
             <h1 className="text-2xl sm:text-3xl lg:text-4xl 2xl:text-3xl font-serif font-bold text-[#0F172A] tracking-tight">
               Send a Message or Visit Us
             </h1>
             <div className="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
-          </div>
+          </motion.div>
 
           {/* Main Card Container (Reduced Width, Visible on Page Load) */}
           <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] transition-all duration-300 overflow-hidden p-5 sm:p-7 2xl:p-4">
             <div className="grid md:grid-cols-12 gap-6 lg:gap-8 2xl:gap-6 items-start">
               
               {/* Left: Contact form */}
-              <div className="md:col-span-6 space-y-3 2xl:space-y-1.5">
+              <motion.div 
+                initial={{ opacity: 0, x: -40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="md:col-span-6 space-y-3 2xl:space-y-1.5"
+              >
                 <div className="space-y-0.5">
                   <span className="text-[11px] 2xl:text-[10px] font-bold text-[#0284C7] uppercase tracking-wider block">Direct Message</span>
                   <h2 className="text-xl 2xl:text-lg font-serif font-bold text-[#0F172A]">Contact Form</h2>
@@ -95,10 +106,15 @@ export default function Contact() {
                     </button>
                   </div>
                 </form>
-              </div>
+              </motion.div>
 
               {/* Right: Map, Address, Hours & Actions */}
-              <div className="md:col-span-6 space-y-3 2xl:space-y-1.5">
+              <motion.div 
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                className="md:col-span-6 space-y-3 2xl:space-y-1.5"
+              >
                 
                 <div className="space-y-0.5">
                   <span className="text-[11px] 2xl:text-[10px] font-bold text-[#0284C7] uppercase tracking-wider block">Clinic Location</span>
@@ -167,7 +183,7 @@ export default function Contact() {
                   </Link>
                 </div>
 
-              </div>
+              </motion.div>
 
             </div>
           </div>
@@ -179,19 +195,31 @@ export default function Contact() {
       <section className="w-full bg-white py-12 sm:py-16 contact-section-2k px-4 sm:px-8 lg:px-12 border-b border-slate-200 flex flex-col justify-center overflow-hidden">
         <div className="max-w-6xl mx-auto space-y-8 2xl:space-y-4 w-full">
           
-          <div className="text-center space-y-2 2xl:space-y-1">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center space-y-2 2xl:space-y-1"
+          >
             <h2 className="text-3xl sm:text-4xl 2xl:text-2xl font-serif font-bold text-[#0F172A] tracking-tight">
-              Clinic Access & Tour Guides
+              Clinic Access &amp; Tour Guides
             </h2>
             <div className="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
-          </div>
+          </motion.div>
 
           {/* Video Players Grid (Centered Squares) */}
           <div className="grid sm:grid-cols-2 gap-6 lg:gap-8 2xl:gap-8 max-w-3xl mx-auto justify-items-center">
             
             {/* Video Player 1 (Equal Width & Height Square) */}
-            <div className="w-64 h-64 sm:w-72 sm:h-72 2xl:w-56 2xl:h-56 aspect-square bg-[#F8FAFC] border border-slate-200 hover:border-[#0284C7] rounded-3xl flex flex-col justify-between p-4 sm:p-5 2xl:p-3.5 shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 relative group overflow-hidden">
-              <span className="text-xs font-bold text-[#0F172A] text-center">Entrance & Parking Guide</span>
+            <motion.div 
+              initial={{ opacity: 0, x: -50, scale: 0.95 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="w-64 h-64 sm:w-72 sm:h-72 2xl:w-56 2xl:h-56 aspect-square bg-[#F8FAFC] border border-slate-200 hover:border-[#0284C7] rounded-3xl flex flex-col justify-between p-4 sm:p-5 2xl:p-3.5 shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 relative group overflow-hidden"
+            >
+              <span className="text-xs font-bold text-[#0F172A] text-center">Entrance &amp; Parking Guide</span>
               
               <div className="flex items-center justify-center">
                 <button className="w-14 h-14 2xl:w-11 2xl:h-11 rounded-2xl bg-[#0284C7] text-white flex items-center justify-center shadow-md group-hover:scale-110 transition cursor-pointer">
@@ -207,11 +235,17 @@ export default function Contact() {
                 <button><i className="fa-solid fa-volume-high text-xs"></i></button>
                 <button><i className="fa-solid fa-expand text-xs"></i></button>
               </div>
-            </div>
+            </motion.div>
 
             {/* Video Player 2 (Equal Width & Height Square) */}
-            <div className="w-64 h-64 sm:w-72 sm:h-72 2xl:w-56 2xl:h-56 aspect-square bg-[#F8FAFC] border border-slate-200 hover:border-[#0284C7] rounded-3xl flex flex-col justify-between p-4 sm:p-5 2xl:p-3.5 shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 relative group overflow-hidden">
-              <span className="text-xs font-bold text-[#0F172A] text-center">Reception & Check-in Walkthrough</span>
+            <motion.div 
+              initial={{ opacity: 0, x: 50, scale: 0.95 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="w-64 h-64 sm:w-72 sm:h-72 2xl:w-56 2xl:h-56 aspect-square bg-[#F8FAFC] border border-slate-200 hover:border-[#0284C7] rounded-3xl flex flex-col justify-between p-4 sm:p-5 2xl:p-3.5 shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 relative group overflow-hidden"
+            >
+              <span className="text-xs font-bold text-[#0F172A] text-center">Reception &amp; Check-in Walkthrough</span>
               
               <div className="flex items-center justify-center">
                 <button className="w-14 h-14 2xl:w-11 2xl:h-11 rounded-2xl bg-[#0284C7] text-white flex items-center justify-center shadow-md group-hover:scale-110 transition cursor-pointer">
@@ -227,7 +261,7 @@ export default function Contact() {
                 <button><i className="fa-solid fa-volume-high text-xs"></i></button>
                 <button><i className="fa-solid fa-expand text-xs"></i></button>
               </div>
-            </div>
+            </motion.div>
 
           </div>
 

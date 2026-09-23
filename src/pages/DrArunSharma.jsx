@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function DrArunSharma() {
   const testimonials = [
@@ -36,18 +37,28 @@ export default function DrArunSharma() {
         <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto space-y-6 sm:space-y-8 2xl:space-y-2.5 relative z-10">
           
           {/* Section Header */}
-          <div className="text-center space-y-2 2xl:space-y-1">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="text-center space-y-2 2xl:space-y-1"
+          >
             <h1 className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-3xl font-serif font-extrabold text-white tracking-tight">
               Meet Dr. Arun Sharma
             </h1>
             <div className="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#38BDF8] rounded-full mx-auto"></div>
-          </div>
+          </motion.div>
 
           {/* Doctor Profile Grid */}
           <div className="grid md:grid-cols-12 gap-8 lg:gap-12 2xl:gap-8 items-center">
             
             {/* Doctor Image Card */}
-            <div className="md:col-span-5 flex justify-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -60, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="md:col-span-5 flex justify-center"
+            >
               <div className="w-64 h-72 sm:w-80 sm:h-96 2xl:w-[17rem] 2xl:h-[19rem] rounded-3xl bg-white border border-white/30 flex items-center justify-center text-[#1B365D] shadow-[0_20px_50px_-10px_rgba(2,132,199,0.5)] relative overflow-hidden group">
                 <img 
                   src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80" 
@@ -58,10 +69,15 @@ export default function DrArunSharma() {
                   <i className="fa-solid fa-certificate text-[#38BDF8] mr-1.5"></i> Senior Consultant
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Doctor Bio & Actions */}
-            <div className="md:col-span-7 2xl:pl-8 space-y-4 sm:space-y-5 2xl:space-y-2 text-white">
+            <motion.div 
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="md:col-span-7 2xl:pl-8 space-y-4 sm:space-y-5 2xl:space-y-2 text-white"
+            >
               <div className="space-y-1 2xl:space-y-0.5">
                 <span className="text-xs 2xl:text-[11px] font-bold text-[#38BDF8] uppercase tracking-widest block">Chief Cardiologist &amp; Physician</span>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-3xl font-serif font-extrabold text-white leading-tight">
@@ -95,7 +111,7 @@ export default function DrArunSharma() {
                   <i className="fa-brands fa-whatsapp text-base"></i> WhatsApp Direct
                 </a>
               </div>
-            </div>
+            </motion.div>
 
           </div>
 
@@ -106,18 +122,28 @@ export default function DrArunSharma() {
       <section className="w-full bg-[#F8FAFC] py-12 sm:py-16 doctor-testimonials-2k px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 flex flex-col justify-center overflow-hidden">
         <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto space-y-6 sm:space-y-8 2xl:space-y-2.5">
           
-          <div className="text-center space-y-1.5 2xl:space-y-0.5">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center space-y-1.5 2xl:space-y-0.5"
+          >
             <span className="text-xs 2xl:text-[11px] font-bold text-[#0284C7] uppercase tracking-widest block">Patient Feedback</span>
             <h2 className="text-3xl sm:text-4xl 2xl:text-2xl font-serif font-bold text-[#0F172A] tracking-tight">
               Patient Testimonials for Dr. Arun Sharma
             </h2>
             <div className="w-12 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6 sm:gap-8 2xl:gap-5 items-stretch">
             {testimonials.map((t, idx) => (
-              <div 
+              <motion.div 
                 key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="bg-white rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-5px_rgba(2,132,199,0.18)] hover:shadow-[0_16px_35px_-5px_rgba(2,132,199,0.28)] hover:-translate-y-1 transition-all duration-300 p-6 2xl:p-3.5 flex flex-col justify-between group 2xl:min-h-[9.5rem]"
               >
                 <div className="space-y-2.5 2xl:space-y-1.5">
@@ -146,12 +172,18 @@ export default function DrArunSharma() {
                     <p className="text-[10px] text-[#0284C7] font-semibold truncate">{t.role}</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* Quick CTA to book */}
-          <div className="text-center pt-1.5 2xl:pt-1">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-center pt-1.5 2xl:pt-1"
+          >
             <Link 
               to="/booking" 
               className="inline-flex items-center gap-2 bg-[#1B365D] hover:bg-[#13294B] text-white font-serif font-bold px-6 py-2.5 2xl:py-2 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform text-xs border border-transparent hover:border-slate-300"
@@ -159,7 +191,7 @@ export default function DrArunSharma() {
               <i className="fa-solid fa-calendar-check"></i>
               <span>Book Appointment with Dr. Arun Sharma</span>
             </Link>
-          </div>
+          </motion.div>
 
         </div>
       </section>
