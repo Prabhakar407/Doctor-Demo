@@ -18,8 +18,8 @@ export default function Contact() {
 
   return (
     <div className="w-full flex-grow flex flex-col p-0 m-0">
-      {/* SECTION 1: CONTACT FORM & MAP (Full Width) */}
-      <section className="w-full bg-[#F8FAFC] pt-3 sm:pt-5 pb-10 sm:pb-12 contact-section-2k px-4 sm:px-6 lg:px-8 2xl:px-16 border-b border-slate-200 flex flex-col justify-center overflow-hidden">
+      {/* SECTION 1: CONTACT FORM & MAP (Full Width with Blue & White Gradient) */}
+      <section className="w-full bg-gradient-to-b from-[#E0F2FE] via-[#F8FAFC] to-white pt-3 sm:pt-5 pb-10 sm:pb-12 contact-section-2k px-4 sm:px-6 lg:px-8 2xl:px-16 border-b border-slate-200 flex flex-col justify-center overflow-hidden">
         <div className="max-w-4xl 2xl:max-w-5xl 3xl:max-w-[70rem] mx-auto space-y-3.5 sm:space-y-4 2xl:space-y-2.5 w-full">
           
           {/* Section Header (Closer to Navbar) */}
@@ -35,72 +35,72 @@ export default function Contact() {
             <div className="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
           </motion.div>
 
-          {/* Main Card Container (Reduced Width, Visible on Page Load) */}
-          <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] transition-all duration-300 overflow-hidden p-5 sm:p-7 2xl:p-4">
-            <div className="grid md:grid-cols-12 gap-6 lg:gap-8 2xl:gap-6 items-start">
+          {/* Main Card Container (Slightly increased height on 2k+ screens) */}
+          <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] transition-all duration-300 overflow-hidden p-5 sm:p-7 2xl:p-6 3xl:p-8">
+            <div className="grid md:grid-cols-12 gap-6 lg:gap-8 2xl:gap-8 items-start">
               
               {/* Left: Contact form */}
               <motion.div 
                 initial={{ opacity: 0, x: -40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="md:col-span-6 space-y-3 2xl:space-y-1.5"
+                className="md:col-span-6 space-y-3 2xl:space-y-3.5 3xl:space-y-4"
               >
                 <div className="space-y-0.5">
-                  <span className="text-[11px] 2xl:text-[10px] font-bold text-[#0284C7] uppercase tracking-wider block">Direct Message</span>
-                  <h2 className="text-xl 2xl:text-lg font-serif font-bold text-[#0F172A]">Contact Form</h2>
+                  <span className="text-[11px] 2xl:text-xs font-bold text-[#0284C7] uppercase tracking-wider block">Direct Message</span>
+                  <h2 className="text-xl 2xl:text-2xl font-serif font-bold text-[#0F172A]">Contact Form</h2>
                 </div>
                 
-                <form className="space-y-2.5 2xl:space-y-1.5" onSubmit={handleSubmit}>
+                <form className="space-y-2.5 2xl:space-y-3 3xl:space-y-3.5" onSubmit={handleSubmit}>
                   <div>
-                    <label className="block text-xs 2xl:text-[11px] font-bold text-[#0F172A] mb-1 2xl:mb-0.5">Your Full Name</label>
+                    <label className="block text-xs 2xl:text-xs font-bold text-[#0F172A] mb-1">Your Full Name</label>
                     <input 
                       type="text" 
                       required 
                       placeholder="Enter your full name" 
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-3 py-2 2xl:py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-xs placeholder:text-[#64748B]" 
+                      className="w-full px-3 py-2 2xl:py-2.5 3xl:py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-sm placeholder:text-[#64748B]" 
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 2xl:gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 2xl:gap-3">
                     <div>
-                      <label className="block text-xs 2xl:text-[11px] font-bold text-[#0F172A] mb-1 2xl:mb-0.5">Email Address</label>
+                      <label className="block text-xs 2xl:text-xs font-bold text-[#0F172A] mb-1">Email Address</label>
                       <input 
                         type="email" 
                         required 
                         placeholder="you@email.com" 
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-3 py-2 2xl:py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-xs placeholder:text-[#64748B]" 
+                        className="w-full px-3 py-2 2xl:py-2.5 3xl:py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-sm placeholder:text-[#64748B]" 
                       />
                     </div>
                     <div>
-                      <label className="block text-xs 2xl:text-[11px] font-bold text-[#0F172A] mb-1 2xl:mb-0.5">Phone Number</label>
+                      <label className="block text-xs 2xl:text-xs font-bold text-[#0F172A] mb-1">Phone Number</label>
                       <input 
                         type="tel" 
                         placeholder="+1 234 567 890" 
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-3 py-2 2xl:py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-xs placeholder:text-[#64748B]" 
+                        className="w-full px-3 py-2 2xl:py-2.5 3xl:py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-sm placeholder:text-[#64748B]" 
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs 2xl:text-[11px] font-bold text-[#0F172A] mb-1 2xl:mb-0.5">Reason / Inquiry</label>
+                    <label className="block text-xs 2xl:text-xs font-bold text-[#0F172A] mb-1">Reason / Inquiry</label>
                     <textarea 
-                      rows={2} 
+                      rows={3} 
                       placeholder="How can our clinical team help you?" 
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-3 py-2 2xl:py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-xs placeholder:text-[#64748B] resize-none"
+                      className="w-full px-3 py-2 2xl:py-2.5 3xl:py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-sm placeholder:text-[#64748B] resize-none"
                     ></textarea>
                   </div>
 
-                  <div className="pt-0.5">
-                    <button type="submit" className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-7 py-2.5 2xl:py-2 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform text-xs sm:text-sm 2xl:text-xs cursor-pointer border border-transparent hover:border-slate-300 inline-flex items-center gap-2">
+                  <div className="pt-1">
+                    <button type="submit" className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-7 py-2.5 2xl:py-3 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform text-xs sm:text-sm 2xl:text-sm cursor-pointer border border-transparent hover:border-slate-300 inline-flex items-center gap-2">
                       <i className="fa-regular fa-paper-plane"></i>
                       <span>Submit Message</span>
                     </button>
@@ -191,14 +191,14 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* SECTION 2: VIDEO OVERVIEW & ACCESS (Full Width) */}
-      <section className="w-full bg-white py-12 sm:py-16 contact-section-2k px-4 sm:px-8 lg:px-12 border-b border-slate-200 flex flex-col justify-center overflow-hidden">
+      {/* SECTION 2: VIDEO OVERVIEW & ACCESS (Full Width with Matching Blue & White Gradient) */}
+      <section className="w-full bg-gradient-to-b from-[#E0F2FE] via-[#F8FAFC] to-white py-12 sm:py-16 contact-section-2k px-4 sm:px-8 lg:px-12 border-b border-slate-200 flex flex-col justify-center overflow-hidden">
         <div className="max-w-6xl mx-auto space-y-8 2xl:space-y-4 w-full">
           
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-center space-y-2 2xl:space-y-1"
           >
@@ -215,7 +215,7 @@ export default function Contact() {
             <motion.div 
               initial={{ opacity: 0, x: -50, scale: 0.95 }}
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="w-64 h-64 sm:w-72 sm:h-72 2xl:w-56 2xl:h-56 aspect-square bg-[#F8FAFC] border border-slate-200 hover:border-[#0284C7] rounded-3xl flex flex-col justify-between p-4 sm:p-5 2xl:p-3.5 shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 relative group overflow-hidden"
             >
@@ -241,7 +241,7 @@ export default function Contact() {
             <motion.div 
               initial={{ opacity: 0, x: 50, scale: 0.95 }}
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="w-64 h-64 sm:w-72 sm:h-72 2xl:w-56 2xl:h-56 aspect-square bg-[#F8FAFC] border border-slate-200 hover:border-[#0284C7] rounded-3xl flex flex-col justify-between p-4 sm:p-5 2xl:p-3.5 shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 relative group overflow-hidden"
             >

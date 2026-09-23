@@ -1,8 +1,66 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import DoctorTestimonials from '../components/DoctorTestimonials';
 
 export default function MeetDoctor() {
+  const testimonials = [
+    {
+      name: "Sarah Jenkins",
+      role: "Preventive Cardiology Patient",
+      rating: 5,
+      date: "Recent Consultation",
+      text: "Dr. Smith provided exceptional care and attention during my cardiology check-up. Truly professional, thorough, and deeply empathetic.",
+      verified: true,
+      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      name: "David Kim",
+      role: "Internal Medicine Patient",
+      rating: 5,
+      date: "Recent Consultation",
+      text: "Clear guidance, prompt diagnosis, and warm environment. Highly recommended for family health consultations and preventive heart wellness.",
+      verified: true,
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      name: "Rachel Taylor",
+      role: "Cardiac Rehabilitation",
+      rating: 5,
+      date: "Recent Consultation",
+      text: "The customized treatment plan helped me recover in record time. Fantastic physician and an exceptionally supportive clinical team.",
+      verified: true,
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      name: "Michael Brooks",
+      role: "Hypertension Management",
+      rating: 5,
+      date: "Recent Consultation",
+      text: "Very patient, answered all questions thoroughly. Modern clinic facilities, direct digital prescription, and seamless follow-up care.",
+      verified: true,
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      name: "Elena Rostova",
+      role: "Comprehensive Health Check",
+      rating: 5,
+      date: "Recent Consultation",
+      text: "Dr. Smith's holistic diagnostic approach identified the root cause of my fatigue quickly. Truly one of the finest physicians I have consulted.",
+      verified: true,
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      name: "James Wilson",
+      role: "Executive Health Checkup",
+      rating: 5,
+      date: "Recent Consultation",
+      text: "Top-tier bedside manner and comprehensive medical insights. You immediately feel confident that you are in the safest hands possible.",
+      verified: true,
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80"
+    }
+  ];
+
   return (
     <div className="w-full flex-grow flex flex-col p-0 m-0">
       {/* DOCTOR PROFILE HERO SECTION */}
@@ -22,17 +80,17 @@ export default function MeetDoctor() {
             <div className="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#38BDF8] rounded-full mx-auto"></div>
           </motion.div>
 
-          {/* Doctor Profile Grid */}
-          <div className="grid md:grid-cols-12 gap-8 lg:gap-12 2xl:gap-8 items-center">
+          {/* Doctor Profile Grid - Symmetric around central vertical axis with generous spacing */}
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-24 xl:gap-28 2xl:gap-36 items-center justify-center max-w-5xl lg:max-w-6xl 2xl:max-w-[85rem] mx-auto">
             
-            {/* Doctor Avatar Placeholder Box */}
+            {/* Doctor Avatar Placeholder Box (Aligned to center axis from left) */}
             <motion.div 
               initial={{ opacity: 0, x: -60, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="md:col-span-5 flex justify-center"
+              className="flex justify-center md:justify-end items-center w-full"
             >
-              <div className="w-60 h-68 sm:w-72 sm:h-80 2xl:w-[17rem] 2xl:h-[19rem] rounded-3xl bg-white border border-white/30 flex items-center justify-center text-[#1B365D] shadow-[0_20px_50px_-10px_rgba(2,132,199,0.5)] relative overflow-hidden group">
+              <div className="w-60 h-68 sm:w-72 sm:h-80 2xl:w-[20rem] 2xl:h-[22rem] rounded-3xl bg-white border border-white/30 flex items-center justify-center text-[#1B365D] shadow-[0_20px_50px_-10px_rgba(2,132,199,0.5)] relative overflow-hidden group">
                 <i className="fa-solid fa-user-doctor text-8xl sm:text-9xl 2xl:text-7xl text-[#0284C7]/80 group-hover:scale-105 transition-transform duration-300"></i>
                 <div className="absolute bottom-2.5 bg-[#1B365D] text-white px-3.5 py-1 rounded-full text-xs font-semibold shadow-md border border-white/20">
                   <i className="fa-solid fa-certificate text-[#38BDF8] mr-1"></i> Verified Doctor
@@ -40,12 +98,12 @@ export default function MeetDoctor() {
               </div>
             </motion.div>
 
-            {/* Doctor Bio & Actions */}
+            {/* Doctor Bio & Actions (Aligned to center axis from right) */}
             <motion.div 
               initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="md:col-span-7 space-y-4 2xl:space-y-2 text-white"
+              className="flex flex-col justify-center items-start space-y-4 2xl:space-y-3 text-white w-full md:pl-2 lg:pl-4 2xl:pl-6"
             >
               <div className="space-y-1 2xl:space-y-0.5">
                 <span className="text-xs 2xl:text-[11px] font-bold text-[#38BDF8] uppercase tracking-widest block">Senior Consultant</span>
@@ -81,115 +139,14 @@ export default function MeetDoctor() {
         </div>
       </section>
 
-      {/* SECTION 2: PATIENT REVIEWS & CLINICAL INSIGHTS (Full Width) */}
-      <section className="w-full bg-white py-12 sm:py-16 doctor-testimonials-2k px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200 flex flex-col justify-center overflow-hidden">
-        <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto space-y-8 2xl:space-y-4">
-          
-          {/* Section Header */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-center space-y-2 2xl:space-y-1"
-          >
-            <h2 className="text-3xl sm:text-4xl 2xl:text-4xl font-serif font-bold text-[#0F172A] tracking-tight">
-              Feedback &amp; Clinical Insights
-            </h2>
-            <div className="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 2xl:gap-6 items-stretch">
-            
-            {/* Column 1: Reviews */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-5 2xl:space-y-3 flex flex-col justify-between"
-            >
-              {/* Review 1 */}
-              <div className="bg-white rounded-2xl border border-slate-200 hover:border-[#0284C7] p-5 2xl:p-4 shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 space-y-2.5 2xl:space-y-1.5 flex-1">
-                <div className="text-amber-400 text-xs flex gap-1">
-                  <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
-                </div>
-                <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed">
-                  "Dr. Smith provided exceptional care and attention during my cardiology check-up. Truly professional and empathetic."
-                </p>
-                <p className="font-bold text-[#0F172A] text-xs pt-1">&mdash; Sarah M.</p>
-              </div>
-
-              {/* Review 2 */}
-              <div className="bg-white rounded-2xl border border-slate-200 hover:border-[#0284C7] p-5 2xl:p-4 shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 space-y-2.5 2xl:space-y-1.5 flex-1">
-                <div className="text-amber-400 text-xs flex gap-1">
-                  <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
-                </div>
-                <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed">
-                  "Clear guidance, prompt diagnosis, and warm environment. Highly recommended for family health consultations."
-                </p>
-                <p className="font-bold text-[#0F172A] text-xs pt-1">&mdash; David K.</p>
-              </div>
-            </motion.div>
-
-            {/* Column 2: Reviews */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-5 2xl:space-y-3 flex flex-col justify-between"
-            >
-              {/* Review 3 */}
-              <div className="bg-white rounded-2xl border border-slate-200 hover:border-[#0284C7] p-5 2xl:p-4 shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 space-y-2.5 2xl:space-y-1.5 flex-1">
-                <div className="text-amber-400 text-xs flex gap-1">
-                  <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
-                </div>
-                <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed">
-                  "The customized treatment plan helped me recover in record time. Fantastic physician and support team."
-                </p>
-                <p className="font-bold text-[#0F172A] text-xs pt-1">&mdash; Rachel T.</p>
-              </div>
-
-              {/* Review 4 */}
-              <div className="bg-white rounded-2xl border border-slate-200 hover:border-[#0284C7] p-5 2xl:p-4 shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 space-y-2.5 2xl:space-y-1.5 flex-1">
-                <div className="text-amber-400 text-xs flex gap-1">
-                  <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
-                </div>
-                <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed">
-                  "Very patient, answered all questions thoroughly. Modern clinic facilities and quick appointment confirmation."
-                </p>
-                <p className="font-bold text-[#0F172A] text-xs pt-1">&mdash; Michael B.</p>
-              </div>
-            </motion.div>
-
-            {/* Column 3: Video / Media Placeholder Column */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-5 2xl:space-y-3 flex flex-col justify-between"
-            >
-              {/* Video Placeholder */}
-              <div className="w-full h-36 2xl:h-28 bg-white border border-slate-200 hover:border-[#0284C7] rounded-2xl flex flex-col items-center justify-center shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 cursor-pointer transition-all duration-300 relative overflow-hidden group flex-1">
-                <div className="w-12 h-10 2xl:w-10 2xl:h-8 rounded-xl bg-[#0284C7] flex items-center justify-center text-white text-base shadow-sm group-hover:scale-110 transition">
-                  <i className="fa-solid fa-play ml-0.5"></i>
-                </div>
-                <span className="text-xs text-[#64748B] font-semibold mt-2 2xl:mt-1">Doctor Introduction Video</span>
-              </div>
-
-              {/* Image Placeholder */}
-              <div className="w-full h-36 2xl:h-28 bg-white border border-slate-200 hover:border-[#0284C7] rounded-2xl flex flex-col items-center justify-center text-[#1B365D] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group flex-1">
-                <i className="fa-solid fa-stethoscope text-4xl 2xl:text-3xl text-[#0284C7]/70 group-hover:scale-105 transition-transform duration-300"></i>
-                <span className="text-xs text-[#64748B] font-semibold mt-2 2xl:mt-1">Clinical Consultation Suite</span>
-              </div>
-            </motion.div>
-
-          </div>
-
-        </div>
-      </section>
+      {/* SECTION 2: PATIENT TESTIMONIALS */}
+      <DoctorTestimonials
+        doctorName="Dr. Alexander Smith"
+        title="Patient Feedback for Dr. Alexander Smith"
+        subtitle="Patient Feedback & Clinical Insights"
+        bookingUrl="/booking"
+        testimonials={testimonials}
+      />
     </div>
   );
 }

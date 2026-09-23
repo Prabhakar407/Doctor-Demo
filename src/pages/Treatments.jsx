@@ -115,8 +115,7 @@ export default function Treatments() {
             {/* 1: Obstetrician - Gynaecologist */}
             <motion.div 
               initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => handleServiceClick('gynecology')}
               className={`bg-white rounded-3xl border ${
@@ -152,8 +151,7 @@ export default function Treatments() {
             {/* 2: Ultrasound */}
             <motion.div 
               initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => handleServiceClick('ultrasound')}
               className={`bg-white rounded-3xl border ${
@@ -189,8 +187,7 @@ export default function Treatments() {
             {/* 3: Pregnancy Management */}
             <motion.div 
               initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => handleServiceClick('pregnancy')}
               className={`bg-white rounded-3xl border ${
@@ -226,8 +223,7 @@ export default function Treatments() {
             {/* 4: Physician and Diabetologist */}
             <motion.div 
               initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => handleServiceClick('physician')}
               className={`bg-white rounded-3xl border ${
@@ -271,7 +267,7 @@ export default function Treatments() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-center space-y-2"
           >
@@ -286,7 +282,7 @@ export default function Treatments() {
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             className="flex flex-wrap items-center justify-center gap-2 max-w-4xl mx-auto"
           >
@@ -380,7 +376,7 @@ export default function Treatments() {
                     key={proc.id}
                     initial={{ opacity: 0, y: 35, scale: 0.98 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: true, amount: 0.12 }}
+                    viewport={{ once: true, amount: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.6, delay: (index % 3) * 0.12, ease: [0.22, 1, 0.36, 1] }}
                     className={`bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col ${
@@ -398,12 +394,12 @@ export default function Treatments() {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                       />
                     </div>
-                    <div className="flex-1 bg-white p-4 sm:p-5 md:py-4 md:px-6 flex flex-col justify-between space-y-2 h-full">
-                      <div className="space-y-1 sm:space-y-1.5">
+                    <div className="flex-1 bg-white p-4 sm:p-5 md:py-4 md:px-6 lg:py-5 lg:px-7 2xl:py-6 2xl:px-8 flex flex-col justify-between space-y-2 h-full">
+                      <div className="space-y-1 sm:space-y-1.5 lg:space-y-2 lg:pt-3 2xl:pt-4">
                         <h3 className="text-base sm:text-lg md:text-xl font-serif font-bold text-[#0F172A] leading-tight group-hover:text-[#0284C7] transition-colors">
                           {proc.title}
                         </h3>
-                        <p className="text-black text-xs sm:text-sm md:text-sm font-normal leading-relaxed line-clamp-3 sm:line-clamp-2 md:line-clamp-3">
+                        <p className="text-black text-xs sm:text-sm md:text-sm font-normal leading-relaxed line-clamp-3 sm:line-clamp-2 md:line-clamp-3 lg:pt-1 2xl:pt-1.5">
                           {proc.description}
                         </p>
                       </div>
@@ -435,7 +431,7 @@ export default function Treatments() {
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-center pt-6"
           >

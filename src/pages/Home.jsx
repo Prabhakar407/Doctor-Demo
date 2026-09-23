@@ -198,7 +198,7 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.01, rootMargin: '50px 0px 50px 0px' }
+      { threshold: 0, rootMargin: '100px 0px 100px 0px' }
     );
 
     if (solutionsRef.current) observer.observe(solutionsRef.current);
@@ -591,19 +591,17 @@ export default function Home() {
               to={getTreatmentLink('gynecology')}
               onClick={(e) => handleServiceClick(e, 'gynecology')}
               initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
-              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={isMobile ? { duration: 0.5, delay: 0.08, ease: "easeOut" } : { duration: 0.6, delay: 0.1 }}
-              className="healthcare-se-card bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
+              animate={solutionsInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 })}
+              transition={isMobile ? { duration: 0.5, delay: 0.1, ease: "easeInOut" } : { duration: 0.6, delay: 0.1, ease: "easeInOut" }}
+              className="healthcare-se-card bg-[#1B365D] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
             >
-              <div className="healthcare-se-img w-full flex-1 min-h-[220px] 2xl:min-h-[300px] bg-slate-50 relative overflow-hidden flex items-center justify-center">
+              <div className="healthcare-se-img w-full flex-1 min-h-[220px] 2xl:min-h-[300px] bg-[#1B365D] relative overflow-hidden flex items-center justify-center">
                 <motion.div 
-                  initial={!isMobile ? { scaleY: 0, opacity: 0 } : false}
-                  whileInView={!isMobile ? { scaleY: 1, opacity: 1 } : false}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.75, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                  initial={!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 }}
+                  animate={solutionsInView ? (!isMobile ? { scaleY: 1, opacity: 1 } : { opacity: 1 }) : (!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 })}
+                  transition={{ duration: 0.75, delay: isMobile ? 0.1 : 0.2, ease: "easeInOut" }}
                   style={{ transformOrigin: "bottom" }}
-                  className="w-full h-full"
+                  className="w-full h-full transform-gpu"
                 >
                   <img 
                     src={gynecologyImg} 
@@ -630,18 +628,16 @@ export default function Home() {
                 to={getTreatmentLink('ultrasound')}
                 onClick={(e) => handleServiceClick(e, 'ultrasound')}
                 initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
-                whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={isMobile ? { duration: 0.5, delay: 0.18, ease: "easeOut" } : { duration: 0.6, delay: 0.3 }}
-                className="healthcare-se-card healthcare-se-card-fullbleed h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden flex flex-col justify-end p-4 sm:p-4.5 2xl:p-5 group cursor-pointer"
+                animate={solutionsInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 })}
+                transition={isMobile ? { duration: 0.5, delay: 0.35, ease: "easeInOut" } : { duration: 0.6, delay: 0.95, ease: "easeInOut" }}
+                className="healthcare-se-card healthcare-se-card-fullbleed h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden flex flex-col justify-end p-4 sm:p-4.5 2xl:p-5 group cursor-pointer bg-[#1B365D]"
               >
                 <motion.div
-                  initial={!isMobile ? { scaleY: 0, opacity: 0 } : false}
-                  whileInView={!isMobile ? { scaleY: 1, opacity: 1 } : false}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.75, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  initial={!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 }}
+                  animate={solutionsInView ? (!isMobile ? { scaleY: 1, opacity: 1 } : { opacity: 1 }) : (!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 })}
+                  transition={{ duration: 0.75, delay: isMobile ? 0.35 : 1.05, ease: "easeInOut" }}
                   style={{ transformOrigin: "bottom" }}
-                  className="absolute inset-0 w-full h-full overflow-hidden"
+                  className="absolute inset-0 w-full h-full overflow-hidden transform-gpu"
                 >
                   <img 
                     src={ultrasoundImg} 
@@ -666,19 +662,17 @@ export default function Home() {
                 to={getTreatmentLink('ultrasound')}
                 onClick={(e) => handleServiceClick(e, 'ultrasound')}
                 initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
-                whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={isMobile ? { duration: 0.5, delay: 0.28, ease: "easeOut" } : { duration: 0.6, delay: 0.5 }}
-                className="healthcare-se-card h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group relative cursor-pointer"
+                animate={solutionsInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 })}
+                transition={isMobile ? { duration: 0.5, delay: 0.60, ease: "easeInOut" } : { duration: 0.6, delay: 1.80, ease: "easeInOut" }}
+                className="healthcare-se-card h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] bg-[#1B365D] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group relative cursor-pointer"
               >
-                <div className="healthcare-se-img w-full flex-1 min-h-0 overflow-hidden bg-slate-100 relative">
+                <div className="healthcare-se-img w-full flex-1 min-h-0 overflow-hidden bg-[#1B365D] relative">
                   <motion.div 
-                    initial={!isMobile ? { scaleY: 0, opacity: 0 } : false}
-                    whileInView={!isMobile ? { scaleY: 1, opacity: 1 } : false}
-                    viewport={{ once: true, amount: 0.15 }}
-                    transition={{ duration: 0.75, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                    initial={!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 }}
+                    animate={solutionsInView ? (!isMobile ? { scaleY: 1, opacity: 1 } : { opacity: 1 }) : (!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 })}
+                    transition={{ duration: 0.75, delay: isMobile ? 0.60 : 1.90, ease: "easeInOut" }}
                     style={{ transformOrigin: "bottom" }}
-                    className="w-full h-full"
+                    className="w-full h-full transform-gpu"
                   >
                     <img 
                       src={sonographyScanImg} 
@@ -701,19 +695,17 @@ export default function Home() {
               to={getTreatmentLink('pregnancy')}
               onClick={(e) => handleServiceClick(e, 'pregnancy')}
               initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
-              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={isMobile ? { duration: 0.5, delay: 0.38, ease: "easeOut" } : { duration: 0.6, delay: 0.7 }}
-              className="healthcare-se-card bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
+              animate={solutionsInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 })}
+              transition={isMobile ? { duration: 0.5, delay: 0.85, ease: "easeInOut" } : { duration: 0.6, delay: 2.65, ease: "easeInOut" }}
+              className="healthcare-se-card bg-[#1B365D] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
             >
-              <div className="healthcare-se-img w-full flex-1 min-h-[220px] 2xl:min-h-[300px] bg-slate-50 relative overflow-hidden flex items-center justify-center">
+              <div className="healthcare-se-img w-full flex-1 min-h-[220px] 2xl:min-h-[300px] bg-[#1B365D] relative overflow-hidden flex items-center justify-center">
                 <motion.div 
-                  initial={!isMobile ? { scaleY: 0, opacity: 0 } : false}
-                  whileInView={!isMobile ? { scaleY: 1, opacity: 1 } : false}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.75, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                  initial={!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 }}
+                  animate={solutionsInView ? (!isMobile ? { scaleY: 1, opacity: 1 } : { opacity: 1 }) : (!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 })}
+                  transition={{ duration: 0.75, delay: isMobile ? 0.85 : 2.75, ease: "easeInOut" }}
                   style={{ transformOrigin: "bottom" }}
-                  className="w-full h-full"
+                  className="w-full h-full transform-gpu"
                 >
                   <img 
                     src={pregnancyImg} 
@@ -740,19 +732,17 @@ export default function Home() {
                 to={getTreatmentLink('physician')}
                 onClick={(e) => handleServiceClick(e, 'physician')}
                 initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
-                whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={isMobile ? { duration: 0.5, delay: 0.48, ease: "easeOut" } : { duration: 0.6, delay: 0.9 }}
-                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer"
+                animate={solutionsInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 })}
+                transition={isMobile ? { duration: 0.5, delay: 1.10, ease: "easeInOut" } : { duration: 0.6, delay: 3.50, ease: "easeInOut" }}
+                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer bg-[#1B365D]"
               >
-                <div className="healthcare-se-img w-full sm:w-2/5 flex-1 sm:flex-initial min-h-0 sm:min-h-full bg-slate-100 overflow-hidden relative order-1 sm:order-2">
+                <div className="healthcare-se-img w-full sm:w-2/5 flex-1 sm:flex-initial min-h-0 sm:min-h-full bg-[#1B365D] overflow-hidden relative order-1 sm:order-2">
                   <motion.div 
-                    initial={!isMobile ? { scaleX: 0, opacity: 0 } : false}
-                    whileInView={!isMobile ? { scaleX: 1, opacity: 1 } : false}
-                    viewport={{ once: true, amount: 0.15 }}
-                    transition={{ duration: 0.8, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
+                    initial={!isMobile ? { scaleX: 0, opacity: 0 } : { opacity: 0 }}
+                    animate={solutionsInView ? (!isMobile ? { scaleX: 1, opacity: 1 } : { opacity: 1 }) : (!isMobile ? { scaleX: 0, opacity: 0 } : { opacity: 0 })}
+                    transition={{ duration: 0.75, delay: isMobile ? 1.10 : 3.60, ease: "easeInOut" }}
                     style={{ transformOrigin: "right" }}
-                    className="w-full h-full"
+                    className="w-full h-full transform-gpu"
                   >
                     <img 
                       src={physicianImg} 
@@ -781,19 +771,17 @@ export default function Home() {
                 to={getTreatmentLink('physician')}
                 onClick={(e) => handleServiceClick(e, 'physician')}
                 initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
-                whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={isMobile ? { duration: 0.5, delay: 0.58, ease: "easeOut" } : { duration: 0.6, delay: 1.1 }}
-                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer"
+                animate={solutionsInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 })}
+                transition={isMobile ? { duration: 0.5, delay: 1.35, ease: "easeInOut" } : { duration: 0.6, delay: 4.35, ease: "easeInOut" }}
+                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer bg-[#1B365D]"
               >
-                <div className="healthcare-se-img w-full sm:w-2/5 flex-1 sm:flex-initial min-h-0 sm:min-h-full bg-slate-100 overflow-hidden relative order-1 sm:order-2">
+                <div className="healthcare-se-img w-full sm:w-2/5 flex-1 sm:flex-initial min-h-0 sm:min-h-full bg-[#1B365D] overflow-hidden relative order-1 sm:order-2">
                   <motion.div 
-                    initial={!isMobile ? { scaleX: 0, opacity: 0 } : false}
-                    whileInView={!isMobile ? { scaleX: 1, opacity: 1 } : false}
-                    viewport={{ once: true, amount: 0.15 }}
-                    transition={{ duration: 0.8, delay: 1.15, ease: [0.16, 1, 0.3, 1] }}
+                    initial={!isMobile ? { scaleX: 0, opacity: 0 } : { opacity: 0 }}
+                    animate={solutionsInView ? (!isMobile ? { scaleX: 1, opacity: 1 } : { opacity: 1 }) : (!isMobile ? { scaleX: 0, opacity: 0 } : { opacity: 0 })}
+                    transition={{ duration: 0.75, delay: isMobile ? 1.35 : 4.45, ease: "easeInOut" }}
                     style={{ transformOrigin: "right" }}
-                    className="w-full h-full"
+                    className="w-full h-full transform-gpu"
                   >
                     <img 
                       src={glucometerImg} 
@@ -831,9 +819,9 @@ export default function Home() {
             <motion.div 
               initial={{ opacity: 0, x: -60, scale: 0.96 }}
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="lg:col-span-5 flex flex-col items-center lg:items-start justify-center lg:justify-start"
+              className="lg:col-span-5 2xl:col-span-6 flex flex-col items-center lg:items-start justify-center lg:justify-start w-full"
             >
               
               {/* Mobile Doctor Header (Visible only on mobile/tablet < lg, placed above image with padding) */}
@@ -866,8 +854,8 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Doctor Photo Card Container - Significantly Increased Size on 2K/3K screens */}
-              <div className="w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[440px] 2xl:max-w-[620px] 3xl:max-w-[700px] bg-gradient-to-b from-[#F8FAFC] to-slate-100 rounded-3xl border border-slate-200 p-3 sm:p-4 2xl:p-5 shadow-[0_12px_35px_-5px_rgba(2,132,199,0.22)] relative overflow-hidden group">
+              {/* Doctor Photo Card Container - Full generous width on 2K/3K screens without reduction */}
+              <div className="w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[440px] 2xl:max-w-none bg-gradient-to-b from-[#F8FAFC] to-slate-100 rounded-3xl border border-slate-200 p-3 sm:p-4 2xl:p-6 shadow-[0_12px_35px_-5px_rgba(2,132,199,0.22)] relative overflow-hidden group">
                 <div className="w-full h-80 sm:h-96 lg:h-[28rem] 2xl:h-[38rem] 3xl:h-[44rem] rounded-2xl overflow-hidden relative bg-[#1B365D]">
                   <img
                     src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1400&q=85"
@@ -891,9 +879,9 @@ export default function Home() {
             <motion.div 
               initial={{ opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="lg:col-span-7 space-y-4 sm:space-y-5 2xl:space-y-6 flex flex-col justify-center"
+              className="lg:col-span-7 2xl:col-span-6 space-y-4 sm:space-y-5 2xl:space-y-6 flex flex-col justify-center w-full"
             >
               
               {/* Desktop Doctor Header & Designation Pill (Hidden on mobile < lg, visible on desktop lg+) */}
@@ -1026,7 +1014,7 @@ export default function Home() {
                 <motion.div
                   initial={{ opacity: 0, y: 60 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
+                  viewport={{ once: true, amount: 0 }}
                   transition={{ duration: 0.75, delay: 0.15, ease: "easeInOut" }}
                   className="w-full sm:w-auto"
                 >
@@ -1042,7 +1030,7 @@ export default function Home() {
                 <motion.div
                   initial={{ opacity: 0, y: 60 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
+                  viewport={{ once: true, amount: 0 }}
                   transition={{ duration: 0.75, delay: 0.3, ease: "easeInOut" }}
                   className="w-full sm:w-auto"
                 >
@@ -1058,7 +1046,7 @@ export default function Home() {
                 <motion.div
                   initial={{ opacity: 0, y: 60 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
+                  viewport={{ once: true, amount: 0 }}
                   transition={{ duration: 0.75, delay: 0.45, ease: "easeInOut" }}
                   className="w-full sm:w-auto"
                 >
@@ -1084,7 +1072,7 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, y: 40, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="banner-inner-card interactive-lift relative w-full rounded-3xl overflow-hidden shadow-[0_12px_35px_-10px_rgba(2,132,199,0.3)] border border-slate-200 group flex items-center min-h-[16rem] sm:min-h-[17.5rem] md:min-h-[19rem] lg:min-h-0 2xl:min-h-[22rem]"
           >
@@ -1134,38 +1122,34 @@ export default function Home() {
       <section 
         ref={whyRef}
         id="why-book-online"
-        className="w-full bg-[#F8FAFC] py-10 sm:py-12 md:py-14 lg:py-2 2xl:py-20 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200 flex flex-col justify-center overflow-hidden why-book-online-laptop"
+        className="w-full bg-[#F8FAFC] py-10 sm:py-12 md:py-14 lg:py-16 2xl:py-20 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 flex flex-col justify-center"
       >
-        <div className="why-container max-w-7xl 2xl:max-w-[100rem] w-full mx-auto space-y-6 sm:space-y-8 lg:space-y-1.5 xl:space-y-2.5 2xl:space-y-10">
+        <div className="max-w-7xl 2xl:max-w-[100rem] w-full mx-auto space-y-8 sm:space-y-10 2xl:space-y-12">
           
           {/* Section Header */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="why-header text-center space-y-1 sm:space-y-1.5 shrink-0 pt-0"
+            className="text-center space-y-1.5 shrink-0 pt-0"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-2xl xl:text-3xl 2xl:text-5xl font-serif font-bold text-[#0F172A] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-4xl xl:text-4xl 2xl:text-5xl font-serif font-bold text-[#0F172A] tracking-tight">
               Why Book Appointment Online
             </h2>
             <div className="w-16 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
           </motion.div>
           
-          {/* Grid of Cards: 1 col on mobile, 2 cols on tablet/small laptop, 4 cols in a single row on screen > laptop */}
-          <div className="why-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-2.5 xl:gap-3.5 2xl:gap-8 w-full items-stretch">
+          {/* Grid of Cards: 1 col on mobile, 2 cols on tablet/small laptop, 4 cols on wide screens */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-6 lg:gap-6 xl:gap-6 2xl:gap-8 w-full items-stretch">
             
-            {/* Card 1: Instant Booking & Confirmation (Slides in from extreme left AFTER cards 2 & 3) */}
+            {/* Card 1: Instant Booking & Confirmation */}
             <motion.div 
-              initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, x: -180 }}
-              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={
-                isMobile 
-                  ? { duration: 0.5, delay: 0.1, ease: "easeOut" }
-                  : { duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }
-              }
-              className="why-card bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] lg:h-full xl:h-[15rem] 2xl:h-[19rem]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0 }}
+              transition={{ duration: 0.65, delay: 0.10, ease: "easeInOut" }}
+              className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
@@ -1173,29 +1157,25 @@ export default function Home() {
               </div>
 
               {/* Visual Top Graphic / Uploaded Image */}
-              <div className="why-card-img-wrap relative w-full flex-1 min-h-0 min-w-0 overflow-hidden bg-white flex items-center justify-center">
+              <div className="relative w-full flex-1 min-h-0 min-w-0 overflow-hidden bg-white flex items-center justify-center">
                 <img src={instantBookingImg} alt="Instant Booking & Confirmation" className="w-full h-full object-cover max-w-full max-h-full block transform group-hover:scale-105 transition-transform duration-500" />
               </div>
               
               {/* Bottom Text Content */}
-              <div className="why-card-bottom shrink-0 w-full py-2 sm:py-2.5 lg:py-1.5 xl:py-2 px-3.5 lg:px-2.5 xl:px-3 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
+              <div className="shrink-0 w-full py-2.5 sm:py-3 px-3.5 sm:px-4 bg-[#1B365D] text-white border-t border-[#13294B] space-y-1 relative z-10">
                 <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                <h3 className="text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Instant Booking &amp; Confirmation</h3>
-                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-[10px] xl:text-xs 2xl:text-sm leading-snug">Schedule your visit in minutes. Instant digital confirmation, no calls needed.</p>
+                <h3 className="text-xs sm:text-sm lg:text-sm xl:text-base 2xl:text-lg font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Instant Booking &amp; Confirmation</h3>
+                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-xs xl:text-sm 2xl:text-base leading-snug">Schedule your visit in minutes. Instant digital confirmation, no calls needed.</p>
               </div>
             </motion.div>
 
-            {/* Card 2: 24/7 Access (Slides in from left FIRST) */}
+            {/* Card 2: 24/7 Access */}
             <motion.div 
-              initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, x: -140 }}
-              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={
-                isMobile 
-                  ? { duration: 0.5, delay: 0.25, ease: "easeOut" }
-                  : { duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }
-              }
-              className="why-card bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] lg:h-full xl:h-[15rem] 2xl:h-[19rem]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0 }}
+              transition={{ duration: 0.65, delay: 0.85, ease: "easeInOut" }}
+              className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
@@ -1203,29 +1183,25 @@ export default function Home() {
               </div>
 
               {/* Visual Top Graphic / Uploaded Image */}
-              <div className="why-card-img-wrap relative w-full flex-1 min-h-0 min-w-0 overflow-hidden bg-white flex items-center justify-center">
+              <div className="relative w-full flex-1 min-h-0 min-w-0 overflow-hidden bg-white flex items-center justify-center">
                 <img src={accessImg} alt="24/7 Access" className="w-full h-full object-cover max-w-full max-h-full block transform group-hover:scale-105 transition-transform duration-500" />
               </div>
               
               {/* Bottom Text Content */}
-              <div className="why-card-bottom shrink-0 w-full py-2 sm:py-2.5 lg:py-1.5 xl:py-2 px-3.5 lg:px-2.5 xl:px-3 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
+              <div className="shrink-0 w-full py-2.5 sm:py-3 px-3.5 sm:px-4 bg-[#1B365D] text-white border-t border-[#13294B] space-y-1 relative z-10">
                 <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                <h3 className="text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">24/7 Access</h3>
-                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-[10px] xl:text-xs 2xl:text-sm leading-snug">Select available slots anytime, anywhere—even outside of business hours.</p>
+                <h3 className="text-xs sm:text-sm lg:text-sm xl:text-base 2xl:text-lg font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">24/7 Access</h3>
+                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-xs xl:text-sm 2xl:text-base leading-snug">Select available slots anytime, anywhere—even outside of business hours.</p>
               </div>
             </motion.div>
 
-            {/* Card 3: Time Efficiency (Slides in from right FIRST) */}
+            {/* Card 3: Time Efficiency */}
             <motion.div 
-              initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, x: 140 }}
-              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={
-                isMobile 
-                  ? { duration: 0.5, delay: 0.4, ease: "easeOut" }
-                  : { duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }
-              }
-              className="why-card bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] lg:h-full xl:h-[15rem] 2xl:h-[19rem]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0 }}
+              transition={{ duration: 0.65, delay: 1.60, ease: "easeInOut" }}
+              className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
@@ -1233,29 +1209,25 @@ export default function Home() {
               </div>
 
               {/* Visual Top Graphic / Uploaded Image */}
-              <div className="why-card-img-wrap relative w-full flex-1 min-h-0 min-w-0 overflow-hidden bg-white flex items-center justify-center">
+              <div className="relative w-full flex-1 min-h-0 min-w-0 overflow-hidden bg-white flex items-center justify-center">
                 <img src={timeEfficiencyImg} alt="Time Efficiency" className="w-full h-full object-cover max-w-full max-h-full block transform group-hover:scale-105 transition-transform duration-500" />
               </div>
               
               {/* Bottom Text Content */}
-              <div className="why-card-bottom shrink-0 w-full py-2 sm:py-2.5 lg:py-1.5 xl:py-2 px-3.5 lg:px-2.5 xl:px-3 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
+              <div className="shrink-0 w-full py-2.5 sm:py-3 px-3.5 sm:px-4 bg-[#1B365D] text-white border-t border-[#13294B] space-y-1 relative z-10">
                 <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                <h3 className="text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Time Efficiency</h3>
-                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-[10px] xl:text-xs 2xl:text-sm leading-snug">Optimize your schedule. Minimal check-in time and direct care access upon arrival.</p>
+                <h3 className="text-xs sm:text-sm lg:text-sm xl:text-base 2xl:text-lg font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Time Efficiency</h3>
+                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-xs xl:text-sm 2xl:text-base leading-snug">Optimize your schedule. Minimal check-in time and direct care access upon arrival.</p>
               </div>
             </motion.div>
 
-            {/* Card 4: Total Flexibility (Slides in from extreme right AFTER cards 2 & 3) */}
+            {/* Card 4: Total Flexibility */}
             <motion.div 
-              initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, x: 180 }}
-              whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={
-                isMobile 
-                  ? { duration: 0.5, delay: 0.55, ease: "easeOut" }
-                  : { duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }
-              }
-              className="why-card bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[14.5rem] sm:h-[15.5rem] md:h-[16rem] lg:h-full xl:h-[15rem] 2xl:h-[19rem]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0 }}
+              transition={{ duration: 0.65, delay: 2.35, ease: "easeInOut" }}
+              className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
@@ -1263,15 +1235,15 @@ export default function Home() {
               </div>
 
               {/* Visual Top Graphic / Uploaded Image */}
-              <div className="why-card-img-wrap relative w-full flex-1 min-h-0 min-w-0 overflow-hidden bg-white flex items-center justify-center">
+              <div className="relative w-full flex-1 min-h-0 min-w-0 overflow-hidden bg-white flex items-center justify-center">
                 <img src={totalFlexibilityImg} alt="Total Flexibility" className="w-full h-full object-cover max-w-full max-h-full block transform group-hover:scale-105 transition-transform duration-500" />
               </div>
               
               {/* Bottom Text Content */}
-              <div className="why-card-bottom shrink-0 w-full py-2 sm:py-2.5 lg:py-1.5 xl:py-2 px-3.5 lg:px-2.5 xl:px-3 bg-[#1B365D] text-white border-t border-[#13294B] space-y-0.5 relative z-10">
+              <div className="shrink-0 w-full py-2.5 sm:py-3 px-3.5 sm:px-4 bg-[#1B365D] text-white border-t border-[#13294B] space-y-1 relative z-10">
                 <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                <h3 className="text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Total Flexibility</h3>
-                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-[10px] xl:text-xs 2xl:text-sm leading-snug">Easily modify or cancel your booking with full control over upcoming visits.</p>
+                <h3 className="text-xs sm:text-sm lg:text-sm xl:text-base 2xl:text-lg font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Total Flexibility</h3>
+                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-xs xl:text-sm 2xl:text-base leading-snug">Easily modify or cancel your booking with full control over upcoming visits.</p>
               </div>
             </motion.div>
 
@@ -1296,7 +1268,7 @@ export default function Home() {
               {[...reviews, ...reviews, ...reviews, ...reviews].map((review, idx) => (
                 <div 
                   key={idx}
-                  className="review-card-item interactive-lift w-[280px] min-[360px]:w-[320px] sm:w-[380px] md:w-[430px] lg:w-[410px] xl:w-[440px] 2xl:w-[580px] 3xl:w-[660px] shrink-0 bg-gradient-to-br from-[#1B365D] to-[#122543] rounded-2xl sm:rounded-3xl border border-sky-400/25 hover:border-[#38BDF8] p-4 min-[360px]:p-5 sm:p-5 lg:p-4 2xl:p-6 text-white shadow-[0_12px_35px_-5px_rgba(2,132,199,0.3)] flex flex-col justify-between min-h-[190px] sm:min-h-[210px] group transition-all duration-300"
+                  className="review-card-item interactive-lift w-[280px] min-[360px]:w-[320px] sm:w-[380px] md:w-[430px] lg:w-[340px] xl:w-[370px] 2xl:w-[580px] 3xl:w-[660px] shrink-0 bg-gradient-to-br from-[#1B365D] to-[#122543] rounded-2xl sm:rounded-3xl border border-sky-400/25 hover:border-[#38BDF8] p-4 min-[360px]:p-5 sm:p-5 lg:p-4 2xl:p-6 text-white shadow-[0_12px_35px_-5px_rgba(2,132,199,0.3)] flex flex-col justify-between min-h-[190px] sm:min-h-[210px] group transition-all duration-300"
                 >
                   {/* Top Row: Avatar, Identity & Rating Badge */}
                   <div className="flex items-center justify-between gap-3 shrink-0">
@@ -1363,7 +1335,7 @@ export default function Home() {
               {[...reviewsRow2, ...reviewsRow2, ...reviewsRow2, ...reviewsRow2].map((review, idx) => (
                 <div 
                   key={idx}
-                  className="review-card-item interactive-lift w-[280px] min-[360px]:w-[320px] sm:w-[380px] md:w-[430px] lg:w-[410px] xl:w-[440px] 2xl:w-[580px] 3xl:w-[660px] shrink-0 bg-gradient-to-br from-[#1B365D] to-[#122543] rounded-2xl sm:rounded-3xl border border-sky-400/25 hover:border-[#38BDF8] p-4 min-[360px]:p-5 sm:p-5 lg:p-4 2xl:p-6 text-white shadow-[0_12px_35px_-5px_rgba(2,132,199,0.3)] flex flex-col justify-between min-h-[190px] sm:min-h-[210px] group transition-all duration-300"
+                  className="review-card-item interactive-lift w-[280px] min-[360px]:w-[320px] sm:w-[380px] md:w-[430px] lg:w-[340px] xl:w-[370px] 2xl:w-[580px] 3xl:w-[660px] shrink-0 bg-gradient-to-br from-[#1B365D] to-[#122543] rounded-2xl sm:rounded-3xl border border-sky-400/25 hover:border-[#38BDF8] p-4 min-[360px]:p-5 sm:p-5 lg:p-4 2xl:p-6 text-white shadow-[0_12px_35px_-5px_rgba(2,132,199,0.3)] flex flex-col justify-between min-h-[190px] sm:min-h-[210px] group transition-all duration-300"
                 >
                   {/* Top Row: Avatar, Identity & Rating Badge */}
                   <div className="flex items-center justify-between gap-3 shrink-0">

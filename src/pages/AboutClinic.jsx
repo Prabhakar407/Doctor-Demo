@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import clinicFacilityImg from '../Images/clinic-facility.jpg';
 
 export default function AboutClinic() {
   const handleVirtualTour = () => {
@@ -9,95 +10,152 @@ export default function AboutClinic() {
 
   return (
     <div className="w-full flex-grow flex flex-col p-0 m-0">
-      {/* LEADING CARE FACILITY HERO SECTION (Screen Height Blue Background) */}
-      <section className="w-full min-h-[calc(100vh-73px)] lg:h-[calc(100vh-73px)] bg-gradient-to-br from-[#1B365D] via-[#13294B] to-[#0B1A30] text-white pt-3 sm:pt-4 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-14 2xl:px-20 flex flex-col justify-center border-b border-white/10 relative overflow-hidden">
-        <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto space-y-4 sm:space-y-6 2xl:space-y-10 relative z-10">
+      {/* LEADING CARE FACILITY HERO SECTION (Screen Height Blue Background with Seamless Left Image) */}
+      <section className="w-full min-h-[calc(100vh-73px)] lg:h-[calc(100vh-73px)] lg:min-h-0 lg:max-h-[calc(100vh-73px)] xl:h-[calc(100vh-73px)] xl:min-h-0 xl:max-h-[calc(100vh-73px)] 2xl:min-h-[calc(100vh-73px)] 2xl:h-auto 2xl:max-h-none bg-gradient-to-br from-[#1B365D] via-[#13294B] to-[#0B1A30] text-white py-6 sm:py-8 lg:py-3.5 xl:py-5 2xl:pt-6 2xl:pb-16 px-4 sm:px-8 lg:px-12 xl:px-14 2xl:px-20 flex flex-col justify-center 2xl:justify-start border-b border-white/10 relative overflow-hidden">
+        <div className="max-w-7xl 2xl:max-w-[100rem] w-full mx-auto space-y-4 sm:space-y-6 lg:space-y-2.5 xl:space-y-4 2xl:space-y-8 relative z-10 my-auto 2xl:my-0 2xl:mt-2">
           
-          {/* Section Header (Closer to Navbar) */}
+          {/* Section Header */}
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="text-center space-y-1.5"
+            className="text-center space-y-1 sm:space-y-1.5 2xl:pt-1 2xl:pb-2"
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-serif font-extrabold text-white tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-2xl xl:text-3xl 2xl:text-6xl font-serif font-extrabold text-white tracking-tight">
               Leading Care <span className="italic text-[#38BDF8]">Facility</span>
             </h1>
             <div className="w-16 h-1 bg-gradient-to-r from-[#0284C7] to-[#38BDF8] rounded-full mx-auto"></div>
           </motion.div>
 
-          {/* Facility Image + Overview & Awards */}
-          <div className="grid md:grid-cols-12 gap-6 lg:gap-10 2xl:gap-16 items-center">
+          {/* Facility Image on Left (No border, Faded on right) + Details and Certified Credentials on Right */}
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-6 xl:gap-10 2xl:gap-14 items-center">
             
-            {/* Left Image Placeholder Box (Increased Size Equal Width & Height Square) */}
+            {/* Left: Clinic Image with right-edge fade mask, no border, looks like part of background */}
             <motion.div 
-              initial={{ opacity: 0, x: -60, scale: 0.95 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="md:col-span-6 flex justify-center"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: "easeInOut" }}
+              className="lg:col-span-6 flex justify-center items-center w-full"
             >
-              <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-[22rem] lg:h-[22rem] 2xl:w-[28rem] 2xl:h-[28rem] aspect-square bg-white border border-white/30 rounded-3xl flex items-center justify-center text-[#1B365D] shadow-[0_20px_50px_-10px_rgba(2,132,199,0.5)] relative overflow-hidden group">
-                <i className="fa-solid fa-hospital text-8xl sm:text-9xl text-[#0284C7]/80 group-hover:scale-105 transition-transform duration-300"></i>
-                <div className="absolute bottom-4 bg-[#1B365D] text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold shadow-md border border-white/20 whitespace-nowrap">
-                  <i className="fa-solid fa-shield-halved text-[#38BDF8] mr-1.5"></i> Certified ISO 9001 Facility
+              <div className="relative w-full h-[280px] sm:h-[360px] lg:h-[350px] xl:h-[410px] 2xl:h-[480px] overflow-hidden flex items-center">
+                <img
+                  src={clinicFacilityImg}
+                  alt="Leading Care Clinic Facility"
+                  className="w-full h-full object-cover object-center"
+                  style={{
+                    WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1) 35%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,0.2) 85%, rgba(0,0,0,0) 100%)',
+                    maskImage: 'linear-gradient(to right, rgba(0,0,0,1) 35%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,0.2) 85%, rgba(0,0,0,0) 100%)'
+                  }}
+                />
+                {/* Gradient overlay on right edge to merge into dark blue background */}
+                <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#13294B] to-transparent pointer-events-none"></div>
+
+                {/* Floating Micro Badge on image */}
+                <div className="absolute bottom-4 left-4 bg-[#1B365D]/85 backdrop-blur-md text-white px-3.5 py-1.5 rounded-xl border border-white/20 text-xs shadow-lg flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span className="font-semibold">State-of-the-Art Clinical Suites</span>
                 </div>
               </div>
             </motion.div>
 
-            {/* Right Content */}
+            {/* Right: Facility Details & Certified with Details */}
             <motion.div 
-              initial={{ opacity: 0, x: 60 }}
+              initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="md:col-span-6 space-y-5 text-white"
+              transition={{ duration: 0.8, delay: 0.25, ease: "easeInOut" }}
+              className="lg:col-span-6 space-y-3 sm:space-y-4 lg:space-y-2 xl:space-y-3.5 2xl:space-y-5 text-white"
             >
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-                Advanced treatments to modern medical care, standard of professional clinical treatments and procedures.
-              </p>
-
-              {/* 3 Official Awards Badges */}
-              <div className="grid grid-cols-3 gap-3 pt-1 text-center text-xs">
-                
-                {/* Award 1 */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 25 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.35, ease: "easeOut" }}
-                  className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white text-[#0F172A] border border-slate-100 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300"
-                >
-                  <i className="fa-solid fa-award text-2xl text-[#0284C7] mb-1"></i>
-                  <span className="text-[8px] uppercase tracking-wider text-[#64748B] font-bold">OFFICIAL</span>
-                  <span className="font-extrabold text-[9px] uppercase leading-tight text-[#0F172A]">PREMIUM CARE</span>
-                  <span className="text-[7px] text-[#64748B] uppercase">ACCREDITATION</span>
-                </motion.div>
-
-                {/* Award 2 */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 25 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.45, ease: "easeOut" }}
-                  className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white text-[#0F172A] border border-slate-100 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300"
-                >
-                  <i className="fa-solid fa-medal text-2xl text-[#0284C7] mb-1"></i>
-                  <span className="text-[8px] uppercase tracking-wider text-[#64748B] font-bold">TOP RATED</span>
-                  <span className="font-extrabold text-[9px] uppercase leading-tight text-[#0F172A]">TREATMENTS</span>
-                  <span className="text-[7px] text-[#64748B] uppercase">EXCELLENCE</span>
-                </motion.div>
-
-                {/* Award 3 */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 25 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.55, ease: "easeOut" }}
-                  className="flex flex-col items-center justify-center p-3 rounded-2xl bg-white text-[#0F172A] border border-slate-100 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300"
-                >
-                  <i className="fa-solid fa-certificate text-2xl text-[#0284C7] mb-1"></i>
-                  <span className="text-[8px] uppercase tracking-wider text-[#64748B] font-bold">VERIFIED</span>
-                  <span className="font-extrabold text-[9px] uppercase leading-tight text-[#0F172A]">PROCEDURES</span>
-                  <span className="text-[7px] text-[#64748B] uppercase">SAFETY FIRST</span>
-                </motion.div>
-
+              <div className="space-y-0.5 sm:space-y-1">
+                <span className="inline-flex items-center gap-1.5 text-xs 2xl:text-sm font-bold text-[#38BDF8] uppercase tracking-wider">
+                  <i className="fa-solid fa-hospital"></i> Multi-Specialty Infrastructure
+                </span>
+                <h2 className="text-xl sm:text-2xl lg:text-xl xl:text-2xl 2xl:text-4xl font-serif font-bold text-white tracking-tight leading-tight">
+                  Modern Clinical Environment with <span className="text-[#38BDF8] italic">Uncompromised Safety</span>
+                </h2>
+                <p className="text-slate-200 text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base leading-relaxed pt-0.5 lg:pt-0">
+                  Our facility is purpose-built to deliver patient-centered healthcare, combining cutting-edge diagnostic technology with sterile procedural suites, 4D sonography labs, and rapid recovery bays designed for maximum comfort and clinical precision.
+                </p>
               </div>
+
+              {/* Key Facility Details */}
+              <div className="grid grid-cols-2 gap-2 sm:gap-2.5 lg:gap-2 xl:gap-2.5 pt-0.5 text-xs lg:text-[11px] xl:text-xs 2xl:text-sm text-slate-100">
+                <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-1 lg:py-1.5 border border-white/10">
+                  <i className="fa-solid fa-shield-virus text-[#38BDF8] shrink-0 text-sm"></i>
+                  <span className="font-medium truncate">HEPA Air Filtration & Cleanrooms</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-1 lg:py-1.5 border border-white/10">
+                  <i className="fa-solid fa-microscope text-[#38BDF8] shrink-0 text-sm"></i>
+                  <span className="font-medium truncate">Advanced 4D Ultrasound Labs</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-1 lg:py-1.5 border border-white/10">
+                  <i className="fa-solid fa-laptop-medical text-[#38BDF8] shrink-0 text-sm"></i>
+                  <span className="font-medium truncate">Digital Prescriptions & E-Records</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-1 lg:py-1.5 border border-white/10">
+                  <i className="fa-solid fa-heart-pulse text-[#38BDF8] shrink-0 text-sm"></i>
+                  <span className="font-medium truncate">24/7 Observation & Rapid Care</span>
+                </div>
+              </div>
+
+              {/* Certified Accreditation Breakdown with Details */}
+              <div className="space-y-1.5 lg:space-y-1 xl:space-y-2 pt-0.5">
+                <span className="text-[11px] 2xl:text-xs font-bold uppercase tracking-wider text-[#38BDF8] block">
+                  Official Certifications &amp; Accreditations
+                </span>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 lg:gap-2 xl:gap-2.5">
+                  {/* Certification 1: NABH */}
+                  <div className="bg-white/10 backdrop-blur-md rounded-xl p-2.5 lg:p-2 xl:p-2.5 2xl:p-3 border border-white/15 hover:border-[#38BDF8] transition-all duration-300">
+                    <div className="flex items-center gap-2 mb-0.5 sm:mb-1">
+                      <span className="w-6 h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 rounded-lg bg-[#0284C7]/30 border border-[#38BDF8]/40 flex items-center justify-center text-[#38BDF8] shrink-0 text-xs">
+                        <i className="fa-solid fa-award"></i>
+                      </span>
+                      <div>
+                        <h4 className="font-serif font-bold text-xs lg:text-[11px] xl:text-xs sm:text-sm text-white leading-tight">NABH Accredited</h4>
+                        <span className="text-[10px] text-slate-300">Hospital Board Standards</span>
+                      </div>
+                    </div>
+                    <p className="text-[11px] lg:text-[10px] xl:text-[11px] sm:text-xs text-slate-200 leading-snug">
+                      Excellence in patient safety, clinical protocol compliance, and continuous infection control monitoring.
+                    </p>
+                  </div>
+
+                  {/* Certification 2: ISO 9001:2015 */}
+                  <div className="bg-white/10 backdrop-blur-md rounded-xl p-2.5 lg:p-2 xl:p-2.5 2xl:p-3 border border-white/15 hover:border-[#38BDF8] transition-all duration-300">
+                    <div className="flex items-center gap-2 mb-0.5 sm:mb-1">
+                      <span className="w-6 h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 rounded-lg bg-[#0284C7]/30 border border-[#38BDF8]/40 flex items-center justify-center text-[#38BDF8] shrink-0 text-xs">
+                        <i className="fa-solid fa-certificate"></i>
+                      </span>
+                      <div>
+                        <h4 className="font-serif font-bold text-xs lg:text-[11px] xl:text-xs sm:text-sm text-white leading-tight">ISO 9001:2015</h4>
+                        <span className="text-[10px] text-slate-300">Certified Quality Management</span>
+                      </div>
+                    </div>
+                    <p className="text-[11px] lg:text-[10px] xl:text-[11px] sm:text-xs text-slate-200 leading-snug">
+                      Internationally audited healthcare workflows, medical data security, and sterilization protocols.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-2.5 lg:gap-2 xl:gap-3 pt-1 lg:pt-0.5 xl:pt-1.5">
+                <Link 
+                  to="/booking" 
+                  className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2 px-5 lg:py-1.5 lg:px-4 xl:py-2 xl:px-5 2xl:py-2.5 2xl:px-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 text-xs sm:text-sm border border-transparent hover:border-slate-300 inline-flex items-center gap-2 cursor-pointer"
+                >
+                  <i className="fa-solid fa-calendar-check"></i>
+                  <span>Book Consultation</span>
+                </Link>
+                <button 
+                  onClick={handleVirtualTour} 
+                  className="bg-white/10 hover:bg-white/20 text-white font-serif font-semibold py-2 px-4 lg:py-1.5 lg:px-3.5 xl:py-2 xl:px-4 2xl:py-2.5 2xl:px-5 rounded-xl border border-white/25 hover:border-[#38BDF8] shadow-sm hover:scale-105 active:scale-95 transition-all duration-200 text-xs sm:text-sm inline-flex items-center gap-2 cursor-pointer"
+                >
+                  <i className="fa-solid fa-vr-cardboard text-[#38BDF8]"></i>
+                  <span>Virtual Tour</span>
+                </button>
+              </div>
+
             </motion.div>
 
           </div>
@@ -115,7 +173,7 @@ export default function AboutClinic() {
             <motion.div 
               initial={{ opacity: 0, x: -50, scale: 0.95 }}
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="md:col-span-6 flex justify-center"
             >
@@ -136,7 +194,7 @@ export default function AboutClinic() {
             <motion.div 
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="md:col-span-6 space-y-4"
             >

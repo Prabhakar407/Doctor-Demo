@@ -321,11 +321,9 @@
   }
 
   .contact-section-2k {
-    height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
     min-height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
-    max-height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+    padding-top: clamp(0.75rem, 1.5vh, 2rem) !important;
+    padding-bottom: clamp(0.75rem, 1.5vh, 2rem) !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
@@ -386,65 +384,6 @@
     padding: clamp(0.5rem, 1.5vh, 1.25rem) clamp(1rem, 2vw, 2rem) !important;
   }
 
-  .why-book-online-laptop {
-    height: 62vh !important;
-    min-height: 62vh !important;
-    max-height: 62vh !important;
-    padding-top: 0.5rem !important;
-    padding-bottom: clamp(0.5rem, 1.2vh, 0.85rem) !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    box-sizing: border-box !important;
-  }
-
-  .why-book-online-laptop .why-container {
-    height: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-  }
-
-  .why-book-online-laptop .why-header {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: clamp(0.25rem, 0.8vh, 0.5rem) !important;
-  }
-
-  .why-book-online-laptop .why-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: clamp(0.5rem, 1vw, 1rem) !important;
-    align-items: stretch !important;
-    flex: 1 1 auto !important;
-    min-height: 0 !important;
-  }
-
-  .why-book-online-laptop .why-card {
-    height: 100% !important;
-    min-height: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-  }
-
-  .why-book-online-laptop .why-card-img-wrap {
-    flex: 1 1 auto !important;
-    min-height: 0 !important;
-    overflow: hidden !important;
-  }
-
-  .why-book-online-laptop .why-card-img-wrap img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-  }
-
-  .why-book-online-laptop .why-card-bottom {
-    padding: clamp(0.35rem, 0.8vh, 0.6rem) clamp(0.5rem, 0.8vw, 0.75rem) !important;
-    flex-shrink: 0 !important;
-  }
-
   /* Patient Reviews 100vh Viewport on Laptop */
   .patient-reviews-section {
     height: 100vh !important;
@@ -464,6 +403,8 @@
   }
 
   .patient-reviews-section .review-card-item {
+    width: clamp(330px, 24vw, 370px) !important;
+    min-width: clamp(330px, 24vw, 370px) !important;
     height: clamp(12rem, 23.5vh, 14.5rem) !important;
     min-height: 0 !important;
     padding: clamp(0.75rem, 1.4vh, 1.15rem) !important;
