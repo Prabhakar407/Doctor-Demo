@@ -164,22 +164,22 @@ export default function Contact() {
                 </div>
 
                 {/* Buttons: WhatsApp & Book Appointment */}
-                <div className="grid grid-cols-2 gap-2.5 pt-1">
+                <div className="grid grid-cols-2 gap-2 sm:gap-2.5 pt-1">
                   <a 
                     href="https://wa.me/" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold py-2.5 2xl:py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300"
+                    className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold py-2 sm:py-2.5 2xl:py-2 px-1.5 sm:px-3 rounded-lg flex items-center justify-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 whitespace-nowrap"
                   >
                     <i className="fa-brands fa-whatsapp text-base"></i>
                     <span>WhatsApp Us</span>
                   </a>
                   <Link 
                     to="/booking" 
-                    className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2.5 2xl:py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 text-center"
+                    className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2 sm:py-2.5 2xl:py-2 px-1.5 sm:px-3 rounded-lg flex items-center justify-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 text-center whitespace-nowrap"
                   >
                     <i className="fa-solid fa-calendar-check text-xs"></i>
-                    <span>Book Appointment</span>
+                    <span className="whitespace-nowrap">Book Appointment</span>
                   </Link>
                 </div>
 
@@ -192,15 +192,15 @@ export default function Contact() {
       </section>
 
       {/* SECTION 2: VIDEO OVERVIEW & ACCESS (Full Width with Matching Blue & White Gradient) */}
-      <section className="w-full bg-gradient-to-b from-[#E0F2FE] via-[#F8FAFC] to-white py-12 sm:py-16 contact-section-2k px-4 sm:px-8 lg:px-12 border-b border-slate-200 flex flex-col justify-center overflow-hidden">
-        <div className="max-w-6xl mx-auto space-y-8 2xl:space-y-4 w-full">
+      <section className="w-full bg-gradient-to-b from-[#E0F2FE] via-[#F8FAFC] to-white py-12 sm:py-16 contact-tour-section-2k px-4 sm:px-8 lg:px-12 border-b border-slate-200 flex flex-col justify-center 2xl:justify-start 2xl:pt-4 overflow-hidden">
+        <div className="max-w-6xl mx-auto space-y-8 2xl:space-y-4 w-full 2xl:my-0 2xl:mt-1">
           
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-center space-y-2 2xl:space-y-1"
+            className="text-center space-y-2 2xl:space-y-1 2xl:pt-0 2xl:-mt-1"
           >
             <h2 className="text-3xl sm:text-4xl 2xl:text-2xl font-serif font-bold text-[#0F172A] tracking-tight">
               Clinic Access &amp; Tour Guides

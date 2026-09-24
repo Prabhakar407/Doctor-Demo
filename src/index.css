@@ -297,27 +297,29 @@
 /* 3.7 Doctor Pages 2K and Greater Layout (Exactly 1/2 height each for Hero and Testimonial) */
 @media (min-width: 1536px) {
   .doctor-profile-hero-2k {
-    height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
-    min-height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
-    max-height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
+    height: calc((100vh - var(--nav-height, 72px)) * 0.48) !important;
+    min-height: calc((100vh - var(--nav-height, 72px)) * 0.48) !important;
+    max-height: calc((100vh - var(--nav-height, 72px)) * 0.48) !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
   .doctor-testimonials-2k {
-    height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
-    min-height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
-    max-height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
+    height: calc((100vh - var(--nav-height, 72px)) * 0.52) !important;
+    min-height: calc((100vh - var(--nav-height, 72px)) * 0.52) !important;
+    max-height: calc((100vh - var(--nav-height, 72px)) * 0.52) !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
   .contact-section-2k {
@@ -327,6 +329,16 @@
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .contact-tour-section-2k {
+    min-height: calc((100vh - var(--nav-height, 72px)) / 2) !important;
+    padding-top: clamp(0.75rem, 1.5vh, 1.25rem) !important;
+    padding-bottom: clamp(0.75rem, 1.5vh, 2rem) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
     box-sizing: border-box !important;
   }
 
@@ -408,6 +420,20 @@
     height: clamp(12rem, 23.5vh, 14.5rem) !important;
     min-height: 0 !important;
     padding: clamp(0.75rem, 1.4vh, 1.15rem) !important;
+  }
+
+  /* Doctor Testimonials 100vh Viewport on Laptop */
+  .doctor-testimonials-laptop {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+    padding-top: clamp(0.75rem, 1.8vh, 1.25rem) !important;
+    padding-bottom: clamp(1rem, 2.2vh, 1.75rem) !important;
+    overflow: hidden !important;
   }
 }
 

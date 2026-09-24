@@ -27,28 +27,22 @@ export default function AboutClinic() {
             <div className="w-16 h-1 bg-gradient-to-r from-[#0284C7] to-[#38BDF8] rounded-full mx-auto"></div>
           </motion.div>
 
-          {/* Facility Image on Left (No border, Faded on right) + Details and Certified Credentials on Right */}
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-6 xl:gap-10 2xl:gap-14 items-center">
+          {/* Facility Image on Left + Details and Certified Credentials on Right */}
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-6 xl:gap-10 2xl:gap-14 items-center 2xl:mt-10">
             
-            {/* Left: Clinic Image with right-edge fade mask, no border, looks like part of background */}
+            {/* Left: Clinic Image with clean rounded corners and no fading */}
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: "easeInOut" }}
               className="lg:col-span-6 flex justify-center items-center w-full"
             >
-              <div className="relative w-full h-[280px] sm:h-[360px] lg:h-[350px] xl:h-[410px] 2xl:h-[480px] overflow-hidden flex items-center">
+              <div className="relative w-full h-[280px] sm:h-[360px] lg:h-[350px] xl:h-[410px] 2xl:h-[480px] rounded-2xl overflow-hidden flex items-center shadow-lg border border-white/10">
                 <img
                   src={clinicFacilityImg}
                   alt="Leading Care Clinic Facility"
-                  className="w-full h-full object-cover object-center"
-                  style={{
-                    WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1) 35%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,0.2) 85%, rgba(0,0,0,0) 100%)',
-                    maskImage: 'linear-gradient(to right, rgba(0,0,0,1) 35%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,0.2) 85%, rgba(0,0,0,0) 100%)'
-                  }}
+                  className="w-full h-full object-cover object-center rounded-2xl"
                 />
-                {/* Gradient overlay on right edge to merge into dark blue background */}
-                <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#13294B] to-transparent pointer-events-none"></div>
 
                 {/* Floating Micro Badge on image */}
                 <div className="absolute bottom-4 left-4 bg-[#1B365D]/85 backdrop-blur-md text-white px-3.5 py-1.5 rounded-xl border border-white/20 text-xs shadow-lg flex items-center gap-2">
@@ -167,6 +161,16 @@ export default function AboutClinic() {
       <section className="w-full bg-white py-12 sm:py-16 2xl:py-24 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200">
         <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto space-y-8 2xl:space-y-12">
           
+          {/* Mobile Header: Visible only on small screens (< md), placed above video */}
+          <div className="md:hidden text-center space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#0F172A]">
+              Experience Quality Care
+            </h2>
+            <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed max-w-md mx-auto">
+              Take a digital walk-through of our consultation suites, lab diagnostics, patient recovery rooms, and wellness zones before booking your visit.
+            </p>
+          </div>
+
           <div className="grid md:grid-cols-12 gap-8 lg:gap-12 2xl:gap-16 items-center">
             
             {/* Left Video Placeholder Box with Play Icon (Equal Width & Height Square) */}
@@ -178,7 +182,7 @@ export default function AboutClinic() {
               className="md:col-span-6 flex justify-center"
             >
               <div 
-                onClick={handleVirtualTour}
+                onClick={handleVirtualTour} 
                 className="w-60 h-60 sm:w-72 sm:h-72 2xl:w-96 2xl:h-96 aspect-square bg-[#F8FAFC] border border-slate-200 hover:border-[#0284C7] rounded-3xl flex flex-col items-center justify-center shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 relative group cursor-pointer transition-all duration-300 overflow-hidden"
               >
                 <div className="w-16 h-14 rounded-2xl bg-[#0284C7] flex items-center justify-center text-white text-2xl shadow-md group-hover:scale-110 transition-transform duration-300">
@@ -190,13 +194,29 @@ export default function AboutClinic() {
               </div>
             </motion.div>
 
-            {/* Right Action Buttons & Overview */}
+            {/* Mobile Buttons: Visible only on small screens (< md), placed below video with reduced equal width */}
+            <div className="md:hidden flex flex-col items-center gap-3 w-full">
+              <Link 
+                to="/booking" 
+                className="w-60 max-w-full bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-3 px-6 rounded-xl shadow-[0_8px_20px_-4px_rgba(2,132,199,0.4)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.5)] text-center transition text-xs sm:text-sm border border-transparent hover:border-slate-300"
+              >
+                <i className="fa-solid fa-calendar-check mr-2"></i> Book Consultation
+              </Link>
+              <button 
+                onClick={handleVirtualTour} 
+                className="w-60 max-w-full border-2 border-[#0284C7] bg-white hover:bg-slate-50 text-[#0284C7] font-serif font-bold py-2.5 px-6 rounded-xl shadow-xs text-center transition text-xs sm:text-sm cursor-pointer"
+              >
+                <i className="fa-solid fa-vr-cardboard mr-2"></i> Take a Virtual Tour
+              </button>
+            </div>
+
+            {/* Desktop Action Buttons & Overview (Visible on md+ screens) */}
             <motion.div 
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="md:col-span-6 space-y-4"
+              className="hidden md:block md:col-span-6 space-y-4"
             >
               <div className="space-y-1.5">
                 <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#0F172A]">

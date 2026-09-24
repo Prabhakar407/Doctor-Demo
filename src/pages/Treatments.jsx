@@ -92,25 +92,25 @@ export default function Treatments() {
   return (
     <div className="w-full flex-grow flex flex-col p-0 m-0">
       {/* SECTION 1: HEALTHCARE SOLUTIONS (Hidden on Mobile, Visible on iPad/Tablet and Greater) */}
-      <section className="hidden md:block w-full bg-[#F8FAFC] pt-6 sm:pt-8 pb-12 sm:pb-16 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200">
-        <div className="max-w-7xl 2xl:max-w-[100rem] mx-auto space-y-8 2xl:space-y-12">
+      <section className="hidden md:block w-full min-h-[calc(100vh-73px)] lg:h-[calc(100vh-73px)] lg:min-h-0 lg:max-h-[calc(100vh-73px)] xl:h-[calc(100vh-73px)] xl:min-h-0 xl:max-h-[calc(100vh-73px)] 2xl:min-h-0 2xl:h-auto 2xl:max-h-none bg-[#F8FAFC] py-6 sm:py-8 lg:py-3 xl:py-4 2xl:pt-8 2xl:pb-16 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200 flex flex-col justify-center">
+        <div className="max-w-7xl 2xl:max-w-[100rem] mx-auto space-y-6 sm:space-y-8 lg:space-y-3.5 xl:space-y-4.5 2xl:space-y-12 my-auto 2xl:my-0">
           
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-center space-y-2"
+            className="text-center space-y-1.5 lg:space-y-1 xl:space-y-1.5 2xl:space-y-2"
           >
-            <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#0F172A] tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-serif font-bold text-[#0F172A] tracking-tight">
               Healthcare <span className="italic text-[#0284C7]">Solutions</span>
             </h1>
-            <p className="text-black text-xs sm:text-sm md:text-base font-normal leading-relaxed max-w-xl mx-auto">
+            <p className="text-black text-xs sm:text-sm md:text-base lg:text-xs xl:text-sm 2xl:text-base font-normal leading-relaxed lg:leading-normal xl:leading-relaxed max-w-xl mx-auto">
               Essential clinical categories and preventive care designed for your well-being. Click any service below to view its clinical procedure details.
             </p>
             <div className="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-4 xl:gap-5 2xl:gap-6">
             
             {/* 1: Obstetrician - Gynaecologist */}
             <motion.div 
@@ -121,11 +121,11 @@ export default function Treatments() {
               className={`bg-white rounded-3xl border ${
                 selectedService === 'gynecology' 
                   ? 'border-[#0284C7] ring-2 ring-[#0284C7] shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] -translate-y-1' 
-                  : 'border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
-              } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer`}
+                  : 'border-slate-300 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
+              } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer lg:min-h-[345px] xl:min-h-[385px] 2xl:min-h-0`}
             >
-              <div className="p-3 pb-0">
-                <div className="w-full h-44 sm:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
+              <div className="p-3 pb-0 lg:p-2.5 lg:pb-0 xl:p-3 xl:pb-0 2xl:p-3 2xl:pb-0">
+                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
                     src={healthcareGynecologyImg} 
                     alt="Obstetrician - Gynaecologist" 
@@ -133,16 +133,16 @@ export default function Treatments() {
                   />
                 </div>
               </div>
-              <div className="p-4 pt-3 flex flex-col items-center space-y-1.5 text-center flex-1 justify-between">
-                <div className="space-y-1">
-                  <h3 className="font-bold text-[#0F172A] text-base sm:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
+              <div className="p-4 pt-3 lg:p-3.5 lg:pt-2.5 xl:p-4 xl:pt-3 2xl:p-4 2xl:pt-3 flex flex-col items-center space-y-1.5 lg:space-y-1 xl:space-y-1.5 2xl:space-y-1.5 text-center flex-1 justify-between">
+                <div className="space-y-1 lg:space-y-1 xl:space-y-1">
+                  <h3 className="font-bold text-[#0F172A] text-base sm:text-lg lg:text-base xl:text-lg 2xl:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
                     Obstetrician - Gynaecologist
                   </h3>
-                  <p className="text-black text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+                  <p className="text-black text-xs sm:text-sm md:text-base lg:text-xs xl:text-sm 2xl:text-base font-normal leading-snug xl:leading-relaxed">
                     Comprehensive women's healthcare, pelvic wellness, and clinical gynaecological diagnostics.
                   </p>
                 </div>
-                <span className="text-xs font-semibold text-[#0284C7] inline-flex items-center gap-1 group-hover:underline pt-1">
+                <span className="text-xs lg:text-xs xl:text-xs 2xl:text-xs font-semibold text-[#0284C7] inline-flex items-center gap-1 group-hover:underline pt-1">
                   View procedure <i className="fa-solid fa-arrow-down text-[10px]"></i>
                 </span>
               </div>
@@ -157,11 +157,11 @@ export default function Treatments() {
               className={`bg-white rounded-3xl border ${
                 selectedService === 'ultrasound' 
                   ? 'border-[#0284C7] ring-2 ring-[#0284C7] shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] -translate-y-1' 
-                  : 'border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
-              } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer`}
+                  : 'border-slate-300 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
+              } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer lg:min-h-[345px] xl:min-h-[385px] 2xl:min-h-0`}
             >
-              <div className="p-3 pb-0">
-                <div className="w-full h-44 sm:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
+              <div className="p-3 pb-0 lg:p-2.5 lg:pb-0 xl:p-3 xl:pb-0 2xl:p-3 2xl:pb-0">
+                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
                     src={healthcareUltrasoundImg} 
                     alt="Ultrasound Diagnostics" 
@@ -169,16 +169,16 @@ export default function Treatments() {
                   />
                 </div>
               </div>
-              <div className="p-4 pt-3 flex flex-col items-center space-y-1.5 text-center flex-1 justify-between">
-                <div className="space-y-1">
-                  <h3 className="font-bold text-[#0F172A] text-base sm:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
+              <div className="p-4 pt-3 lg:p-3.5 lg:pt-2.5 xl:p-4 xl:pt-3 2xl:p-4 2xl:pt-3 flex flex-col items-center space-y-1.5 lg:space-y-1 xl:space-y-1.5 2xl:space-y-1.5 text-center flex-1 justify-between">
+                <div className="space-y-1 lg:space-y-1 xl:space-y-1">
+                  <h3 className="font-bold text-[#0F172A] text-base sm:text-lg lg:text-base xl:text-lg 2xl:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
                     Ultrasound
                   </h3>
-                  <p className="text-black text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+                  <p className="text-black text-xs sm:text-sm md:text-base lg:text-xs xl:text-sm 2xl:text-base font-normal leading-snug xl:leading-relaxed">
                     High-definition 3D/4D ultrasound imaging, pelvic sonography, and color Doppler scans.
                   </p>
                 </div>
-                <span className="text-xs font-semibold text-[#0284C7] inline-flex items-center gap-1 group-hover:underline pt-1">
+                <span className="text-xs lg:text-xs xl:text-xs 2xl:text-xs font-semibold text-[#0284C7] inline-flex items-center gap-1 group-hover:underline pt-1">
                   View procedure <i className="fa-solid fa-arrow-down text-[10px]"></i>
                 </span>
               </div>
@@ -193,11 +193,11 @@ export default function Treatments() {
               className={`bg-white rounded-3xl border ${
                 selectedService === 'pregnancy' 
                   ? 'border-[#0284C7] ring-2 ring-[#0284C7] shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] -translate-y-1' 
-                  : 'border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
-              } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer`}
+                  : 'border-slate-300 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
+              } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer lg:min-h-[345px] xl:min-h-[385px] 2xl:min-h-0`}
             >
-              <div className="p-3 pb-0">
-                <div className="w-full h-44 sm:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
+              <div className="p-3 pb-0 lg:p-2.5 lg:pb-0 xl:p-3 xl:pb-0 2xl:p-3 2xl:pb-0">
+                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
                     src={healthcarePregnancyImg} 
                     alt="Pregnancy Management" 
@@ -205,16 +205,16 @@ export default function Treatments() {
                   />
                 </div>
               </div>
-              <div className="p-4 pt-3 flex flex-col items-center space-y-1.5 text-center flex-1 justify-between">
-                <div className="space-y-1">
-                  <h3 className="font-bold text-[#0F172A] text-base sm:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
+              <div className="p-4 pt-3 lg:p-3.5 lg:pt-2.5 xl:p-4 xl:pt-3 2xl:p-4 2xl:pt-3 flex flex-col items-center space-y-1.5 lg:space-y-1 xl:space-y-1.5 2xl:space-y-1.5 text-center flex-1 justify-between">
+                <div className="space-y-1 lg:space-y-1 xl:space-y-1">
+                  <h3 className="font-bold text-[#0F172A] text-base sm:text-lg lg:text-base xl:text-lg 2xl:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
                     Pregnancy Management
                   </h3>
-                  <p className="text-black text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+                  <p className="text-black text-xs sm:text-sm md:text-base lg:text-xs xl:text-sm 2xl:text-base font-normal leading-snug xl:leading-relaxed">
                     Dedicated prenatal, antenatal, high-risk pregnancy monitoring, and maternal care.
                   </p>
                 </div>
-                <span className="text-xs font-semibold text-[#0284C7] inline-flex items-center gap-1 group-hover:underline pt-1">
+                <span className="text-xs lg:text-xs xl:text-xs 2xl:text-xs font-semibold text-[#0284C7] inline-flex items-center gap-1 group-hover:underline pt-1">
                   View procedure <i className="fa-solid fa-arrow-down text-[10px]"></i>
                 </span>
               </div>
@@ -229,11 +229,11 @@ export default function Treatments() {
               className={`bg-white rounded-3xl border ${
                 selectedService === 'physician' 
                   ? 'border-[#0284C7] ring-2 ring-[#0284C7] shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] -translate-y-1' 
-                  : 'border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
-              } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer`}
+                  : 'border-slate-300 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
+              } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer lg:min-h-[345px] xl:min-h-[385px] 2xl:min-h-0`}
             >
-              <div className="p-3 pb-0">
-                <div className="w-full h-44 sm:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
+              <div className="p-3 pb-0 lg:p-2.5 lg:pb-0 xl:p-3 xl:pb-0 2xl:p-3 2xl:pb-0">
+                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
                     src={physicianImg} 
                     alt="Physician & Diabetologist" 
@@ -241,16 +241,16 @@ export default function Treatments() {
                   />
                 </div>
               </div>
-              <div className="p-4 pt-3 flex flex-col items-center space-y-1.5 text-center flex-1 justify-between">
-                <div className="space-y-1">
-                  <h3 className="font-bold text-[#0F172A] text-base sm:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
+              <div className="p-4 pt-3 lg:p-3.5 lg:pt-2.5 xl:p-4 xl:pt-3 2xl:p-4 2xl:pt-3 flex flex-col items-center space-y-1.5 lg:space-y-1 xl:space-y-1.5 2xl:space-y-1.5 text-center flex-1 justify-between">
+                <div className="space-y-1 lg:space-y-1 xl:space-y-1">
+                  <h3 className="font-bold text-[#0F172A] text-base sm:text-lg lg:text-base xl:text-lg 2xl:text-lg font-serif leading-tight group-hover:text-[#0284C7] transition-colors">
                     Physician &amp; Diabetologist
                   </h3>
-                  <p className="text-black text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+                  <p className="text-black text-xs sm:text-sm md:text-base lg:text-xs xl:text-sm 2xl:text-base font-normal leading-snug xl:leading-relaxed">
                     Evidence-based internal medicine, diabetes control, and metabolic wellness therapies.
                   </p>
                 </div>
-                <span className="text-xs font-semibold text-[#0284C7] inline-flex items-center gap-1 group-hover:underline pt-1">
+                <span className="text-xs lg:text-xs xl:text-xs 2xl:text-xs font-semibold text-[#0284C7] inline-flex items-center gap-1 group-hover:underline pt-1">
                   View procedure <i className="fa-solid fa-arrow-down text-[10px]"></i>
                 </span>
               </div>
@@ -292,7 +292,7 @@ export default function Treatments() {
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-serif font-bold transition-all cursor-pointer ${
                 selectedService === 'all'
                   ? 'bg-[#1B365D] text-white shadow-md'
-                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-200'
+                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-300'
               }`}
             >
               All Procedures ({procedures.length})
@@ -303,7 +303,7 @@ export default function Treatments() {
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-serif font-bold transition-all cursor-pointer ${
                 selectedService === 'gynecology'
                   ? 'bg-[#0284C7] text-white shadow-md'
-                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-200'
+                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-300'
               }`}
             >
               Obstetrician &amp; Gynaecology
@@ -314,7 +314,7 @@ export default function Treatments() {
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-serif font-bold transition-all cursor-pointer ${
                 selectedService === 'ultrasound'
                   ? 'bg-[#0284C7] text-white shadow-md'
-                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-200'
+                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-300'
               }`}
             >
               Ultrasound &amp; Imaging
@@ -325,7 +325,7 @@ export default function Treatments() {
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-serif font-bold transition-all cursor-pointer ${
                 selectedService === 'pregnancy'
                   ? 'bg-[#0284C7] text-white shadow-md'
-                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-200'
+                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-300'
               }`}
             >
               Pregnancy Management
@@ -336,7 +336,7 @@ export default function Treatments() {
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-serif font-bold transition-all cursor-pointer ${
                 selectedService === 'physician'
                   ? 'bg-[#0284C7] text-white shadow-md'
-                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-200'
+                  : 'bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 border border-slate-300'
               }`}
             >
               Physician &amp; Diabetology
@@ -379,7 +379,7 @@ export default function Treatments() {
                     viewport={{ once: true, amount: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.6, delay: (index % 3) * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                    className={`bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col ${
+                    className={`bg-white rounded-3xl border border-slate-300 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col ${
                       isEven ? 'md:flex-row' : 'md:flex-row-reverse'
                     } items-stretch group h-[390px] sm:h-[405px] md:h-56 lg:h-56 2xl:h-64`}
                   >
@@ -406,7 +406,7 @@ export default function Treatments() {
                       <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1 shrink-0">
                         <Link 
                           to={proc.doctorLink} 
-                          className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl border border-slate-200 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] shadow-xs transition"
+                          className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl border border-slate-300 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] shadow-xs transition"
                         >
                           <span className="w-4 h-4 rounded-full bg-[#0284C7] text-white flex items-center justify-center text-[9px]">
                             <i className="fa-solid fa-user-doctor"></i>

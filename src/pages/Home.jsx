@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -20,16 +20,43 @@ import glucometerImg from '../Images/glucometer.jpg';
 
 const MotionLink = motion.create(Link);
 
+const heroImagesList = [hero1, hero2, hero3];
+
+// Isolated Hero Background Slider component: image transitions happen locally without re-rendering the entire Home page
+const HeroBackgroundSlider = React.memo(function HeroBackgroundSlider() {
+  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroIndex((prev) => (prev + 1) % heroImagesList.length);
+    }, 10000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div id="hero-bg-slider" className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+      {heroImagesList.map((imgSrc, index) => (
+        <img
+          key={index}
+          src={imgSrc}
+          alt={`Healthcare & Medicine ${index + 1}`}
+          className={`hero-slide hero-image-fade absolute inset-y-0 right-0 w-full lg:w-3/5 h-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
+            index === currentHeroIndex ? 'opacity-90 lg:opacity-95' : 'opacity-0'
+          }`}
+        />
+      ))}
+      {/* Subtle gradient overlay to protect readability on left while keeping right side crisp and bright */}
+      <div className="absolute inset-y-0 left-0 w-full sm:w-2/3 lg:w-1/2 bg-gradient-to-r from-[#1B365D] via-[#13294B]/70 via-40% to-transparent z-10 pointer-events-none"></div>
+      {/* Subtle vertical gradients */}
+      <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#1B365D]/50 to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0B1A30]/60 to-transparent z-10 pointer-events-none"></div>
+    </div>
+  );
+});
+
 export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
-  const heroImages = [hero1, hero2, hero3];
-  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
-
-  const [solutionsInView, setSolutionsInView] = useState(false);
-  const [whyInView, setWhyInView] = useState(false);
-  const solutionsRef = useRef(null);
-  const whyRef = useRef(null);
 
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -61,7 +88,7 @@ export default function Home() {
     return '/treatment';
   };
 
-  // Requirement 4: Laptop+ 7-Second Inquiry Popup Logic (only triggers once, not on subsequent refreshes)
+  // 7-Second Inquiry Popup Logic (triggers once after 7s; on small screens inline form remains on page)
   const [showInquiryModal, setShowInquiryModal] = useState(false);
   const [showHeroForm, setShowHeroForm] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -74,7 +101,7 @@ export default function Home() {
   });
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
+    if (typeof window !== 'undefined') {
       const handled = localStorage.getItem('cliniccare_inquiry_popup_handled');
       if (handled !== 'true') {
         const timer = setTimeout(() => {
@@ -167,70 +194,14 @@ export default function Home() {
     }
   ];
 
-  // 10-second automatic hero background crossfade rotation
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentHeroIndex((prev) => (prev + 1) % heroImages.length);
-    }, 10000);
-    return () => clearInterval(timer);
-  }, [heroImages.length]);
-
-  // Scroll entrance observer for Healthcare Solutions and Why Book Online sections
-  useEffect(() => {
-    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
-      setSolutionsInView(true);
-      setWhyInView(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (entry.target === solutionsRef.current) {
-              setSolutionsInView(true);
-              observer.unobserve(entry.target);
-            }
-            if (entry.target === whyRef.current) {
-              setWhyInView(true);
-              observer.unobserve(entry.target);
-            }
-          }
-        });
-      },
-      { threshold: 0, rootMargin: '100px 0px 100px 0px' }
-    );
-
-    if (solutionsRef.current) observer.observe(solutionsRef.current);
-    if (whyRef.current) observer.observe(whyRef.current);
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <main className="w-full flex-grow flex flex-col p-0 m-0">
 
       {/* HERO SECTION */}
       <section className="w-full min-h-[calc(100svh-var(--nav-height,72px))] lg:h-[calc(100svh-var(--nav-height,72px))] lg:max-h-[calc(100svh-var(--nav-height,72px))] hero-ambient-glow short-laptop-compact text-white flex flex-col justify-center relative overflow-hidden py-4 sm:py-6 lg:py-4 px-4 sm:px-8 lg:px-14">
         
-        {/* Right Background Image: seamlessly blended with high clarity on right */}
-        <div id="hero-bg-slider" className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
-          {heroImages.map((imgSrc, index) => (
-            <img
-              key={index}
-              src={imgSrc}
-              alt={`Healthcare & Medicine ${index + 1}`}
-              className={`hero-slide hero-image-fade absolute inset-y-0 right-0 w-full lg:w-3/5 h-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
-                index === currentHeroIndex ? 'opacity-90 lg:opacity-95' : 'opacity-0'
-              }`}
-            />
-          ))}
-          {/* Subtle gradient overlay to protect readability on left while keeping right side crisp and bright */}
-          <div className="absolute inset-y-0 left-0 w-full sm:w-2/3 lg:w-1/2 bg-gradient-to-r from-[#1B365D] via-[#13294B]/70 via-40% to-transparent z-10 pointer-events-none"></div>
-          {/* Subtle vertical gradients */}
-          <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#1B365D]/50 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0B1A30]/60 to-transparent z-10 pointer-events-none"></div>
-        </div>
+        {/* Right Background Image: isolated slider component so slide changes do not re-render Home */}
+        <HeroBackgroundSlider />
 
         {/* Hero Grid: Left Content + Right Floating Form (Same Level, Upward Shifted) */}
         <div className="w-full max-w-7xl 2xl:max-w-[100rem] mx-auto relative z-10 grid lg:grid-cols-12 gap-6 lg:gap-10 2xl:gap-16 items-center">
@@ -248,12 +219,31 @@ export default function Home() {
               </motion.span>
               <div className="block 2xl:text-[3.25rem] 3xl:text-[3.65rem] 2xl:leading-tight">
                 <motion.span
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
                   className="inline-block whitespace-nowrap mr-2"
+                  variants={{
+                    hidden: {},
+                    visible: {
+                      transition: {
+                        delayChildren: 0.85,
+                        staggerChildren: 0.07,
+                      },
+                    },
+                  }}
+                  initial="hidden"
+                  animate="visible"
                 >
-                  Personalized
+                  {"Personalized".split("").map((char, index) => (
+                    <motion.span
+                      key={index}
+                      variants={{
+                        hidden: { opacity: 0, y: 6 },
+                        visible: { opacity: 1, y: 0 },
+                      }}
+                      transition={{ duration: 0.06 }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
                 </motion.span>
                 <motion.span
                   className="italic text-[#38BDF8] font-serif font-medium inline-block whitespace-nowrap"
@@ -261,7 +251,7 @@ export default function Home() {
                     hidden: {},
                     visible: {
                       transition: {
-                        delayChildren: 0.85,
+                        delayChildren: 1.75,
                         staggerChildren: 0.08,
                       },
                     },
@@ -284,7 +274,7 @@ export default function Home() {
                   <motion.span
                     initial={{ opacity: 0 }}
                     animate={{ opacity: [0, 1, 0] }}
-                    transition={{ delay: 0.85, duration: 0.5, repeat: 3, ease: "easeInOut" }}
+                    transition={{ delay: 1.75, duration: 0.5, repeat: 3, ease: "easeInOut" }}
                     className="inline-block text-[#38BDF8] ml-0.5 font-sans font-light"
                   >
                     |
@@ -296,7 +286,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.6, ease: "easeInOut" }}
+              transition={{ duration: 0.8, delay: 2.5, ease: "easeInOut" }}
               className="space-y-1.5 max-w-xl lg:max-w-2xl"
             >
               <p className="text-slate-100 text-xs sm:text-sm md:text-base font-normal leading-relaxed">
@@ -312,7 +302,7 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, x: -220 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 3.1, ease: "easeInOut" }}
+                transition={{ duration: 0.7, delay: 4.0, ease: "easeInOut" }}
               >
                 <Link
                   to="/booking"
@@ -324,7 +314,7 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, x: -220 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 2.4, ease: "easeInOut" }}
+                transition={{ duration: 0.7, delay: 3.3, ease: "easeInOut" }}
               >
                 <Link
                   to="/treatment"
@@ -339,7 +329,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 70 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 3.8, ease: "easeInOut" }}
+              transition={{ duration: 0.8, delay: 4.7, ease: "easeInOut" }}
               className="pt-3 sm:pt-3.5 grid grid-cols-3 gap-3 sm:gap-6 border-t border-white/15 max-w-lg"
             >
               {/* Point 1: High Quality Standard */}
@@ -466,10 +456,10 @@ export default function Home() {
 
         </div>
 
-        {/* 7-Second Inquiry Popup Modal for Laptop+ (shown once) */}
+        {/* 7-Second Inquiry Popup Modal (shown with cut/cancel option; inline form remains on small screens) */}
         {showInquiryModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md animate-fadeIn">
-            <div className="relative w-full max-w-md 2xl:max-w-lg bg-[#1B365D] border border-white/20 rounded-3xl p-6 sm:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.6)] text-white">
+            <div className="relative w-full max-w-md 2xl:max-w-lg bg-[#1B365D] border border-white/20 rounded-3xl p-5 sm:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.6)] text-white max-h-[90vh] overflow-y-auto">
               {/* Close / Cross Button to Cancel */}
               <button
                 type="button"
@@ -569,19 +559,24 @@ export default function Home() {
 
       {/* HEALTHCARE SOLUTIONS / SERVICES SECTION */}
       <section 
-        ref={solutionsRef}
         id="healthcare-solutions"
         className="w-full bg-[#F8FAFC] py-10 sm:py-12 lg:py-16 2xl:py-20 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200 relative"
       >
         <div className="max-w-7xl 2xl:max-w-[100rem] w-full mx-auto space-y-6 sm:space-y-8 2xl:space-y-10">
           
           {/* Section Header */}
-          <div className={`text-center space-y-2 sm:space-y-2.5 2xl:space-y-3 transition-all duration-700 ${solutionsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center space-y-2 sm:space-y-2.5 2xl:space-y-3"
+          >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-serif font-bold text-[#0F172A] tracking-tight">
               Healthcare Solutions
             </h2>
             <div className="w-16 2xl:w-24 h-1 2xl:h-1.5 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
-          </div>
+          </motion.div>
 
           {/* Bento Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2.25fr_2.1fr_2.25fr_3.6fr] gap-5 2xl:gap-8 items-stretch">
@@ -590,25 +585,18 @@ export default function Home() {
             <MotionLink 
               to={getTreatmentLink('gynecology')}
               onClick={(e) => handleServiceClick(e, 'gynecology')}
-              initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
-              animate={solutionsInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 })}
-              transition={isMobile ? { duration: 0.5, delay: 0.1, ease: "easeInOut" } : { duration: 0.6, delay: 0.1, ease: "easeInOut" }}
-              className="healthcare-se-card bg-[#1B365D] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0 }}
+              transition={{ duration: 0.65, delay: 0.10, ease: "easeInOut" }}
+              className="healthcare-se-card bg-[#1B365D] rounded-3xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
             >
               <div className="healthcare-se-img w-full flex-1 min-h-[220px] 2xl:min-h-[300px] bg-[#1B365D] relative overflow-hidden flex items-center justify-center">
-                <motion.div 
-                  initial={!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 }}
-                  animate={solutionsInView ? (!isMobile ? { scaleY: 1, opacity: 1 } : { opacity: 1 }) : (!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 })}
-                  transition={{ duration: 0.75, delay: isMobile ? 0.1 : 0.2, ease: "easeInOut" }}
-                  style={{ transformOrigin: "bottom" }}
-                  className="w-full h-full transform-gpu"
-                >
-                  <img 
-                    src={gynecologyImg} 
-                    alt="Obstetrician - Gynaecologist" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </motion.div>
+                <img 
+                  src={gynecologyImg} 
+                  alt="Obstetrician - Gynaecologist" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
               <div className="healthcare-se-body py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-[#1B365D] text-white border-t border-[#13294B] mt-auto shrink-0 flex items-center justify-between gap-2 z-10">
                 <div className="min-w-0">
@@ -627,25 +615,20 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('ultrasound')}
                 onClick={(e) => handleServiceClick(e, 'ultrasound')}
-                initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
-                animate={solutionsInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 })}
-                transition={isMobile ? { duration: 0.5, delay: 0.35, ease: "easeInOut" } : { duration: 0.6, delay: 0.95, ease: "easeInOut" }}
-                className="healthcare-se-card healthcare-se-card-fullbleed h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden flex flex-col justify-end p-4 sm:p-4.5 2xl:p-5 group cursor-pointer bg-[#1B365D]"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0 }}
+                transition={{ duration: 0.65, delay: 0.85, ease: "easeInOut" }}
+                className="healthcare-se-card healthcare-se-card-fullbleed h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden flex flex-col justify-end p-4 sm:p-4.5 2xl:p-5 group cursor-pointer bg-[#1B365D]"
               >
-                <motion.div
-                  initial={!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 }}
-                  animate={solutionsInView ? (!isMobile ? { scaleY: 1, opacity: 1 } : { opacity: 1 }) : (!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 })}
-                  transition={{ duration: 0.75, delay: isMobile ? 0.35 : 1.05, ease: "easeInOut" }}
-                  style={{ transformOrigin: "bottom" }}
-                  className="absolute inset-0 w-full h-full overflow-hidden transform-gpu"
-                >
+                <div className="absolute inset-0 w-full h-full overflow-hidden">
                   <img 
                     src={ultrasoundImg} 
                     alt="Ultrasound" 
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1B365D]/95 via-[#1B365D]/75 to-transparent"></div>
-                </motion.div>
+                </div>
                 <div className="relative z-10 flex items-center justify-between gap-2">
                   <div className="space-y-0.5 min-w-0">
                     <h3 className="font-bold text-white text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-sky-300 transition-colors duration-300">Ultrasound</h3>
@@ -661,25 +644,18 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('ultrasound')}
                 onClick={(e) => handleServiceClick(e, 'ultrasound')}
-                initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
-                animate={solutionsInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 })}
-                transition={isMobile ? { duration: 0.5, delay: 0.60, ease: "easeInOut" } : { duration: 0.6, delay: 1.80, ease: "easeInOut" }}
-                className="healthcare-se-card h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] bg-[#1B365D] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group relative cursor-pointer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0 }}
+                transition={{ duration: 0.65, delay: 1.60, ease: "easeInOut" }}
+                className="healthcare-se-card h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] bg-[#1B365D] rounded-3xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group relative cursor-pointer"
               >
                 <div className="healthcare-se-img w-full flex-1 min-h-0 overflow-hidden bg-[#1B365D] relative">
-                  <motion.div 
-                    initial={!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 }}
-                    animate={solutionsInView ? (!isMobile ? { scaleY: 1, opacity: 1 } : { opacity: 1 }) : (!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 })}
-                    transition={{ duration: 0.75, delay: isMobile ? 0.60 : 1.90, ease: "easeInOut" }}
-                    style={{ transformOrigin: "bottom" }}
-                    className="w-full h-full transform-gpu"
-                  >
-                    <img 
-                      src={sonographyScanImg} 
-                      alt="Advanced Sonography & Scans" 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </motion.div>
+                  <img 
+                    src={sonographyScanImg} 
+                    alt="Advanced Sonography & Scans" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <div className="healthcare-se-body py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-white border-t border-slate-100 shrink-0 flex items-center justify-between gap-2 z-10">
                   <h3 className="font-bold text-[#0F172A] text-sm sm:text-base 2xl:text-lg m-0 leading-tight group-hover:text-[#0284C7] transition-colors duration-300">Advanced Sonography &amp; Scans</h3>
@@ -694,25 +670,18 @@ export default function Home() {
             <MotionLink 
               to={getTreatmentLink('pregnancy')}
               onClick={(e) => handleServiceClick(e, 'pregnancy')}
-              initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
-              animate={solutionsInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 })}
-              transition={isMobile ? { duration: 0.5, delay: 0.85, ease: "easeInOut" } : { duration: 0.6, delay: 2.65, ease: "easeInOut" }}
-              className="healthcare-se-card bg-[#1B365D] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0 }}
+              transition={{ duration: 0.65, delay: 2.35, ease: "easeInOut" }}
+              className="healthcare-se-card bg-[#1B365D] rounded-3xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
             >
               <div className="healthcare-se-img w-full flex-1 min-h-[220px] 2xl:min-h-[300px] bg-[#1B365D] relative overflow-hidden flex items-center justify-center">
-                <motion.div 
-                  initial={!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 }}
-                  animate={solutionsInView ? (!isMobile ? { scaleY: 1, opacity: 1 } : { opacity: 1 }) : (!isMobile ? { scaleY: 0, opacity: 0 } : { opacity: 0 })}
-                  transition={{ duration: 0.75, delay: isMobile ? 0.85 : 2.75, ease: "easeInOut" }}
-                  style={{ transformOrigin: "bottom" }}
-                  className="w-full h-full transform-gpu"
-                >
-                  <img 
-                    src={pregnancyImg} 
-                    alt="Pregnancy Management" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </motion.div>
+                <img 
+                  src={pregnancyImg} 
+                  alt="Pregnancy Management" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
               </div>
               <div className="healthcare-se-body py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-[#1B365D] text-white border-t border-[#13294B] mt-auto shrink-0 flex items-center justify-between gap-2 z-10">
                 <div className="min-w-0">
@@ -731,25 +700,18 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('physician')}
                 onClick={(e) => handleServiceClick(e, 'physician')}
-                initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
-                animate={solutionsInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 })}
-                transition={isMobile ? { duration: 0.5, delay: 1.10, ease: "easeInOut" } : { duration: 0.6, delay: 3.50, ease: "easeInOut" }}
-                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer bg-[#1B365D]"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0 }}
+                transition={{ duration: 0.65, delay: 3.10, ease: "easeInOut" }}
+                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer bg-[#1B365D]"
               >
                 <div className="healthcare-se-img w-full sm:w-2/5 flex-1 sm:flex-initial min-h-0 sm:min-h-full bg-[#1B365D] overflow-hidden relative order-1 sm:order-2">
-                  <motion.div 
-                    initial={!isMobile ? { scaleX: 0, opacity: 0 } : { opacity: 0 }}
-                    animate={solutionsInView ? (!isMobile ? { scaleX: 1, opacity: 1 } : { opacity: 1 }) : (!isMobile ? { scaleX: 0, opacity: 0 } : { opacity: 0 })}
-                    transition={{ duration: 0.75, delay: isMobile ? 1.10 : 3.60, ease: "easeInOut" }}
-                    style={{ transformOrigin: "right" }}
-                    className="w-full h-full transform-gpu"
-                  >
-                    <img 
-                      src={physicianImg} 
-                      alt="Consulting Physician" 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </motion.div>
+                  <img 
+                    src={physicianImg} 
+                    alt="Consulting Physician" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
                 </div>
                 <div className="healthcare-se-body w-full sm:w-3/5 bg-[#1B365D] py-3 sm:py-3.5 2xl:py-4 px-4 sm:px-5 2xl:px-6 text-white flex flex-col justify-center space-y-1 z-10 shrink-0 sm:shrink order-2 sm:order-1">
                   <div className="flex items-center justify-between gap-2">
@@ -770,25 +732,18 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('physician')}
                 onClick={(e) => handleServiceClick(e, 'physician')}
-                initial={isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 }}
-                animate={solutionsInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 0, y: 25 } : { opacity: 0, y: 20 })}
-                transition={isMobile ? { duration: 0.5, delay: 1.35, ease: "easeInOut" } : { duration: 0.6, delay: 4.35, ease: "easeInOut" }}
-                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer bg-[#1B365D]"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0 }}
+                transition={{ duration: 0.65, delay: 3.85, ease: "easeInOut" }}
+                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer bg-[#1B365D]"
               >
                 <div className="healthcare-se-img w-full sm:w-2/5 flex-1 sm:flex-initial min-h-0 sm:min-h-full bg-[#1B365D] overflow-hidden relative order-1 sm:order-2">
-                  <motion.div 
-                    initial={!isMobile ? { scaleX: 0, opacity: 0 } : { opacity: 0 }}
-                    animate={solutionsInView ? (!isMobile ? { scaleX: 1, opacity: 1 } : { opacity: 1 }) : (!isMobile ? { scaleX: 0, opacity: 0 } : { opacity: 0 })}
-                    transition={{ duration: 0.75, delay: isMobile ? 1.35 : 4.45, ease: "easeInOut" }}
-                    style={{ transformOrigin: "right" }}
-                    className="w-full h-full transform-gpu"
-                  >
-                    <img 
-                      src={glucometerImg} 
-                      alt="Diabetologist Care" 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </motion.div>
+                  <img 
+                    src={glucometerImg} 
+                    alt="Diabetologist Care" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <div className="healthcare-se-body w-full sm:w-3/5 bg-[#1B365D] py-3 sm:py-3.5 2xl:py-4 px-4 sm:px-5 2xl:px-6 text-white flex flex-col justify-center space-y-1 z-10 shrink-0 sm:shrink order-2 sm:order-1">
                   <div className="flex items-center justify-between gap-2">
@@ -1010,13 +965,13 @@ export default function Home() {
               </div>
 
               {/* Action Buttons Hub (Tightly connected to divs above) */}
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 pt-1">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3 pt-1 w-full">
                 <motion.div
                   initial={{ opacity: 0, y: 60 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0 }}
                   transition={{ duration: 0.75, delay: 0.15, ease: "easeInOut" }}
-                  className="w-full sm:w-auto"
+                  className="w-60 max-w-full sm:w-auto flex justify-center"
                 >
                   <Link
                     to="/booking"
@@ -1032,7 +987,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0 }}
                   transition={{ duration: 0.75, delay: 0.3, ease: "easeInOut" }}
-                  className="w-full sm:w-auto"
+                  className="w-60 max-w-full sm:w-auto flex justify-center"
                 >
                   <Link
                     to="/dr-arun-sharma"
@@ -1048,7 +1003,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0 }}
                   transition={{ duration: 0.75, delay: 0.45, ease: "easeInOut" }}
-                  className="w-full sm:w-auto"
+                  className="w-60 max-w-full sm:w-auto flex justify-center"
                 >
                   <a
                     href="https://wa.me/"
@@ -1120,7 +1075,6 @@ export default function Home() {
 
       {/* WHY BOOK OUR CONSULTATION SECTION */}
       <section 
-        ref={whyRef}
         id="why-book-online"
         className="w-full bg-[#F8FAFC] py-10 sm:py-12 md:py-14 lg:py-16 2xl:py-20 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 flex flex-col justify-center"
       >
@@ -1149,7 +1103,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.65, delay: 0.10, ease: "easeInOut" }}
-              className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
+              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
@@ -1175,7 +1129,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.65, delay: 0.85, ease: "easeInOut" }}
-              className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
+              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
@@ -1201,7 +1155,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.65, delay: 1.60, ease: "easeInOut" }}
-              className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
+              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
@@ -1227,7 +1181,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.65, delay: 2.35, ease: "easeInOut" }}
-              className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
+              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
