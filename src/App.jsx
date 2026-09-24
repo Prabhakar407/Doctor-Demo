@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import CookieConsentBanner from './components/CookieConsentBanner';
 
 import Home from './pages/Home';
 import Treatments from './pages/Treatments';
@@ -32,6 +33,7 @@ export default function App() {
         </Routes>
       </div>
       <Footer />
+      <CookieConsentBanner />
     </div>
   );
 }

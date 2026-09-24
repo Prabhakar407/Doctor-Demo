@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getCookie, setCookie } from '@/lib/cookie';
 
 export default function Booking() {
   // Stepper state: Step 1, 2, 3
@@ -10,13 +11,16 @@ export default function Booking() {
   const [step3Status, setStep3Status] = useState('pending'); // 'pending' | 'green'
 
   // Step 1: Patient & Schedule Details
-  const [patientData, setPatientData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    doctor: 'Dr. Priya Nair',
-    reason: 'Obstetrician & Gynaecology',
-    message: ''
+  const [patientData, setPatientData] = useState(() => {
+    const saved = getCookie('doctor_demo_patient_info', true);
+    return {
+      name: saved?.name || '',
+      email: saved?.email || '',
+      phone: saved?.phone || '',
+      doctor: saved?.doctor || 'Dr. Priya Nair',
+      reason: saved?.reason || 'Obstetrician & Gynaecology',
+      message: ''
+    };
   });
   const [selectedDate, setSelectedDate] = useState(9);
   const [selectedTime, setSelectedTime] = useState('10:00 AM');
@@ -51,6 +55,15 @@ export default function Booking() {
       alert('Please fill all required patient details.');
       return;
     }
+    // Save patient profile info into cookie for returning visits (30 days)
+    setCookie('doctor_demo_patient_info', {
+      name: patientData.name,
+      email: patientData.email,
+      phone: patientData.phone,
+      doctor: patientData.doctor,
+      reason: patientData.reason
+    }, { expires: 30 });
+
     setStep1Status('green');
     setStep2Status('orange');
     setCurrentStep(2);
