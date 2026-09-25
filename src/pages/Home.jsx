@@ -2,21 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import hero1 from '../Images/hero1.png';
-import hero2 from '../Images/hero2.png';
-import hero3 from '../Images/hero3.png';
+import hero1 from '../Images/hero1.webp';
+import hero2 from '../Images/hero2.webp';
+import hero3 from '../Images/hero3.webp';
 
-import instantBookingImg from '../Images/Instant Booking.png';
-import accessImg from '../Images/24 by 7 Access.png';
-import timeEfficiencyImg from '../Images/Time Efficiency.png';
-import totalFlexibilityImg from '../Images/Total Flexibility.png';
-import prescriptionBannerImg from '../Images/prescription-banner.jpg';
-import gynecologyImg from '../Images/gynecology-service.jpg';
-import ultrasoundImg from '../Images/ultrasound-service.jpg';
-import sonographyScanImg from '../Images/sonography-scan.jpg';
-import pregnancyImg from '../Images/pregnancy-service.jpg';
-import physicianImg from '../Images/physician-service.jpg';
-import glucometerImg from '../Images/glucometer.jpg';
+import instantBookingImg from '../Images/Instant Booking.webp';
+import accessImg from '../Images/24 by 7 Access.webp';
+import timeEfficiencyImg from '../Images/Time Efficiency.webp';
+import totalFlexibilityImg from '../Images/Total Flexibility.webp';
+import prescriptionBannerImg from '../Images/prescription-banner.webp';
+import gynecologyImg from '../Images/gynecology-service.webp';
+import ultrasoundImg from '../Images/ultrasound-service.webp';
+import sonographyScanImg from '../Images/sonography-scan.webp';
+import pregnancyImg from '../Images/pregnancy-service.webp';
+import physicianImg from '../Images/physician-service.webp';
+import glucometerImg from '../Images/glucometer.webp';
 
 const MotionLink = motion.create(Link);
 
@@ -358,10 +358,35 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right Column: Glassmorphic Floating Form */}
+          {/* Right Column: Glassmorphic Space Floating Form */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end items-center w-full">
             {showHeroForm ? (
-              <div className="w-full max-w-sm 2xl:max-w-[28rem] 3xl:max-w-[32rem] bg-white/10 backdrop-blur-xl text-white rounded-2xl 2xl:rounded-3xl p-5 sm:p-6 2xl:p-7 3xl:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.4)] hover:shadow-[0_25px_65px_rgba(2,132,199,0.4)] border border-white/20 hover:border-[#0284C7] transition-all duration-300 space-y-3 2xl:space-y-4 animate-fadeIn">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  y: [0, -12, 0, 8, 0],
+                  rotate: [0, 0.4, 0, -0.4, 0],
+                }}
+                transition={{
+                  opacity: { duration: 0.5 },
+                  scale: { duration: 0.5 },
+                  y: {
+                    duration: 6.5,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                  },
+                  rotate: {
+                    duration: 7,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                  }
+                }}
+                className="w-full max-w-sm 2xl:max-w-[28rem] 3xl:max-w-[32rem] bg-white/12 backdrop-blur-2xl text-white rounded-2xl 2xl:rounded-3xl p-5 sm:p-6 2xl:p-7 3xl:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.45),0_0_30px_rgba(2,132,199,0.25)] hover:shadow-[0_25px_65px_rgba(2,132,199,0.45)] border border-white/25 hover:border-[#0284C7] transition-all duration-300 space-y-3 2xl:space-y-4 relative"
+              >
                 
                 <div className="text-center pb-1.5 2xl:pb-2.5 border-b border-white/15">
                   <h3 className="text-xl sm:text-2xl 2xl:text-3xl 3xl:text-4xl font-serif font-bold text-white tracking-tight">
@@ -392,7 +417,7 @@ export default function Home() {
                       <input
                         type="tel"
                         required
-                        placeholder="+1 234 567"
+                        placeholder="+91 98765 43210"
                         className="w-full px-3 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3.5 text-xs 2xl:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
                       />
                     </div>
@@ -448,7 +473,7 @@ export default function Home() {
                     </p>
                   </div>
                 </form>
-              </div>
+              </motion.div>
             ) : (
               <div className="hidden lg:block w-full max-w-sm 2xl:max-w-[28rem] 3xl:max-w-[32rem] min-h-[460px] 2xl:min-h-[520px]"></div>
             )}
@@ -498,7 +523,7 @@ export default function Home() {
                     <input
                       type="tel"
                       required
-                      placeholder="+1 234 567"
+                      placeholder="+91 98765 43210"
                       className="w-full px-3.5 py-2 text-xs sm:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition"
                     />
                   </div>
@@ -1022,7 +1047,7 @@ export default function Home() {
       </section>
 
       {/* APPOINTMENT BOOKING & DIGITAL PRESCRIPTIONS BANNER SECTION */}
-      <section id="consultation-prescriptions" className="w-full bg-[#F8FAFC] py-6 sm:py-8 2xl:py-12 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 consultation-banner-laptop">
+      <section id="consultation-prescriptions" className="w-full bg-[#F8FAFC] py-0.5 sm:py-1 md:py-1.5 lg:py-[2px] xl:py-[2px] 2xl:py-3.5 3xl:py-4 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 consultation-banner-laptop">
         <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto h-full flex flex-col justify-center">
           <motion.div 
             initial={{ opacity: 0, y: 40, scale: 0.98 }}
@@ -1044,10 +1069,6 @@ export default function Home() {
             {/* Content in Normal Flow - Auto-scaling and Zero Overflow */}
             <div className="relative z-10 w-full p-5 sm:p-7 md:p-8 lg:p-4 xl:p-6 2xl:p-12 text-white">
               <div className="max-w-xl 2xl:max-w-3xl space-y-2 lg:space-y-1 xl:space-y-2 2xl:space-y-3">
-                <span className="bg-[#0284C7]/80 backdrop-blur-md text-white text-[10px] sm:text-xs lg:text-[10px] xl:text-xs 2xl:text-sm font-semibold px-3 py-0.5 lg:px-2.5 lg:py-0.5 2xl:px-4 2xl:py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5 border border-white/20 shadow-xs">
-                  <i className="fa-solid fa-calendar-check text-[#38BDF8]"></i> Verified Doctor Appointments
-                </span>
-                
                 <div className="space-y-1 lg:space-y-0.5 xl:space-y-1 2xl:space-y-2">
                   <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-xl xl:text-2xl 2xl:text-4xl font-serif font-bold text-white tracking-tight leading-tight m-0">
                     Book Doctor Consultation &amp; <br className="hidden sm:inline" />
@@ -1076,9 +1097,9 @@ export default function Home() {
       {/* WHY BOOK OUR CONSULTATION SECTION */}
       <section 
         id="why-book-online"
-        className="w-full bg-[#F8FAFC] py-10 sm:py-12 md:py-14 lg:py-16 2xl:py-20 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 flex flex-col justify-center"
+        className="w-full bg-[#F8FAFC] py-10 sm:py-12 md:py-14 lg:py-8 xl:py-10 2xl:py-20 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 flex flex-col justify-center"
       >
-        <div className="max-w-7xl 2xl:max-w-[100rem] w-full mx-auto space-y-8 sm:space-y-10 2xl:space-y-12">
+        <div className="max-w-7xl 2xl:max-w-[100rem] w-full mx-auto space-y-6 sm:space-y-8 lg:space-y-6 xl:space-y-8 2xl:space-y-12">
           
           {/* Section Header */}
           <motion.div 
@@ -1088,7 +1109,7 @@ export default function Home() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-center space-y-1.5 shrink-0 pt-0"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-4xl xl:text-4xl 2xl:text-5xl font-serif font-bold text-[#0F172A] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-serif font-bold text-[#0F172A] tracking-tight">
               Why Book Appointment Online
             </h2>
             <div className="w-16 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
@@ -1103,7 +1124,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.65, delay: 0.10, ease: "easeInOut" }}
-              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
+              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17rem] lg:h-[16.5rem] xl:h-[17rem] 2xl:h-[20rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
@@ -1129,7 +1150,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.65, delay: 0.85, ease: "easeInOut" }}
-              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
+              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17rem] lg:h-[16.5rem] xl:h-[17rem] 2xl:h-[20rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
@@ -1155,7 +1176,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.65, delay: 1.60, ease: "easeInOut" }}
-              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
+              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17rem] lg:h-[16.5rem] xl:h-[17rem] 2xl:h-[20rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
@@ -1181,7 +1202,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.65, delay: 2.35, ease: "easeInOut" }}
-              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17.5rem] xl:h-[18rem] 2xl:h-[20rem]"
+              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17rem] lg:h-[16.5rem] xl:h-[17rem] 2xl:h-[20rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">

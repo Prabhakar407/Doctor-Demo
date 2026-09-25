@@ -379,11 +379,9 @@
 /* 3.8 Home Page Laptop Screen Layout (Combined 100vh for Consultation Banner + Why Book Online) */
 @media (min-width: 1024px) and (max-width: 1535px) {
   .consultation-banner-laptop {
-    height: 38vh !important;
     min-height: 38vh !important;
-    max-height: 38vh !important;
-    padding-top: clamp(0.4rem, 1vh, 0.75rem) !important;
-    padding-bottom: clamp(0.4rem, 1vh, 0.75rem) !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
@@ -398,9 +396,7 @@
 
   /* Patient Reviews 100vh Viewport on Laptop */
   .patient-reviews-section {
-    height: 100vh !important;
     min-height: 100vh !important;
-    max-height: 100vh !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;

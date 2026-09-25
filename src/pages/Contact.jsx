@@ -80,7 +80,7 @@ export default function Contact() {
                       <label className="block text-xs 2xl:text-xs font-bold text-[#0F172A] mb-1">Phone Number</label>
                       <input 
                         type="tel" 
-                        placeholder="+1 234 567 890" 
+                        placeholder="+91 98765 43210" 
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="w-full px-3 py-2 2xl:py-2.5 3xl:py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-sm placeholder:text-[#64748B]" 
@@ -163,20 +163,20 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Buttons: WhatsApp & Book Appointment */}
-                <div className="grid grid-cols-2 gap-2 sm:gap-2.5 pt-1">
+                {/* Buttons: WhatsApp & Book Appointment (Neat compact width, no overflow) */}
+                <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-2.5 pt-1 w-full max-w-sm">
                   <a 
                     href="https://wa.me/" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold py-2 sm:py-2.5 2xl:py-2 px-1.5 sm:px-3 rounded-lg flex items-center justify-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 whitespace-nowrap"
+                    className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold py-2 sm:py-2.5 2xl:py-2 px-3 sm:px-4 rounded-lg flex items-center justify-center gap-1.5 text-[11px] sm:text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 whitespace-nowrap shrink-0"
                   >
                     <i className="fa-brands fa-whatsapp text-base"></i>
-                    <span>WhatsApp Us</span>
+                    <span className="whitespace-nowrap">WhatsApp Us</span>
                   </a>
                   <Link 
                     to="/booking" 
-                    className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2 sm:py-2.5 2xl:py-2 px-1.5 sm:px-3 rounded-lg flex items-center justify-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 text-center whitespace-nowrap"
+                    className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2 sm:py-2.5 2xl:py-2 px-3 sm:px-4 rounded-lg flex items-center justify-center gap-1.5 text-[11px] sm:text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 text-center whitespace-nowrap shrink-0"
                   >
                     <i className="fa-solid fa-calendar-check text-xs"></i>
                     <span className="whitespace-nowrap">Book Appointment</span>

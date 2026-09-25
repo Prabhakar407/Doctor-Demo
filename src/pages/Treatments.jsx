@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import gynecologyImg from '../Images/gynecology-service.jpg';
-import ultrasoundImg from '../Images/ultrasound-service.jpg';
-import pregnancyImg from '../Images/pregnancy-service.jpg';
-import physicianImg from '../Images/physician-service.jpg';
-import sonographyScanImg from '../Images/sonography-scan.jpg';
-import glucometerImg from '../Images/glucometer.jpg';
+import gynecologyImg from '../Images/gynecology-service.webp';
+import ultrasoundImg from '../Images/ultrasound-service.webp';
+import pregnancyImg from '../Images/pregnancy-service.webp';
+import physicianImg from '../Images/physician-service.webp';
+import sonographyScanImg from '../Images/sonography-scan.webp';
+import glucometerImg from '../Images/glucometer.webp';
 
 // Distinct curated images for Healthcare Solutions section (iPad and greater)
-import healthcareGynecologyImg from '../Images/healthcare-gynecology.jpg';
-import healthcareUltrasoundImg from '../Images/healthcare-ultrasound.jpg';
-import healthcarePregnancyImg from '../Images/healthcare-pregnancy.jpg';
+import healthcareGynecologyImg from '../Images/healthcare-gynecology.webp';
+import healthcareUltrasoundImg from '../Images/healthcare-ultrasound.webp';
+import healthcarePregnancyImg from '../Images/healthcare-pregnancy.webp';
 
 export default function Treatments() {
   const [selectedService, setSelectedService] = useState('all');

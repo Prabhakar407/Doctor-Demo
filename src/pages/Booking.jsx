@@ -307,7 +307,7 @@ export default function Booking() {
                         <input 
                           type="tel" 
                           required 
-                          placeholder="+1 234 567 890" 
+                          placeholder="+91 98765 43210" 
                           value={patientData.phone}
                           onChange={(e) => setPatientData({ ...patientData, phone: e.target.value })}
                           className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] transition" 

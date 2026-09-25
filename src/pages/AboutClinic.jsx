@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import clinicFacilityImg from '../Images/clinic-facility.jpg';
+import clinicFacilityImg from '../Images/clinic-facility.webp';
 
 export default function AboutClinic() {
   const handleVirtualTour = () => {
