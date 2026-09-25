@@ -3,61 +3,68 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import DoctorTestimonials from '../components/DoctorTestimonials';
 
+import patientKavita from '../Images/testimonials/patient_kavita.webp';
+import patientDeepak from '../Images/testimonials/patient_deepak.webp';
+import patientPriya from '../Images/testimonials/patient_priya.webp';
+import patientAmitav from '../Images/testimonials/patient_amitav.webp';
+import patientSuresh from '../Images/testimonials/patient_suresh.webp';
+import patientNeha from '../Images/testimonials/patient_neha.webp';
+
 export default function MeetDoctor() {
   const testimonials = [
     {
-      name: "Sarah Jenkins",
+      name: "Kavita Nair",
       role: "Preventive Cardiology Patient",
       rating: 5,
       date: "Recent Consultation",
-      text: "Dr. Smith provided exceptional care and attention during my cardiology check-up. Truly professional, thorough, and deeply empathetic.",
+      text: "The clinical team provided exceptional care and attention during my cardiology check-up. Truly professional, thorough, and deeply empathetic.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80"
+      image: patientKavita
     },
     {
-      name: "David Kim",
+      name: "Deepak Singhania",
       role: "Internal Medicine Patient",
       rating: 5,
       date: "Recent Consultation",
       text: "Clear guidance, prompt diagnosis, and warm environment. Highly recommended for family health consultations and preventive heart wellness.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
+      image: patientDeepak
     },
     {
-      name: "Rachel Taylor",
+      name: "Priya Venkatesh",
       role: "Cardiac Rehabilitation",
       rating: 5,
       date: "Recent Consultation",
       text: "The customized treatment plan helped me recover in record time. Fantastic physician and an exceptionally supportive clinical team.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+      image: patientPriya
     },
     {
-      name: "Michael Brooks",
+      name: "Amitav Banerjee",
       role: "Hypertension Management",
       rating: 5,
       date: "Recent Consultation",
       text: "Very patient, answered all questions thoroughly. Modern clinic facilities, direct digital prescription, and seamless follow-up care.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"
+      image: patientAmitav
     },
     {
-      name: "Elena Rostova",
+      name: "Neha Agarwal",
       role: "Comprehensive Health Check",
       rating: 5,
       date: "Recent Consultation",
-      text: "Dr. Smith's holistic diagnostic approach identified the root cause of my fatigue quickly. Truly one of the finest physicians I have consulted.",
+      text: "The holistic diagnostic approach identified the root cause of my fatigue quickly. Truly one of the finest clinics I have consulted.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80"
+      image: patientNeha
     },
     {
-      name: "James Wilson",
+      name: "Suresh Kulkarni",
       role: "Executive Health Checkup",
       rating: 5,
       date: "Recent Consultation",
       text: "Top-tier bedside manner and comprehensive medical insights. You immediately feel confident that you are in the safest hands possible.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80"
+      image: patientSuresh
     }
   ];
 

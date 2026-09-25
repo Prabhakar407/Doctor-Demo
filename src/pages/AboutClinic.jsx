@@ -28,7 +28,7 @@ export default function AboutClinic() {
           </motion.div>
 
           {/* Facility Image on Left + Details and Certified Credentials on Right */}
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-6 xl:gap-10 2xl:gap-14 items-center 2xl:mt-10">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-6 xl:gap-10 2xl:gap-14 items-center 2xl:mt-20 3xl:mt-24">
             
             {/* Left: Clinic Image with clean rounded corners and no fading */}
             <motion.div 
@@ -37,15 +37,15 @@ export default function AboutClinic() {
               transition={{ duration: 0.8, delay: 0.15, ease: "easeInOut" }}
               className="lg:col-span-6 flex justify-center items-center w-full"
             >
-              <div className="relative w-full h-[280px] sm:h-[360px] lg:h-[350px] xl:h-[410px] 2xl:h-[480px] rounded-2xl overflow-hidden flex items-center shadow-lg border border-white/10">
+              <div className="relative w-full h-[280px] sm:h-[360px] lg:h-[350px] xl:h-[410px] 2xl:h-[480px] rounded-xl overflow-hidden flex items-center shadow-lg border border-white/10">
                 <img
                   src={clinicFacilityImg}
                   alt="Leading Care Clinic Facility"
-                  className="w-full h-full object-cover object-center rounded-2xl"
+                  className="w-full h-full object-cover object-center rounded-xl"
                 />
 
                 {/* Floating Micro Badge on image */}
-                <div className="absolute bottom-4 left-4 bg-[#1B365D]/85 backdrop-blur-md text-white px-3.5 py-1.5 rounded-xl border border-white/20 text-xs shadow-lg flex items-center gap-2">
+                <div className="absolute bottom-4 left-4 bg-[#1B365D]/85 backdrop-blur-md text-white px-3.5 py-1.5 rounded-lg border border-white/20 text-xs shadow-lg flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                   <span className="font-semibold">State-of-the-Art Clinical Suites</span>
                 </div>
@@ -99,9 +99,9 @@ export default function AboutClinic() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 lg:gap-2 xl:gap-2.5">
                   {/* Certification 1: NABH */}
-                  <div className="bg-white/10 backdrop-blur-md rounded-xl p-2.5 lg:p-2 xl:p-2.5 2xl:p-3 border border-white/15 hover:border-[#38BDF8] transition-all duration-300">
+                  <div className="bg-white/10 backdrop-blur-md rounded-lg p-2.5 lg:p-2 xl:p-2.5 2xl:p-3 border border-white/15 hover:border-[#38BDF8] transition-all duration-300">
                     <div className="flex items-center gap-2 mb-0.5 sm:mb-1">
-                      <span className="w-6 h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 rounded-lg bg-[#0284C7]/30 border border-[#38BDF8]/40 flex items-center justify-center text-[#38BDF8] shrink-0 text-xs">
+                      <span className="w-6 h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 rounded-md bg-[#0284C7]/30 border border-[#38BDF8]/40 flex items-center justify-center text-[#38BDF8] shrink-0 text-xs">
                         <i className="fa-solid fa-award"></i>
                       </span>
                       <div>
@@ -115,9 +115,9 @@ export default function AboutClinic() {
                   </div>
 
                   {/* Certification 2: ISO 9001:2015 */}
-                  <div className="bg-white/10 backdrop-blur-md rounded-xl p-2.5 lg:p-2 xl:p-2.5 2xl:p-3 border border-white/15 hover:border-[#38BDF8] transition-all duration-300">
+                  <div className="bg-white/10 backdrop-blur-md rounded-lg p-2.5 lg:p-2 xl:p-2.5 2xl:p-3 border border-white/15 hover:border-[#38BDF8] transition-all duration-300">
                     <div className="flex items-center gap-2 mb-0.5 sm:mb-1">
-                      <span className="w-6 h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 rounded-lg bg-[#0284C7]/30 border border-[#38BDF8]/40 flex items-center justify-center text-[#38BDF8] shrink-0 text-xs">
+                      <span className="w-6 h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 rounded-md bg-[#0284C7]/30 border border-[#38BDF8]/40 flex items-center justify-center text-[#38BDF8] shrink-0 text-xs">
                         <i className="fa-solid fa-certificate"></i>
                       </span>
                       <div>
@@ -183,12 +183,12 @@ export default function AboutClinic() {
             >
               <div 
                 onClick={handleVirtualTour} 
-                className="w-60 h-60 sm:w-72 sm:h-72 2xl:w-96 2xl:h-96 aspect-square bg-[#F8FAFC] border border-slate-200 hover:border-[#0284C7] rounded-3xl flex flex-col items-center justify-center shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 relative group cursor-pointer transition-all duration-300 overflow-hidden"
+                className="w-60 h-60 sm:w-72 sm:h-72 2xl:w-96 2xl:h-96 aspect-square bg-[#F8FAFC] border border-slate-200 hover:border-[#0284C7] rounded-2xl flex flex-col items-center justify-center shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 relative group cursor-pointer transition-all duration-300 overflow-hidden"
               >
-                <div className="w-16 h-14 rounded-2xl bg-[#0284C7] flex items-center justify-center text-white text-2xl shadow-md group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-14 rounded-xl bg-[#0284C7] flex items-center justify-center text-white text-2xl shadow-md group-hover:scale-110 transition-transform duration-300">
                   <i className="fa-solid fa-play ml-1"></i>
                 </div>
-                <div className="absolute bottom-3.5 text-[11px] font-semibold text-[#0F172A] bg-white/95 px-3.5 py-1 rounded-lg border border-slate-200 shadow-sm">
+                <div className="absolute bottom-3.5 text-[11px] font-semibold text-[#0F172A] bg-white/95 px-3.5 py-1 rounded-md border border-slate-200 shadow-sm">
                   Click to play 360&deg; clinic overview
                 </div>
               </div>

@@ -28,9 +28,9 @@ export default function Booking() {
   // Step 2: Payment Details
   const [paymentMethod, setPaymentMethod] = useState('card'); // 'card' | 'upi' | 'netbanking' | 'reception'
   const [cardData, setCardData] = useState({
-    number: '4532 8920 1842 7731',
-    expiry: '08/28',
-    cvv: '842',
+    number: '',
+    expiry: '',
+    cvv: '',
     name: ''
   });
   const [upiId, setUpiId] = useState('');
@@ -47,6 +47,33 @@ export default function Booking() {
   ];
 
   const timeSlots = ['10:00 AM', '02:30 PM', '05:00 PM'];
+
+  // Card Input Formatting & Handlers
+  const handleCardNumberChange = (e) => {
+    // Only accept numeric digits, maximum 16 digits
+    const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, 16);
+    // Format in groups of 4: "XXXX XXXX XXXX XXXX"
+    const formatted = digitsOnly.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
+    setCardData((prev) => ({ ...prev, number: formatted }));
+  };
+
+  const handleExpiryChange = (e) => {
+    // Only accept numeric digits, maximum 4 digits (MMYY)
+    const raw = e.target.value.replace(/\D/g, '').slice(0, 4);
+    let formatted = raw;
+    if (raw.length >= 3) {
+      formatted = `${raw.slice(0, 2)}/${raw.slice(2, 4)}`;
+    } else if (raw.length === 2 && e.nativeEvent?.inputType !== 'deleteContentBackward') {
+      formatted = `${raw}/`;
+    }
+    setCardData((prev) => ({ ...prev, expiry: formatted }));
+  };
+
+  const handleCvvChange = (e) => {
+    // Only accept numeric digits, maximum 4 digits
+    const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, 4);
+    setCardData((prev) => ({ ...prev, cvv: digitsOnly }));
+  };
 
   // Handle Step 1 Submit -> Transition to Step 2
   const handleStep1Submit = (e) => {
@@ -67,14 +94,22 @@ export default function Booking() {
     setStep1Status('green');
     setStep2Status('orange');
     setCurrentStep(2);
-    if (!cardData.name) {
-      setCardData((prev) => ({ ...prev, name: patientData.name }));
-    }
   };
 
   // Handle Step 2 Payment Verification & Submit -> Transition to Step 3
   const handlePaymentSubmit = (e) => {
     e.preventDefault();
+    if (paymentMethod === 'card') {
+      const digits = cardData.number.replace(/\D/g, '');
+      if (digits.length !== 16) {
+        alert('Please enter a valid 16-digit card number.');
+        return;
+      }
+      if (cardData.expiry.length < 5) {
+        alert('Please enter a valid expiry date in MM/YY format.');
+        return;
+      }
+    }
     setIsVerifying(true);
     setTimeout(() => {
       setIsVerifying(false);
@@ -110,6 +145,13 @@ export default function Booking() {
       reason: 'Obstetrician & Gynaecology',
       message: ''
     });
+    setCardData({
+      number: '',
+      expiry: '',
+      cvv: '',
+      name: ''
+    });
+    setUpiId('');
     setReceiptDownloaded(false);
   };
 
@@ -121,18 +163,18 @@ export default function Booking() {
   return (
     <div className="w-full flex-grow flex flex-col p-0 m-0">
       {/* APPOINTMENT RESERVATION SECTION */}
-      {/* Requirement 1: For iPad mini (md:) and laptop screen (lg:), center form in screen viewport */}
-      <section className="w-full min-h-[calc(100vh-72px)] bg-gradient-to-br from-[#1B365D] via-[#13294B] to-[#0B1A30] text-white pt-4 sm:pt-6 md:pt-4 lg:pt-2 2xl:pt-8 pb-6 sm:pb-8 md:pb-4 lg:pb-3 2xl:pb-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-start md:justify-center border-b border-white/10 relative overflow-hidden">
-        <div className="max-w-4xl 2xl:max-w-5xl 3xl:max-w-[72rem] w-full mx-auto space-y-2 sm:space-y-3 lg:space-y-2 2xl:space-y-5 relative z-10">
+      {/* Requirement 1: For iPad mini (md:) and laptop screen (lg:), center form in screen viewport with exact screen fit */}
+      <section className="w-full min-h-[calc(100vh-72px)] lg:h-[calc(100vh-72px)] 2xl:h-auto 2xl:min-h-[calc(100vh-72px)] bg-gradient-to-br from-[#1B365D] via-[#13294B] to-[#0B1A30] text-white pt-3 sm:pt-6 md:pt-4 lg:pt-1.5 2xl:pt-8 pb-4 sm:pb-8 md:pb-4 lg:pb-1.5 2xl:pb-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-start md:justify-center border-b border-white/10 relative overflow-hidden">
+        <div className="max-w-4xl 2xl:max-w-5xl 3xl:max-w-[72rem] w-full mx-auto space-y-1.5 sm:space-y-3 lg:space-y-1.5 2xl:space-y-5 relative z-10">
           
           {/* Section Header */}
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-center space-y-1 lg:space-y-0.5"
+            className="text-center space-y-0.5 lg:space-y-0.5"
           >
-            <h1 className="text-xl sm:text-2xl lg:text-2xl 2xl:text-4xl font-serif font-extrabold text-white tracking-tight leading-tight">
+            <h1 className="text-xl sm:text-2xl lg:text-xl 2xl:text-4xl font-serif font-extrabold text-white tracking-tight leading-tight">
               Appointment Reservation
             </h1>
             <div className="w-12 2xl:w-16 h-0.5 2xl:h-1 bg-gradient-to-r from-[#0284C7] to-[#38BDF8] rounded-full mx-auto"></div>
@@ -143,7 +185,7 @@ export default function Booking() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex items-center justify-center max-w-sm sm:max-w-md mx-auto w-full px-2 py-1 lg:py-1 mb-1 lg:mb-1.5"
+            className="flex items-center justify-center max-w-sm sm:max-w-md mx-auto w-full px-2 py-0.5 lg:py-0.5 mb-0.5 lg:mb-1"
           >
             
             {/* Step 1 Indicator */}
@@ -250,7 +292,7 @@ export default function Booking() {
           </motion.div>
 
           {/* MAIN CONTAINER: Dynamic Step Views */}
-          <div className="bg-white text-[#0F172A] rounded-2xl lg:rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 overflow-hidden p-4 sm:p-5 lg:p-4 2xl:p-8 3xl:p-10">
+          <div className="bg-white text-[#0F172A] rounded-xl border border-slate-500 hover:border-[#0284C7] shadow-[0_15px_40px_rgba(56,189,248,0.45),0_0_20px_rgba(56,189,248,0.25)] hover:shadow-[0_20px_50px_rgba(56,189,248,0.6),0_0_30px_rgba(56,189,248,0.4)] hover:-translate-y-1 transition-all duration-300 overflow-hidden p-3.5 sm:p-5 lg:p-3 2xl:p-8 3xl:p-10">
             
             <AnimatePresence mode="wait">
               {/* ================= STEP 1: BOOKING FORM ================= */}
@@ -285,7 +327,7 @@ export default function Booking() {
                         placeholder="Enter full name" 
                         value={patientData.name}
                         onChange={(e) => setPatientData({ ...patientData, name: e.target.value })}
-                        className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] transition" 
+                        className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] transition-colors duration-200" 
                       />
                     </div>
 
@@ -299,7 +341,7 @@ export default function Booking() {
                           placeholder="email@domain.com" 
                           value={patientData.email}
                           onChange={(e) => setPatientData({ ...patientData, email: e.target.value })}
-                          className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] transition" 
+                          className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] transition-colors duration-200" 
                         />
                       </div>
                       <div>
@@ -310,7 +352,7 @@ export default function Booking() {
                           placeholder="+91 98765 43210" 
                           value={patientData.phone}
                           onChange={(e) => setPatientData({ ...patientData, phone: e.target.value })}
-                          className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] transition" 
+                          className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] transition-colors duration-200" 
                         />
                       </div>
                     </div>
@@ -322,7 +364,7 @@ export default function Booking() {
                         <select 
                           value={patientData.doctor}
                           onChange={(e) => setPatientData({ ...patientData, doctor: e.target.value })}
-                          className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm text-[#0F172A] transition"
+                          className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm text-[#0F172A] transition-colors duration-200"
                         >
                           <option value="Dr. Priya Nair">Dr. Priya Nair (Pediatrics & Ob/Gyn)</option>
                           <option value="Dr. Arun Sharma">Dr. Arun Sharma (Physician & Diabetology)</option>
@@ -333,7 +375,7 @@ export default function Booking() {
                         <select 
                           value={patientData.reason}
                           onChange={(e) => setPatientData({ ...patientData, reason: e.target.value })}
-                          className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm text-[#0F172A] transition"
+                          className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm text-[#0F172A] transition-colors duration-200"
                         >
                           <option value="Obstetrician & Gynaecology">Obstetrician &amp; Gynaecology</option>
                           <option value="Ultrasound & Diagnostics">Ultrasound &amp; Diagnostics</option>
@@ -352,12 +394,12 @@ export default function Booking() {
                         placeholder="Brief symptoms or prior medical history" 
                         value={patientData.message}
                         onChange={(e) => setPatientData({ ...patientData, message: e.target.value })}
-                        className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] resize-none transition"
+                        className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] resize-none transition-colors duration-200"
                       ></textarea>
                     </div>
 
                     {/* Fee Summary Pill */}
-                    <div className="flex items-center justify-between p-2 2xl:p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs 2xl:text-sm">
+                    <div className="flex items-center justify-between p-2 2xl:p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs 2xl:text-sm">
                       <span className="text-[#64748B]">Consultation Booking Fee:</span>
                       <span className="font-bold text-[#0F172A] text-sm 2xl:text-base font-serif">$75.00 / ₹600</span>
                     </div>
@@ -375,7 +417,7 @@ export default function Booking() {
                     </div>
 
                     {/* Calendar Widget */}
-                    <div className="bg-white rounded-2xl border border-slate-200 p-2.5 lg:p-2.5 2xl:p-3.5 shadow-xs">
+                    <div className="bg-white rounded-xl border border-slate-500 hover:border-[#0284C7] p-2.5 lg:p-2.5 2xl:p-3.5 shadow-xs transition-colors duration-200">
                       {/* Month Header */}
                       <div className="flex justify-between items-center text-xs 2xl:text-sm font-bold text-[#0F172A] mb-1.5 2xl:mb-2 px-1">
                         <button type="button" className="text-[#64748B] hover:text-[#0F172A] p-0.5 cursor-pointer">
@@ -465,18 +507,18 @@ export default function Booking() {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 onSubmit={handlePaymentSubmit} 
-                className="animate-fadeIn space-y-4"
+                className="animate-fadeIn space-y-2.5 lg:space-y-1.5 2xl:space-y-4"
               >
-                <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-1.5 lg:pb-1 2xl:pb-2">
                   <div>
                     <span className="text-[10px] font-bold text-orange-500 uppercase tracking-wider block">Step 2 of 3</span>
-                    <h2 className="text-lg sm:text-xl font-serif font-bold text-[#0F172A]">Payment &amp; Consultation Verification</h2>
+                    <h2 className="text-base sm:text-xl font-serif font-bold text-[#0F172A]">Payment &amp; Consultation Verification</h2>
                   </div>
                   {/* Option to move back */}
                   <button
                     type="button"
                     onClick={handleGoBackToStep1}
-                    className="inline-flex items-center gap-1 px-3 py-1 rounded-lg border border-slate-200 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] transition cursor-pointer"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-slate-200 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] transition cursor-pointer"
                   >
                     <i className="fa-solid fa-arrow-left text-[10px]"></i>
                     <span>Back to Booking Form</span>
@@ -484,7 +526,7 @@ export default function Booking() {
                 </div>
 
                 {/* Summary Pill from Step 1 */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-3 rounded-2xl bg-sky-50/70 border border-sky-100 text-xs">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 lg:gap-1.5 2xl:gap-2.5 p-2 lg:p-1.5 2xl:p-3 rounded-lg bg-sky-50/70 border border-sky-100 text-xs">
                   <div>
                     <span className="text-[#64748B] block text-[10px]">Patient:</span>
                     <strong className="text-[#0F172A]">{patientData.name || 'Patient'}</strong>
@@ -503,144 +545,158 @@ export default function Booking() {
                   </div>
                 </div>
 
-                {/* Payment Method Selector Tabs */}
-                <div className="space-y-2">
-                  <label className="block text-xs font-bold text-[#0F172A]">Select Payment Option</label>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    {[
-                      { id: 'card', label: 'Credit/Debit Card', icon: 'fa-credit-card' },
-                      { id: 'upi', label: 'Instant UPI / QR', icon: 'fa-qrcode' },
-                      { id: 'netbanking', label: 'Net Banking', icon: 'fa-building-columns' },
-                      { id: 'reception', label: 'Pay at Reception', icon: 'fa-hospital-user' }
-                    ].map((method) => (
-                      <button
-                        key={method.id}
-                        type="button"
-                        onClick={() => setPaymentMethod(method.id)}
-                        className={`p-2.5 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition cursor-pointer ${
-                          paymentMethod === method.id
-                            ? 'border-[#0284C7] bg-[#0284C7] text-white shadow-sm'
-                            : 'border-slate-200 bg-[#F8FAFC] text-slate-700 hover:bg-slate-100'
-                        }`}
-                      >
-                        <i className={`fa-solid ${method.icon}`}></i>
-                        <span>{method.label}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Method Specific Form Fields */}
-                <div className="p-3.5 rounded-2xl border border-slate-200 bg-white space-y-3">
-                  {paymentMethod === 'card' && (
-                    <div className="space-y-2.5">
-                      <div>
-                        <label className="block text-xs font-bold text-[#0F172A] mb-1">Cardholder Name</label>
-                        <input
-                          type="text"
-                          required
-                          value={cardData.name}
-                          onChange={(e) => setCardData({ ...cardData, name: e.target.value })}
-                          placeholder="Name on card"
-                          className="w-full px-3 py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7]"
-                        />
-                      </div>
-                      <div className="grid grid-cols-3 gap-2">
-                        <div className="col-span-2">
-                          <label className="block text-xs font-bold text-[#0F172A] mb-1">Card Number</label>
-                          <input
-                            type="text"
-                            required
-                            value={cardData.number}
-                            onChange={(e) => setCardData({ ...cardData, number: e.target.value })}
-                            placeholder="4532 8920 1842 7731"
-                            className="w-full px-3 py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7]"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-bold text-[#0F172A] mb-1">Expiry / CVV</label>
-                          <div className="flex gap-1.5">
+                {/* iPad mini and greater (md+): 2 Columns (Left: Payment Details, Right: Select Payment Option in 1 col x 4 rows) */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-3 lg:gap-3 2xl:gap-4 items-start">
+                  
+                  {/* Left Column (1st Column on md+): Payment Details Form */}
+                  <div className="order-2 md:order-1 md:col-span-7 space-y-1 lg:space-y-1 2xl:space-y-2">
+                    <label className="block text-xs font-bold text-[#0F172A]">
+                      Payment Details
+                    </label>
+                    <div className="p-3 lg:p-2.5 2xl:p-4 rounded-xl border border-slate-500 hover:border-[#0284C7] bg-white space-y-2.5 lg:space-y-1.5 2xl:space-y-3 transition-colors duration-200">
+                      {paymentMethod === 'card' && (
+                        <div className="space-y-2 lg:space-y-1.5 2xl:space-y-2.5">
+                          <div>
+                            <label className="block text-xs lg:text-[11px] 2xl:text-xs font-bold text-[#0F172A] mb-0.5">Cardholder Name</label>
                             <input
                               type="text"
                               required
-                              value={cardData.expiry}
-                              onChange={(e) => setCardData({ ...cardData, expiry: e.target.value })}
-                              placeholder="08/28"
-                              className="w-1/2 px-2 py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-xs text-center focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7]"
-                            />
-                            <input
-                              type="password"
-                              required
-                              value={cardData.cvv}
-                              onChange={(e) => setCardData({ ...cardData, cvv: e.target.value })}
-                              placeholder="842"
-                              maxLength={4}
-                              className="w-1/2 px-2 py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-xs text-center focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7]"
+                              value={cardData.name}
+                              onChange={(e) => setCardData({ ...cardData, name: e.target.value })}
+                              placeholder="Name on Card"
+                              className="w-full px-3 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
                             />
                           </div>
+                          <div>
+                            <label className="block text-xs lg:text-[11px] 2xl:text-xs font-bold text-[#0F172A] mb-0.5">Card Number (16 Digits)</label>
+                            <input
+                              type="text"
+                              required
+                              value={cardData.number}
+                              onChange={handleCardNumberChange}
+                              placeholder="XXXX XXXX XXXX XXXX"
+                              maxLength={19}
+                              className="w-full px-3 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
+                            />
+                          </div>
+                          <div className="grid grid-cols-2 gap-2.5">
+                            <div>
+                              <label className="block text-xs lg:text-[11px] 2xl:text-xs font-bold text-[#0F172A] mb-0.5">Expiry Date (MM/YY)</label>
+                              <input
+                                type="text"
+                                required
+                                value={cardData.expiry}
+                                onChange={handleExpiryChange}
+                                placeholder="01/26"
+                                maxLength={5}
+                                className="w-full px-2 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs text-center focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-xs lg:text-[11px] 2xl:text-xs font-bold text-[#0F172A] mb-0.5">CVV / CVC</label>
+                              <input
+                                type="password"
+                                required
+                                value={cardData.cvv}
+                                onChange={handleCvvChange}
+                                placeholder="XXX"
+                                maxLength={4}
+                                className="w-full px-2 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs text-center focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
+                              />
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  )}
+                      )}
 
-                  {paymentMethod === 'upi' && (
-                    <div className="space-y-2 text-xs">
-                      <label className="block text-xs font-bold text-[#0F172A] mb-1">Enter UPI ID / VPA</label>
-                      <input
-                        type="text"
-                        required
-                        value={upiId}
-                        onChange={(e) => setUpiId(e.target.value)}
-                        placeholder="yourname@okhdfcbank or yourname@upi"
-                        className="w-full px-3 py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7]"
-                      />
-                      <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] flex items-center gap-2">
-                        <i className="fa-solid fa-shield-halved text-emerald-600"></i>
-                        <span>Zero transaction fee on UPI payments. Scan QR will be presented upon verification.</span>
-                      </div>
-                    </div>
-                  )}
+                      {paymentMethod === 'upi' && (
+                        <div className="space-y-2 text-xs">
+                          <div>
+                            <label className="block text-xs font-bold text-[#0F172A] mb-0.5">Enter UPI ID / VPA</label>
+                            <input
+                              type="text"
+                              required
+                              value={upiId}
+                              onChange={(e) => setUpiId(e.target.value)}
+                              placeholder="XXXXX@okhdfcbank or XXXXX@upi"
+                              className="w-full px-3 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
+                            />
+                          </div>
+                          <div className="p-2 lg:p-1.5 2xl:p-2.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] flex items-center gap-2">
+                            <i className="fa-solid fa-shield-halved text-emerald-600 text-sm"></i>
+                            <span>Zero transaction fee on UPI payments. Dynamic QR will be displayed upon verification.</span>
+                          </div>
+                        </div>
+                      )}
 
-                  {paymentMethod === 'netbanking' && (
-                    <div className="space-y-2 text-xs">
-                      <label className="block text-xs font-bold text-[#0F172A] mb-1">Select Participating Bank</label>
-                      <select
-                        value={selectedBank}
-                        onChange={(e) => setSelectedBank(e.target.value)}
-                        className="w-full px-3 py-1.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7]"
-                      >
-                        <option value="HDFC Bank">HDFC Bank</option>
-                        <option value="State Bank of India">State Bank of India (SBI)</option>
-                        <option value="ICICI Bank">ICICI Bank</option>
-                        <option value="Axis Bank">Axis Bank</option>
-                        <option value="Other Bank">Other Indian/International Bank</option>
-                      </select>
-                    </div>
-                  )}
+                      {paymentMethod === 'netbanking' && (
+                        <div className="space-y-2 text-xs">
+                          <div>
+                            <label className="block text-xs font-bold text-[#0F172A] mb-0.5">Select Participating Bank</label>
+                            <select
+                              value={selectedBank}
+                              onChange={(e) => setSelectedBank(e.target.value)}
+                              className="w-full px-3 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200 cursor-pointer"
+                            >
+                              <option value="HDFC Bank">HDFC Bank</option>
+                              <option value="State Bank of India">State Bank of India (SBI)</option>
+                              <option value="ICICI Bank">ICICI Bank</option>
+                              <option value="Axis Bank">Axis Bank</option>
+                              <option value="Kotak Mahindra Bank">Kotak Mahindra Bank</option>
+                              <option value="Punjab National Bank">Punjab National Bank</option>
+                              <option value="Other Bank">Other Indian/International Bank</option>
+                            </select>
+                          </div>
+                          <p className="text-[11px] text-[#64748B]">You will be redirected securely to your bank portal for net banking authentication.</p>
+                        </div>
+                      )}
 
-                  {paymentMethod === 'reception' && (
-                    <div className="p-3 rounded-xl bg-sky-50 border border-sky-200 text-[#0284C7] text-xs flex items-start gap-2">
-                      <i className="fa-solid fa-circle-info text-base mt-0.5"></i>
-                      <span>You can pay the $75 consultation fee directly at the ClinicCare reception desk via Cash, POS Card, or UPI on the day of your appointment.</span>
+                      {paymentMethod === 'reception' && (
+                        <div className="p-2.5 lg:p-2 2xl:p-3 rounded-lg bg-sky-50 border border-sky-200 text-[#0284C7] text-xs flex items-start gap-2">
+                          <i className="fa-solid fa-circle-info text-base mt-0.5 text-[#0284C7]"></i>
+                          <span className="leading-relaxed">You can pay the $75 consultation fee directly at the ClinicCare reception desk via Cash, POS Card, or UPI on the day of your appointment.</span>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </div>
+
+                  {/* Right Column (2nd Column on md+): Select Payment Option 1 Column in 4 Rows */}
+                  <div className="order-1 md:order-2 md:col-span-5 space-y-1 lg:space-y-1 2xl:space-y-2">
+                    <label className="block text-xs font-bold text-[#0F172A]">Select Payment Option</label>
+                    <div className="flex flex-col gap-1.5 lg:gap-1.5 2xl:gap-2">
+                      {[
+                        { id: 'card', label: 'Credit / Debit Card', icon: 'fa-credit-card' },
+                        { id: 'upi', label: 'Instant UPI / QR Code', icon: 'fa-qrcode' },
+                        { id: 'netbanking', label: 'Net Banking', icon: 'fa-building-columns' },
+                        { id: 'reception', label: 'Pay at Reception Desk', icon: 'fa-hospital-user' }
+                      ].map((method) => (
+                        <button
+                          key={method.id}
+                          type="button"
+                          onClick={() => setPaymentMethod(method.id)}
+                          className={`w-full p-2 lg:p-1.5 2xl:p-2.5 rounded-lg border text-xs font-semibold flex items-center justify-start gap-2.5 transition cursor-pointer ${
+                            paymentMethod === method.id
+                              ? 'border-[#0284C7] bg-[#0284C7] text-white shadow-sm font-bold'
+                              : 'border-slate-300 bg-[#F8FAFC] text-slate-700 hover:bg-slate-100 hover:border-slate-400'
+                          }`}
+                        >
+                          <i className={`fa-solid ${method.icon} w-5 text-center text-sm ${paymentMethod === method.id ? 'text-white' : 'text-[#0284C7]'}`}></i>
+                          <span className="flex-1 text-left">{method.label}</span>
+                          {paymentMethod === method.id && (
+                            <i className="fa-solid fa-circle-check text-xs text-white"></i>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
                 </div>
 
-                {/* Submit / Verification Buttons */}
-                <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-                  <button
-                    type="button"
-                    onClick={handleGoBackToStep1}
-                    className="px-4 py-2 rounded-xl border border-slate-200 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-bold text-[#64748B] hover:text-[#0F172A] transition cursor-pointer flex items-center gap-1.5"
-                  >
-                    <i className="fa-solid fa-arrow-left text-[10px]"></i>
-                    <span>Back to Step 1</span>
-                  </button>
-
+                {/* Submit / Verification Action: Centered at Bottom of Card */}
+                <div className="pt-2 lg:pt-1.5 2xl:pt-3 border-t border-slate-100 flex flex-col items-center justify-center gap-1.5 lg:gap-1 2xl:gap-2">
                   <button
                     type="submit"
                     disabled={isVerifying}
-                    className="flex-1 sm:flex-initial px-7 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-serif font-bold text-xs sm:text-sm rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto px-8 py-2 lg:py-1.5 2xl:py-2.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-serif font-bold text-xs sm:text-sm rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
                   >
                     {isVerifying ? (
                       <>
@@ -654,9 +710,17 @@ export default function Booking() {
                       </>
                     )}
                   </button>
-                  </div>
-                </motion.form>
-              )}
+                  <button
+                    type="button"
+                    onClick={handleGoBackToStep1}
+                    className="inline-flex items-center gap-1.5 text-xs text-[#64748B] hover:text-[#0284C7] transition cursor-pointer font-medium"
+                  >
+                    <i className="fa-solid fa-arrow-left text-[10px]"></i>
+                    <span>Change appointment details (Back to Step 1)</span>
+                  </button>
+                </div>
+              </motion.form>
+            )}
 
               {/* ================= STEP 3: CONFIRMATION PAGE ================= */}
               {currentStep === 3 && (

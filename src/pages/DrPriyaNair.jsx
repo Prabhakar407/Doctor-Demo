@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import DoctorTestimonials from '../components/DoctorTestimonials';
 
+import patientAnanya from '../Images/testimonials/patient_ananya.webp';
+import patientPooja from '../Images/testimonials/patient_pooja.webp';
+import patientRohan from '../Images/testimonials/patient_rohan.webp';
+import patientSneha from '../Images/testimonials/patient_sneha.webp';
+import patientManoj from '../Images/testimonials/patient_manoj.webp';
+import patientDivya from '../Images/testimonials/patient_divya.webp';
+
 export default function DrPriyaNair() {
   const testimonials = [
     {
@@ -12,7 +19,7 @@ export default function DrPriyaNair() {
       date: "Recent Consultation",
       text: "Dr. Priya Nair has been our pediatrician since our baby was born. Her gentle touch, prompt advice, and patience with first-time parents are invaluable.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80"
+      image: patientAnanya
     },
     {
       name: "Pooja Iyer",
@@ -21,16 +28,16 @@ export default function DrPriyaNair() {
       date: "Recent Consultation",
       text: "Dr. Nair diagnosed our daughter's persistent seasonal allergy accurately when other clinics failed. Her prenatal and vaccination guidance is seamless and compassionate.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+      image: patientPooja
     },
     {
-      name: "Rohan Deshmukh",
+      name: "Rohan Kapoor",
       role: "Father of 6-Year-Old",
       rating: 5,
       date: "Recent Consultation",
       text: "Very compassionate and attentive doctor. Children actually feel comfortable in her clinic without fear. Highly recommend Dr. Priya Nair for pediatric and family care!",
       verified: true,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
+      image: patientRohan
     },
     {
       name: "Sneha Kulkarni",
@@ -39,16 +46,16 @@ export default function DrPriyaNair() {
       date: "Recent Consultation",
       text: "As first-time parents, we had endless questions. Dr. Nair gave us clear, calming guidance and practical tips. We wouldn't trust anyone else with our baby.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80"
+      image: patientSneha
     },
     {
-      name: "Manoj Nair",
+      name: "Manoj Nambiar",
       role: "Family Wellness Patient",
       rating: 5,
       date: "Recent Consultation",
       text: "Compassionate and highly knowledgeable doctor who listens carefully. Her treatment worked swiftly for our daughter's recurring cough and seasonal flu.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"
+      image: patientManoj
     },
     {
       name: "Divya Menon",
@@ -57,7 +64,7 @@ export default function DrPriyaNair() {
       date: "Recent Consultation",
       text: "Friendly, approachable, and extremely thorough. Dr. Priya provided excellent nutritional guidance for our teenager and resolved our recurring health concerns.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"
+      image: patientDivya
     }
   ];
 
@@ -90,7 +97,7 @@ export default function DrPriyaNair() {
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="flex justify-center md:justify-end items-center w-full lg:pr-6 xl:pr-10 2xl:pr-14 3xl:pr-16"
             >
-              <div className="w-64 h-72 sm:w-80 sm:h-96 2xl:w-[16.5rem] 2xl:h-[19rem] 3xl:w-[19rem] 3xl:h-[22rem] rounded-3xl bg-white border border-white/30 flex items-center justify-center text-[#1B365D] shadow-[0_20px_50px_-10px_rgba(2,132,199,0.5)] relative overflow-hidden group">
+              <div className="w-64 h-72 sm:w-80 sm:h-96 2xl:w-[16.5rem] 2xl:h-[19rem] 3xl:w-[19rem] 3xl:h-[22rem] rounded-2xl bg-white border border-white/30 flex items-center justify-center text-[#1B365D] shadow-[0_20px_50px_-10px_rgba(2,132,199,0.5)] relative overflow-hidden group">
                 <img 
                   src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=80" 
                   alt="Dr. Priya Nair" 

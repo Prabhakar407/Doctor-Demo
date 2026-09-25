@@ -118,14 +118,14 @@ export default function Treatments() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => handleServiceClick('gynecology')}
-              className={`bg-white rounded-3xl border ${
+              className={`bg-white rounded-2xl border ${
                 selectedService === 'gynecology' 
                   ? 'border-[#0284C7] ring-2 ring-[#0284C7] shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] -translate-y-1' 
                   : 'border-slate-300 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
               } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer lg:min-h-[345px] xl:min-h-[385px] 2xl:min-h-0`}
             >
               <div className="p-3 pb-0 lg:p-2.5 lg:pb-0 xl:p-3 xl:pb-0 2xl:p-3 2xl:pb-0">
-                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
+                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
                     src={healthcareGynecologyImg} 
                     alt="Obstetrician - Gynaecologist" 
@@ -154,14 +154,14 @@ export default function Treatments() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => handleServiceClick('ultrasound')}
-              className={`bg-white rounded-3xl border ${
+              className={`bg-white rounded-2xl border ${
                 selectedService === 'ultrasound' 
                   ? 'border-[#0284C7] ring-2 ring-[#0284C7] shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] -translate-y-1' 
                   : 'border-slate-300 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
               } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer lg:min-h-[345px] xl:min-h-[385px] 2xl:min-h-0`}
             >
               <div className="p-3 pb-0 lg:p-2.5 lg:pb-0 xl:p-3 xl:pb-0 2xl:p-3 2xl:pb-0">
-                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
+                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
                     src={healthcareUltrasoundImg} 
                     alt="Ultrasound Diagnostics" 
@@ -190,14 +190,14 @@ export default function Treatments() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => handleServiceClick('pregnancy')}
-              className={`bg-white rounded-3xl border ${
+              className={`bg-white rounded-2xl border ${
                 selectedService === 'pregnancy' 
                   ? 'border-[#0284C7] ring-2 ring-[#0284C7] shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] -translate-y-1' 
                   : 'border-slate-300 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
               } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer lg:min-h-[345px] xl:min-h-[385px] 2xl:min-h-0`}
             >
               <div className="p-3 pb-0 lg:p-2.5 lg:pb-0 xl:p-3 xl:pb-0 2xl:p-3 2xl:pb-0">
-                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
+                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
                     src={healthcarePregnancyImg} 
                     alt="Pregnancy Management" 
@@ -226,14 +226,14 @@ export default function Treatments() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => handleServiceClick('physician')}
-              className={`bg-white rounded-3xl border ${
+              className={`bg-white rounded-2xl border ${
                 selectedService === 'physician' 
                   ? 'border-[#0284C7] ring-2 ring-[#0284C7] shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] -translate-y-1' 
                   : 'border-slate-300 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.25)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.4)] hover:-translate-y-1'
               } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer lg:min-h-[345px] xl:min-h-[385px] 2xl:min-h-0`}
             >
               <div className="p-3 pb-0 lg:p-2.5 lg:pb-0 xl:p-3 xl:pb-0 2xl:p-3 2xl:pb-0">
-                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-2xl bg-white border border-slate-100 overflow-hidden relative">
+                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
                     src={physicianImg} 
                     alt="Physician & Diabetologist" 
@@ -349,7 +349,7 @@ export default function Treatments() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
-              className="max-w-4xl mx-auto flex items-center justify-between bg-sky-50 border border-sky-200 rounded-2xl px-4 py-2.5 text-xs text-[#0284C7]"
+              className="max-w-4xl mx-auto flex items-center justify-between bg-sky-50 border border-sky-200 rounded-xl px-4 py-2.5 text-xs text-[#0284C7]"
             >
               <span className="font-semibold flex items-center gap-1.5">
                 <i className="fa-solid fa-filter text-[#0284C7]"></i>
@@ -379,7 +379,7 @@ export default function Treatments() {
                     viewport={{ once: true, amount: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.6, delay: (index % 3) * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                    className={`bg-white rounded-3xl border border-slate-300 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col ${
+                    className={`bg-white rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col ${
                       isEven ? 'md:flex-row' : 'md:flex-row-reverse'
                     } items-stretch group h-[390px] sm:h-[405px] md:h-56 lg:h-56 2xl:h-64`}
                   >

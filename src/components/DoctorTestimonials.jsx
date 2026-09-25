@@ -4,9 +4,7 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const SQRT_5000 = Math.sqrt(5000);
-
-// Staggered Card for iPad Mini, Laptop, and 2K+ screens (matches Testimonial.webm with white center card & blue side cards)
+// Staggered Card for iPad Mini, Laptop, and 2K+ screens (with smoothly rounded corners)
 const StaggerTestimonialCard = ({
   position,
   testimonial,
@@ -15,9 +13,6 @@ const StaggerTestimonialCard = ({
   is2kOrHigher = false,
 }) => {
   const isCenter = position === 0;
-  const chamfer = is2kOrHigher ? 38 : 50;
-  const slashWidth = is2kOrHigher ? Math.sqrt(38 * 38 * 2) : SQRT_5000;
-  const slashTop = is2kOrHigher ? 36 : 48;
   const lift = isCenter 
     ? (is2kOrHigher ? -32 : -65) 
     : (position % 2 ? (is2kOrHigher ? 8 : 15) : (is2kOrHigher ? -8 : -15));
@@ -30,38 +25,23 @@ const StaggerTestimonialCard = ({
     <div
       onClick={() => handleMove(position)}
       className={cn(
-        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-6 sm:p-7 lg:p-8 2xl:p-4.5 2xl:pt-3.5 3xl:p-5.5 transition-all duration-500 ease-in-out select-none",
+        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-6 sm:p-7 lg:p-8 2xl:p-4.5 2xl:pt-3.5 3xl:p-5.5 transition-all duration-500 ease-in-out select-none rounded-xl md:rounded-2xl",
         isCenter
-          ? "z-20 bg-white text-[#0F172A] border-slate-300 shadow-[0px_8px_0px_4px_rgba(2,132,199,0.3)]"
-          : "z-0 bg-[#1B365D] text-white border-[#13294B] hover:border-[#0284C7]/60"
+          ? "z-20 bg-white text-[#0F172A] border-slate-200 shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] ring-1 ring-sky-500/20"
+          : "z-0 bg-[#1B365D] text-white border-[#13294B] shadow-[0_10px_30px_-5px_rgba(0,0,0,0.3)] hover:border-[#0284C7]/60"
       )}
       style={{
         width: cardSize,
         height: cardSize,
-        clipPath: `polygon(${chamfer}px 0%, calc(100% - ${chamfer}px) 0%, 100% ${chamfer}px, 100% 100%, calc(100% - ${chamfer}px) 100%, ${chamfer}px 100%, 0 100%, 0 0)`,
+        borderRadius: is2kOrHigher ? '1rem' : '1.25rem',
         transform: `
           translate(-50%, -50%) 
           translateX(${horizontalSpacing * position}px)
           translateY(${lift}px)
           rotate(${tilt}deg)
-        `,
-        boxShadow: isCenter ? "0px 8px 0px 4px rgba(2, 132, 199, 0.25)" : "0px 0px 0px 0px transparent"
+        `
       }}
     >
-      {/* 45-degree slash accent line on top-right chamfer */}
-      <span
-        className={cn(
-          "absolute block origin-top-right rotate-45",
-          isCenter ? "bg-slate-300" : "bg-sky-400/40"
-        )}
-        style={{
-          right: -2,
-          top: slashTop,
-          width: slashWidth,
-          height: 2
-        }}
-      />
-
       {/* Patient Avatar Photo */}
       <img
         src={testimonial.image || testimonial.imgSrc}
@@ -71,7 +51,7 @@ const StaggerTestimonialCard = ({
           isCenter ? "bg-slate-100 border-slate-200" : "bg-slate-800 border-white/20"
         )}
         style={{
-          boxShadow: isCenter ? "3px 3px 0px rgba(0,0,0,0.15)" : "3px 3px 0px rgba(0,0,0,0.3)"
+          boxShadow: isCenter ? "3px 3px 0px rgba(0,0,0,0.12)" : "3px 3px 0px rgba(0,0,0,0.3)"
         }}
         loading="eager"
       />
@@ -244,7 +224,7 @@ export default function DoctorTestimonials({
   const sectionTitle = title || `Patient Testimonials for ${doctorName}`;
   const is2kOrHigher = windowWidth >= 1536;
   const isLaptop = windowWidth >= 1024 && windowWidth < 1536;
-  const staggerHeight = windowWidth >= 2560 ? 430 : windowWidth >= 1920 ? 415 : windowWidth >= 1536 ? 390 : isLaptop ? 490 : 580;
+  const staggerHeight = windowWidth >= 2560 ? 370 : windowWidth >= 1920 ? 355 : windowWidth >= 1536 ? 340 : isLaptop ? 490 : 580;
 
   // =========================================================================
   // MOBILE VIEW (< 768px): Exact original mobile card preserved without alteration
@@ -288,9 +268,9 @@ export default function DoctorTestimonials({
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                 className="w-full"
               >
-                <div className="bg-white rounded-2xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.16)] hover:shadow-[0_16px_35px_-5px_rgba(2,132,199,0.25)] p-2.5 sm:p-4 flex flex-row items-stretch gap-2.5 sm:gap-4 group h-full min-h-[10rem]">
+                <div className="bg-white rounded-xl border border-slate-200 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.16)] hover:shadow-[0_16px_35px_-5px_rgba(2,132,199,0.25)] p-2.5 sm:p-4 flex flex-row items-stretch gap-2.5 sm:gap-4 group h-full min-h-[10rem]">
                   {/* Left: Patient Portrait Image */}
-                  <div className="w-20 min-[380px]:w-24 sm:w-28 shrink-0 rounded-xl overflow-hidden self-stretch relative bg-gradient-to-br from-sky-50 to-slate-100 border border-slate-200">
+                  <div className="w-20 min-[380px]:w-24 sm:w-28 shrink-0 rounded-lg overflow-hidden self-stretch relative bg-gradient-to-br from-sky-50 to-slate-100 border border-slate-200">
                     <img
                       src={mobileItem.image}
                       alt={mobileItem.name}
@@ -433,13 +413,13 @@ export default function DoctorTestimonials({
             );
           })}
 
-          {/* Square Navigation Buttons (Left & Right) matching Testimonial.webm */}
-          <div className="absolute bottom-4 2xl:bottom-1.5 left-1/2 flex -translate-x-1/2 gap-2 z-30">
+          {/* Square Navigation Buttons (Left & Right) with rounded corners */}
+          <div className="absolute bottom-4 2xl:bottom-1 left-1/2 flex -translate-x-1/2 gap-2 z-30">
             <button
               type="button"
               onClick={() => handleMove(-1)}
               className={cn(
-                "flex h-12 w-12 sm:h-14 sm:w-14 2xl:h-8 2xl:w-8 items-center justify-center text-xl sm:text-2xl 2xl:text-base transition-all duration-200",
+                "flex h-12 w-12 sm:h-14 sm:w-14 2xl:h-8 2xl:w-8 items-center justify-center text-xl sm:text-2xl 2xl:text-base transition-all duration-200 rounded-lg sm:rounded-xl 2xl:rounded-md",
                 "bg-white border-2 border-slate-300 hover:bg-[#1B365D] hover:text-white hover:border-[#1B365D] text-[#1B365D] cursor-pointer active:scale-95 shadow-sm",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0284C7] focus-visible:ring-offset-2"
               )}
@@ -451,7 +431,7 @@ export default function DoctorTestimonials({
               type="button"
               onClick={() => handleMove(1)}
               className={cn(
-                "flex h-12 w-12 sm:h-14 sm:w-14 2xl:h-8 2xl:w-8 items-center justify-center text-xl sm:text-2xl 2xl:text-base transition-all duration-200",
+                "flex h-12 w-12 sm:h-14 sm:w-14 2xl:h-8 2xl:w-8 items-center justify-center text-xl sm:text-2xl 2xl:text-base transition-all duration-200 rounded-lg sm:rounded-xl 2xl:rounded-md",
                 "bg-white border-2 border-slate-300 hover:bg-[#1B365D] hover:text-white hover:border-[#1B365D] text-[#1B365D] cursor-pointer active:scale-95 shadow-sm",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0284C7] focus-visible:ring-offset-2"
               )}
@@ -462,8 +442,8 @@ export default function DoctorTestimonials({
           </div>
         </div>
 
-        {/* Quick CTA button to book appointment - Moved slightly up on 2K/3K */}
-        <div className="text-center shrink-0 2xl:pt-0 2xl:pb-1 2xl:-translate-y-1">
+        {/* Quick CTA button to book appointment - Moved more upward on 2K/3K screens closer to left/right arrow keys */}
+        <div className="text-center shrink-0 2xl:pt-0 2xl:pb-0 2xl:-mt-7 2xl:-translate-y-6 3xl:-mt-9 3xl:-translate-y-8">
           <Link
             to={bookingUrl}
             className="inline-flex items-center gap-2 bg-[#1B365D] hover:bg-[#13294B] text-white font-serif font-bold px-7 py-3 2xl:py-2 2xl:px-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform text-xs sm:text-sm 2xl:text-xs 3xl:text-sm border border-transparent hover:border-slate-300"

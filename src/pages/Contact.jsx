@@ -36,7 +36,7 @@ export default function Contact() {
           </motion.div>
 
           {/* Main Card Container (Slightly increased height on 2k+ screens) */}
-          <div className="bg-white rounded-3xl border border-slate-200 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] transition-all duration-300 overflow-hidden p-5 sm:p-7 2xl:p-6 3xl:p-8">
+          <div className="bg-white rounded-xl border border-slate-500 hover:border-[#0284C7] shadow-[0_12px_30px_-5px_rgba(2,132,199,0.3)] hover:shadow-[0_20px_45px_-5px_rgba(2,132,199,0.45)] transition-all duration-300 overflow-hidden p-5 sm:p-7 2xl:p-6 3xl:p-8">
             <div className="grid md:grid-cols-12 gap-6 lg:gap-8 2xl:gap-8 items-start">
               
               {/* Left: Contact form */}
@@ -60,7 +60,7 @@ export default function Contact() {
                       placeholder="Enter your full name" 
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-3 py-2 2xl:py-2.5 3xl:py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-sm placeholder:text-[#64748B]" 
+                      className="w-full px-3 py-2 2xl:py-2.5 3xl:py-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-sm placeholder:text-[#64748B] transition-colors duration-200" 
                     />
                   </div>
 
@@ -73,7 +73,7 @@ export default function Contact() {
                         placeholder="you@email.com" 
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-3 py-2 2xl:py-2.5 3xl:py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-sm placeholder:text-[#64748B]" 
+                        className="w-full px-3 py-2 2xl:py-2.5 3xl:py-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-sm placeholder:text-[#64748B] transition-colors duration-200" 
                       />
                     </div>
                     <div>
@@ -83,7 +83,7 @@ export default function Contact() {
                         placeholder="+91 98765 43210" 
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-3 py-2 2xl:py-2.5 3xl:py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-sm placeholder:text-[#64748B]" 
+                        className="w-full px-3 py-2 2xl:py-2.5 3xl:py-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-sm placeholder:text-[#64748B] transition-colors duration-200" 
                       />
                     </div>
                   </div>
@@ -95,7 +95,7 @@ export default function Contact() {
                       placeholder="How can our clinical team help you?" 
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-3 py-2 2xl:py-2.5 3xl:py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-sm placeholder:text-[#64748B] resize-none"
+                      className="w-full px-3 py-2 2xl:py-2.5 3xl:py-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs sm:text-sm 2xl:text-sm placeholder:text-[#64748B] resize-none transition-colors duration-200" 
                     ></textarea>
                   </div>
 
@@ -122,7 +122,7 @@ export default function Contact() {
                 </div>
 
                 {/* Styled Vector Map Container with Red Pin */}
-                <div className="w-full h-36 sm:h-40 2xl:h-24 rounded-2xl border border-slate-200 overflow-hidden relative shadow-inner bg-[#F8FAFC] flex items-center justify-center">
+                <div className="w-full h-36 sm:h-40 2xl:h-24 rounded-xl border border-slate-200 overflow-hidden relative shadow-inner bg-[#F8FAFC] flex items-center justify-center">
                   <svg className="absolute inset-0 w-full h-full opacity-60" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                       <pattern id="grid-contact" width="40" height="40" patternUnits="userSpaceOnUse">

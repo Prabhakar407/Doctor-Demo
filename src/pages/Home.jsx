@@ -18,6 +18,15 @@ import pregnancyImg from '../Images/pregnancy-service.webp';
 import physicianImg from '../Images/physician-service.webp';
 import glucometerImg from '../Images/glucometer.webp';
 
+import homePatient1 from '../Images/testimonials/home_p1.webp';
+import homePatient2 from '../Images/testimonials/home_p2.webp';
+import homePatient3 from '../Images/testimonials/home_p3.webp';
+import homePatient4 from '../Images/testimonials/home_p4.webp';
+import homePatient5 from '../Images/testimonials/home_p5.webp';
+import homePatient6 from '../Images/testimonials/home_p6.webp';
+import homePatient7 from '../Images/testimonials/home_p7.webp';
+import homePatient8 from '../Images/testimonials/home_p8.webp';
+
 const MotionLink = motion.create(Link);
 
 const heroImagesList = [hero1, hero2, hero3];
@@ -142,26 +151,26 @@ export default function Home() {
 
   const reviews = [
     {
-      name: "Ananya Sharma",
-      image: "https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?auto=format&fit=crop&w=200&h=200&q=80",
+      name: "Aditi Sen",
+      image: homePatient1,
       rating: 5,
       text: "\"Dr. Sharma's diagnosis was extremely accurate and comforting. The clinic staff was polite, and the digital appointment booking saved me so much waiting time.\""
     },
     {
-      name: "Rajesh Patel",
-      image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=200&h=200&q=80",
+      name: "Karan Verma",
+      image: homePatient2,
       rating: 5,
       text: "\"Outstanding healthcare experience! The consultation was detailed, thorough, and every test result was explained with utmost clarity. Highly recommended.\""
     },
     {
-      name: "Pooja Iyer",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&h=200&q=80",
+      name: "Tanvi Bhatia",
+      image: homePatient3,
       rating: 5,
       text: "\"The online slot booking made the whole process effortless. The doctor is compassionate, attentive, and provided a clear, personalized recovery plan.\""
     },
     {
-      name: "Vikram Sengupta",
-      image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=200&h=200&q=80",
+      name: "Abhishek Jain",
+      image: homePatient4,
       rating: 5,
       text: "\"Prompt attention, state-of-the-art facility, and genuine care from the entire medical team. Truly grateful for the excellent consultation and guidance.\""
     }
@@ -169,26 +178,26 @@ export default function Home() {
 
   const reviewsRow2 = [
     {
-      name: "Sunita Deshmukh",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&h=200&q=80",
+      name: "Shweta Mukherjee",
+      image: homePatient5,
       rating: 5,
       text: "\"Dr. Nair's empathetic maternal care and guidance made our pregnancy journey joyful and secure. We received clear answers to every question.\""
     },
     {
-      name: "Amitav Roy",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=80",
+      name: "Nikhil Saxena",
+      image: homePatient6,
       rating: 5,
       text: "\"The physician consultation for my diabetes management was truly transformative. Actionable medical advice and very attentive staff.\""
     },
     {
-      name: "Kavita Menon",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&h=200&q=80",
+      name: "Geeta Pillai",
+      image: homePatient7,
       rating: 5,
       text: "\"High-precision pelvic ultrasound imaging done with utmost clinical dignity. The report was verified quickly with digital prescriptions.\""
     },
     {
-      name: "Rohan Kulkarni",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&h=200&q=80",
+      name: "Arjun Singhal",
+      image: homePatient8,
       rating: 5,
       text: "\"Seamless digital reservation system and zero wait time. Modern equipment, spotlessly clean clinic, and genuinely caring doctors.\""
     }
@@ -385,7 +394,7 @@ export default function Home() {
                     ease: "easeInOut",
                   }
                 }}
-                className="w-full max-w-sm 2xl:max-w-[28rem] 3xl:max-w-[32rem] bg-white/12 backdrop-blur-2xl text-white rounded-2xl 2xl:rounded-3xl p-5 sm:p-6 2xl:p-7 3xl:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.45),0_0_30px_rgba(2,132,199,0.25)] hover:shadow-[0_25px_65px_rgba(2,132,199,0.45)] border border-white/25 hover:border-[#0284C7] transition-all duration-300 space-y-3 2xl:space-y-4 relative"
+                className="w-full max-w-sm 2xl:max-w-[28rem] 3xl:max-w-[32rem] bg-white/12 backdrop-blur-2xl text-white rounded-xl 2xl:rounded-2xl p-5 sm:p-6 2xl:p-7 3xl:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.45),0_0_30px_rgba(2,132,199,0.25)] hover:shadow-[0_25px_65px_rgba(2,132,199,0.45)] border border-white/25 hover:border-[#0284C7] transition-all duration-300 space-y-3 2xl:space-y-4 relative"
               >
                 
                 <div className="text-center pb-1.5 2xl:pb-2.5 border-b border-white/15">
@@ -406,7 +415,7 @@ export default function Home() {
                       type="text"
                       required
                       placeholder="Your full name"
-                      className="w-full px-3 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3.5 text-xs 2xl:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
+                      className="w-full px-3 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3.5 text-xs 2xl:text-sm font-medium rounded-lg bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
                     />
                   </div>
 
@@ -418,7 +427,7 @@ export default function Home() {
                         type="tel"
                         required
                         placeholder="+91 98765 43210"
-                        className="w-full px-3 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3.5 text-xs 2xl:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
+                        className="w-full px-3 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3.5 text-xs 2xl:text-sm font-medium rounded-lg bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
                       />
                     </div>
                     <div>
@@ -427,7 +436,7 @@ export default function Home() {
                         type="email"
                         required
                         placeholder="you@email.com"
-                        className="w-full px-3 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3.5 text-xs 2xl:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
+                        className="w-full px-3 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3.5 text-xs 2xl:text-sm font-medium rounded-lg bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
                       />
                     </div>
                   </div>
@@ -439,14 +448,14 @@ export default function Home() {
                       <input
                         type="date"
                         required
-                        className="w-full px-2 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3 text-xs 2xl:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
+                        className="w-full px-2 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3 text-xs 2xl:text-sm font-medium rounded-lg bg-white border border-slate-300 text-[#0F172A] shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
                       />
                     </div>
                     <div>
                       <label className="block text-xs 2xl:text-sm font-bold text-white mb-0.5 2xl:mb-1 tracking-wide">Preferred Time *</label>
                       <select
                         required
-                        className="w-full px-2 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3 text-xs 2xl:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
+                        className="w-full px-2 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3 text-xs 2xl:text-sm font-medium rounded-lg bg-white border border-slate-300 text-[#0F172A] shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
                       >
                         <option value="" className="text-slate-500">Select Time</option>
                         <option value="Morning" className="text-[#0F172A]">09:00 AM - 12:00 PM</option>
@@ -484,7 +493,7 @@ export default function Home() {
         {/* 7-Second Inquiry Popup Modal (shown with cut/cancel option; inline form remains on small screens) */}
         {showInquiryModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md animate-fadeIn">
-            <div className="relative w-full max-w-md 2xl:max-w-lg bg-[#1B365D] border border-white/20 rounded-3xl p-5 sm:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.6)] text-white max-h-[90vh] overflow-y-auto">
+            <div className="relative w-full max-w-md 2xl:max-w-lg bg-[#1B365D] border border-white/20 rounded-2xl p-5 sm:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.6)] text-white max-h-[90vh] overflow-y-auto">
               {/* Close / Cross Button to Cancel */}
               <button
                 type="button"
@@ -513,7 +522,7 @@ export default function Home() {
                     type="text"
                     required
                     placeholder="Your full name"
-                    className="w-full px-3.5 py-2 text-xs sm:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition"
+                    className="w-full px-3.5 py-2 text-xs sm:text-sm font-medium rounded-lg bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition"
                   />
                 </div>
 
@@ -524,7 +533,7 @@ export default function Home() {
                       type="tel"
                       required
                       placeholder="+91 98765 43210"
-                      className="w-full px-3.5 py-2 text-xs sm:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition"
+                      className="w-full px-3.5 py-2 text-xs sm:text-sm font-medium rounded-lg bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition"
                     />
                   </div>
                   <div>
@@ -533,7 +542,7 @@ export default function Home() {
                       type="email"
                       required
                       placeholder="you@email.com"
-                      className="w-full px-3.5 py-2 text-xs sm:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition"
+                      className="w-full px-3.5 py-2 text-xs sm:text-sm font-medium rounded-lg bg-white border border-slate-300 text-[#0F172A] placeholder:text-slate-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition"
                     />
                   </div>
                 </div>
@@ -544,14 +553,14 @@ export default function Home() {
                     <input
                       type="date"
                       required
-                      className="w-full px-3 py-2 text-xs sm:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition"
+                      className="w-full px-3 py-2 text-xs sm:text-sm font-medium rounded-lg bg-white border border-slate-300 text-[#0F172A] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition"
                     />
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-white mb-1 tracking-wide">Preferred Time *</label>
                     <select
                       required
-                      className="w-full px-3 py-2 text-xs sm:text-sm font-medium rounded-xl bg-white border border-slate-300 text-[#0F172A] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition"
+                      className="w-full px-3 py-2 text-xs sm:text-sm font-medium rounded-lg bg-white border border-slate-300 text-[#0F172A] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition"
                     >
                       <option value="" className="text-slate-500">Select Time</option>
                       <option value="Morning" className="text-[#0F172A]">09:00 AM - 12:00 PM</option>
@@ -614,7 +623,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.65, delay: 0.10, ease: "easeInOut" }}
-              className="healthcare-se-card bg-[#1B365D] rounded-3xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
+              className="healthcare-se-card bg-[#1B365D] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
             >
               <div className="healthcare-se-img w-full flex-1 min-h-[220px] 2xl:min-h-[300px] bg-[#1B365D] relative overflow-hidden flex items-center justify-center">
                 <img 
@@ -644,7 +653,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0 }}
                 transition={{ duration: 0.65, delay: 0.85, ease: "easeInOut" }}
-                className="healthcare-se-card healthcare-se-card-fullbleed h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden flex flex-col justify-end p-4 sm:p-4.5 2xl:p-5 group cursor-pointer bg-[#1B365D]"
+                className="healthcare-se-card healthcare-se-card-fullbleed h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden flex flex-col justify-end p-4 sm:p-4.5 2xl:p-5 group cursor-pointer bg-[#1B365D]"
               >
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                   <img 
@@ -673,7 +682,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0 }}
                 transition={{ duration: 0.65, delay: 1.60, ease: "easeInOut" }}
-                className="healthcare-se-card h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] bg-[#1B365D] rounded-3xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group relative cursor-pointer"
+                className="healthcare-se-card h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] bg-[#1B365D] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group relative cursor-pointer"
               >
                 <div className="healthcare-se-img w-full flex-1 min-h-0 overflow-hidden bg-[#1B365D] relative">
                   <img 
@@ -699,7 +708,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.65, delay: 2.35, ease: "easeInOut" }}
-              className="healthcare-se-card bg-[#1B365D] rounded-3xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
+              className="healthcare-se-card bg-[#1B365D] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
             >
               <div className="healthcare-se-img w-full flex-1 min-h-[220px] 2xl:min-h-[300px] bg-[#1B365D] relative overflow-hidden flex items-center justify-center">
                 <img 
@@ -729,7 +738,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0 }}
                 transition={{ duration: 0.65, delay: 3.10, ease: "easeInOut" }}
-                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer bg-[#1B365D]"
+                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer bg-[#1B365D]"
               >
                 <div className="healthcare-se-img w-full sm:w-2/5 flex-1 sm:flex-initial min-h-0 sm:min-h-full bg-[#1B365D] overflow-hidden relative order-1 sm:order-2">
                   <img 
@@ -761,7 +770,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0 }}
                 transition={{ duration: 0.65, delay: 3.85, ease: "easeInOut" }}
-                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-3xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer bg-[#1B365D]"
+                className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer bg-[#1B365D]"
               >
                 <div className="healthcare-se-img w-full sm:w-2/5 flex-1 sm:flex-initial min-h-0 sm:min-h-full bg-[#1B365D] overflow-hidden relative order-1 sm:order-2">
                   <img 
@@ -835,8 +844,8 @@ export default function Home() {
               </div>
 
               {/* Doctor Photo Card Container - Full generous width on 2K/3K screens without reduction */}
-              <div className="w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[440px] 2xl:max-w-none bg-gradient-to-b from-[#F8FAFC] to-slate-100 rounded-3xl border border-slate-200 p-3 sm:p-4 2xl:p-6 shadow-[0_12px_35px_-5px_rgba(2,132,199,0.22)] relative overflow-hidden group">
-                <div className="w-full h-80 sm:h-96 lg:h-[28rem] 2xl:h-[38rem] 3xl:h-[44rem] rounded-2xl overflow-hidden relative bg-[#1B365D]">
+              <div className="w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[440px] 2xl:max-w-none bg-gradient-to-b from-[#F8FAFC] to-slate-100 rounded-2xl border border-slate-200 p-3 sm:p-4 2xl:p-6 shadow-[0_12px_35px_-5px_rgba(2,132,199,0.22)] relative overflow-hidden group">
+                <div className="w-full h-80 sm:h-96 lg:h-[28rem] 2xl:h-[38rem] 3xl:h-[44rem] rounded-xl overflow-hidden relative bg-[#1B365D]">
                   <img
                     src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1400&q=85"
                     alt="Dr. Arun Sharma"
@@ -845,7 +854,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1B365D]/90 via-transparent to-transparent"></div>
                   
                   {/* Bottom Image Floating Tag */}
-                  <div className="absolute bottom-3 left-3 right-3 2xl:bottom-4 2xl:left-4 2xl:right-4 flex items-center justify-between bg-[#1B365D]/90 backdrop-blur-md text-white px-3.5 py-2 2xl:px-5 2xl:py-3 rounded-xl border border-white/20 text-xs 2xl:text-sm shadow-md">
+                  <div className="absolute bottom-3 left-3 right-3 2xl:bottom-4 2xl:left-4 2xl:right-4 flex items-center justify-between bg-[#1B365D]/90 backdrop-blur-md text-white px-3.5 py-2 2xl:px-5 2xl:py-3 rounded-lg border border-white/20 text-xs 2xl:text-sm shadow-md">
                     <span className="font-bold flex items-center gap-1.5">
                       <i className="fa-solid fa-circle-check text-emerald-400"></i> Verified Specialist
                     </span>
@@ -895,7 +904,7 @@ export default function Home() {
               </div>
 
               {/* Clinical Philosophy Quote Box */}
-              <div className="relative bg-gradient-to-r from-sky-50/60 via-slate-50/80 to-white rounded-2xl p-3.5 sm:p-4 2xl:p-5 border-l-4 border-[#0284C7] border-y border-r border-slate-200/80 shadow-xs">
+              <div className="relative bg-gradient-to-r from-sky-50/60 via-slate-50/80 to-white rounded-xl p-3.5 sm:p-4 2xl:p-5 border-l-4 border-[#0284C7] border-y border-r border-slate-200/80 shadow-xs">
                 <div className="flex gap-2.5 2xl:gap-3 items-start">
                   <i className="fa-solid fa-quote-left text-[#0284C7]/30 text-xl 2xl:text-2xl shrink-0 mt-0.5"></i>
                   <p className="text-[#334155] text-xs sm:text-sm md:text-base 2xl:text-lg leading-relaxed font-sans">
@@ -908,10 +917,10 @@ export default function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 2xl:gap-4 pt-0">
                 
                 {/* 1. 10+ Years Experience */}
-                <div className="bg-gradient-to-br from-white to-slate-50/90 rounded-2xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-slate-200/90 shadow-sm hover:border-[#0284C7] hover:shadow-[0_8px_25px_-5px_rgba(2,132,199,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
+                <div className="bg-gradient-to-br from-white to-slate-50/90 rounded-xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-slate-200/90 shadow-sm hover:border-[#0284C7] hover:shadow-[0_8px_25px_-5px_rgba(2,132,199,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 2xl:w-11 2xl:h-11 rounded-xl bg-gradient-to-br from-sky-50 to-sky-100 text-[#0284C7] flex items-center justify-center shrink-0 border border-sky-200/60 shadow-xs group-hover:scale-105 group-hover:bg-[#0284C7] group-hover:text-white transition-all duration-300">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 2xl:w-11 2xl:h-11 rounded-lg bg-gradient-to-br from-sky-50 to-sky-100 text-[#0284C7] flex items-center justify-center shrink-0 border border-sky-200/60 shadow-xs group-hover:scale-105 group-hover:bg-[#0284C7] group-hover:text-white transition-all duration-300">
                         <i className="fa-solid fa-award text-base sm:text-lg"></i>
                       </div>
                       <div>
@@ -928,10 +937,10 @@ export default function Home() {
                 </div>
 
                 {/* 2. Studied from Top Medical College */}
-                <div className="bg-gradient-to-br from-white to-slate-50/90 rounded-2xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-slate-200/90 shadow-sm hover:border-[#0284C7] hover:shadow-[0_8px_25px_-5px_rgba(2,132,199,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
+                <div className="bg-gradient-to-br from-white to-slate-50/90 rounded-xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-slate-200/90 shadow-sm hover:border-[#0284C7] hover:shadow-[0_8px_25px_-5px_rgba(2,132,199,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 2xl:w-11 2xl:h-11 rounded-xl bg-gradient-to-br from-indigo-50 to-indigo-100 text-[#1B365D] flex items-center justify-center shrink-0 border border-indigo-200/60 shadow-xs group-hover:scale-105 group-hover:bg-[#1B365D] group-hover:text-white transition-all duration-300">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 2xl:w-11 2xl:h-11 rounded-lg bg-gradient-to-br from-indigo-50 to-indigo-100 text-[#1B365D] flex items-center justify-center shrink-0 border border-indigo-200/60 shadow-xs group-hover:scale-105 group-hover:bg-[#1B365D] group-hover:text-white transition-all duration-300">
                         <i className="fa-solid fa-graduation-cap text-base sm:text-lg"></i>
                       </div>
                       <div>
@@ -948,10 +957,10 @@ export default function Home() {
                 </div>
 
                 {/* 3. Cardiology & General Medicine Specialist */}
-                <div className="bg-gradient-to-br from-white to-slate-50/90 rounded-2xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-slate-200/90 shadow-sm hover:border-[#0284C7] hover:shadow-[0_8px_25px_-5px_rgba(2,132,199,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
+                <div className="bg-gradient-to-br from-white to-slate-50/90 rounded-xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-slate-200/90 shadow-sm hover:border-[#0284C7] hover:shadow-[0_8px_25px_-5px_rgba(2,132,199,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 2xl:w-11 2xl:h-11 rounded-xl bg-gradient-to-br from-cyan-50 to-sky-100 text-[#0284C7] flex items-center justify-center shrink-0 border border-cyan-200/60 shadow-xs group-hover:scale-105 group-hover:bg-[#0284C7] group-hover:text-white transition-all duration-300">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 2xl:w-11 2xl:h-11 rounded-lg bg-gradient-to-br from-cyan-50 to-sky-100 text-[#0284C7] flex items-center justify-center shrink-0 border border-cyan-200/60 shadow-xs group-hover:scale-105 group-hover:bg-[#0284C7] group-hover:text-white transition-all duration-300">
                         <i className="fa-solid fa-heart-pulse text-base sm:text-lg"></i>
                       </div>
                       <div>
@@ -968,10 +977,10 @@ export default function Home() {
                 </div>
 
                 {/* 4. Available on days in weeks */}
-                <div className="bg-gradient-to-br from-white to-emerald-50/30 rounded-2xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-emerald-200/80 shadow-sm hover:border-emerald-500 hover:shadow-[0_8px_25px_-5px_rgba(16,185,129,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
+                <div className="bg-gradient-to-br from-white to-emerald-50/30 rounded-xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-emerald-200/80 shadow-sm hover:border-emerald-500 hover:shadow-[0_8px_25px_-5px_rgba(16,185,129,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-200/60 shadow-xs group-hover:scale-105 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-emerald-50 to-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-200/60 shadow-xs group-hover:scale-105 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
                         <i className="fa-solid fa-calendar-check text-base sm:text-lg"></i>
                       </div>
                       <div>
@@ -1054,7 +1063,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="banner-inner-card interactive-lift relative w-full rounded-3xl overflow-hidden shadow-[0_12px_35px_-10px_rgba(2,132,199,0.3)] border border-slate-200 group flex items-center min-h-[16rem] sm:min-h-[17.5rem] md:min-h-[19rem] lg:min-h-0 2xl:min-h-[22rem]"
+            className="banner-inner-card interactive-lift relative w-full rounded-2xl overflow-hidden shadow-[0_12px_35px_-10px_rgba(2,132,199,0.3)] border border-slate-200 group flex items-center min-h-[16rem] sm:min-h-[17.5rem] md:min-h-[19rem] lg:min-h-0 2xl:min-h-[22rem]"
           >
             {/* Background Generated 3D Banner Image */}
             <img
@@ -1243,17 +1252,17 @@ export default function Home() {
               {[...reviews, ...reviews, ...reviews, ...reviews].map((review, idx) => (
                 <div 
                   key={idx}
-                  className="review-card-item interactive-lift w-[280px] min-[360px]:w-[320px] sm:w-[380px] md:w-[430px] lg:w-[340px] xl:w-[370px] 2xl:w-[580px] 3xl:w-[660px] shrink-0 bg-gradient-to-br from-[#1B365D] to-[#122543] rounded-2xl sm:rounded-3xl border border-sky-400/25 hover:border-[#38BDF8] p-4 min-[360px]:p-5 sm:p-5 lg:p-4 2xl:p-6 text-white shadow-[0_12px_35px_-5px_rgba(2,132,199,0.3)] flex flex-col justify-between min-h-[190px] sm:min-h-[210px] group transition-all duration-300"
+                  className="review-card-item interactive-lift w-[280px] min-[360px]:w-[320px] sm:w-[380px] md:w-[430px] lg:w-[340px] xl:w-[370px] 2xl:w-[580px] 3xl:w-[660px] shrink-0 bg-gradient-to-br from-[#1B365D] to-[#122543] rounded-xl sm:rounded-2xl border border-sky-400/25 hover:border-[#38BDF8] p-4 min-[360px]:p-5 sm:p-5 lg:p-4 2xl:p-6 text-white shadow-[0_12px_35px_-5px_rgba(2,132,199,0.3)] flex flex-col justify-between min-h-[190px] sm:min-h-[210px] group transition-all duration-300"
                 >
                   {/* Top Row: Avatar, Identity & Rating Badge */}
                   <div className="flex items-center justify-between gap-3 shrink-0">
                     <div className="flex items-center gap-3 min-w-0">
                       <div className="relative shrink-0">
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 2xl:w-14 2xl:h-14 rounded-2xl overflow-hidden border-2 border-[#38BDF8] p-0.5 bg-[#13294B] shadow-md group-hover:border-white transition-all duration-300">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 2xl:w-14 2xl:h-14 rounded-xl overflow-hidden border-2 border-[#38BDF8] p-0.5 bg-[#13294B] shadow-md group-hover:border-white transition-all duration-300">
                           <img 
                             src={review.image} 
                             alt={review.name} 
-                            className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-300" 
+                            className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300" 
                           />
                         </div>
                         <span className="absolute -bottom-1 -right-1 bg-emerald-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center border-2 border-[#1B365D] shadow" title="Verified Patient">
@@ -1310,17 +1319,17 @@ export default function Home() {
               {[...reviewsRow2, ...reviewsRow2, ...reviewsRow2, ...reviewsRow2].map((review, idx) => (
                 <div 
                   key={idx}
-                  className="review-card-item interactive-lift w-[280px] min-[360px]:w-[320px] sm:w-[380px] md:w-[430px] lg:w-[340px] xl:w-[370px] 2xl:w-[580px] 3xl:w-[660px] shrink-0 bg-gradient-to-br from-[#1B365D] to-[#122543] rounded-2xl sm:rounded-3xl border border-sky-400/25 hover:border-[#38BDF8] p-4 min-[360px]:p-5 sm:p-5 lg:p-4 2xl:p-6 text-white shadow-[0_12px_35px_-5px_rgba(2,132,199,0.3)] flex flex-col justify-between min-h-[190px] sm:min-h-[210px] group transition-all duration-300"
+                  className="review-card-item interactive-lift w-[280px] min-[360px]:w-[320px] sm:w-[380px] md:w-[430px] lg:w-[340px] xl:w-[370px] 2xl:w-[580px] 3xl:w-[660px] shrink-0 bg-gradient-to-br from-[#1B365D] to-[#122543] rounded-xl sm:rounded-2xl border border-sky-400/25 hover:border-[#38BDF8] p-4 min-[360px]:p-5 sm:p-5 lg:p-4 2xl:p-6 text-white shadow-[0_12px_35px_-5px_rgba(2,132,199,0.3)] flex flex-col justify-between min-h-[190px] sm:min-h-[210px] group transition-all duration-300"
                 >
                   {/* Top Row: Avatar, Identity & Rating Badge */}
                   <div className="flex items-center justify-between gap-3 shrink-0">
                     <div className="flex items-center gap-3 min-w-0">
                       <div className="relative shrink-0">
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 2xl:w-14 2xl:h-14 rounded-2xl overflow-hidden border-2 border-[#38BDF8] p-0.5 bg-[#13294B] shadow-md group-hover:border-white transition-all duration-300">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 2xl:w-14 2xl:h-14 rounded-xl overflow-hidden border-2 border-[#38BDF8] p-0.5 bg-[#13294B] shadow-md group-hover:border-white transition-all duration-300">
                           <img 
                             src={review.image} 
                             alt={review.name} 
-                            className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-300" 
+                            className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300" 
                           />
                         </div>
                         <span className="absolute -bottom-1 -right-1 bg-emerald-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center border-2 border-[#1B365D] shadow" title="Verified Patient">

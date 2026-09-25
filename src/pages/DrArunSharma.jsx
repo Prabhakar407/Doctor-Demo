@@ -3,25 +3,32 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import DoctorTestimonials from '../components/DoctorTestimonials';
 
+import patientRajesh from '../Images/testimonials/patient_rajesh.webp';
+import patientVikram from '../Images/testimonials/patient_vikram.webp';
+import patientMeera from '../Images/testimonials/patient_meera.webp';
+import patientAnita from '../Images/testimonials/patient_anita.webp';
+import patientSunita from '../Images/testimonials/patient_sunita.webp';
+import patientHarshvardhan from '../Images/testimonials/patient_harshvardhan.webp';
+
 export default function DrArunSharma() {
   const testimonials = [
     {
-      name: "Rajesh Patel",
+      name: "Rajesh Mehta",
       role: "Cardiology Patient",
       rating: 5,
       date: "Recent Consultation",
       text: "Dr. Sharma's thorough cardiac evaluation and clear guidance helped stabilize my blood pressure after months of uncertainty. Truly a compassionate, top-tier medical specialist.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
+      image: patientRajesh
     },
     {
       name: "Vikram Sengupta",
-      role: "Preventive Health Checkup",
+      role: "Preventive Heart Checkup",
       rating: 5,
       date: "Recent Consultation",
       text: "His clinical acumen is outstanding. He patiently reviewed all my reports, explained the ECG and Echo findings in plain language, and tailored a practical recovery regimen.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"
+      image: patientVikram
     },
     {
       name: "Meera Raman",
@@ -30,7 +37,7 @@ export default function DrArunSharma() {
       date: "Recent Consultation",
       text: "Extremely reassuring doctor. The treatment plan for my father's diabetes and cardiac wellness worked wonders within weeks. The clinic staff is equally helpful and prompt.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80"
+      image: patientMeera
     },
     {
       name: "Anita Deshmukh",
@@ -39,7 +46,7 @@ export default function DrArunSharma() {
       date: "Recent Consultation",
       text: "Warm, attentive, and incredibly knowledgeable. Dr. Sharma took time to understand all my symptoms and made me feel completely comfortable and well cared for.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+      image: patientAnita
     },
     {
       name: "Sunita Rao",
@@ -48,7 +55,7 @@ export default function DrArunSharma() {
       date: "Recent Consultation",
       text: "Dr. Sharma's preventative advice helped me avoid invasive procedures. His holistic approach to heart health made a huge positive difference in my daily life.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80"
+      image: patientSunita
     },
     {
       name: "Harshvardhan Joshi",
@@ -57,7 +64,7 @@ export default function DrArunSharma() {
       date: "Recent Consultation",
       text: "Top-notch diagnostic precision and very friendly demeanor. The clinic's digital reports and instant scheduling made the entire visit completely seamless.",
       verified: true,
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80"
+      image: patientHarshvardhan
     }
   ];
 
@@ -90,7 +97,7 @@ export default function DrArunSharma() {
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="flex justify-center md:justify-end items-center w-full lg:pr-6 xl:pr-10 2xl:pr-14 3xl:pr-16"
             >
-              <div className="w-64 h-72 sm:w-80 sm:h-96 2xl:w-[16.5rem] 2xl:h-[19rem] 3xl:w-[19rem] 3xl:h-[22rem] rounded-3xl bg-white border border-white/30 flex items-center justify-center text-[#1B365D] shadow-[0_20px_50px_-10px_rgba(2,132,199,0.5)] relative overflow-hidden group">
+              <div className="w-64 h-72 sm:w-80 sm:h-96 2xl:w-[16.5rem] 2xl:h-[19rem] 3xl:w-[19rem] 3xl:h-[22rem] rounded-2xl bg-white border border-white/30 flex items-center justify-center text-[#1B365D] shadow-[0_20px_50px_-10px_rgba(2,132,199,0.5)] relative overflow-hidden group">
                 <img 
                   src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80" 
                   alt="Dr. Arun Sharma" 
