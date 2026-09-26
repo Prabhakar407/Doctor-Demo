@@ -406,7 +406,7 @@ export default function Treatments() {
                       <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1 shrink-0">
                         <Link 
                           to={proc.doctorLink} 
-                          className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl border border-slate-300 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] shadow-xs transition"
+                          className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border border-slate-300 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] shadow-xs transition"
                         >
                           <span className="w-4 h-4 rounded-full bg-[#0284C7] text-white flex items-center justify-center text-[9px]">
                             <i className="fa-solid fa-user-doctor"></i>
@@ -415,7 +415,7 @@ export default function Treatments() {
                         </Link>
                         <Link 
                           to="/booking" 
-                          className="bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold px-3.5 py-1.5 rounded-xl shadow-xs transition border border-transparent hover:border-slate-300"
+                          className="bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold px-3.5 py-1.5 rounded-lg shadow-xs transition border border-transparent hover:border-slate-300"
                         >
                           Book Treatment
                         </Link>
@@ -437,7 +437,7 @@ export default function Treatments() {
           >
             <button 
               onClick={scrollToTop} 
-              className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition cursor-pointer border border-transparent hover:border-slate-300"
+              className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-8 py-3.5 rounded-xl shadow-md hover:shadow-lg transition cursor-pointer border border-slate-300 hover:border-slate-300"
             >
               <i className="fa-solid fa-arrow-up mr-2"></i> Go on top
             </button>

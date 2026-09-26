@@ -372,28 +372,8 @@ export default function Home() {
             {showHeroForm ? (
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                  y: [0, -12, 0, 8, 0],
-                  rotate: [0, 0.4, 0, -0.4, 0],
-                }}
-                transition={{
-                  opacity: { duration: 0.5 },
-                  scale: { duration: 0.5 },
-                  y: {
-                    duration: 6.5,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    ease: "easeInOut",
-                  },
-                  rotate: {
-                    duration: 7,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    ease: "easeInOut",
-                  }
-                }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
                 className="w-full max-w-sm 2xl:max-w-[28rem] 3xl:max-w-[32rem] bg-white/12 backdrop-blur-2xl text-white rounded-xl 2xl:rounded-2xl p-5 sm:p-6 2xl:p-7 3xl:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.45),0_0_30px_rgba(2,132,199,0.25)] hover:shadow-[0_25px_65px_rgba(2,132,199,0.45)] border border-white/25 hover:border-[#0284C7] transition-all duration-300 space-y-3 2xl:space-y-4 relative"
               >
                 
@@ -478,7 +458,7 @@ export default function Home() {
                   {/* Phone call fallback line */}
                   <div className="text-center pt-1">
                     <p className="text-xs sm:text-sm 2xl:text-base font-medium text-white font-serif">
-                      Or call us at <a href="tel:+81888888888" className="text-[#38BDF8] hover:text-white font-bold text-xs sm:text-sm 2xl:text-base underline underline-offset-4 decoration-[#38BDF8]/60 hover:decoration-white transition ml-1 inline-block">+81888888888</a>
+                      Or call us at <a href="tel:+81888888888" className="text-white hover:text-[#38BDF8] font-bold text-xs sm:text-sm 2xl:text-base underline underline-offset-4 decoration-white/70 hover:decoration-[#38BDF8] transition ml-1 inline-block">+81888888888</a>
                     </p>
                   </div>
                 </form>
@@ -581,7 +561,7 @@ export default function Home() {
 
                 <div className="text-center pt-1">
                   <p className="text-xs font-medium text-slate-200 font-serif">
-                    Or call us at <a href="tel:+81888888888" className="text-[#38BDF8] hover:text-white font-bold underline ml-1">+81888888888</a>
+                    Or call us at <a href="tel:+81888888888" className="text-white hover:text-[#38BDF8] font-bold underline ml-1">+81888888888</a>
                   </p>
                 </div>
               </form>

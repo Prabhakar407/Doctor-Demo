@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { getCookie, setCookie } from '@/lib/cookie';
+import { removeCookie } from '@/lib/cookie';
 
 export default function Booking() {
   // Stepper state: Step 1, 2, 3
@@ -10,20 +10,22 @@ export default function Booking() {
   const [step2Status, setStep2Status] = useState('pending'); // 'pending' | 'orange' | 'green'
   const [step3Status, setStep3Status] = useState('pending'); // 'pending' | 'green'
 
-  // Step 1: Patient & Schedule Details
-  const [patientData, setPatientData] = useState(() => {
-    const saved = getCookie('doctor_demo_patient_info', true);
-    return {
-      name: saved?.name || '',
-      email: saved?.email || '',
-      phone: saved?.phone || '',
-      doctor: saved?.doctor || 'Dr. Priya Nair',
-      reason: saved?.reason || 'Obstetrician & Gynaecology',
-      message: ''
-    };
+  // Step 1: Patient & Schedule Details (always start fresh on page load / refresh)
+  const [patientData, setPatientData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    doctor: 'Dr. Priya Nair',
+    reason: 'Obstetrician & Gynaecology',
+    message: ''
   });
   const [selectedDate, setSelectedDate] = useState(9);
   const [selectedTime, setSelectedTime] = useState('10:00 AM');
+
+  // Clear any existing legacy cookies on mount
+  useEffect(() => {
+    removeCookie('doctor_demo_patient_info');
+  }, []);
 
   // Step 2: Payment Details
   const [paymentMethod, setPaymentMethod] = useState('card'); // 'card' | 'upi' | 'netbanking' | 'reception'
@@ -82,14 +84,6 @@ export default function Booking() {
       alert('Please fill all required patient details.');
       return;
     }
-    // Save patient profile info into cookie for returning visits (30 days)
-    setCookie('doctor_demo_patient_info', {
-      name: patientData.name,
-      email: patientData.email,
-      phone: patientData.phone,
-      doctor: patientData.doctor,
-      reason: patientData.reason
-    }, { expires: 30 });
 
     setStep1Status('green');
     setStep2Status('orange');
@@ -304,6 +298,7 @@ export default function Booking() {
                   exit={{ opacity: 0, x: 20 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
                   onSubmit={handleStep1Submit} 
+                  autoComplete="off"
                   className="animate-fadeIn"
                 >
                   <div className="grid md:grid-cols-2 gap-4 lg:gap-5 2xl:gap-8 items-start">
@@ -507,6 +502,7 @@ export default function Booking() {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 onSubmit={handlePaymentSubmit} 
+                autoComplete="off"
                 className="animate-fadeIn space-y-2.5 lg:space-y-1.5 2xl:space-y-4"
               >
                 <div className="flex items-center justify-between border-b border-slate-100 pb-1.5 lg:pb-1 2xl:pb-2">

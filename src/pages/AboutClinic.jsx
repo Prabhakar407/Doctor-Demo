@@ -5,7 +5,10 @@ import clinicFacilityImg from '../Images/clinic-facility.webp';
 
 export default function AboutClinic() {
   const handleVirtualTour = () => {
-    alert('Virtual Tour will open here!');
+    const element = document.getElementById('virtual-tour-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -73,19 +76,11 @@ export default function AboutClinic() {
 
               {/* Key Facility Details */}
               <div className="grid grid-cols-2 gap-2 sm:gap-2.5 lg:gap-2 xl:gap-2.5 pt-0.5 text-xs lg:text-[11px] xl:text-xs 2xl:text-sm text-slate-100">
-                <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-1 lg:py-1.5 border border-white/10">
-                  <i className="fa-solid fa-shield-virus text-[#38BDF8] shrink-0 text-sm"></i>
-                  <span className="font-medium truncate">HEPA Air Filtration & Cleanrooms</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-1 lg:py-1.5 border border-white/10">
-                  <i className="fa-solid fa-microscope text-[#38BDF8] shrink-0 text-sm"></i>
-                  <span className="font-medium truncate">Advanced 4D Ultrasound Labs</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-1 lg:py-1.5 border border-white/10">
+                <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-1.5 border border-white/10">
                   <i className="fa-solid fa-laptop-medical text-[#38BDF8] shrink-0 text-sm"></i>
                   <span className="font-medium truncate">Digital Prescriptions & E-Records</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-1 lg:py-1.5 border border-white/10">
+                <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-1.5 border border-white/10">
                   <i className="fa-solid fa-heart-pulse text-[#38BDF8] shrink-0 text-sm"></i>
                   <span className="font-medium truncate">24/7 Observation & Rapid Care</span>
                 </div>
@@ -136,14 +131,14 @@ export default function AboutClinic() {
               <div className="flex flex-wrap items-center gap-2.5 lg:gap-2 xl:gap-3 pt-1 lg:pt-0.5 xl:pt-1.5">
                 <Link 
                   to="/booking" 
-                  className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2 px-5 lg:py-1.5 lg:px-4 xl:py-2 xl:px-5 2xl:py-2.5 2xl:px-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 text-xs sm:text-sm border border-transparent hover:border-slate-300 inline-flex items-center gap-2 cursor-pointer"
+                  className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2 px-5 lg:py-1.5 lg:px-4 xl:py-2 xl:px-5 2xl:py-2.5 2xl:px-6 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 text-xs sm:text-sm border border-transparent hover:border-slate-300 inline-flex items-center gap-2 cursor-pointer"
                 >
                   <i className="fa-solid fa-calendar-check"></i>
                   <span>Book Consultation</span>
                 </Link>
                 <button 
                   onClick={handleVirtualTour} 
-                  className="bg-white/10 hover:bg-white/20 text-white font-serif font-semibold py-2 px-4 lg:py-1.5 lg:px-3.5 xl:py-2 xl:px-4 2xl:py-2.5 2xl:px-5 rounded-xl border border-white/25 hover:border-[#38BDF8] shadow-sm hover:scale-105 active:scale-95 transition-all duration-200 text-xs sm:text-sm inline-flex items-center gap-2 cursor-pointer"
+                  className="bg-white/10 hover:bg-white/20 text-white font-serif font-semibold py-2 px-4 lg:py-1.5 lg:px-3.5 xl:py-2 xl:px-4 2xl:py-2.5 2xl:px-5 rounded-lg border border-white/25 hover:border-[#38BDF8] shadow-sm hover:scale-105 active:scale-95 transition-all duration-200 text-xs sm:text-sm inline-flex items-center gap-2 cursor-pointer"
                 >
                   <i className="fa-solid fa-vr-cardboard text-[#38BDF8]"></i>
                   <span>Virtual Tour</span>
@@ -158,7 +153,7 @@ export default function AboutClinic() {
       </section>
 
       {/* SECTION 2: VIRTUAL TOUR & CONSULTATION (White Background) */}
-      <section className="w-full bg-white py-12 sm:py-16 2xl:py-24 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200">
+      <section id="virtual-tour-section" className="w-full bg-white py-12 sm:py-16 2xl:py-24 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200">
         <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto space-y-8 2xl:space-y-12">
           
           {/* Mobile Header: Visible only on small screens (< md), placed above video */}
