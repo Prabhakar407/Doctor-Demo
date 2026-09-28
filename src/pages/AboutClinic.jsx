@@ -70,7 +70,7 @@ export default function AboutClinic() {
                   Modern Clinical Environment with <span className="text-[#38BDF8] italic">Uncompromised Safety</span>
                 </h2>
                 <p className="text-slate-200 text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base leading-relaxed pt-0.5 lg:pt-0">
-                  Our facility is purpose-built to deliver patient-centered healthcare, combining cutting-edge diagnostic technology with sterile procedural suites, 4D sonography labs, and rapid recovery bays designed for maximum comfort and clinical precision.
+                  Established in 1992 in Indira Nagar, Lucknow, R. K. Medical Centre has been delivering trusted healthcare for over 32+ years. Our multi-specialty facility combines advanced diagnostic technology with sterile procedural suites, 4D sonography labs, and expert maternal and diabetes care led by KGMU alumni specialists.
                 </p>
               </div>
 

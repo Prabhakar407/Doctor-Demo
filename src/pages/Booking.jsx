@@ -15,11 +15,15 @@ export default function Booking() {
     name: '',
     email: '',
     phone: '',
-    doctor: 'Dr. Priya Nair',
+    doctor: 'Dr. Parul Gupta',
     reason: 'Obstetrician & Gynaecology',
     message: ''
   });
-  const [selectedDate, setSelectedDate] = useState(9);
+  // Real-time Date state initialized to current date
+  const [currentCalendarDate, setCurrentCalendarDate] = useState(() => new Date());
+  const [selectedDate, setSelectedDate] = useState(() => new Date().getDate());
+  const [selectedMonth, setSelectedMonth] = useState(() => new Date().getMonth());
+  const [selectedYear, setSelectedYear] = useState(() => new Date().getFullYear());
   const [selectedTime, setSelectedTime] = useState('10:00 AM');
 
   // Clear any existing legacy cookies on mount
@@ -41,14 +45,55 @@ export default function Booking() {
   const [bookingId, setBookingId] = useState('');
   const [receiptDownloaded, setReceiptDownloaded] = useState(false);
 
-  const dates = [
-    null, 1, 9, 3, 4, 5, 6,
-    14, 15, 16, 17, 18, 19, 20,
-    21, 22, 23, 24, 25, 26, 27,
-    28, 29, 30, 31
+  // Month navigation handlers
+  const handlePrevMonth = () => {
+    setCurrentCalendarDate((prev) => {
+      const now = new Date();
+      // Prevent navigating to past months before current month
+      if (prev.getFullYear() === now.getFullYear() && prev.getMonth() <= now.getMonth()) {
+        return prev;
+      }
+      return new Date(prev.getFullYear(), prev.getMonth() - 1, 1);
+    });
+  };
+
+  const handleNextMonth = () => {
+    setCurrentCalendarDate((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+  };
+
+  // Generate real-time calendar grid days for currentCalendarDate
+  const viewYear = currentCalendarDate.getFullYear();
+  const viewMonth = currentCalendarDate.getMonth();
+  const firstDayIndex = new Date(viewYear, viewMonth, 1).getDay(); // 0 = Sunday
+  const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+
+  const calendarDays = [];
+  for (let i = 0; i < firstDayIndex; i++) {
+    calendarDays.push(null);
+  }
+  for (let d = 1; d <= daysInMonth; d++) {
+    calendarDays.push(d);
+  }
+
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
-  const timeSlots = ['10:00 AM', '02:30 PM', '05:00 PM'];
+  const today = new Date();
+  const isPastDate = (day) => {
+    if (!day) return true;
+    const checkDate = new Date(viewYear, viewMonth, day);
+    const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    return checkDate < startOfToday;
+  };
+
+  const formatSelectedDate = () => {
+    return `${monthNames[selectedMonth]} ${selectedDate}, ${selectedYear}`;
+  };
+
+  // 20-minute consultation slots (10:00 AM, 11:20 AM, 12:40 PM, 06:00 PM, 07:00 PM, 07:40 PM)
+  const timeSlots = ['10:00 AM', '11:20 AM', '12:40 PM', '06:00 PM', '07:00 PM', '07:40 PM'];
 
   // Card Input Formatting & Handlers
   const handleCardNumberChange = (e) => {
@@ -107,7 +152,7 @@ export default function Booking() {
     setIsVerifying(true);
     setTimeout(() => {
       setIsVerifying(false);
-      const generatedId = `CC-${Math.floor(100000 + Math.random() * 900000)}`;
+      const generatedId = `RK-${Math.floor(100000 + Math.random() * 900000)}`;
       setBookingId(generatedId);
       setStep2Status('green');
       setStep3Status('green');
@@ -135,7 +180,7 @@ export default function Booking() {
       name: '',
       email: '',
       phone: '',
-      doctor: 'Dr. Priya Nair',
+      doctor: 'Dr. Parul Gupta',
       reason: 'Obstetrician & Gynaecology',
       message: ''
     });
@@ -361,8 +406,8 @@ export default function Booking() {
                           onChange={(e) => setPatientData({ ...patientData, doctor: e.target.value })}
                           className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm text-[#0F172A] transition-colors duration-200"
                         >
-                          <option value="Dr. Priya Nair">Dr. Priya Nair (Pediatrics & Ob/Gyn)</option>
-                          <option value="Dr. Arun Sharma">Dr. Arun Sharma (Physician & Diabetology)</option>
+                          <option value="Dr. Parul Gupta">Dr. Parul Gupta (Obstetrics &amp; Gynaecology)</option>
+                          <option value="Dr. Sanjay Gupta">Dr. Sanjay Gupta (Physician &amp; Diabetology)</option>
                         </select>
                       </div>
                       <div>
@@ -396,7 +441,7 @@ export default function Booking() {
                     {/* Fee Summary Pill */}
                     <div className="flex items-center justify-between p-2 2xl:p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs 2xl:text-sm">
                       <span className="text-[#64748B]">Consultation Booking Fee:</span>
-                      <span className="font-bold text-[#0F172A] text-sm 2xl:text-base font-serif">$75.00 / ₹600</span>
+                      <span className="font-bold text-[#0F172A] text-sm 2xl:text-base font-serif">₹800</span>
                     </div>
 
                   </div>
@@ -408,18 +453,32 @@ export default function Booking() {
                         <span className="text-[10px] 2xl:text-xs font-bold text-[#0284C7] uppercase tracking-wider block">Date &amp; Time</span>
                         <h2 className="text-base sm:text-lg lg:text-base 2xl:text-xl font-serif font-bold text-[#0F172A]">Select Consultation Slot</h2>
                       </div>
-                      <span className="text-[11px] 2xl:text-xs font-semibold text-[#0284C7] bg-sky-50 px-2 py-0.5 2xl:px-3 2xl:py-1 rounded-full border border-sky-200">June {selectedDate}, 2026</span>
+                      <span className="text-[11px] 2xl:text-xs font-semibold text-[#0284C7] bg-sky-50 px-2 py-0.5 2xl:px-3 2xl:py-1 rounded-full border border-sky-200">
+                        {formatSelectedDate()}
+                      </span>
                     </div>
 
                     {/* Calendar Widget */}
                     <div className="bg-white rounded-xl border border-slate-500 hover:border-[#0284C7] p-2.5 lg:p-2.5 2xl:p-3.5 shadow-xs transition-colors duration-200">
                       {/* Month Header */}
                       <div className="flex justify-between items-center text-xs 2xl:text-sm font-bold text-[#0F172A] mb-1.5 2xl:mb-2 px-1">
-                        <button type="button" className="text-[#64748B] hover:text-[#0F172A] p-0.5 cursor-pointer">
+                        <button 
+                          type="button" 
+                          onClick={handlePrevMonth}
+                          className="text-[#64748B] hover:text-[#0284C7] p-1 rounded-md hover:bg-slate-100 transition cursor-pointer"
+                          title="Previous Month"
+                        >
                           <i className="fa-solid fa-chevron-left text-[10px] 2xl:text-xs"></i>
                         </button>
-                        <span className="font-serif font-bold text-[#0F172A] text-xs 2xl:text-sm">June 2026</span>
-                        <button type="button" className="text-[#64748B] hover:text-[#0F172A] p-0.5 cursor-pointer">
+                        <span className="font-serif font-bold text-[#0F172A] text-xs 2xl:text-sm">
+                          {monthNames[viewMonth]} {viewYear}
+                        </span>
+                        <button 
+                          type="button" 
+                          onClick={handleNextMonth}
+                          className="text-[#64748B] hover:text-[#0284C7] p-1 rounded-md hover:bg-slate-100 transition cursor-pointer"
+                          title="Next Month"
+                        >
                           <i className="fa-solid fa-chevron-right text-[10px] 2xl:text-xs"></i>
                         </button>
                       </div>
@@ -431,20 +490,28 @@ export default function Booking() {
 
                       {/* Dates Grid */}
                       <div className="grid grid-cols-7 text-center text-[10px] lg:text-[11px] 2xl:text-xs gap-y-0.5 2xl:gap-y-1 font-medium text-[#0F172A]">
-                        {dates.map((d, index) => {
+                        {calendarDays.map((d, index) => {
                           if (d === null) {
                             return <span key={index} className="text-transparent">0</span>;
                           }
-                          const isSelected = selectedDate === d;
+                          const isSelected = selectedDate === d && selectedMonth === viewMonth && selectedYear === viewYear;
+                          const disabled = isPastDate(d);
                           return (
                             <button
                               key={index}
                               type="button"
-                              onClick={() => setSelectedDate(d)}
-                              className={`rounded-lg py-0.5 2xl:py-1.5 transition cursor-pointer ${
-                                isSelected 
-                                  ? "bg-[#0284C7] text-white font-bold shadow-xs" 
-                                  : "hover:bg-[#F8FAFC] text-[#0F172A]"
+                              disabled={disabled}
+                              onClick={() => {
+                                setSelectedDate(d);
+                                setSelectedMonth(viewMonth);
+                                setSelectedYear(viewYear);
+                              }}
+                              className={`rounded-lg py-0.5 2xl:py-1.5 transition ${
+                                disabled 
+                                  ? "text-slate-300 cursor-not-allowed line-through" 
+                                  : isSelected 
+                                  ? "bg-[#0284C7] text-white font-bold shadow-xs cursor-pointer" 
+                                  : "hover:bg-[#F8FAFC] text-[#0F172A] cursor-pointer"
                               }`}
                             >
                               {d}
@@ -533,11 +600,11 @@ export default function Booking() {
                   </div>
                   <div>
                     <span className="text-[#64748B] block text-[10px]">Schedule:</span>
-                    <strong className="text-[#0284C7]">June {selectedDate}, 2026 ({selectedTime})</strong>
+                    <strong className="text-[#0284C7]">{formatSelectedDate()} ({selectedTime})</strong>
                   </div>
                   <div>
                     <span className="text-[#64748B] block text-[10px]">Consultation Fee:</span>
-                    <strong className="text-emerald-700 font-bold">$75.00 / ₹600</strong>
+                    <strong className="text-emerald-700 font-bold">₹800</strong>
                   </div>
                 </div>
 
@@ -649,7 +716,7 @@ export default function Booking() {
                       {paymentMethod === 'reception' && (
                         <div className="p-2.5 lg:p-2 2xl:p-3 rounded-lg bg-sky-50 border border-sky-200 text-[#0284C7] text-xs flex items-start gap-2">
                           <i className="fa-solid fa-circle-info text-base mt-0.5 text-[#0284C7]"></i>
-                          <span className="leading-relaxed">You can pay the $75 consultation fee directly at the ClinicCare reception desk via Cash, POS Card, or UPI on the day of your appointment.</span>
+                          <span className="leading-relaxed">You can pay the ₹800 consultation fee directly at the R. K. Medical Centre reception desk via Cash, POS Card, or UPI on the day of your appointment.</span>
                         </div>
                       )}
                     </div>
@@ -702,7 +769,7 @@ export default function Booking() {
                     ) : (
                       <>
                         <i className="fa-solid fa-lock text-xs"></i>
-                        <span>Verify &amp; Confirm Booking ($75)</span>
+                        <span>Verify &amp; Confirm Booking (₹800)</span>
                       </>
                     )}
                   </button>
@@ -763,7 +830,7 @@ export default function Booking() {
                       </div>
                       <div>
                         <span className="text-[#64748B] block text-[10px]">Appointment Time</span>
-                        <strong className="text-[#0F172A]">June {selectedDate}, 2026 at {selectedTime}</strong>
+                        <strong className="text-[#0F172A]">{formatSelectedDate()} at {selectedTime} (20 mins)</strong>
                       </div>
                       <div>
                         <span className="text-[#64748B] block text-[10px]">Payment Status</span>

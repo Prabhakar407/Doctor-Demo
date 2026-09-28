@@ -418,6 +418,20 @@
     padding: clamp(0.75rem, 1.4vh, 1.15rem) !important;
   }
 
+  /* Doctor Profile Hero Viewport on Laptop */
+  .doctor-profile-hero-laptop {
+    min-height: calc(100vh - var(--nav-height, 72px)) !important;
+    height: calc(100vh - var(--nav-height, 72px)) !important;
+    max-height: calc(100vh - var(--nav-height, 72px)) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    padding-top: clamp(0.75rem, 1.8vh, 1.5rem) !important;
+    padding-bottom: clamp(0.75rem, 1.8vh, 1.5rem) !important;
+    overflow: hidden !important;
+  }
+
   /* Doctor Testimonials 100vh Viewport on Laptop */
   .doctor-testimonials-laptop {
     height: 100vh !important;

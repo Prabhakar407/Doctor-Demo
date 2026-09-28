@@ -121,9 +121,15 @@ export default function Contact() {
                   <h2 className="text-xl 2xl:text-lg font-serif font-bold text-[#0F172A]">Find Our Clinic</h2>
                 </div>
 
-                {/* Styled Vector Map Container with Red Pin */}
-                <div className="w-full h-36 sm:h-40 2xl:h-24 rounded-xl border border-slate-200 overflow-hidden relative shadow-inner bg-[#F8FAFC] flex items-center justify-center">
-                  <svg className="absolute inset-0 w-full h-full opacity-60" xmlns="http://www.w3.org/2000/svg">
+                {/* Styled Map Container linking to Google Maps */}
+                <a
+                  href="https://maps.app.goo.gl/Km4kFB8jUNJY6bhE9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full h-36 sm:h-40 2xl:h-24 rounded-xl border border-slate-300 hover:border-[#0284C7] overflow-hidden relative shadow-inner bg-[#F8FAFC] flex items-center justify-center group cursor-pointer transition-all duration-200"
+                  title="Open R. K. Medical Centre in Google Maps"
+                >
+                  <svg className="absolute inset-0 w-full h-full opacity-60 group-hover:opacity-75 transition-opacity" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                       <pattern id="grid-contact" width="40" height="40" patternUnits="userSpaceOnUse">
                         <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#cbd5e1" strokeWidth="1.5" />
@@ -143,30 +149,39 @@ export default function Contact() {
                     <div className="w-8 h-8 rounded-full bg-red-500/30 flex items-center justify-center relative">
                       <i className="fa-solid fa-location-dot text-xl text-red-600 drop-shadow-md"></i>
                     </div>
+                    <span className="mt-1.5 bg-[#1B365D]/90 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full border border-white/20 group-hover:bg-[#0284C7] transition-colors shadow-sm flex items-center gap-1">
+                      <i className="fa-solid fa-map-location-dot text-[10px]"></i>
+                      <span>View on Google Maps</span>
+                    </span>
                   </div>
-                </div>
+                </a>
 
                 {/* Location & Hours Details */}
                 <div className="space-y-1.5 2xl:space-y-0.5 text-xs 2xl:text-[11px] font-semibold text-[#0F172A] pt-0.5">
-                  <div className="flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-[#F8FAFC] border border-slate-200 text-[#0284C7] flex items-center justify-center shrink-0 text-[10px] shadow-xs">
+                  <a 
+                    href="https://maps.app.goo.gl/Km4kFB8jUNJY6bhE9" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-start gap-2 hover:text-[#0284C7] transition-colors group cursor-pointer"
+                  >
+                    <span className="w-6 h-6 rounded-full bg-[#F8FAFC] border border-slate-200 text-[#0284C7] group-hover:bg-[#0284C7] group-hover:text-white flex items-center justify-center shrink-0 text-[10px] shadow-xs mt-0.5 transition-colors">
                       <i className="fa-solid fa-location-dot"></i>
                     </span>
-                    <span className="truncate">3125 Dase South Street, Medical District, WI 34245</span>
-                  </div>
+                    <span className="leading-tight group-hover:underline">18/469/1, Tedhi Pulia Ring Road, Sector 18, Indira Nagar, Lucknow, UP - 226016</span>
+                  </a>
 
                   <div className="flex items-center gap-2">
                     <span className="w-6 h-6 rounded-full bg-[#F8FAFC] border border-slate-200 text-[#0284C7] flex items-center justify-center shrink-0 text-[10px] shadow-xs">
                       <i className="fa-solid fa-clock"></i>
                     </span>
-                    <span>Working Hours: Mon – Sat (8:00 AM – 8:00 PM)</span>
+                    <span>Everyday: 10:00 AM – 1:00 PM &amp; 6:00 PM – 8:00 PM</span>
                   </div>
                 </div>
 
                 {/* Buttons: WhatsApp & Book Appointment (Neat compact width, no overflow) */}
                 <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-2.5 pt-1 w-full max-w-sm">
                   <a 
-                    href="https://wa.me/" 
+                    href="https://wa.me/919838655095" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold py-2 sm:py-2.5 2xl:py-2 px-3 sm:px-4 rounded-lg flex items-center justify-center gap-1.5 text-[11px] sm:text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 whitespace-nowrap shrink-0"

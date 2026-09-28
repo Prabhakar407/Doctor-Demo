@@ -19,24 +19,29 @@ export default function Footer() {
                   <i className="fa-solid fa-user-doctor"></i>
                 </span>
                 <span className="font-serif text-2xl font-bold tracking-tight text-white group-hover:text-[#38BDF8] transition-colors">
-                  Clinic Care
+                  R. K. Medical Centre
                 </span>
               </Link>
               
               <p className="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-sm">
-                Dedicated to evidence-based healthcare, compassionate specialist consultations, and seamless digital prescriptions. Providing premier medical treatments tailored to your recovery and vitality.
+                Established in 1992. Dedicated to comprehensive maternal healthcare, obstetrics & gynaecology, internal medicine, and expert diabetology care in Lucknow.
               </p>
 
-              {/* Emergency Hotline Box */}
+              {/* Emergency Helpline Box */}
               <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-3">
                 <div className="w-9 h-9 rounded-xl bg-[#0284C7]/20 border border-[#38BDF8]/40 text-[#38BDF8] flex items-center justify-center shrink-0">
                   <i className="fa-solid fa-phone-volume text-sm"></i>
                 </div>
                 <div>
-                  <span className="block text-[11px] text-slate-400 font-medium">24/7 Clinical Helpline</span>
-                  <a href="tel:+81888888888" className="text-xs sm:text-sm font-bold text-white hover:text-[#38BDF8] transition-colors">
-                    +81 8888 88888
-                  </a>
+                  <span className="block text-[11px] text-slate-400 font-medium">Clinic Helpline &amp; WhatsApp</span>
+                  <div className="flex flex-col text-xs sm:text-sm font-bold text-white">
+                    <a href="tel:+919838655095" className="hover:text-[#38BDF8] transition-colors">
+                      +91 98386 55095 (Dr. Parul Gupta)
+                    </a>
+                    <a href="tel:+919415049410" className="hover:text-[#38BDF8] transition-colors">
+                      +91 94150 49410 (Dr. Sanjay Gupta)
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -114,7 +119,7 @@ export default function Footer() {
 
                 {/* WhatsApp */}
                 <a 
-                  href="https://wa.me/" 
+                  href="https://wa.me/919838655095" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   aria-label="WhatsApp"
@@ -183,19 +188,19 @@ export default function Footer() {
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8]"></span>
-                  <span>Pregnancy Management & Maternal Care</span>
+                  <span>Pregnancy Management &amp; Maternal Care</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8]"></span>
-                  <span>Physician & Internal Medicine</span>
+                  <span>Physician &amp; Internal Medicine</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8]"></span>
-                  <span>Diabetology & Metabolic Care</span>
+                  <span>Diabetology &amp; Metabolic Care</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8]"></span>
-                  <span>Digital Prescriptions & Records</span>
+                  <span>Digital Prescriptions &amp; Records</span>
                 </li>
               </ul>
             </div>
@@ -206,21 +211,21 @@ export default function Footer() {
                 Clinic Details
               </h3>
               <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
-                <li className="flex items-start gap-2.5">
-                  <i className="fa-solid fa-location-dot text-[#38BDF8] mt-1 shrink-0"></i>
-                  <span>Medical Center, 4th Floor, Suite 402, Central Healthcare Complex</span>
-                </li>
-                <li className="flex items-center gap-2.5">
-                  <i className="fa-solid fa-envelope text-[#38BDF8] shrink-0"></i>
-                  <a href="mailto:support@cliniccare.com" className="hover:text-[#38BDF8] transition">
-                    support@cliniccare.com
+                <li>
+                  <a 
+                    href="https://maps.app.goo.gl/Km4kFB8jUNJY6bhE9" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-start gap-2.5 hover:text-[#38BDF8] transition-colors group cursor-pointer"
+                  >
+                    <i className="fa-solid fa-location-dot text-[#38BDF8] mt-1 shrink-0 group-hover:scale-110 transition-transform"></i>
+                    <span className="group-hover:underline">18/469/1, Tedhi Pulia Ring Road, Sector 18, Indira Nagar, Lucknow, Uttar Pradesh - 226016</span>
                   </a>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <i className="fa-solid fa-clock text-[#38BDF8] mt-1 shrink-0"></i>
                   <div>
-                    <span className="font-semibold text-white block">Mon – Sat: 9:00 AM – 7:00 PM</span>
-                    <span className="text-[11px] text-slate-400">Sunday: Emergency &amp; Pre-booked only</span>
+                    <span className="font-semibold text-white block">Everyday: 10:00 AM – 1:00 PM &amp; 6:00 PM – 8:00 PM</span>
                   </div>
                 </li>
               </ul>
@@ -243,7 +248,7 @@ export default function Footer() {
         <div className="border-t border-white/10 bg-[#0F1D33] py-5 px-4 sm:px-8 lg:px-14 2xl:px-20">
           <div className="max-w-7xl 2xl:max-w-[100rem] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs 2xl:text-sm text-slate-400">
             <div>
-              &copy; {new Date().getFullYear()} Clinic Care. All rights reserved.
+              &copy; {new Date().getFullYear()} R. K. Medical Centre. All rights reserved.
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs">
@@ -313,7 +318,7 @@ export default function Footer() {
                   </p>
                   <h4 className="font-bold text-slate-900 text-sm">1. Information Collection &amp; Privacy Safeguards</h4>
                   <p>
-                    Clinic Care is committed to protecting your confidential healthcare data. When you use our appointment booking services, we collect essential demographic and clinical information (name, phone number, medical notes, appointment preferences) strictly to schedule consultations and administer care.
+                    R. K. Medical Centre is committed to protecting your confidential healthcare data. When you use our appointment booking services, we collect essential demographic and clinical information (name, phone number, medical notes, appointment preferences) strictly to schedule consultations and administer care.
                   </p>
                   <h4 className="font-bold text-slate-900 text-sm">2. Use of Medical Data &amp; Digital Prescriptions</h4>
                   <p>
@@ -337,7 +342,7 @@ export default function Footer() {
                   </p>
                   <h4 className="font-bold text-slate-900 text-sm">2. Medical Prescriptions &amp; Clinical Guidance</h4>
                   <p>
-                    Digital prescriptions issued through Clinic Care are valid medical documents issued by certified physicians. Patients are advised to follow the prescribed dosage instructions and consult immediately in case of unexpected adverse reactions.
+                    Digital prescriptions issued through R. K. Medical Centre are valid medical documents issued by certified physicians. Patients are advised to follow the prescribed dosage instructions and consult immediately in case of unexpected adverse reactions.
                   </p>
                   <h4 className="font-bold text-slate-900 text-sm">3. Cancellation &amp; Rescheduling Policy</h4>
                   <p>

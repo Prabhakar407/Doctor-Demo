@@ -9,7 +9,7 @@ const SQRT_5000 = Math.sqrt(5000);
 const defaultTestimonials = [
   {
     tempId: 0,
-    testimonial: "My favorite solution in the market. We work 5x faster with ClinicCare.",
+    testimonial: "My favorite healthcare clinic in Lucknow. Dedicated doctors and compassionate care at R. K. Medical Centre.",
     by: "Alex, Verified Patient",
     imgSrc: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
   },

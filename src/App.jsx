@@ -9,6 +9,8 @@ import Home from './pages/Home';
 import Treatments from './pages/Treatments';
 import AboutClinic from './pages/AboutClinic';
 import MeetDoctor from './pages/MeetDoctor';
+import DrParulGupta from './pages/DrParulGupta';
+import DrSanjayGupta from './pages/DrSanjayGupta';
 import DrArunSharma from './pages/DrArunSharma';
 import DrPriyaNair from './pages/DrPriyaNair';
 import Contact from './pages/Contact';
@@ -25,6 +27,8 @@ export default function App() {
           <Route path="/treatment" element={<Treatments />} />
           <Route path="/about-clinic" element={<AboutClinic />} />
           <Route path="/meet-doctor" element={<MeetDoctor />} />
+          <Route path="/dr-parul-gupta" element={<DrParulGupta />} />
+          <Route path="/dr-sanjay-gupta" element={<DrSanjayGupta />} />
           <Route path="/dr-arun-sharma" element={<DrArunSharma />} />
           <Route path="/dr-priya-nair" element={<DrPriyaNair />} />
           <Route path="/contact" element={<Contact />} />

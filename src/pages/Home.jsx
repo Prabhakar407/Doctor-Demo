@@ -154,7 +154,7 @@ export default function Home() {
       name: "Aditi Sen",
       image: homePatient1,
       rating: 5,
-      text: "\"Dr. Sharma's diagnosis was extremely accurate and comforting. The clinic staff was polite, and the digital appointment booking saved me so much waiting time.\""
+      text: "\"Dr. Sanjay Gupta's diagnosis was extremely accurate and comforting. The clinic staff was polite, and the digital appointment booking saved me so much waiting time.\""
     },
     {
       name: "Karan Verma",
@@ -181,7 +181,7 @@ export default function Home() {
       name: "Shweta Mukherjee",
       image: homePatient5,
       rating: 5,
-      text: "\"Dr. Nair's empathetic maternal care and guidance made our pregnancy journey joyful and secure. We received clear answers to every question.\""
+      text: "\"Dr. Parul Gupta's empathetic maternal care and guidance made our pregnancy journey joyful and secure. We received clear answers to every question.\""
     },
     {
       name: "Nikhil Saxena",
@@ -438,9 +438,8 @@ export default function Home() {
                         className="w-full px-2 py-1.5 sm:py-2 2xl:py-2.5 2xl:px-3 text-xs 2xl:text-sm font-medium rounded-lg bg-white border border-slate-300 text-[#0F172A] shadow-sm focus:bg-white focus:outline-none focus:border-[#0284C7] focus:ring-2 focus:ring-[#0284C7]/30 transition"
                       >
                         <option value="" className="text-slate-500">Select Time</option>
-                        <option value="Morning" className="text-[#0F172A]">09:00 AM - 12:00 PM</option>
-                        <option value="Afternoon" className="text-[#0F172A]">12:00 PM - 04:00 PM</option>
-                        <option value="Evening" className="text-[#0F172A]">04:00 PM - 08:00 PM</option>
+                        <option value="Morning: 10:00 AM - 01:00 PM" className="text-[#0F172A]">Morning: 10:00 AM - 01:00 PM</option>
+                        <option value="Evening: 06:00 PM - 08:00 PM" className="text-[#0F172A]">Evening: 06:00 PM - 08:00 PM</option>
                       </select>
                     </div>
                   </div>
@@ -458,7 +457,7 @@ export default function Home() {
                   {/* Phone call fallback line */}
                   <div className="text-center pt-1">
                     <p className="text-xs sm:text-sm 2xl:text-base font-medium text-white font-serif">
-                      Or call us at <a href="tel:+81888888888" className="text-white hover:text-[#38BDF8] font-bold text-xs sm:text-sm 2xl:text-base underline underline-offset-4 decoration-white/70 hover:decoration-[#38BDF8] transition ml-1 inline-block">+81888888888</a>
+                      Or call us at <a href="tel:+919838655095" className="text-white hover:text-[#38BDF8] font-bold text-xs sm:text-sm 2xl:text-base underline underline-offset-4 decoration-white/70 hover:decoration-[#38BDF8] transition ml-1 inline-block">+91 98386 55095</a>
                     </p>
                   </div>
                 </form>
@@ -543,9 +542,8 @@ export default function Home() {
                       className="w-full px-3 py-2 text-xs sm:text-sm font-medium rounded-lg bg-white border border-slate-300 text-[#0F172A] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition"
                     >
                       <option value="" className="text-slate-500">Select Time</option>
-                      <option value="Morning" className="text-[#0F172A]">09:00 AM - 12:00 PM</option>
-                      <option value="Afternoon" className="text-[#0F172A]">12:00 PM - 04:00 PM</option>
-                      <option value="Evening" className="text-[#0F172A]">04:00 PM - 08:00 PM</option>
+                      <option value="Morning: 10:00 AM - 01:00 PM" className="text-[#0F172A]">Morning: 10:00 AM - 01:00 PM</option>
+                      <option value="Evening: 06:00 PM - 08:00 PM" className="text-[#0F172A]">Evening: 06:00 PM - 08:00 PM</option>
                     </select>
                   </div>
                 </div>
@@ -561,7 +559,7 @@ export default function Home() {
 
                 <div className="text-center pt-1">
                   <p className="text-xs font-medium text-slate-200 font-serif">
-                    Or call us at <a href="tel:+81888888888" className="text-white hover:text-[#38BDF8] font-bold underline ml-1">+81888888888</a>
+                    Or call us at <a href="tel:+919838655095" className="text-white hover:text-[#38BDF8] font-bold underline ml-1">+91 98386 55095</a>
                   </p>
                 </div>
               </form>
@@ -809,16 +807,16 @@ export default function Home() {
                 </div>
 
                 <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#0F172A] tracking-tight">
-                  About Dr. Arun Sharma
+                  About Dr. Sanjay Gupta
                 </h2>
 
                 <div className="inline-flex flex-wrap items-center gap-1.5 pt-0.5 text-xs sm:text-sm">
                   <span className="bg-[#1B365D] text-white font-serif font-semibold px-3 py-1 rounded-lg shadow-xs text-xs">
-                    MBBS, MD (Medicine), DM (Specialist)
+                    MBBS, DGO (KGMU Lucknow)
                   </span>
                   <span className="text-slate-400 hidden sm:inline">•</span>
                   <span className="bg-sky-50 text-[#0284C7] font-semibold px-2.5 py-1 rounded-lg border border-sky-200/80 flex items-center gap-1.5 text-xs">
-                    <i className="fa-solid fa-building-columns text-xs"></i> AIIMS Alumnus
+                    <i className="fa-solid fa-building-columns text-xs"></i> KGMU Alumnus
                   </span>
                 </div>
               </div>
@@ -828,7 +826,7 @@ export default function Home() {
                 <div className="w-full h-80 sm:h-96 lg:h-[28rem] 2xl:h-[38rem] 3xl:h-[44rem] rounded-xl overflow-hidden relative bg-[#1B365D]">
                   <img
                     src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1400&q=85"
-                    alt="Dr. Arun Sharma"
+                    alt="Dr. Sanjay Gupta"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1B365D]/90 via-transparent to-transparent"></div>
@@ -838,7 +836,7 @@ export default function Home() {
                     <span className="font-bold flex items-center gap-1.5">
                       <i className="fa-solid fa-circle-check text-emerald-400"></i> Verified Specialist
                     </span>
-                    <span className="text-[#38BDF8] font-semibold text-[11px] 2xl:text-xs">10+ Yrs Exp</span>
+                    <span className="text-[#38BDF8] font-semibold text-[11px] 2xl:text-xs">30+ Yrs Exp</span>
                   </div>
                 </div>
               </div>
@@ -857,7 +855,7 @@ export default function Home() {
               <div className="hidden lg:block space-y-1.5 2xl:space-y-2.5">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 bg-[#0284C7]/10 text-[#0284C7] px-3.5 py-1 2xl:px-4 2xl:py-1.5 rounded-full text-xs 2xl:text-sm font-bold border border-[#0284C7]/25 shadow-xs">
-                    <i className="fa-solid fa-user-doctor"></i> Senior Medical Specialist
+                    <i className="fa-solid fa-user-doctor"></i> Senior Physician &amp; Diabetologist
                   </span>
                   <span className="inline-flex items-center gap-1.5 text-[11px] 2xl:text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 2xl:px-3.5 2xl:py-1.5 rounded-full border border-emerald-200/80 shadow-xs">
                     <span className="relative flex h-2 w-2">
@@ -869,16 +867,16 @@ export default function Home() {
                 </div>
 
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-serif font-bold text-[#0F172A] tracking-tight">
-                  About Dr. Arun Sharma
+                  About Dr. Sanjay Gupta
                 </h2>
 
                 <div className="inline-flex flex-wrap items-center gap-2 pt-0.5">
                   <span className="bg-[#1B365D] text-white font-serif font-semibold text-xs sm:text-sm 2xl:text-base px-3.5 py-1 2xl:px-4 2xl:py-1.5 rounded-lg shadow-xs">
-                    MBBS, MD (Medicine), DM (Specialist)
+                    MBBS, DGO (KGMU Lucknow)
                   </span>
                   <span className="text-slate-400 hidden sm:inline">•</span>
                   <span className="bg-sky-50 text-[#0284C7] font-semibold text-xs sm:text-sm 2xl:text-base px-3 py-1 2xl:px-3.5 2xl:py-1.5 rounded-lg border border-sky-200/80 flex items-center gap-1.5">
-                    <i className="fa-solid fa-building-columns text-xs 2xl:text-sm"></i> AIIMS Alumnus
+                    <i className="fa-solid fa-building-columns text-xs 2xl:text-sm"></i> KGMU Alumnus
                   </span>
                 </div>
               </div>
@@ -888,7 +886,7 @@ export default function Home() {
                 <div className="flex gap-2.5 2xl:gap-3 items-start">
                   <i className="fa-solid fa-quote-left text-[#0284C7]/30 text-xl 2xl:text-2xl shrink-0 mt-0.5"></i>
                   <p className="text-[#334155] text-xs sm:text-sm md:text-base 2xl:text-lg leading-relaxed font-sans">
-                    Dedicated senior specialist with over 10+ years of distinguished clinical experience providing evidence-based healthcare, precision diagnosis, and tailored treatment plans for chronic and acute conditions.
+                    Dedicated physician and diabetologist from King George's Medical University (KGMU) Lucknow with over 30+ years of distinguished clinical experience providing evidence-based healthcare, precision metabolic care, and comprehensive treatment plans.
                   </p>
                 </div>
               </div>
@@ -896,7 +894,7 @@ export default function Home() {
               {/* 4 Interactive Feature Credential Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 2xl:gap-4 pt-0">
                 
-                {/* 1. 10+ Years Experience */}
+                {/* 1. 30+ Years Experience */}
                 <div className="bg-gradient-to-br from-white to-slate-50/90 rounded-xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-slate-200/90 shadow-sm hover:border-[#0284C7] hover:shadow-[0_8px_25px_-5px_rgba(2,132,199,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2.5">
@@ -905,9 +903,9 @@ export default function Home() {
                       </div>
                       <div>
                         <h4 className="text-sm 2xl:text-base font-serif font-bold text-[#0F172A] group-hover:text-[#0284C7] transition-colors leading-tight">
-                          10+ Years Experience
+                          30+ Years Experience
                         </h4>
-                        <p className="text-xs 2xl:text-sm text-slate-500 mt-0.5 leading-tight">Extensive clinical practice</p>
+                        <p className="text-xs 2xl:text-sm text-slate-500 mt-0.5 leading-tight">Serving since 1992 in Lucknow</p>
                       </div>
                     </div>
                     <span className="text-[9px] 2xl:text-[10px] font-bold uppercase tracking-wider text-[#0284C7] bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200/60 shrink-0">
@@ -925,9 +923,9 @@ export default function Home() {
                       </div>
                       <div>
                         <h4 className="text-sm 2xl:text-base font-serif font-bold text-[#0F172A] group-hover:text-[#0284C7] transition-colors leading-tight">
-                          AIIMS New Delhi
+                          KGMU Lucknow
                         </h4>
-                        <p className="text-xs 2xl:text-sm text-slate-500 mt-0.5 leading-tight">Top Tier Medical Education</p>
+                        <p className="text-xs 2xl:text-sm text-slate-500 mt-0.5 leading-tight">King George's Medical University</p>
                       </div>
                     </div>
                     <span className="text-[9px] 2xl:text-[10px] font-bold uppercase tracking-wider text-[#1B365D] bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200/60 shrink-0">
@@ -936,7 +934,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* 3. Cardiology & General Medicine Specialist */}
+                {/* 3. Physician & Diabetologist Specialty */}
                 <div className="bg-gradient-to-br from-white to-slate-50/90 rounded-xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-slate-200/90 shadow-sm hover:border-[#0284C7] hover:shadow-[0_8px_25px_-5px_rgba(2,132,199,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2.5">
@@ -947,7 +945,7 @@ export default function Home() {
                         <h4 className="text-sm 2xl:text-base font-serif font-bold text-[#0F172A] group-hover:text-[#0284C7] transition-colors leading-tight">
                           Senior Specialist
                         </h4>
-                        <p className="text-xs 2xl:text-sm text-slate-500 mt-0.5 leading-tight">Cardiology &amp; General Medicine</p>
+                        <p className="text-xs 2xl:text-sm text-slate-500 mt-0.5 leading-tight">Physician &amp; Diabetologist</p>
                       </div>
                     </div>
                     <span className="text-[9px] 2xl:text-[10px] font-bold uppercase tracking-wider text-[#0284C7] bg-cyan-50 px-1.5 py-0.5 rounded border border-cyan-200/60 shrink-0">
@@ -956,7 +954,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* 4. Available on days in weeks */}
+                {/* 4. Available everyday */}
                 <div className="bg-gradient-to-br from-white to-emerald-50/30 rounded-xl py-2 sm:py-2.5 2xl:py-3 px-3 sm:px-3.5 2xl:px-4 border border-emerald-200/80 shadow-sm hover:border-emerald-500 hover:shadow-[0_8px_25px_-5px_rgba(16,185,129,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2.5">
@@ -965,9 +963,9 @@ export default function Home() {
                       </div>
                       <div>
                         <h4 className="text-sm font-serif font-bold text-[#0F172A] group-hover:text-emerald-700 transition-colors leading-tight">
-                          Mon – Sat (6 Days / Wk)
+                          Everyday (Mon – Sun)
                         </h4>
-                        <p className="text-xs text-emerald-600 font-semibold mt-0.5 leading-tight">9:00 AM – 7:00 PM Slots</p>
+                        <p className="text-xs text-emerald-600 font-semibold mt-0.5 leading-tight">10 AM–1 PM &amp; 6 PM–8 PM</p>
                       </div>
                     </div>
                     <span className="text-[9px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/60 shrink-0">
@@ -1004,7 +1002,7 @@ export default function Home() {
                   className="w-60 max-w-full sm:w-auto flex justify-center"
                 >
                   <Link
-                    to="/dr-arun-sharma"
+                    to="/dr-sanjay-gupta"
                     className="w-full sm:w-auto justify-center bg-slate-100 hover:bg-slate-200 text-[#1B365D] font-serif text-sm font-bold px-6 py-3 rounded-lg border border-slate-300 hover:border-[#0284C7] hover:scale-105 active:scale-95 transition-all duration-200 transform inline-flex items-center gap-2 text-center cursor-pointer"
                   >
                     <i className="fa-solid fa-user-doctor text-xs text-[#0284C7]"></i>
@@ -1020,7 +1018,7 @@ export default function Home() {
                   className="w-60 max-w-full sm:w-auto flex justify-center"
                 >
                   <a
-                    href="https://wa.me/"
+                    href="https://wa.me/919415049410"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto justify-center bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-bold px-6 py-3 rounded-lg shadow-md hover:shadow-lg inline-flex items-center gap-2 hover:scale-105 active:scale-95 transition-all duration-200 transform text-center cursor-pointer"

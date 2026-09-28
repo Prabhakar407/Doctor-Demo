@@ -52,8 +52,8 @@ export default function Treatments() {
       title: "Obstetrician & Gynaecology Care",
       image: gynecologyImg,
       alt: "Obstetrician & Gynaecology Care",
-      doctorName: "Dr. Priya Nair",
-      doctorLink: "/dr-priya-nair",
+      doctorName: "Dr. Parul Gupta",
+      doctorLink: "/dr-parul-gupta",
       description: "Comprehensive reproductive healthcare, menstrual disorder management, PCOS/PCOD therapy, pelvic examinations, and preventive health screenings."
     },
     {
@@ -61,8 +61,8 @@ export default function Treatments() {
       title: "3D/4D Ultrasound & Imaging",
       image: sonographyScanImg,
       alt: "3D/4D Ultrasound & Imaging",
-      doctorName: "Dr. Priya Nair",
-      doctorLink: "/dr-priya-nair",
+      doctorName: "Dr. Parul Gupta",
+      doctorLink: "/dr-parul-gupta",
       description: "Advanced diagnostic sonography including fetal anomaly scans, early pregnancy dating, pelvic ultrasound, follicular monitoring, and color Doppler."
     },
     {
@@ -70,8 +70,8 @@ export default function Treatments() {
       title: "Pregnancy Management & Maternal Care",
       image: pregnancyImg,
       alt: "Pregnancy Management & Maternal Care",
-      doctorName: "Dr. Priya Nair",
-      doctorLink: "/dr-priya-nair",
+      doctorName: "Dr. Parul Gupta",
+      doctorLink: "/dr-parul-gupta",
       description: "End-to-end maternity care encompassing trimesters monitoring, gestational wellness, nutritional guidance, high-risk pregnancy protocols, and postpartum care."
     },
     {
@@ -79,8 +79,8 @@ export default function Treatments() {
       title: "Physician & Diabetology Care",
       image: glucometerImg,
       alt: "Physician & Diabetology Care",
-      doctorName: "Dr. Arun Sharma",
-      doctorLink: "/dr-arun-sharma",
+      doctorName: "Dr. Sanjay Gupta",
+      doctorLink: "/dr-sanjay-gupta",
       description: "Expert clinical evaluation for diabetes mellitus (Type 1 & 2), hypertension, metabolic syndrome, thyroid disorders, and acute/chronic adult illnesses."
     }
   ];

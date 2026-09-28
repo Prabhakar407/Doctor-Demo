@@ -41,6 +41,8 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const isDoctorActive = location.pathname === '/meet-doctor' || 
+                         location.pathname === '/dr-parul-gupta' || 
+                         location.pathname === '/dr-sanjay-gupta' ||
                          location.pathname === '/dr-arun-sharma' || 
                          location.pathname === '/dr-priya-nair';
 
@@ -48,11 +50,11 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full bg-[#1B365D] border-b border-white/10 shadow-md px-4 sm:px-8 lg:px-16 2xl:px-20 py-3 sm:py-3.5 2xl:py-4 transition duration-300">
       <div className="max-w-7xl 2xl:max-w-[100rem] mx-auto flex justify-between items-center gap-4">
         {/* Brand Logo */}
-        <Link to="/" className="flex items-center gap-2.5 font-serif font-bold text-xl sm:text-2xl text-white tracking-wide shrink-0">
+        <Link to="/" className="flex items-center gap-2.5 font-serif font-bold text-lg sm:text-xl 2xl:text-2xl text-white tracking-wide shrink-0">
           <span className="w-9 h-9 rounded-xl bg-[#0284C7] text-white flex items-center justify-center text-base shadow-md">
             <i className="fa-solid fa-heart-pulse"></i>
           </span>
-          <span>Clinic<span className="text-[#38BDF8]">Care</span></span>
+          <span>R. K. <span className="text-[#38BDF8]">Medical Centre</span></span>
         </Link>
 
         {/* Desktop Navigation Links (>= lg screens) */}
@@ -126,42 +128,12 @@ export default function Navbar() {
 
                 {/* Doctors List */}
                 <div className="space-y-1.5 pt-1.5">
-                  {/* Dr. Arun Sharma */}
+                  {/* Dr. Parul Gupta */}
                   <Link
-                    to="/dr-arun-sharma"
+                    to="/dr-parul-gupta"
                     onClick={() => setDropdownOpen(false)}
                     className={`group flex items-center justify-between p-2.5 rounded-xl transition-all duration-200 ${
-                      location.pathname === '/dr-arun-sharma'
-                        ? "bg-sky-50 border border-sky-200 text-[#0284C7]"
-                        : "hover:bg-slate-50 border border-transparent text-[#0F172A] hover:border-slate-200"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0">
-                        <img
-                          src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&q=80"
-                          alt="Dr. Arun Sharma"
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
-                        />
-                        <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white"></span>
-                      </div>
-                      <div>
-                        <div className="text-sm font-serif font-bold text-[#0F172A] group-hover:text-[#0284C7] transition-colors leading-snug">
-                          Dr. Arun Sharma
-                        </div>
-                        <div className="text-[11px] text-slate-500 font-sans leading-tight">Cardiologist &amp; Physician</div>
-                        <div className="text-[10px] text-[#0284C7] font-semibold mt-0.5">10+ Yrs Exp • AIIMS</div>
-                      </div>
-                    </div>
-                    <i className="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-[#0284C7] group-hover:translate-x-1 transition-all duration-200"></i>
-                  </Link>
-
-                  {/* Dr. Priya Nair */}
-                  <Link
-                    to="/dr-priya-nair"
-                    onClick={() => setDropdownOpen(false)}
-                    className={`group flex items-center justify-between p-2.5 rounded-xl transition-all duration-200 ${
-                      location.pathname === '/dr-priya-nair'
+                      location.pathname === '/dr-parul-gupta' || location.pathname === '/dr-priya-nair'
                         ? "bg-sky-50 border border-sky-200 text-[#0284C7]"
                         : "hover:bg-slate-50 border border-transparent text-[#0F172A] hover:border-slate-200"
                     }`}
@@ -170,17 +142,47 @@ export default function Navbar() {
                       <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0">
                         <img
                           src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=150&q=80"
-                          alt="Dr. Priya Nair"
+                          alt="Dr. Parul Gupta"
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                         />
                         <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white"></span>
                       </div>
                       <div>
                         <div className="text-sm font-serif font-bold text-[#0F172A] group-hover:text-[#0284C7] transition-colors leading-snug">
-                          Dr. Priya Nair
+                          Dr. Parul Gupta
                         </div>
-                        <div className="text-[11px] text-slate-500 font-sans leading-tight">Pediatrician &amp; Family Care</div>
-                        <div className="text-[10px] text-[#0284C7] font-semibold mt-0.5">8+ Yrs Exp • JIPMER</div>
+                        <div className="text-[11px] text-slate-500 font-sans leading-tight">Obstetrician &amp; Gynaecologist</div>
+                        <div className="text-[10px] text-[#0284C7] font-semibold mt-0.5">Gold Medalist • KGMU Lucknow</div>
+                      </div>
+                    </div>
+                    <i className="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-[#0284C7] group-hover:translate-x-1 transition-all duration-200"></i>
+                  </Link>
+
+                  {/* Dr. Sanjay Gupta */}
+                  <Link
+                    to="/dr-sanjay-gupta"
+                    onClick={() => setDropdownOpen(false)}
+                    className={`group flex items-center justify-between p-2.5 rounded-xl transition-all duration-200 ${
+                      location.pathname === '/dr-sanjay-gupta' || location.pathname === '/dr-arun-sharma'
+                        ? "bg-sky-50 border border-sky-200 text-[#0284C7]"
+                        : "hover:bg-slate-50 border border-transparent text-[#0F172A] hover:border-slate-200"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0">
+                        <img
+                          src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&q=80"
+                          alt="Dr. Sanjay Gupta"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                        />
+                        <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white"></span>
+                      </div>
+                      <div>
+                        <div className="text-sm font-serif font-bold text-[#0F172A] group-hover:text-[#0284C7] transition-colors leading-snug">
+                          Dr. Sanjay Gupta
+                        </div>
+                        <div className="text-[11px] text-slate-500 font-sans leading-tight">Physician &amp; Diabetologist</div>
+                        <div className="text-[10px] text-[#0284C7] font-semibold mt-0.5">MBBS, DGO • KGMU Lucknow</div>
                       </div>
                     </div>
                     <i className="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-[#0284C7] group-hover:translate-x-1 transition-all duration-200"></i>
@@ -251,7 +253,7 @@ export default function Navbar() {
                   <span className="w-7 h-7 rounded-lg bg-[#0284C7] flex items-center justify-center text-xs shadow">
                     <i className="fa-solid fa-heart-pulse"></i>
                   </span>
-                  <span>Clinic<span className="text-[#38BDF8]">Care</span></span>
+                  <span>R. K. <span className="text-[#38BDF8]">Medical Centre</span></span>
                 </div>
                 <button
                   type="button"
@@ -322,26 +324,26 @@ export default function Navbar() {
                   {mobileDoctorOpen && (
                     <div className="px-2.5 pb-2.5 space-y-1.5 pt-1 border-t border-white/10 bg-[#13294B]/60">
                       <Link
-                        to="/dr-arun-sharma"
+                        to="/dr-parul-gupta"
                         onClick={() => setMobileMenuOpen(false)}
                         className="flex items-center gap-2 p-2 rounded-lg bg-white/5 hover:bg-[#0284C7]/20 transition"
                       >
                         <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
                         <div>
-                          <div className="text-xs font-bold font-serif text-white">Dr. Arun Sharma</div>
-                          <div className="text-[10px] text-slate-300">Cardiologist &amp; Physician</div>
+                          <div className="text-xs font-bold font-serif text-white">Dr. Parul Gupta</div>
+                          <div className="text-[10px] text-slate-300">Obstetrician &amp; Gynaecologist</div>
                         </div>
                       </Link>
 
                       <Link
-                        to="/dr-priya-nair"
+                        to="/dr-sanjay-gupta"
                         onClick={() => setMobileMenuOpen(false)}
                         className="flex items-center gap-2 p-2 rounded-lg bg-white/5 hover:bg-[#0284C7]/20 transition"
                       >
                         <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
                         <div>
-                          <div className="text-xs font-bold font-serif text-white">Dr. Priya Nair</div>
-                          <div className="text-[10px] text-slate-300">Pediatrician &amp; Family Care</div>
+                          <div className="text-xs font-bold font-serif text-white">Dr. Sanjay Gupta</div>
+                          <div className="text-[10px] text-slate-300">Physician &amp; Diabetologist</div>
                         </div>
                       </Link>
                     </div>
@@ -374,7 +376,7 @@ export default function Navbar() {
                 <span>Book Appointment</span>
               </Link>
               <p className="text-center text-[10px] text-slate-400">
-                Mon – Sat: 9:00 AM – 7:00 PM
+                Everyday: 10:00 AM – 1:00 PM &amp; 6:00 PM – 8:00 PM
               </p>
             </div>
           </div>
