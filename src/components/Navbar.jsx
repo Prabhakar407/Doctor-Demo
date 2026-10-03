@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
+import logoImg from '@/Images/Logo1.png';
 
 export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -47,14 +48,19 @@ export default function Navbar() {
                          location.pathname === '/dr-priya-nair';
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#1B365D] border-b border-white/10 shadow-md px-4 sm:px-8 lg:px-16 2xl:px-20 py-3 sm:py-3.5 2xl:py-4 transition duration-300">
+    <header className="sticky top-0 z-50 w-full bg-[#1B365D] border-b border-white/10 shadow-md px-4 sm:px-8 lg:px-16 2xl:px-20 py-2 sm:py-2.5 2xl:py-3 transition duration-300">
       <div className="max-w-7xl 2xl:max-w-[100rem] mx-auto flex justify-between items-center gap-4">
-        {/* Brand Logo */}
-        <Link to="/" className="flex items-center gap-2.5 font-serif font-bold text-lg sm:text-xl 2xl:text-2xl text-white tracking-wide shrink-0">
-          <span className="w-9 h-9 rounded-xl bg-[#0284C7] text-white flex items-center justify-center text-base shadow-md">
-            <i className="fa-solid fa-heart-pulse"></i>
+        {/* Brand Logo & Name */}
+        <Link to="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+          <img 
+            src={logoImg} 
+            alt="R. K. Medical Centre" 
+            className="h-12 sm:h-13 lg:h-14 2xl:h-15 w-auto object-contain -my-1"
+          />
+          <span className="playfair-display font-serif font-bold text-base sm:text-lg lg:text-xl tracking-tight leading-none whitespace-nowrap">
+            <span className="text-[#60BF8F]">R K </span>
+            <span className="text-[#00A68F]">Medical Centre</span>
           </span>
-          <span>R. K. <span className="text-[#38BDF8]">Medical Centre</span></span>
         </Link>
 
         {/* Desktop Navigation Links (>= lg screens) */}
@@ -206,9 +212,10 @@ export default function Navbar() {
 
           <NavLink
             to="/booking"
-            className="bg-[#0284C7] hover:bg-[#0369A1] text-white active:bg-[#0284C7] font-bold px-5 py-2.5 rounded-lg transition text-xs sm:text-sm font-serif shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transform border border-transparent hover:border-slate-300"
+            className="group bg-[#0284C7] hover:bg-[#0369A1] text-white active:bg-[#0284C7] font-bold px-5 py-2.5 rounded-lg transition text-xs sm:text-sm font-serif shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transform border border-transparent hover:border-slate-300 inline-flex items-center gap-1.5"
           >
-            Booking
+            <span>Booking</span>
+            <i className="fa-solid fa-arrow-right text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
           </NavLink>
         </nav>
 
@@ -216,9 +223,10 @@ export default function Navbar() {
         <div className="flex items-center gap-2 lg:hidden">
           <NavLink
             to="/booking"
-            className="bg-[#0284C7] text-white font-bold px-3.5 py-2 rounded-lg text-xs font-serif shadow-sm border border-transparent hover:border-slate-300"
+            className="group bg-[#0284C7] text-white font-bold px-3.5 py-2 rounded-lg text-xs font-serif shadow-sm border border-transparent hover:border-slate-300 inline-flex items-center gap-1.5"
           >
-            Book
+            <span>Book</span>
+            <i className="fa-solid fa-arrow-right text-[10px] inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
           </NavLink>
           
           <button
@@ -249,12 +257,17 @@ export default function Navbar() {
             <div className="space-y-3">
               {/* Drawer Header */}
               <div className="flex items-center justify-between pb-2.5 border-b border-white/15">
-                <div className="flex items-center gap-2 font-serif font-bold text-lg">
-                  <span className="w-7 h-7 rounded-lg bg-[#0284C7] flex items-center justify-center text-xs shadow">
-                    <i className="fa-solid fa-heart-pulse"></i>
+                <Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2">
+                  <img 
+                    src={logoImg} 
+                    alt="R. K. Medical Centre" 
+                    className="h-10 w-auto object-contain"
+                  />
+                  <span className="playfair-display font-serif font-bold text-sm tracking-tight leading-none whitespace-nowrap">
+                    <span className="text-[#60BF8F]">R K </span>
+                    <span className="text-[#00A68F]">Medical Centre</span>
                   </span>
-                  <span>R. K. <span className="text-[#38BDF8]">Medical Centre</span></span>
-                </div>
+                </Link>
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
@@ -370,10 +383,10 @@ export default function Navbar() {
               <Link
                 to="/booking"
                 onClick={() => setMobileMenuOpen(false)}
-                className="min-h-[38px] w-full bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold rounded-lg flex items-center justify-center gap-2 shadow-md transition text-xs border border-transparent hover:border-slate-300 cursor-pointer"
+                className="group min-h-[38px] w-full bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold rounded-lg flex items-center justify-center gap-2 shadow-md transition text-xs border border-transparent hover:border-slate-300 cursor-pointer"
               >
-                <i className="fa-solid fa-calendar-check text-xs"></i>
                 <span>Book Appointment</span>
+                <i className="fa-solid fa-arrow-right text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
               </Link>
               <p className="text-center text-[10px] text-slate-400">
                 Everyday: 10:00 AM – 1:00 PM &amp; 6:00 PM – 8:00 PM

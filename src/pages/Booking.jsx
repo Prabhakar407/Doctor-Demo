@@ -546,10 +546,10 @@ export default function Booking() {
                     <div className="pt-2 2xl:pt-4 flex flex-col items-center">
                       <button 
                         type="submit" 
-                        className="w-auto px-6 sm:px-8 py-2 2xl:px-9 2xl:py-2.5 bg-[#0284C7] hover:bg-[#0369A1] active:bg-[#0284C7] text-white font-serif font-bold rounded-lg transition-all duration-200 text-xs sm:text-sm 2xl:text-base shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transform border border-transparent hover:border-slate-300 inline-flex items-center justify-center gap-2 cursor-pointer"
+                        className="group w-auto px-6 sm:px-8 py-2 2xl:px-9 2xl:py-2.5 bg-[#0284C7] hover:bg-[#0369A1] active:bg-[#0284C7] text-white font-serif font-bold rounded-lg transition-all duration-200 text-xs sm:text-sm 2xl:text-base shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transform border border-transparent hover:border-slate-300 inline-flex items-center justify-center gap-2 cursor-pointer"
                       >
                         <span>Continue to Payment (Step 2)</span>
-                        <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm"></i>
+                        <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                       </button>
                       <p className="text-[10px] 2xl:text-xs text-center text-[#64748B] mt-1.5 2xl:mt-2">Details will be verified on next step before final confirmation</p>
                     </div>

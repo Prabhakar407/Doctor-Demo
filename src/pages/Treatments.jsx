@@ -415,9 +415,10 @@ export default function Treatments() {
                         </Link>
                         <Link 
                           to="/booking" 
-                          className="bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold px-3.5 py-1.5 rounded-lg shadow-xs transition border border-transparent hover:border-slate-300"
+                          className="group bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold px-3.5 py-1.5 rounded-lg shadow-xs transition border border-transparent hover:border-slate-300 inline-flex items-center gap-1.5"
                         >
-                          Book Treatment
+                          <span>Book Treatment</span>
+                          <i className="fa-solid fa-arrow-right text-[10px] inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                         </Link>
                       </div>
                     </div>

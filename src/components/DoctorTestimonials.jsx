@@ -420,7 +420,7 @@ export default function DoctorTestimonials({
               onClick={() => handleMove(-1)}
               className={cn(
                 "flex h-12 w-12 sm:h-14 sm:w-14 2xl:h-8 2xl:w-8 items-center justify-center text-xl sm:text-2xl 2xl:text-base transition-all duration-200 rounded-lg sm:rounded-xl 2xl:rounded-md",
-                "bg-white border-2 border-slate-300 hover:bg-[#1B365D] hover:text-white hover:border-[#1B365D] text-[#1B365D] cursor-pointer active:scale-95 shadow-sm",
+                "bg-white border border-slate-300 hover:bg-[#1B365D] hover:text-white hover:border-[#1B365D] text-[#1B365D] cursor-pointer active:scale-95 shadow-sm",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0284C7] focus-visible:ring-offset-2"
               )}
               aria-label="Previous testimonial"
@@ -432,7 +432,7 @@ export default function DoctorTestimonials({
               onClick={() => handleMove(1)}
               className={cn(
                 "flex h-12 w-12 sm:h-14 sm:w-14 2xl:h-8 2xl:w-8 items-center justify-center text-xl sm:text-2xl 2xl:text-base transition-all duration-200 rounded-lg sm:rounded-xl 2xl:rounded-md",
-                "bg-white border-2 border-slate-300 hover:bg-[#1B365D] hover:text-white hover:border-[#1B365D] text-[#1B365D] cursor-pointer active:scale-95 shadow-sm",
+                "bg-white border border-slate-300 hover:bg-[#1B365D] hover:text-white hover:border-[#1B365D] text-[#1B365D] cursor-pointer active:scale-95 shadow-sm",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0284C7] focus-visible:ring-offset-2"
               )}
               aria-label="Next testimonial"

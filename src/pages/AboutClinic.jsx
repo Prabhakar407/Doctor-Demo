@@ -131,10 +131,10 @@ export default function AboutClinic() {
               <div className="flex flex-wrap items-center gap-2.5 lg:gap-2 xl:gap-3 pt-1 lg:pt-0.5 xl:pt-1.5">
                 <Link 
                   to="/booking" 
-                  className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2 px-5 lg:py-1.5 lg:px-4 xl:py-2 xl:px-5 2xl:py-2.5 2xl:px-6 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 text-xs sm:text-sm border border-transparent hover:border-slate-300 inline-flex items-center gap-2 cursor-pointer"
+                  className="group bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2 px-5 lg:py-1.5 lg:px-4 xl:py-2 xl:px-5 2xl:py-2.5 2xl:px-6 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 text-xs sm:text-sm border border-transparent hover:border-slate-300 inline-flex items-center gap-2 cursor-pointer"
                 >
-                  <i className="fa-solid fa-calendar-check"></i>
                   <span>Book Consultation</span>
+                  <i className="fa-solid fa-arrow-right text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                 </Link>
                 <button 
                   onClick={handleVirtualTour} 
@@ -193,13 +193,14 @@ export default function AboutClinic() {
             <div className="md:hidden flex flex-col items-center gap-3 w-full">
               <Link 
                 to="/booking" 
-                className="w-60 max-w-full bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-3 px-6 rounded-xl shadow-[0_8px_20px_-4px_rgba(2,132,199,0.4)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.5)] text-center transition text-xs sm:text-sm border border-transparent hover:border-slate-300"
+                className="group w-48 max-w-full bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2.5 px-3 rounded-lg shadow-[0_8px_20px_-4px_rgba(2,132,199,0.4)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.5)] transition text-xs sm:text-sm border border-transparent hover:border-slate-300 inline-flex items-center justify-center gap-2"
               >
-                <i className="fa-solid fa-calendar-check mr-2"></i> Book Consultation
+                <span>Book Consultation</span>
+                <i className="fa-solid fa-arrow-right text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
               </Link>
               <button 
                 onClick={handleVirtualTour} 
-                className="w-60 max-w-full border-2 border-[#0284C7] bg-white hover:bg-slate-50 text-[#0284C7] font-serif font-bold py-2.5 px-6 rounded-xl shadow-xs text-center transition text-xs sm:text-sm cursor-pointer"
+                className="w-48 max-w-full border border-[#0284C7] bg-white hover:bg-slate-50 text-[#0284C7] font-serif font-bold py-2.5 px-3 rounded-lg shadow-xs text-center transition text-xs sm:text-sm cursor-pointer"
               >
                 <i className="fa-solid fa-vr-cardboard mr-2"></i> Take a Virtual Tour
               </button>
@@ -225,13 +226,14 @@ export default function AboutClinic() {
               <div className="space-y-3 pt-1">
                 <Link 
                   to="/booking" 
-                  className="block w-full sm:w-72 max-w-xs bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-3 px-6 rounded-xl shadow-[0_8px_20px_-4px_rgba(2,132,199,0.4)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.5)] text-center transition text-xs sm:text-sm border border-transparent hover:border-slate-300"
+                  className="group w-48 max-w-full bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2.5 px-3 rounded-lg shadow-[0_8px_20px_-4px_rgba(2,132,199,0.4)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.5)] transition text-xs sm:text-sm border border-transparent hover:border-slate-300 inline-flex items-center justify-center gap-2"
                 >
-                  <i className="fa-solid fa-calendar-check mr-2"></i> Book Consultation
+                  <span>Book Consultation</span>
+                  <i className="fa-solid fa-arrow-right text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                 </Link>
                 <button 
                   onClick={handleVirtualTour} 
-                  className="block w-full sm:w-72 max-w-xs border-2 border-[#0284C7] bg-white hover:bg-slate-50 text-[#0284C7] font-serif font-bold py-2.5 px-6 rounded-xl shadow-xs text-center transition text-xs sm:text-sm cursor-pointer"
+                  className="w-48 max-w-full border border-[#0284C7] bg-white hover:bg-slate-50 text-[#0284C7] font-serif font-bold py-2.5 px-3 rounded-lg shadow-xs text-center transition text-xs sm:text-sm cursor-pointer block"
                 >
                   <i className="fa-solid fa-vr-cardboard mr-2"></i> Take a Virtual Tour
                 </button>

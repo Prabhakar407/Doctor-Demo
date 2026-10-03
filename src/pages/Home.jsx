@@ -315,9 +315,10 @@ export default function Home() {
               >
                 <Link
                   to="/booking"
-                  className="bg-[#0284C7] hover:bg-[#0369A1] border border-transparent hover:border-slate-300 text-white text-xs sm:text-sm md:text-base font-serif font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg shadow-lg hover:shadow-[0_12px_28px_rgba(2,132,199,0.45)] hover:scale-105 active:scale-95 transition-all duration-200 transform inline-block text-center cursor-pointer"
+                  className="group bg-[#0284C7] hover:bg-[#0369A1] border border-transparent hover:border-slate-300 text-white text-xs sm:text-sm md:text-base font-serif font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg shadow-lg hover:shadow-[0_12px_28px_rgba(2,132,199,0.45)] hover:scale-105 active:scale-95 transition-all duration-200 transform inline-flex items-center gap-2 text-center cursor-pointer"
                 >
-                  Book Now
+                  <span>Book Now</span>
+                  <i className="fa-solid fa-arrow-right text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                 </Link>
               </motion.div>
               <motion.div
@@ -448,9 +449,10 @@ export default function Home() {
                   <div className="flex justify-center pt-1.5 2xl:pt-2">
                     <button
                       type="submit"
-                      className="w-full sm:w-auto px-7 2xl:px-9 py-2 2xl:py-2.5 bg-[#0284C7] hover:bg-[#0369A1] border border-transparent hover:border-slate-300 text-white font-serif font-bold rounded-lg 2xl:rounded-xl transition-all duration-200 text-xs sm:text-sm 2xl:text-base shadow-[0_8px_20px_-4px_rgba(2,132,199,0.5)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.7)] hover:scale-105 active:scale-95 transform cursor-pointer"
+                      className="group w-fit sm:w-auto px-7 2xl:px-9 py-2 2xl:py-2.5 bg-[#0284C7] hover:bg-[#0369A1] border border-transparent hover:border-slate-300 text-white font-serif font-bold rounded-lg 2xl:rounded-xl transition-all duration-200 text-xs sm:text-sm 2xl:text-base shadow-[0_8px_20px_-4px_rgba(2,132,199,0.5)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.7)] hover:scale-105 active:scale-95 transform cursor-pointer inline-flex items-center justify-center gap-2"
                     >
-                      Book Appointment
+                      <span>Book Appointment</span>
+                      <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                     </button>
                   </div>
 
@@ -551,9 +553,10 @@ export default function Home() {
                 <div className="flex justify-center pt-2">
                   <button
                     type="submit"
-                    className="w-full px-8 py-2.5 bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold rounded-xl transition-all duration-200 text-sm shadow-[0_8px_20px_-4px_rgba(2,132,199,0.5)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.7)] cursor-pointer"
+                    className="group w-full px-8 py-2.5 bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold rounded-xl transition-all duration-200 text-sm shadow-[0_8px_20px_-4px_rgba(2,132,199,0.5)] hover:shadow-[0_12px_25px_-4px_rgba(2,132,199,0.7)] cursor-pointer inline-flex items-center justify-center gap-2"
                   >
-                    Book Appointment
+                    <span>Book Appointment</span>
+                    <i className="fa-solid fa-arrow-right text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                   </button>
                 </div>
 
@@ -572,7 +575,7 @@ export default function Home() {
       {/* HEALTHCARE SOLUTIONS / SERVICES SECTION */}
       <section 
         id="healthcare-solutions"
-        className="w-full bg-[#F8FAFC] py-10 sm:py-12 lg:py-16 2xl:py-20 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200 relative"
+        className="w-full bg-[#E2EAF2] py-10 sm:py-12 lg:py-16 2xl:py-20 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200 relative"
       >
         <div className="max-w-7xl 2xl:max-w-[100rem] w-full mx-auto space-y-6 sm:space-y-8 2xl:space-y-10">
           
@@ -983,14 +986,14 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0 }}
                   transition={{ duration: 0.75, delay: 0.15, ease: "easeInOut" }}
-                  className="w-60 max-w-full sm:w-auto flex justify-center"
+                  className="w-fit max-w-full sm:w-auto flex justify-center"
                 >
                   <Link
                     to="/booking"
-                    className="w-full sm:w-auto justify-center bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif text-sm font-bold px-7 py-3 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform inline-flex items-center gap-2 border border-transparent hover:border-slate-300 text-center cursor-pointer"
+                    className="group w-fit sm:w-auto justify-center bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif text-sm font-bold px-3 sm:px-7 py-3 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform inline-flex items-center gap-2 border border-transparent hover:border-slate-300 text-center cursor-pointer"
                   >
-                    <i className="fa-solid fa-calendar-check text-xs"></i>
                     <span>Book Appointment</span>
+                    <i className="fa-solid fa-arrow-right text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                   </Link>
                 </motion.div>
                 
@@ -999,11 +1002,11 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0 }}
                   transition={{ duration: 0.75, delay: 0.3, ease: "easeInOut" }}
-                  className="w-60 max-w-full sm:w-auto flex justify-center"
+                  className="w-fit max-w-full sm:w-auto flex justify-center"
                 >
                   <Link
                     to="/dr-sanjay-gupta"
-                    className="w-full sm:w-auto justify-center bg-slate-100 hover:bg-slate-200 text-[#1B365D] font-serif text-sm font-bold px-6 py-3 rounded-lg border border-slate-300 hover:border-[#0284C7] hover:scale-105 active:scale-95 transition-all duration-200 transform inline-flex items-center gap-2 text-center cursor-pointer"
+                    className="w-fit sm:w-auto justify-center bg-slate-100 hover:bg-slate-200 text-[#1B365D] font-serif text-sm font-bold px-3 sm:px-6 py-3 rounded-lg border border-slate-300 hover:border-[#0284C7] hover:scale-105 active:scale-95 transition-all duration-200 transform inline-flex items-center gap-2 text-center cursor-pointer"
                   >
                     <i className="fa-solid fa-user-doctor text-xs text-[#0284C7]"></i>
                     <span>Doctor Profile</span>
@@ -1015,13 +1018,13 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0 }}
                   transition={{ duration: 0.75, delay: 0.45, ease: "easeInOut" }}
-                  className="w-60 max-w-full sm:w-auto flex justify-center"
+                  className="w-fit max-w-full sm:w-auto flex justify-center"
                 >
                   <a
                     href="https://wa.me/919415049410"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto justify-center bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-bold px-6 py-3 rounded-lg shadow-md hover:shadow-lg inline-flex items-center gap-2 hover:scale-105 active:scale-95 transition-all duration-200 transform text-center cursor-pointer"
+                    className="w-fit sm:w-auto justify-center bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-bold px-3 sm:px-6 py-3 rounded-lg shadow-md hover:shadow-lg inline-flex items-center gap-2 hover:scale-105 active:scale-95 transition-all duration-200 transform text-center cursor-pointer"
                   >
                     <i className="fa-brands fa-whatsapp text-lg text-white"></i> WhatsApp
                   </a>
@@ -1034,7 +1037,7 @@ export default function Home() {
       </section>
 
       {/* APPOINTMENT BOOKING & DIGITAL PRESCRIPTIONS BANNER SECTION */}
-      <section id="consultation-prescriptions" className="w-full bg-[#F8FAFC] py-0.5 sm:py-1 md:py-1.5 lg:py-[2px] xl:py-[2px] 2xl:py-3.5 3xl:py-4 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 consultation-banner-laptop">
+      <section id="consultation-prescriptions" className="w-full bg-[#F1F5F9] py-0.5 sm:py-1 md:py-1.5 lg:py-[2px] xl:py-[2px] 2xl:py-3.5 3xl:py-4 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 consultation-banner-laptop">
         <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto h-full flex flex-col justify-center">
           <motion.div 
             initial={{ opacity: 0, y: 40, scale: 0.98 }}
@@ -1069,10 +1072,10 @@ export default function Home() {
                 <div className="flex flex-wrap items-center gap-2.5 pt-1.5 lg:pt-0.5 xl:pt-1.5 2xl:pt-3">
                   <Link
                     to="/booking"
-                    className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base px-5 py-2 sm:py-2.5 lg:px-4 lg:py-1.5 xl:px-5 xl:py-2 2xl:px-7 2xl:py-3 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform flex items-center gap-2 border border-transparent hover:border-slate-300"
+                    className="group bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base px-5 py-2 sm:py-2.5 lg:px-4 lg:py-1.5 xl:px-5 xl:py-2 2xl:px-7 2xl:py-3 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform flex items-center gap-2 border border-transparent hover:border-slate-300"
                   >
-                    <i className="fa-solid fa-calendar-check text-xs 2xl:text-sm"></i>
                     <span>Book Appointment Now</span>
+                    <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                   </Link>
                 </div>
               </div>
@@ -1084,7 +1087,7 @@ export default function Home() {
       {/* WHY BOOK OUR CONSULTATION SECTION */}
       <section 
         id="why-book-online"
-        className="w-full bg-[#F8FAFC] py-10 sm:py-12 md:py-14 lg:py-8 xl:py-10 2xl:py-20 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 flex flex-col justify-center"
+        className="w-full bg-[#F1F5F9] py-10 sm:py-12 md:py-14 lg:py-8 xl:py-10 2xl:py-20 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 flex flex-col justify-center"
       >
         <div className="max-w-7xl 2xl:max-w-[100rem] w-full mx-auto space-y-6 sm:space-y-8 lg:space-y-6 xl:space-y-8 2xl:space-y-12">
           
@@ -1214,7 +1217,7 @@ export default function Home() {
       </section>
 
       {/* PATIENT REVIEW SECTION (Continuous Seamless Infinite Marquee with Dual Gradient Mask) */}
-      <section id="patient-reviews" className="w-full bg-white pt-4 sm:pt-6 pb-12 sm:pb-16 2xl:pb-24 border-b border-slate-200 overflow-hidden patient-reviews-section">
+      <section id="patient-reviews" className="w-full bg-[#E2E8F0] pt-4 sm:pt-6 pb-12 sm:pb-16 2xl:pb-24 border-b border-slate-200 overflow-hidden patient-reviews-section">
         <div className="max-w-7xl 2xl:max-w-[100rem] mx-auto px-4 sm:px-8 lg:px-14 2xl:px-20 space-y-2.5 sm:space-y-4 lg:space-y-2.5 2xl:space-y-6 w-full">
           
           <div className="reviews-header space-y-1 sm:space-y-1.5 text-center md:text-left">

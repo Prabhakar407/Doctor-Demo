@@ -145,10 +145,10 @@ export default function DrSanjayGupta() {
               <div className="flex flex-wrap sm:flex-nowrap lg:flex-nowrap items-center gap-2.5 sm:gap-3 lg:gap-3 2xl:gap-2.5 pt-1 lg:pt-1.5 w-full">
                 <Link 
                   to="/booking" 
-                  className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-4 py-2 sm:px-5 sm:py-2.5 lg:px-4 lg:py-2 xl:px-5 xl:py-2.5 2xl:py-2 2xl:px-5 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 transform text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-xs 3xl:text-sm flex items-center justify-center gap-2 border border-transparent hover:border-slate-300 whitespace-nowrap shrink-0"
+                  className="group bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-4 py-2 sm:px-5 sm:py-2.5 lg:px-4 lg:py-2 xl:px-5 xl:py-2.5 2xl:py-2 2xl:px-5 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 transform text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-xs 3xl:text-sm flex items-center justify-center gap-2 border border-transparent hover:border-slate-300 whitespace-nowrap shrink-0"
                 >
-                  <i className="fa-solid fa-calendar-check text-xs sm:text-sm"></i>
                   <span>Book Consultation</span>
+                  <i className="fa-solid fa-arrow-right text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                 </Link>
                 <a 
                   href="https://wa.me/919415049410" 

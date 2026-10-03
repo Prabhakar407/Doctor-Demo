@@ -135,8 +135,9 @@ export default function MeetDoctor() {
               </div>
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Link to="/dr-parul-gupta" className="flex-1 bg-white/15 hover:bg-white/25 text-white text-center font-serif font-bold py-2.5 px-4 rounded-xl border border-white/20 transition text-xs sm:text-sm">
-                  View Profile
+                <Link to="/dr-parul-gupta" className="group flex-1 bg-white/15 hover:bg-white/25 text-white text-center font-serif font-bold py-2.5 px-4 rounded-xl border border-white/20 transition text-xs sm:text-sm inline-flex items-center justify-center gap-1.5">
+                  <span>View Profile</span>
+                  <i className="fa-solid fa-arrow-right text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                 </Link>
                 <a href="https://wa.me/919838655095" target="_blank" rel="noopener noreferrer" className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold py-2.5 px-4 rounded-xl inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm transition">
                   <i className="fa-brands fa-whatsapp text-base"></i> WhatsApp
@@ -186,8 +187,9 @@ export default function MeetDoctor() {
               </div>
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Link to="/dr-sanjay-gupta" className="flex-1 bg-white/15 hover:bg-white/25 text-white text-center font-serif font-bold py-2.5 px-4 rounded-xl border border-white/20 transition text-xs sm:text-sm">
-                  View Profile
+                <Link to="/dr-sanjay-gupta" className="group flex-1 bg-white/15 hover:bg-white/25 text-white text-center font-serif font-bold py-2.5 px-4 rounded-xl border border-white/20 transition text-xs sm:text-sm inline-flex items-center justify-center gap-1.5">
+                  <span>View Profile</span>
+                  <i className="fa-solid fa-arrow-right text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                 </Link>
                 <a href="https://wa.me/919415049410" target="_blank" rel="noopener noreferrer" className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold py-2.5 px-4 rounded-xl inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm transition">
                   <i className="fa-brands fa-whatsapp text-base"></i> WhatsApp
@@ -198,9 +200,9 @@ export default function MeetDoctor() {
           </div>
 
           <div className="text-center pt-2">
-            <Link to="/booking" className="inline-flex items-center gap-2 bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition border border-transparent hover:border-slate-300">
-              <i className="fa-solid fa-calendar-check"></i>
+            <Link to="/booking" className="group inline-flex items-center gap-2 bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 border border-transparent hover:border-slate-300">
               <span>Book an Appointment Online (₹800 Fee)</span>
+              <i className="fa-solid fa-arrow-right text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
             </Link>
           </div>
 

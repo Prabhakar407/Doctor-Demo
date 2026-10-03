@@ -191,10 +191,10 @@ export default function Contact() {
                   </a>
                   <Link 
                     to="/booking" 
-                    className="bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2 sm:py-2.5 2xl:py-2 px-3 sm:px-4 rounded-lg flex items-center justify-center gap-1.5 text-[11px] sm:text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 text-center whitespace-nowrap shrink-0"
+                    className="group bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2 sm:py-2.5 2xl:py-2 px-3 sm:px-4 rounded-lg flex items-center justify-center gap-1.5 text-[11px] sm:text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 text-center whitespace-nowrap shrink-0"
                   >
-                    <i className="fa-solid fa-calendar-check text-xs"></i>
                     <span className="whitespace-nowrap">Book Appointment</span>
+                    <i className="fa-solid fa-arrow-right text-[10px] sm:text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                   </Link>
                 </div>
 

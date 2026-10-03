@@ -233,10 +233,10 @@ export default function Footer() {
               <div className="pt-2">
                 <Link
                   to="/booking"
-                  className="w-full bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold text-xs px-4 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 inline-flex items-center justify-center gap-2 border border-transparent hover:border-slate-300"
+                  className="group w-fit bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold text-xs px-4 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 inline-flex items-center justify-center gap-2 border border-transparent hover:border-slate-300"
                 >
-                  <i className="fa-solid fa-calendar-check"></i>
                   <span>Book Consultation Online</span>
+                  <i className="fa-solid fa-arrow-right text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                 </Link>
               </div>
             </div>
