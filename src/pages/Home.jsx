@@ -193,11 +193,6 @@ export default function Home() {
   const [isLaptopOrGreater, setIsLaptopOrGreater] = useState(checkIsLaptopOrGreater);
   const [hasCompletedServicesWalkthrough, setHasCompletedServicesWalkthrough] = useState(() => {
     if (typeof window !== 'undefined') {
-      try {
-        if (sessionStorage.getItem('services_walkthrough_completed') === 'true') {
-          return true;
-        }
-      } catch (err) {}
       if (window.location.hash && window.location.hash !== '#hero' && window.location.hash !== '#healthcare-solutions') {
         return true;
       }
@@ -287,9 +282,6 @@ export default function Home() {
     } else {
       // All services have been viewed: replace the scroll showcase with the original Bento Grid in place!
       setHasCompletedServicesWalkthrough(true);
-      try {
-        sessionStorage.setItem('services_walkthrough_completed', 'true');
-      } catch (err) {}
     }
   };
 
@@ -333,9 +325,6 @@ export default function Home() {
       if (window.scrollY >= hsScrollTarget + hsHeight - 10) {
         if (!hasCompletedServicesWalkthrough) {
           setHasCompletedServicesWalkthrough(true);
-          try {
-            sessionStorage.setItem('services_walkthrough_completed', 'true');
-          } catch (err) {}
         }
         return;
       }
@@ -363,9 +352,6 @@ export default function Home() {
           // On last service (06: Diabetologist Care):
           // User has viewed all services! Replace the scroll showcase with the original Bento Grid in place!
           setHasCompletedServicesWalkthrough(true);
-          try {
-            sessionStorage.setItem('services_walkthrough_completed', 'true');
-          } catch (err) {}
         }
       } else if (e.deltaY < 0) {
         // Scrolling Up: Prev service
