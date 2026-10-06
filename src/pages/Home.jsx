@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -18,6 +18,13 @@ import pregnancyImg from '../Images/pregnancy-service.webp';
 import physicianImg from '../Images/physician-service.webp';
 import glucometerImg from '../Images/glucometer.webp';
 
+import service1Img from '../Images/services/service_panel_1.webp';
+import service2Img from '../Images/services/service_panel_2.webp';
+import service3Img from '../Images/services/service_panel_3.webp';
+import service4Img from '../Images/services/service_panel_4.webp';
+import service5Img from '../Images/services/service_panel_5.webp';
+import service6Img from '../Images/services/service_panel_6.webp';
+
 import homePatient1 from '../Images/testimonials/home_p1.webp';
 import homePatient2 from '../Images/testimonials/home_p2.webp';
 import homePatient3 from '../Images/testimonials/home_p3.webp';
@@ -31,6 +38,104 @@ const MotionLink = motion.create(Link);
 
 const heroImagesList = [hero1, hero2, hero3];
 
+const healthcareServicesList = [
+  {
+    id: 'gynecology',
+    index: '01',
+    category: "WOMEN'S HEALTH",
+    title: 'Obstetrician - Gynaecologist',
+    description: "Compassionate, evidence-based care for every stage of a woman's life, from routine check-ups and pelvic wellness to advanced gynaecological treatment.",
+    checklist: [
+      'Pelvic & hormonal health',
+      'Routine screening & prevention',
+      'Personalised treatment plans'
+    ],
+    image: service1Img,
+    treatmentKey: 'gynecology',
+    badgeTop: 'Obstetrician & Gynaecologist',
+    badgeBottom: 'Compassionate Care'
+  },
+  {
+    id: 'ultrasound',
+    index: '02',
+    category: 'DIAGNOSTIC IMAGING',
+    title: 'Ultrasound',
+    description: 'High-resolution 3D/4D diagnostic sonography that gives clear, real-time views. Safe, painless and delivered with same-day reports.',
+    checklist: [
+      '3D / 4D live imaging',
+      'Doppler & growth assessment',
+      'Same-day detailed reports'
+    ],
+    image: service2Img,
+    treatmentKey: 'ultrasound',
+    badgeTop: '3D / 4D HD Sonography',
+    badgeBottom: 'Same-Day Reports'
+  },
+  {
+    id: 'sonography',
+    index: '03',
+    category: 'SCAN SUITE',
+    title: 'Advanced Sonography & Scans',
+    description: 'Fully equipped scan suites for detailed anomaly, Doppler and growth scans, handled by experienced sonographers in a calm setting.',
+    checklist: [
+      'Anomaly & Doppler scans',
+      'Modern, sterile scan rooms',
+      'Experienced sonographers'
+    ],
+    image: service3Img,
+    treatmentKey: 'ultrasound',
+    badgeTop: 'Precision Scan Suite',
+    badgeBottom: 'Experienced Sonographers'
+  },
+  {
+    id: 'pregnancy',
+    index: '04',
+    category: 'MATERNAL CARE',
+    title: 'Pregnancy Management',
+    description: 'Prenatal, antenatal and postnatal maternal care with close monitoring and guidance, from the very first heartbeat to recovery after birth.',
+    checklist: [
+      'Trimester-wise check-ups',
+      'Fetal heartbeat monitoring',
+      'Postnatal recovery support'
+    ],
+    image: service4Img,
+    treatmentKey: 'pregnancy',
+    badgeTop: 'Maternal & Fetal Care',
+    badgeBottom: 'Continuous Monitoring'
+  },
+  {
+    id: 'physician',
+    index: '05',
+    category: 'INTERNAL MEDICINE',
+    title: 'Consulting Physician',
+    description: 'Comprehensive internal medicine and preventive clinical care for fever, infections, blood pressure, thyroid and everyday health concerns.',
+    checklist: [
+      'Accurate diagnosis',
+      'Preventive health check-ups',
+      'Chronic condition follow-up'
+    ],
+    image: service5Img,
+    treatmentKey: 'physician',
+    badgeTop: 'Consulting Physician',
+    badgeBottom: 'Internal Medicine'
+  },
+  {
+    id: 'diabetologist',
+    index: '06',
+    category: 'DIABETES CARE',
+    title: 'Diabetologist Care',
+    description: 'Advanced blood sugar monitoring and diabetes management, with diet, medication and lifestyle plans designed to keep you in control.',
+    checklist: [
+      'Continuous sugar monitoring',
+      'Diet & lifestyle guidance',
+      'Medication management'
+    ],
+    image: service6Img,
+    treatmentKey: 'physician',
+    badgeTop: 'Continuous Sugar Monitoring',
+    badgeBottom: 'Personalized Lifestyle Plans'
+  }
+];
 // Isolated Hero Background Slider component: image transitions happen locally without re-rendering the entire Home page
 const HeroBackgroundSlider = React.memo(function HeroBackgroundSlider() {
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
@@ -74,14 +179,259 @@ export default function Home() {
     return false;
   });
 
+  const checkIsLaptopOrGreater = () => {
+    if (typeof window === 'undefined') return false;
+    // Exclude smart displays (Nest Hub 1024x600, Nest Hub Max 1280x800) and touch-only devices
+    const isTouchOnly = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    const isSmartDisplay = /CrKey|NestHub|SmartDisplay/i.test(navigator.userAgent);
+
+    // Enabled only on laptop screen sizes (1366px, 1440px, 1536px, 1920px) up to 2K (2560px) and greater
+    // Devices with width <= 1280px (Nest Hub Max, Nest Hub, tablets) show the original bento grid
+    return window.innerWidth > 1280 && !isTouchOnly && !isSmartDisplay;
+  };
+
+  const [isLaptopOrGreater, setIsLaptopOrGreater] = useState(checkIsLaptopOrGreater);
+
+  const [hasCompletedServicesScroll, setHasCompletedServicesScroll] = useState(false);
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
+      setIsLaptopOrGreater(checkIsLaptopOrGreater());
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const [activeServiceIndex, setActiveServiceIndex] = useState(0);
+  const [serviceSlideDirection, setServiceSlideDirection] = useState(1);
+  const [hasEnteredSection, setHasEnteredSection] = useState(false);
+  const [curveExiting, setCurveExiting] = useState(false);
+  const healthcareSectionRef = useRef(null);
+  const wheelLockRef = useRef(false);
+  const isTransitioningRef = useRef(false);
+
+  // Preload all 6 service images eagerly on mount
+  useEffect(() => {
+    healthcareServicesList.forEach((s) => {
+      const img = new Image();
+      img.src = s.image;
+      if (img.decode) {
+        img.decode().catch(() => {});
+      }
+    });
+  }, []);
+
+  // IntersectionObserver to detect when Healthcare Solutions section enters viewport
+  useEffect(() => {
+    const el = healthcareSectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasEnteredSection(true);
+        } else {
+          setHasEnteredSection(false);
+          setCurveExiting(false);
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const handlePrevService = () => {
+    if (isTransitioningRef.current || wheelLockRef.current) return;
+    if (activeServiceIndex > 0) {
+      wheelLockRef.current = true;
+      setServiceSlideDirection(-1);
+      setActiveServiceIndex((prev) => prev - 1);
+      setTimeout(() => {
+        wheelLockRef.current = false;
+      }, 700);
+    } else {
+      isTransitioningRef.current = true;
+      wheelLockRef.current = true;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        isTransitioningRef.current = false;
+        wheelLockRef.current = false;
+      }, 850);
+    }
+  };
+
+  const handleNextService = () => {
+    if (isTransitioningRef.current || wheelLockRef.current) return;
+    if (activeServiceIndex < healthcareServicesList.length - 1) {
+      wheelLockRef.current = true;
+      setServiceSlideDirection(1);
+      setActiveServiceIndex((prev) => prev + 1);
+      setTimeout(() => {
+        wheelLockRef.current = false;
+      }, 700);
+    } else {
+      // Last service completed: smoothly glide to About Doctor, lock wheel events during glide, then switch to Bento Grid layout
+      isTransitioningRef.current = true;
+      wheelLockRef.current = true;
+      setCurveExiting(true);
+
+      const aboutEl = document.getElementById('about-doctor');
+      const targetY = aboutEl ? Math.round(aboutEl.getBoundingClientRect().top + window.scrollY) : window.scrollY;
+
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+
+      setTimeout(() => {
+        window.scrollTo({ top: targetY, behavior: 'instant' });
+        setHasCompletedServicesScroll(true);
+        setTimeout(() => {
+          isTransitioningRef.current = false;
+          wheelLockRef.current = false;
+          setCurveExiting(false);
+        }, 100);
+      }, 850);
+    }
+  };
+
+  // Wheel interception: Active ONLY on laptop/desktop screens during the initial uncompleted services walkthrough
+  useEffect(() => {
+    if (!isLaptopOrGreater) return;
+    if (hasCompletedServicesScroll && !isTransitioningRef.current) return;
+
+    const onWindowWheel = (e) => {
+      const el = healthcareSectionRef.current;
+      if (!el) return;
+
+      if (isTransitioningRef.current) {
+        e.preventDefault();
+        return;
+      }
+
+      const hsScrollTarget = Math.round(el.getBoundingClientRect().top + window.scrollY);
+
+      // 1. User is at Hero section and scrolls DOWN: snap and glide cleanly into Healthcare Solutions 1st service
+      const isAtHero = window.scrollY < hsScrollTarget - 10;
+      if (isAtHero) {
+        if (e.deltaY > 0) {
+          e.preventDefault();
+          isTransitioningRef.current = true;
+          wheelLockRef.current = true;
+          setActiveServiceIndex(0);
+          setServiceSlideDirection(1);
+          setCurveExiting(false);
+          window.scrollTo({ top: hsScrollTarget, behavior: 'smooth' });
+          setTimeout(() => {
+            window.scrollTo({ top: hsScrollTarget, behavior: 'instant' });
+            isTransitioningRef.current = false;
+            wheelLockRef.current = false;
+          }, 850);
+        }
+        return;
+      }
+
+      // 2. User is inside Healthcare Solutions: prevent normal scrolling and handle 1-by-1 step paging
+      e.preventDefault();
+
+      // If scroll position is slightly off, snap it to exact position so Hero is never visible
+      if (Math.abs(window.scrollY - hsScrollTarget) > 1) {
+        window.scrollTo({ top: hsScrollTarget, behavior: 'instant' });
+      }
+
+      if (Math.abs(e.deltaY) < 18) return;
+      if (wheelLockRef.current) return;
+
+      if (e.deltaY > 0) {
+        // Scrolling Down: Next service
+        if (activeServiceIndex < healthcareServicesList.length - 1) {
+          wheelLockRef.current = true;
+          setServiceSlideDirection(1);
+          setActiveServiceIndex((prev) => prev + 1);
+          setTimeout(() => {
+            wheelLockRef.current = false;
+          }, 700);
+        } else {
+          // On last service (06: Diabetologist Care):
+          // Smoothly glide to About Doctor and switch to Bento Grid layout
+          isTransitioningRef.current = true;
+          wheelLockRef.current = true;
+          setCurveExiting(true);
+
+          const aboutEl = document.getElementById('about-doctor');
+          const targetY = aboutEl ? Math.round(aboutEl.getBoundingClientRect().top + window.scrollY) : window.scrollY;
+
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+
+          setTimeout(() => {
+            window.scrollTo({ top: targetY, behavior: 'instant' });
+            setHasCompletedServicesScroll(true);
+            setTimeout(() => {
+              isTransitioningRef.current = false;
+              wheelLockRef.current = false;
+              setCurveExiting(false);
+            }, 100);
+          }, 850);
+        }
+      } else if (e.deltaY < 0) {
+        // Scrolling Up: Prev service
+        if (activeServiceIndex > 0) {
+          wheelLockRef.current = true;
+          setServiceSlideDirection(-1);
+          setActiveServiceIndex((prev) => prev - 1);
+          setTimeout(() => {
+            wheelLockRef.current = false;
+          }, 700);
+        } else {
+          // On first service (01): smoothly scroll back up to Hero
+          isTransitioningRef.current = true;
+          wheelLockRef.current = true;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+            isTransitioningRef.current = false;
+            wheelLockRef.current = false;
+          }, 850);
+        }
+      }
+    };
+
+    window.addEventListener('wheel', onWindowWheel, { passive: false });
+    return () => {
+      window.removeEventListener('wheel', onWindowWheel);
+    };
+  }, [activeServiceIndex, isLaptopOrGreater, hasCompletedServicesScroll]);
+
+  const touchStartXRef = useRef(null);
+  const touchStartYRef = useRef(null);
+
+  const handleTouchStart = (e) => {
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartYRef.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartXRef.current === null || touchStartYRef.current === null) return;
+    const diffX = touchStartXRef.current - e.changedTouches[0].clientX;
+    const diffY = touchStartYRef.current - e.changedTouches[0].clientY;
+
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+      if (diffX > 0) {
+        handleNextService();
+      } else {
+        handlePrevService();
+      }
+    } else if (Math.abs(diffY) > 45) {
+      if (diffY > 0) {
+        handleNextService();
+      } else {
+        handlePrevService();
+      }
+    }
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
+  };
   // Requirement 1: On small screen size (mobile), direct clicks to Treatment page Advanced Clinical Procedures section
   const handleServiceClick = (e, serviceId) => {
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
@@ -572,8 +922,206 @@ export default function Home() {
 
       </section>
 
-      {/* HEALTHCARE SOLUTIONS / SERVICES SECTION */}
-      <section 
+            {/* HEALTHCARE SOLUTIONS / SERVICES SECTION */}
+      {isLaptopOrGreater && !hasCompletedServicesScroll ? (
+      <section
+        ref={healthcareSectionRef}
+        id="healthcare-solutions"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        className="w-full min-h-screen h-screen max-h-screen lg:min-h-screen lg:h-screen lg:max-h-screen bg-gradient-to-br from-[#F0F6FB] via-[#E8F1F9] to-[#DFECF7] relative overflow-hidden border-b border-slate-200 flex flex-col justify-between py-6 sm:py-8 lg:py-10 xl:py-12 px-4 sm:px-8 lg:px-14 2xl:px-20 select-text box-border"
+      >
+        {/* Simple Clean Circle Geometry on Left */}
+        <div className="absolute -left-28 top-1/2 -translate-y-1/2 w-[32rem] h-[32rem] rounded-full border border-[#0284C7]/15 pointer-events-none" />
+
+        {/* Content Container (Left Side Content & Layout) */}
+        <div className="max-w-7xl 2xl:max-w-[100rem] w-full mx-auto flex-1 flex flex-col justify-between relative z-10 pointer-events-auto">
+          
+          {/* Top Subheading Tag */}
+          <div className="flex items-center gap-2.5 pb-2">
+            <span className="w-8 h-[2px] bg-[#0284C7]" />
+            <span className="text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0284C7] uppercase font-sans">
+              Healthcare Solutions
+            </span>
+          </div>
+
+          {/* Middle Body: Left Content with Staggered Lines */}
+          <div className="w-full lg:w-[46%] xl:w-[44%] my-auto py-2">
+            <AnimatePresence mode="wait" custom={serviceSlideDirection}>
+              <motion.div
+                key={activeServiceIndex}
+                custom={serviceSlideDirection}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.2 } }}
+                className="space-y-4 sm:space-y-5"
+              >
+                {/* 1. Service Title */}
+                <motion.h2
+                  initial={{ opacity: 0, y: serviceSlideDirection > 0 ? 18 : -18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, delay: 0.08, ease: "easeOut" }}
+                  className="text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl font-serif font-bold text-[#0F172A] tracking-tight leading-tight select-text"
+                >
+                  {healthcareServicesList[activeServiceIndex].title}
+                </motion.h2>
+
+                {/* 2. Service Description */}
+                <motion.p
+                  initial={{ opacity: 0, y: serviceSlideDirection > 0 ? 16 : -16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, delay: 0.16, ease: "easeOut" }}
+                  className="text-sm sm:text-base lg:text-base 2xl:text-lg text-slate-600 leading-relaxed font-sans max-w-xl select-text"
+                >
+                  {healthcareServicesList[activeServiceIndex].description}
+                </motion.p>
+
+                {/* 3. Staggered Checklist Items */}
+                <ul className="space-y-2.5 pt-1 select-text">
+                  {healthcareServicesList[activeServiceIndex].checklist.map((item, idx) => (
+                    <motion.li
+                      key={idx}
+                      initial={{ opacity: 0, y: serviceSlideDirection > 0 ? 14 : -14 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.24 + idx * 0.08, ease: "easeOut" }}
+                      className="flex items-center gap-3 text-xs sm:text-sm font-medium text-slate-700"
+                    >
+                      <span className="w-5 h-5 rounded-full bg-sky-100 text-[#0284C7] flex items-center justify-center shrink-0 text-xs shadow-2xs">
+                        <i className="fa-solid fa-check text-[10px]"></i>
+                      </span>
+                      <span>{item}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+
+                {/* 4. CTA Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: serviceSlideDirection > 0 ? 14 : -14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, delay: 0.50, ease: "easeOut" }}
+                  className="pt-2"
+                >
+                  <MotionLink
+                    to={getTreatmentLink(healthcareServicesList[activeServiceIndex].treatmentKey)}
+                    onClick={(e) => handleServiceClick(e, healthcareServicesList[activeServiceIndex].treatmentKey)}
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="group inline-flex items-center gap-2.5 px-6 py-2.5 sm:py-3 bg-[#0B1E38] hover:bg-[#0284C7] text-white text-xs sm:text-sm font-serif font-bold rounded-full transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
+                  >
+                    <span>Explore details</span>
+                    <i className="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                  </MotionLink>
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Bottom Bar: Timeline Progress, Counter & SCROLL label */}
+          <div className="w-full lg:w-[46%] xl:w-[44%] pt-3 border-t border-slate-300/60 flex items-center justify-between gap-4">
+            {/* Left: Mouse Icon & 01 / 06 with progress bar */}
+            <div className="flex items-center gap-3 sm:gap-4 flex-1">
+              <div className="w-4 h-6 rounded-full border border-slate-400 flex items-start justify-center p-0.5 shrink-0 select-none">
+                <motion.div
+                  animate={{ y: [0, 5, 0] }}
+                  transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+                  className="w-1 h-1 rounded-full bg-[#0284C7]"
+                />
+              </div>
+
+              <span className="font-serif font-bold text-xs sm:text-sm text-[#0F172A] shrink-0 select-none">
+                0{activeServiceIndex + 1} <span className="text-slate-400 font-normal">/ 06</span>
+              </span>
+
+              <div className="flex-1 max-w-[140px] sm:max-w-[180px] h-1.5 bg-slate-300/80 rounded-full overflow-hidden select-none">
+                <motion.div
+                  className="h-full bg-[#0284C7] rounded-full"
+                  animate={{ width: `${((activeServiceIndex + 1) / healthcareServicesList.length) * 100}%` }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                />
+              </div>
+            </div>
+
+            {/* Right: SCROLL Indicator & Step arrows */}
+            <div className="flex items-center gap-3 select-none">
+              <span className="text-[9px] tracking-[0.25em] font-bold uppercase text-slate-500">
+                SCROLL
+              </span>
+              <div className="flex items-center gap-1">
+                <button
+                  type="button"
+                  onClick={handlePrevService}
+                  aria-label="Previous service"
+                  className="w-7 h-7 rounded-full bg-white hover:bg-[#0284C7] text-slate-700 hover:text-white border border-slate-300 shadow-2xs flex items-center justify-center transition cursor-pointer text-[11px]"
+                >
+                  <i className="fa-solid fa-chevron-left text-[9px]"></i>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNextService}
+                  aria-label="Next service"
+                  className="w-7 h-7 rounded-full bg-white hover:bg-[#0284C7] text-slate-700 hover:text-white border border-slate-300 shadow-2xs flex items-center justify-center transition cursor-pointer text-[11px]"
+                >
+                  <i className="fa-solid fa-chevron-right text-[9px]"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* RIGHT CURVED VISUAL SHOWCASE (Flush to right edge, clean curved portal, NO extra thick echo outlines) */}
+        {/* Main Curved Portal (Front with exact video service panel images, full height) */}
+        <motion.div
+          initial={{ x: '105%' }}
+          animate={curveExiting ? { x: '105%' } : hasEnteredSection ? { x: 0 } : { x: '105%' }}
+          transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden lg:block absolute inset-y-0 right-0 w-[50%] overflow-hidden bg-white/40 backdrop-blur-xs [border-radius:44%_0_0_44%/50%_0_0_50%] shadow-[-20px_0_50px_-15px_rgba(15,42,92,0.25)] z-20 pointer-events-auto"
+        >
+          <AnimatePresence mode="popLayout" custom={serviceSlideDirection}>
+            <motion.div
+              key={activeServiceIndex}
+              custom={serviceSlideDirection}
+              initial={{ y: serviceSlideDirection > 0 ? '100%' : '-100%', opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: serviceSlideDirection > 0 ? '-100%' : '100%', opacity: 0 }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full h-full absolute inset-0 flex items-center justify-center p-2 lg:p-4"
+            >
+              <img
+                src={healthcareServicesList[activeServiceIndex].image}
+                alt={healthcareServicesList[activeServiceIndex].title}
+                className="w-full h-full object-contain lg:object-cover object-center select-none"
+              />
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Mobile Visual Fallback */}
+        <div className="block lg:hidden w-full pt-4">
+          <div className="relative w-full max-w-[340px] sm:max-w-[400px] h-60 sm:h-72 mx-auto rounded-2xl overflow-hidden shadow-lg border border-sky-200/80 bg-white/60">
+            <AnimatePresence mode="popLayout" custom={serviceSlideDirection}>
+              <motion.div
+                key={`mobile-${activeServiceIndex}`}
+                custom={serviceSlideDirection}
+                initial={{ y: serviceSlideDirection > 0 ? '100%' : '-100%', opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: serviceSlideDirection > 0 ? '-100%' : '100%', opacity: 0 }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                className="w-full h-full absolute inset-0 flex items-center justify-center p-3"
+              >
+                <img
+                  src={healthcareServicesList[activeServiceIndex].image}
+                  alt={healthcareServicesList[activeServiceIndex].title}
+                  className="w-full h-full object-contain object-center select-none"
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+      </section>
+      ) : (
+<section 
         id="healthcare-solutions"
         className="w-full bg-[#E2EAF2] py-10 sm:py-12 lg:py-16 2xl:py-20 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200 relative"
       >
@@ -779,9 +1327,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+      )}
 
-      {/* ABOUT DOCTOR SECTION (Expanded Height with Detailed Credentials) */}
-      <section className="w-full bg-white py-12 sm:py-16 lg:py-20 2xl:py-24 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 relative">
+{/* ABOUT DOCTOR SECTION (Expanded Height with Detailed Credentials) */}
+      <section id="about-doctor" className="w-full bg-white py-12 sm:py-16 lg:py-20 2xl:py-24 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 relative">
         <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 2xl:gap-16 items-center">
             
