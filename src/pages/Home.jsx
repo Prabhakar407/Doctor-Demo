@@ -191,8 +191,19 @@ export default function Home() {
   };
 
   const [isLaptopOrGreater, setIsLaptopOrGreater] = useState(checkIsLaptopOrGreater);
-
-  const [hasCompletedServicesScroll, setHasCompletedServicesScroll] = useState(false);
+  const [hasCompletedServicesWalkthrough, setHasCompletedServicesWalkthrough] = useState(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        if (sessionStorage.getItem('services_walkthrough_completed') === 'true') {
+          return true;
+        }
+      } catch (err) {}
+      if (window.location.hash && window.location.hash !== '#hero' && window.location.hash !== '#healthcare-solutions') {
+        return true;
+      }
+    }
+    return false;
+  });
 
   useEffect(() => {
     const handleResize = () => {
@@ -274,32 +285,17 @@ export default function Home() {
         wheelLockRef.current = false;
       }, 700);
     } else {
-      // Last service completed: smoothly glide to About Doctor, lock wheel events during glide, then switch to Bento Grid layout
-      isTransitioningRef.current = true;
-      wheelLockRef.current = true;
-      setCurveExiting(true);
-
-      const aboutEl = document.getElementById('about-doctor');
-      const targetY = aboutEl ? Math.round(aboutEl.getBoundingClientRect().top + window.scrollY) : window.scrollY;
-
-      window.scrollTo({ top: targetY, behavior: 'smooth' });
-
-      setTimeout(() => {
-        window.scrollTo({ top: targetY, behavior: 'instant' });
-        setHasCompletedServicesScroll(true);
-        setTimeout(() => {
-          isTransitioningRef.current = false;
-          wheelLockRef.current = false;
-          setCurveExiting(false);
-        }, 100);
-      }, 850);
+      // All services have been viewed: replace the scroll showcase with the original Bento Grid in place!
+      setHasCompletedServicesWalkthrough(true);
+      try {
+        sessionStorage.setItem('services_walkthrough_completed', 'true');
+      } catch (err) {}
     }
   };
 
-  // Wheel interception: Active ONLY on laptop/desktop screens during the initial uncompleted services walkthrough
+  // Wheel interception: Active ONLY on laptop/desktop screens WHILE walkthrough is not completed
   useEffect(() => {
-    if (!isLaptopOrGreater) return;
-    if (hasCompletedServicesScroll && !isTransitioningRef.current) return;
+    if (!isLaptopOrGreater || hasCompletedServicesWalkthrough) return;
 
     const onWindowWheel = (e) => {
       const el = healthcareSectionRef.current;
@@ -311,10 +307,10 @@ export default function Home() {
       }
 
       const hsScrollTarget = Math.round(el.getBoundingClientRect().top + window.scrollY);
+      const hsHeight = el.offsetHeight;
 
-      // 1. User is at Hero section and scrolls DOWN: snap and glide cleanly into Healthcare Solutions 1st service
-      const isAtHero = window.scrollY < hsScrollTarget - 10;
-      if (isAtHero) {
+      // 1. User is above Healthcare Solutions (e.g. at Hero): smooth glide into Healthcare Solutions
+      if (window.scrollY < hsScrollTarget - 10) {
         if (e.deltaY > 0) {
           e.preventDefault();
           isTransitioningRef.current = true;
@@ -322,6 +318,7 @@ export default function Home() {
           setActiveServiceIndex(0);
           setServiceSlideDirection(1);
           setCurveExiting(false);
+          setHasEnteredSection(true);
           window.scrollTo({ top: hsScrollTarget, behavior: 'smooth' });
           setTimeout(() => {
             window.scrollTo({ top: hsScrollTarget, behavior: 'instant' });
@@ -332,10 +329,20 @@ export default function Home() {
         return;
       }
 
-      // 2. User is inside Healthcare Solutions: prevent normal scrolling and handle 1-by-1 step paging
+      // 2. User is at About Doctor or below: do NOT hijack scroll, allow native smooth scrolling
+      if (window.scrollY >= hsScrollTarget + hsHeight - 10) {
+        if (!hasCompletedServicesWalkthrough) {
+          setHasCompletedServicesWalkthrough(true);
+          try {
+            sessionStorage.setItem('services_walkthrough_completed', 'true');
+          } catch (err) {}
+        }
+        return;
+      }
+
+      // 3. User is inside Healthcare Solutions: prevent normal scrolling and handle 1-by-1 step paging
       e.preventDefault();
 
-      // If scroll position is slightly off, snap it to exact position so Hero is never visible
       if (Math.abs(window.scrollY - hsScrollTarget) > 1) {
         window.scrollTo({ top: hsScrollTarget, behavior: 'instant' });
       }
@@ -354,25 +361,11 @@ export default function Home() {
           }, 700);
         } else {
           // On last service (06: Diabetologist Care):
-          // Smoothly glide to About Doctor and switch to Bento Grid layout
-          isTransitioningRef.current = true;
-          wheelLockRef.current = true;
-          setCurveExiting(true);
-
-          const aboutEl = document.getElementById('about-doctor');
-          const targetY = aboutEl ? Math.round(aboutEl.getBoundingClientRect().top + window.scrollY) : window.scrollY;
-
-          window.scrollTo({ top: targetY, behavior: 'smooth' });
-
-          setTimeout(() => {
-            window.scrollTo({ top: targetY, behavior: 'instant' });
-            setHasCompletedServicesScroll(true);
-            setTimeout(() => {
-              isTransitioningRef.current = false;
-              wheelLockRef.current = false;
-              setCurveExiting(false);
-            }, 100);
-          }, 850);
+          // User has viewed all services! Replace the scroll showcase with the original Bento Grid in place!
+          setHasCompletedServicesWalkthrough(true);
+          try {
+            sessionStorage.setItem('services_walkthrough_completed', 'true');
+          } catch (err) {}
         }
       } else if (e.deltaY < 0) {
         // Scrolling Up: Prev service
@@ -401,7 +394,7 @@ export default function Home() {
     return () => {
       window.removeEventListener('wheel', onWindowWheel);
     };
-  }, [activeServiceIndex, isLaptopOrGreater, hasCompletedServicesScroll]);
+  }, [activeServiceIndex, isLaptopOrGreater, hasCompletedServicesWalkthrough]);
 
   const touchStartXRef = useRef(null);
   const touchStartYRef = useRef(null);
@@ -923,7 +916,7 @@ export default function Home() {
       </section>
 
             {/* HEALTHCARE SOLUTIONS / SERVICES SECTION */}
-      {isLaptopOrGreater && !hasCompletedServicesScroll ? (
+      {isLaptopOrGreater && !hasCompletedServicesWalkthrough ? (
       <section
         ref={healthcareSectionRef}
         id="healthcare-solutions"
@@ -956,12 +949,12 @@ export default function Home() {
                 exit={{ opacity: 0, transition: { duration: 0.2 } }}
                 className="space-y-4 sm:space-y-5"
               >
-                {/* 1. Service Title */}
+                {/* 1. Service Title (Styled with font and color matching 'Wellness' in Hero) */}
                 <motion.h2
                   initial={{ opacity: 0, y: serviceSlideDirection > 0 ? 18 : -18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: 0.08, ease: "easeOut" }}
-                  className="text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl font-serif font-bold text-[#0F172A] tracking-tight leading-tight select-text"
+                  className="text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl font-serif italic font-medium text-[#0284C7] tracking-tight leading-tight select-text"
                 >
                   {healthcareServicesList[activeServiceIndex].title}
                 </motion.h2>
@@ -1016,9 +1009,9 @@ export default function Home() {
             </AnimatePresence>
           </div>
 
-          {/* Bottom Bar: Timeline Progress, Counter & SCROLL label */}
+          {/* Bottom Bar: Timeline Progress & SCROLL label */}
           <div className="w-full lg:w-[46%] xl:w-[44%] pt-3 border-t border-slate-300/60 flex items-center justify-between gap-4">
-            {/* Left: Mouse Icon & 01 / 06 with progress bar */}
+            {/* Left: Mouse Icon & Progress Bar */}
             <div className="flex items-center gap-3 sm:gap-4 flex-1">
               <div className="w-4 h-6 rounded-full border border-slate-400 flex items-start justify-center p-0.5 shrink-0 select-none">
                 <motion.div
@@ -1028,11 +1021,7 @@ export default function Home() {
                 />
               </div>
 
-              <span className="font-serif font-bold text-xs sm:text-sm text-[#0F172A] shrink-0 select-none">
-                0{activeServiceIndex + 1} <span className="text-slate-400 font-normal">/ 06</span>
-              </span>
-
-              <div className="flex-1 max-w-[140px] sm:max-w-[180px] h-1.5 bg-slate-300/80 rounded-full overflow-hidden select-none">
+              <div className="flex-1 max-w-[180px] sm:max-w-[220px] h-1.5 bg-slate-300/80 rounded-full overflow-hidden select-none">
                 <motion.div
                   className="h-full bg-[#0284C7] rounded-full"
                   animate={{ width: `${((activeServiceIndex + 1) / healthcareServicesList.length) * 100}%` }}
@@ -1041,41 +1030,22 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: SCROLL Indicator & Step arrows */}
-            <div className="flex items-center gap-3 select-none">
+            {/* Right: SCROLL Indicator */}
+            <div className="flex items-center select-none">
               <span className="text-[9px] tracking-[0.25em] font-bold uppercase text-slate-500">
                 SCROLL
               </span>
-              <div className="flex items-center gap-1">
-                <button
-                  type="button"
-                  onClick={handlePrevService}
-                  aria-label="Previous service"
-                  className="w-7 h-7 rounded-full bg-white hover:bg-[#0284C7] text-slate-700 hover:text-white border border-slate-300 shadow-2xs flex items-center justify-center transition cursor-pointer text-[11px]"
-                >
-                  <i className="fa-solid fa-chevron-left text-[9px]"></i>
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNextService}
-                  aria-label="Next service"
-                  className="w-7 h-7 rounded-full bg-white hover:bg-[#0284C7] text-slate-700 hover:text-white border border-slate-300 shadow-2xs flex items-center justify-center transition cursor-pointer text-[11px]"
-                >
-                  <i className="fa-solid fa-chevron-right text-[9px]"></i>
-                </button>
-              </div>
             </div>
           </div>
 
         </div>
 
-        {/* RIGHT CURVED VISUAL SHOWCASE (Flush to right edge, clean curved portal, NO extra thick echo outlines) */}
-        {/* Main Curved Portal (Front with exact video service panel images, full height) */}
+        {/* RIGHT CURVED VISUAL SHOWCASE (Clean circular portal covering entire area with NO gaps or margins) */}
         <motion.div
           initial={{ x: '105%' }}
           animate={curveExiting ? { x: '105%' } : hasEnteredSection ? { x: 0 } : { x: '105%' }}
           transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden lg:block absolute inset-y-0 right-0 w-[50%] overflow-hidden bg-white/40 backdrop-blur-xs [border-radius:44%_0_0_44%/50%_0_0_50%] shadow-[-20px_0_50px_-15px_rgba(15,42,92,0.25)] z-20 pointer-events-auto"
+          className="hidden lg:block absolute inset-y-0 right-0 w-[50%] overflow-hidden rounded-l-full shadow-[-20px_0_50px_-15px_rgba(15,42,92,0.25)] z-20 pointer-events-auto"
         >
           <AnimatePresence mode="popLayout" custom={serviceSlideDirection}>
             <motion.div
@@ -1085,12 +1055,12 @@ export default function Home() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: serviceSlideDirection > 0 ? '-100%' : '100%', opacity: 0 }}
               transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full h-full absolute inset-0 flex items-center justify-center p-2 lg:p-4"
+              className="w-full h-full absolute inset-0 overflow-hidden p-0 m-0"
             >
               <img
                 src={healthcareServicesList[activeServiceIndex].image}
                 alt={healthcareServicesList[activeServiceIndex].title}
-                className="w-full h-full object-contain lg:object-cover object-center select-none"
+                className="w-full h-full object-cover object-center select-none block"
               />
             </motion.div>
           </AnimatePresence>
@@ -1107,12 +1077,12 @@ export default function Home() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: serviceSlideDirection > 0 ? '-100%' : '100%', opacity: 0 }}
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full h-full absolute inset-0 flex items-center justify-center p-3"
+                className="w-full h-full absolute inset-0 flex items-center justify-center p-0 m-0"
               >
                 <img
                   src={healthcareServicesList[activeServiceIndex].image}
                   alt={healthcareServicesList[activeServiceIndex].title}
-                  className="w-full h-full object-contain object-center select-none"
+                  className="w-full h-full object-cover object-center select-none block"
                 />
               </motion.div>
             </AnimatePresence>
@@ -1123,16 +1093,16 @@ export default function Home() {
       ) : (
 <section 
         id="healthcare-solutions"
-        className="w-full bg-[#E2EAF2] py-10 sm:py-12 lg:py-16 2xl:py-20 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200 relative"
+        className="w-full bg-[#E2EAF2] min-h-screen flex flex-col justify-center py-10 sm:py-12 lg:py-14 2xl:py-18 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200 relative"
       >
         <div className="max-w-7xl 2xl:max-w-[100rem] w-full mx-auto space-y-6 sm:space-y-8 2xl:space-y-10">
           
           {/* Section Header */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={hasCompletedServicesWalkthrough ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
             className="text-center space-y-2 sm:space-y-2.5 2xl:space-y-3"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-serif font-bold text-[#0F172A] tracking-tight">
@@ -1148,10 +1118,10 @@ export default function Home() {
             <MotionLink 
               to={getTreatmentLink('gynecology')}
               onClick={(e) => handleServiceClick(e, 'gynecology')}
-              initial={{ opacity: 0, y: 20 }}
+              initial={hasCompletedServicesWalkthrough ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.65, delay: 0.10, ease: "easeInOut" }}
+              transition={{ duration: 0.5, delay: 0.05, ease: "easeInOut" }}
               className="healthcare-se-card bg-[#1B365D] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
             >
               <div className="healthcare-se-img w-full flex-1 min-h-[220px] 2xl:min-h-[300px] bg-[#1B365D] relative overflow-hidden flex items-center justify-center">
@@ -1163,7 +1133,7 @@ export default function Home() {
               </div>
               <div className="healthcare-se-body py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-[#1B365D] text-white border-t border-[#13294B] mt-auto shrink-0 flex items-center justify-between gap-2 z-10">
                 <div className="min-w-0">
-                  <h3 className="font-bold text-white text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-sky-300 transition-colors duration-300">Obstetrician - Gynaecologist</h3>
+                  <h3 className="font-serif italic font-medium text-[#38BDF8] text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-white transition-colors duration-300">Obstetrician - Gynaecologist</h3>
                   <p className="text-slate-200 text-xs sm:text-sm 2xl:text-base leading-snug">Women’s health, pelvic wellness, & gynaecology.</p>
                 </div>
                 <div className="w-8 h-8 2xl:w-10 2xl:h-10 rounded-full bg-white/10 group-hover:bg-[#0284C7] text-white flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs shrink-0">
@@ -1178,10 +1148,10 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('ultrasound')}
                 onClick={(e) => handleServiceClick(e, 'ultrasound')}
-                initial={{ opacity: 0, y: 20 }}
+                initial={hasCompletedServicesWalkthrough ? false : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0 }}
-                transition={{ duration: 0.65, delay: 0.85, ease: "easeInOut" }}
+                transition={{ duration: 0.5, delay: 0.10, ease: "easeInOut" }}
                 className="healthcare-se-card healthcare-se-card-fullbleed h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden flex flex-col justify-end p-4 sm:p-4.5 2xl:p-5 group cursor-pointer bg-[#1B365D]"
               >
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -1194,7 +1164,7 @@ export default function Home() {
                 </div>
                 <div className="relative z-10 flex items-center justify-between gap-2">
                   <div className="space-y-0.5 min-w-0">
-                    <h3 className="font-bold text-white text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-sky-300 transition-colors duration-300">Ultrasound</h3>
+                    <h3 className="font-serif italic font-medium text-[#38BDF8] text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-white transition-colors duration-300">Ultrasound</h3>
                     <p className="text-slate-200 text-xs sm:text-sm 2xl:text-base leading-snug">High-resolution 3D/4D diagnostic sonography.</p>
                   </div>
                   <div className="w-8 h-8 2xl:w-10 2xl:h-10 rounded-full bg-white/15 backdrop-blur-xs group-hover:bg-[#0284C7] text-white flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs shrink-0">
@@ -1207,10 +1177,10 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('ultrasound')}
                 onClick={(e) => handleServiceClick(e, 'ultrasound')}
-                initial={{ opacity: 0, y: 20 }}
+                initial={hasCompletedServicesWalkthrough ? false : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0 }}
-                transition={{ duration: 0.65, delay: 1.60, ease: "easeInOut" }}
+                transition={{ duration: 0.5, delay: 0.15, ease: "easeInOut" }}
                 className="healthcare-se-card h-[200px] md:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] bg-[#1B365D] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group relative cursor-pointer"
               >
                 <div className="healthcare-se-img w-full flex-1 min-h-0 overflow-hidden bg-[#1B365D] relative">
@@ -1221,7 +1191,7 @@ export default function Home() {
                   />
                 </div>
                 <div className="healthcare-se-body py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-white border-t border-slate-100 shrink-0 flex items-center justify-between gap-2 z-10">
-                  <h3 className="font-bold text-[#0F172A] text-sm sm:text-base 2xl:text-lg m-0 leading-tight group-hover:text-[#0284C7] transition-colors duration-300">Advanced Sonography &amp; Scans</h3>
+                  <h3 className="font-serif italic font-medium text-[#0284C7] text-sm sm:text-base 2xl:text-lg m-0 leading-tight group-hover:text-[#0369A1] transition-colors duration-300">Advanced Sonography &amp; Scans</h3>
                   <div className="w-7 h-7 2xl:w-9 2xl:h-9 rounded-full bg-slate-100 group-hover:bg-[#0284C7] text-slate-600 group-hover:text-white flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs shrink-0">
                     <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-0.5"></i>
                   </div>
@@ -1233,10 +1203,10 @@ export default function Home() {
             <MotionLink 
               to={getTreatmentLink('pregnancy')}
               onClick={(e) => handleServiceClick(e, 'pregnancy')}
-              initial={{ opacity: 0, y: 20 }}
+              initial={hasCompletedServicesWalkthrough ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.65, delay: 2.35, ease: "easeInOut" }}
+              transition={{ duration: 0.5, delay: 0.20, ease: "easeInOut" }}
               className="healthcare-se-card bg-[#1B365D] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-[260px] md:h-auto min-h-[380px] 2xl:min-h-[480px]"
             >
               <div className="healthcare-se-img w-full flex-1 min-h-[220px] 2xl:min-h-[300px] bg-[#1B365D] relative overflow-hidden flex items-center justify-center">
@@ -1248,7 +1218,7 @@ export default function Home() {
               </div>
               <div className="healthcare-se-body py-3 sm:py-3.5 2xl:py-4 px-4 2xl:px-5 bg-[#1B365D] text-white border-t border-[#13294B] mt-auto shrink-0 flex items-center justify-between gap-2 z-10">
                 <div className="min-w-0">
-                  <h3 className="font-bold text-white text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-sky-300 transition-colors duration-300">Pregnancy Management</h3>
+                  <h3 className="font-serif italic font-medium text-[#38BDF8] text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-white transition-colors duration-300">Pregnancy Management</h3>
                   <p className="text-slate-200 text-xs sm:text-sm 2xl:text-base leading-snug">Prenatal, antenatal, & postnatal maternal care.</p>
                 </div>
                 <div className="w-8 h-8 2xl:w-10 2xl:h-10 rounded-full bg-white/10 group-hover:bg-[#0284C7] text-white flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs shrink-0">
@@ -1263,10 +1233,10 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('physician')}
                 onClick={(e) => handleServiceClick(e, 'physician')}
-                initial={{ opacity: 0, y: 20 }}
+                initial={hasCompletedServicesWalkthrough ? false : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0 }}
-                transition={{ duration: 0.65, delay: 3.10, ease: "easeInOut" }}
+                transition={{ duration: 0.5, delay: 0.25, ease: "easeInOut" }}
                 className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer bg-[#1B365D]"
               >
                 <div className="healthcare-se-img w-full sm:w-2/5 flex-1 sm:flex-initial min-h-0 sm:min-h-full bg-[#1B365D] overflow-hidden relative order-1 sm:order-2">
@@ -1278,7 +1248,7 @@ export default function Home() {
                 </div>
                 <div className="healthcare-se-body w-full sm:w-3/5 bg-[#1B365D] py-3 sm:py-3.5 2xl:py-4 px-4 sm:px-5 2xl:px-6 text-white flex flex-col justify-center space-y-1 z-10 shrink-0 sm:shrink order-2 sm:order-1">
                   <div className="flex items-center justify-between gap-2">
-                    <h3 className="font-bold text-white text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-sky-300 transition-colors duration-300">Consulting Physician</h3>
+                    <h3 className="font-serif italic font-medium text-[#38BDF8] text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-white transition-colors duration-300">Consulting Physician</h3>
                     <div className="w-7 h-7 2xl:w-9 2xl:h-9 rounded-full bg-white/10 group-hover:bg-[#0284C7] text-white flex sm:hidden items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs shrink-0">
                       <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-0.5"></i>
                     </div>
@@ -1295,10 +1265,10 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('physician')}
                 onClick={(e) => handleServiceClick(e, 'physician')}
-                initial={{ opacity: 0, y: 20 }}
+                initial={hasCompletedServicesWalkthrough ? false : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0 }}
-                transition={{ duration: 0.65, delay: 3.85, ease: "easeInOut" }}
+                transition={{ duration: 0.5, delay: 0.30, ease: "easeInOut" }}
                 className="healthcare-se-card h-[200px] sm:h-auto md:flex-1 min-h-[180px] 2xl:min-h-[225px] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-2 transition-all duration-300 flex flex-col sm:flex-row items-stretch overflow-hidden group cursor-pointer bg-[#1B365D]"
               >
                 <div className="healthcare-se-img w-full sm:w-2/5 flex-1 sm:flex-initial min-h-0 sm:min-h-full bg-[#1B365D] overflow-hidden relative order-1 sm:order-2">
@@ -1310,7 +1280,7 @@ export default function Home() {
                 </div>
                 <div className="healthcare-se-body w-full sm:w-3/5 bg-[#1B365D] py-3 sm:py-3.5 2xl:py-4 px-4 sm:px-5 2xl:px-6 text-white flex flex-col justify-center space-y-1 z-10 shrink-0 sm:shrink order-2 sm:order-1">
                   <div className="flex items-center justify-between gap-2">
-                    <h3 className="font-bold text-white text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-sky-300 transition-colors duration-300">Diabetologist Care</h3>
+                    <h3 className="font-serif italic font-medium text-[#38BDF8] text-base sm:text-lg 2xl:text-xl mb-0.5 leading-tight group-hover:text-white transition-colors duration-300">Diabetologist Care</h3>
                     <div className="w-7 h-7 2xl:w-9 2xl:h-9 rounded-full bg-white/10 group-hover:bg-[#0284C7] text-white flex sm:hidden items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs shrink-0">
                       <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-0.5"></i>
                     </div>
