@@ -55,7 +55,7 @@ export default function Navbar() {
           <img 
             src={logoImg} 
             alt="R. K. Medical Centre" 
-            className="h-12 sm:h-13 lg:h-14 2xl:h-15 w-auto object-contain -my-1"
+            className="h-12 sm:h-13 lg:h-14 2xl:h-15 w-auto object-contain -my-1 rotate-[2deg] transform"
           />
           <span className="playfair-display font-serif font-bold text-base sm:text-lg lg:text-xl tracking-tight leading-none whitespace-nowrap">
             <span className="text-[#60BF8F]">R K </span>
@@ -261,7 +261,7 @@ export default function Navbar() {
                   <img 
                     src={logoImg} 
                     alt="R. K. Medical Centre" 
-                    className="h-10 w-auto object-contain"
+                    className="h-10 w-auto object-contain rotate-[2deg] transform"
                   />
                   <span className="playfair-display font-serif font-bold text-sm tracking-tight leading-none whitespace-nowrap">
                     <span className="text-[#60BF8F]">R K </span>

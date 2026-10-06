@@ -253,7 +253,7 @@ export default function Home() {
       setActiveServiceIndex((prev) => prev - 1);
       setTimeout(() => {
         wheelLockRef.current = false;
-      }, 700);
+      }, 420);
     } else {
       isTransitioningRef.current = true;
       wheelLockRef.current = true;
@@ -274,7 +274,7 @@ export default function Home() {
       setActiveServiceIndex((prev) => prev + 1);
       setTimeout(() => {
         wheelLockRef.current = false;
-      }, 700);
+      }, 420);
     } else {
       // All services have been viewed: replace the scroll showcase with the original Bento Grid in place!
       setHasCompletedServicesWalkthrough(true);
@@ -343,7 +343,7 @@ export default function Home() {
           setActiveServiceIndex((prev) => prev + 1);
           setTimeout(() => {
             wheelLockRef.current = false;
-          }, 700);
+          }, 420);
         } else {
           // On last service (06: Diabetologist Care):
           // User has viewed all services! Replace the scroll showcase with the original Bento Grid in place!
@@ -357,7 +357,7 @@ export default function Home() {
           setActiveServiceIndex((prev) => prev - 1);
           setTimeout(() => {
             wheelLockRef.current = false;
-          }, 700);
+          }, 420);
         } else {
           // On first service (01): smoothly scroll back up to Hero
           isTransitioningRef.current = true;
@@ -921,61 +921,44 @@ export default function Home() {
           </div>
 
           {/* Middle Body: Left Content with Staggered Lines */}
-          <div className="w-full lg:w-[46%] xl:w-[44%] my-auto py-2">
-            <AnimatePresence mode="wait" custom={serviceSlideDirection}>
+          <div className="w-full lg:w-[46%] xl:w-[44%] my-auto py-2 relative min-h-[360px] 2xl:min-h-[440px] flex items-center">
+            <AnimatePresence mode="popLayout" custom={serviceSlideDirection}>
               <motion.div
                 key={activeServiceIndex}
                 custom={serviceSlideDirection}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                className="space-y-4 sm:space-y-5 2xl:space-y-7"
+                initial={{ opacity: 0, y: serviceSlideDirection > 0 ? 16 : -16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: serviceSlideDirection > 0 ? -16 : 16 }}
+                transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
+                className="w-full space-y-4 sm:space-y-5 2xl:space-y-7"
               >
                 {/* 1. Service Title (Styled with font and color matching 'Wellness' in Hero) */}
-                <motion.h2
-                  initial={{ opacity: 0, y: serviceSlideDirection > 0 ? 18 : -18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: 0.08, ease: "easeOut" }}
-                  className="text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl 3xl:text-6xl font-serif italic font-medium text-[#0284C7] tracking-tight leading-tight select-text"
-                >
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl 3xl:text-6xl font-serif italic font-medium text-[#0284C7] tracking-tight leading-tight select-text">
                   {healthcareServicesList[activeServiceIndex].title}
-                </motion.h2>
+                </h2>
 
                 {/* 2. Service Description */}
-                <motion.p
-                  initial={{ opacity: 0, y: serviceSlideDirection > 0 ? 16 : -16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: 0.16, ease: "easeOut" }}
-                  className="text-sm sm:text-base lg:text-base 2xl:text-xl text-slate-600 leading-relaxed font-sans max-w-xl 2xl:max-w-2xl select-text"
-                >
+                <p className="text-sm sm:text-base lg:text-base 2xl:text-xl text-slate-600 leading-relaxed font-sans max-w-xl 2xl:max-w-2xl select-text">
                   {healthcareServicesList[activeServiceIndex].description}
-                </motion.p>
+                </p>
 
-                {/* 3. Staggered Checklist Items */}
+                {/* 3. Checklist Items */}
                 <ul className="space-y-2.5 2xl:space-y-3.5 pt-1 select-text">
                   {healthcareServicesList[activeServiceIndex].checklist.map((item, idx) => (
-                    <motion.li
+                    <li
                       key={idx}
-                      initial={{ opacity: 0, y: serviceSlideDirection > 0 ? 14 : -14 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.24 + idx * 0.08, ease: "easeOut" }}
                       className="flex items-center gap-3 2xl:gap-4 text-xs sm:text-sm 2xl:text-base font-medium text-slate-700"
                     >
                       <span className="w-5 h-5 2xl:w-6 2xl:h-6 rounded-full bg-sky-100 text-[#0284C7] flex items-center justify-center shrink-0 text-xs 2xl:text-sm shadow-2xs">
                         <i className="fa-solid fa-check text-[10px] 2xl:text-xs"></i>
                       </span>
                       <span>{item}</span>
-                    </motion.li>
+                    </li>
                   ))}
                 </ul>
 
                 {/* 4. CTA Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: serviceSlideDirection > 0 ? 14 : -14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: 0.50, ease: "easeOut" }}
-                  className="pt-2 2xl:pt-4"
-                >
+                <div className="pt-2 2xl:pt-4">
                   <MotionLink
                     to={getTreatmentLink(healthcareServicesList[activeServiceIndex].treatmentKey)}
                     onClick={(e) => handleServiceClick(e, healthcareServicesList[activeServiceIndex].treatmentKey)}
@@ -986,7 +969,7 @@ export default function Home() {
                     <span>Explore details</span>
                     <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
                   </MotionLink>
-                </motion.div>
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -1022,52 +1005,45 @@ export default function Home() {
 
         </div>
 
-        {/* RIGHT CURVED VISUAL SHOWCASE (Clean circular portal covering entire area with NO gaps or margins) */}
-        <motion.div
-          initial={{ x: '105%' }}
-          animate={curveExiting ? { x: '105%' } : hasEnteredSection ? { x: 0 } : { x: '105%' }}
-          transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden lg:block absolute inset-y-0 right-0 w-[50%] overflow-hidden rounded-l-full shadow-[-20px_0_50px_-15px_rgba(15,42,92,0.25)] z-20 pointer-events-auto"
-        >
-          <AnimatePresence mode="popLayout" custom={serviceSlideDirection}>
-            <motion.div
-              key={activeServiceIndex}
-              custom={serviceSlideDirection}
-              initial={{ y: serviceSlideDirection > 0 ? '100%' : '-100%', opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: serviceSlideDirection > 0 ? '-100%' : '100%', opacity: 0 }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full h-full absolute inset-0 overflow-hidden p-0 m-0"
-            >
-              <img
-                src={healthcareServicesList[activeServiceIndex].image}
-                alt={healthcareServicesList[activeServiceIndex].title}
-                className="w-full h-full object-cover object-center select-none block"
-              />
-            </motion.div>
-          </AnimatePresence>
-        </motion.div>
+        {/* RIGHT CURVED VISUAL SHOWCASE (GPU-accelerated continuous carousel strip, zero layout shift) */}
+        <div className="hidden lg:block absolute inset-y-0 right-0 w-[50%] overflow-hidden rounded-l-full shadow-[-20px_0_50px_-15px_rgba(15,42,92,0.25)] z-20 pointer-events-auto">
+          <motion.div
+            animate={{ y: `-${activeServiceIndex * 100}%` }}
+            transition={{ duration: 0.45, ease: [0.25, 1, 0.5, 1] }}
+            className="w-full h-full flex flex-col transform-gpu will-change-transform"
+          >
+            {healthcareServicesList.map((service, idx) => (
+              <div key={idx} className="w-full h-full shrink-0 relative overflow-hidden p-0 m-0">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  decoding="async"
+                  className="w-full h-full object-cover object-center select-none block"
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
 
         {/* Mobile Visual Fallback */}
         <div className="block lg:hidden w-full pt-4">
           <div className="relative w-full max-w-[340px] sm:max-w-[400px] h-60 sm:h-72 mx-auto rounded-2xl overflow-hidden shadow-lg border border-sky-200/80 bg-white/60">
-            <AnimatePresence mode="popLayout" custom={serviceSlideDirection}>
-              <motion.div
-                key={`mobile-${activeServiceIndex}`}
-                custom={serviceSlideDirection}
-                initial={{ y: serviceSlideDirection > 0 ? '100%' : '-100%', opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: serviceSlideDirection > 0 ? '-100%' : '100%', opacity: 0 }}
-                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full h-full absolute inset-0 flex items-center justify-center p-0 m-0"
-              >
-                <img
-                  src={healthcareServicesList[activeServiceIndex].image}
-                  alt={healthcareServicesList[activeServiceIndex].title}
-                  className="w-full h-full object-cover object-center select-none block"
-                />
-              </motion.div>
-            </AnimatePresence>
+            <motion.div
+              animate={{ y: `-${activeServiceIndex * 100}%` }}
+              transition={{ duration: 0.45, ease: [0.25, 1, 0.5, 1] }}
+              className="w-full h-full flex flex-col transform-gpu will-change-transform"
+            >
+              {healthcareServicesList.map((service, idx) => (
+                <div key={`mob-${idx}`} className="w-full h-full shrink-0 relative overflow-hidden flex items-center justify-center p-0 m-0">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    decoding="async"
+                    className="w-full h-full object-cover object-center select-none block"
+                  />
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
 
