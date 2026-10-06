@@ -181,13 +181,9 @@ export default function Home() {
 
   const checkIsLaptopOrGreater = () => {
     if (typeof window === 'undefined') return false;
-    // Exclude smart displays (Nest Hub 1024x600, Nest Hub Max 1280x800) and touch-only devices
-    const isTouchOnly = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-    const isSmartDisplay = /CrKey|NestHub|SmartDisplay/i.test(navigator.userAgent);
-
-    // Enabled only on laptop screen sizes (1366px, 1440px, 1536px, 1920px) up to 2K (2560px) and greater
-    // Devices with width <= 1280px (Nest Hub Max, Nest Hub, tablets) show the original bento grid
-    return window.innerWidth > 1280 && !isTouchOnly && !isSmartDisplay;
+    // Enabled on all laptop screens (1366px, 1440px, 1536px, 1920px), 2K (2560px), 4K (3840px), and greater
+    // Devices with width <= 1280px (Nest Hub Max 1280x800, Nest Hub 1024x600, tablets, phones) show the bento grid
+    return window.innerWidth > 1280;
   };
 
   const [isLaptopOrGreater, setIsLaptopOrGreater] = useState(checkIsLaptopOrGreater);
@@ -911,15 +907,15 @@ export default function Home() {
         className="w-full min-h-screen h-screen max-h-screen lg:min-h-screen lg:h-screen lg:max-h-screen bg-gradient-to-br from-[#F0F6FB] via-[#E8F1F9] to-[#DFECF7] relative overflow-hidden border-b border-slate-200 flex flex-col justify-between py-6 sm:py-8 lg:py-10 xl:py-12 px-4 sm:px-8 lg:px-14 2xl:px-20 select-text box-border"
       >
         {/* Simple Clean Circle Geometry on Left */}
-        <div className="absolute -left-28 top-1/2 -translate-y-1/2 w-[32rem] h-[32rem] rounded-full border border-[#0284C7]/15 pointer-events-none" />
+        <div className="absolute -left-28 top-1/2 -translate-y-1/2 w-[32rem] h-[32rem] 2xl:w-[42rem] 2xl:h-[42rem] rounded-full border border-[#0284C7]/15 pointer-events-none" />
 
         {/* Content Container (Left Side Content & Layout) */}
         <div className="max-w-7xl 2xl:max-w-[100rem] w-full mx-auto flex-1 flex flex-col justify-between relative z-10 pointer-events-auto">
           
           {/* Top Subheading Tag */}
           <div className="flex items-center gap-2.5 pb-2">
-            <span className="w-8 h-[2px] bg-[#0284C7]" />
-            <span className="text-xs sm:text-sm font-bold tracking-[0.2em] text-[#0284C7] uppercase font-sans">
+            <span className="w-8 2xl:w-12 h-[2px] bg-[#0284C7]" />
+            <span className="text-xs sm:text-sm 2xl:text-base font-bold tracking-[0.2em] text-[#0284C7] uppercase font-sans">
               Healthcare Solutions
             </span>
           </div>
@@ -933,14 +929,14 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                className="space-y-4 sm:space-y-5"
+                className="space-y-4 sm:space-y-5 2xl:space-y-7"
               >
                 {/* 1. Service Title (Styled with font and color matching 'Wellness' in Hero) */}
                 <motion.h2
                   initial={{ opacity: 0, y: serviceSlideDirection > 0 ? 18 : -18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: 0.08, ease: "easeOut" }}
-                  className="text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl font-serif italic font-medium text-[#0284C7] tracking-tight leading-tight select-text"
+                  className="text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl 3xl:text-6xl font-serif italic font-medium text-[#0284C7] tracking-tight leading-tight select-text"
                 >
                   {healthcareServicesList[activeServiceIndex].title}
                 </motion.h2>
@@ -950,23 +946,23 @@ export default function Home() {
                   initial={{ opacity: 0, y: serviceSlideDirection > 0 ? 16 : -16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: 0.16, ease: "easeOut" }}
-                  className="text-sm sm:text-base lg:text-base 2xl:text-lg text-slate-600 leading-relaxed font-sans max-w-xl select-text"
+                  className="text-sm sm:text-base lg:text-base 2xl:text-xl text-slate-600 leading-relaxed font-sans max-w-xl 2xl:max-w-2xl select-text"
                 >
                   {healthcareServicesList[activeServiceIndex].description}
                 </motion.p>
 
                 {/* 3. Staggered Checklist Items */}
-                <ul className="space-y-2.5 pt-1 select-text">
+                <ul className="space-y-2.5 2xl:space-y-3.5 pt-1 select-text">
                   {healthcareServicesList[activeServiceIndex].checklist.map((item, idx) => (
                     <motion.li
                       key={idx}
                       initial={{ opacity: 0, y: serviceSlideDirection > 0 ? 14 : -14 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.24 + idx * 0.08, ease: "easeOut" }}
-                      className="flex items-center gap-3 text-xs sm:text-sm font-medium text-slate-700"
+                      className="flex items-center gap-3 2xl:gap-4 text-xs sm:text-sm 2xl:text-base font-medium text-slate-700"
                     >
-                      <span className="w-5 h-5 rounded-full bg-sky-100 text-[#0284C7] flex items-center justify-center shrink-0 text-xs shadow-2xs">
-                        <i className="fa-solid fa-check text-[10px]"></i>
+                      <span className="w-5 h-5 2xl:w-6 2xl:h-6 rounded-full bg-sky-100 text-[#0284C7] flex items-center justify-center shrink-0 text-xs 2xl:text-sm shadow-2xs">
+                        <i className="fa-solid fa-check text-[10px] 2xl:text-xs"></i>
                       </span>
                       <span>{item}</span>
                     </motion.li>
@@ -978,17 +974,17 @@ export default function Home() {
                   initial={{ opacity: 0, y: serviceSlideDirection > 0 ? 14 : -14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: 0.50, ease: "easeOut" }}
-                  className="pt-2"
+                  className="pt-2 2xl:pt-4"
                 >
                   <MotionLink
                     to={getTreatmentLink(healthcareServicesList[activeServiceIndex].treatmentKey)}
                     onClick={(e) => handleServiceClick(e, healthcareServicesList[activeServiceIndex].treatmentKey)}
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    className="group inline-flex items-center gap-2.5 px-6 py-2.5 sm:py-3 bg-[#0B1E38] hover:bg-[#0284C7] text-white text-xs sm:text-sm font-serif font-bold rounded-full transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
+                    className="group inline-flex items-center gap-2.5 2xl:gap-3 px-6 2xl:px-8 py-2.5 sm:py-3 2xl:py-3.5 bg-[#0B1E38] hover:bg-[#0284C7] text-white text-xs sm:text-sm 2xl:text-base font-serif font-bold rounded-full transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
                   >
                     <span>Explore details</span>
-                    <i className="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                    <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
                   </MotionLink>
                 </motion.div>
               </motion.div>
@@ -996,18 +992,18 @@ export default function Home() {
           </div>
 
           {/* Bottom Bar: Timeline Progress & SCROLL label */}
-          <div className="w-full lg:w-[46%] xl:w-[44%] pt-3 border-t border-slate-300/60 flex items-center justify-between gap-4">
+          <div className="w-full lg:w-[46%] xl:w-[44%] pt-3 2xl:pt-4 border-t border-slate-300/60 flex items-center justify-between gap-4">
             {/* Left: Mouse Icon & Progress Bar */}
             <div className="flex items-center gap-3 sm:gap-4 flex-1">
-              <div className="w-4 h-6 rounded-full border border-slate-400 flex items-start justify-center p-0.5 shrink-0 select-none">
+              <div className="w-4 h-6 2xl:w-5 2xl:h-7 rounded-full border border-slate-400 flex items-start justify-center p-0.5 shrink-0 select-none">
                 <motion.div
                   animate={{ y: [0, 5, 0] }}
                   transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-                  className="w-1 h-1 rounded-full bg-[#0284C7]"
+                  className="w-1 h-1 2xl:w-1.5 2xl:h-1.5 rounded-full bg-[#0284C7]"
                 />
               </div>
 
-              <div className="flex-1 max-w-[180px] sm:max-w-[220px] h-1.5 bg-slate-300/80 rounded-full overflow-hidden select-none">
+              <div className="flex-1 max-w-[180px] sm:max-w-[220px] 2xl:max-w-[280px] h-1.5 2xl:h-2 bg-slate-300/80 rounded-full overflow-hidden select-none">
                 <motion.div
                   className="h-full bg-[#0284C7] rounded-full"
                   animate={{ width: `${((activeServiceIndex + 1) / healthcareServicesList.length) * 100}%` }}
@@ -1018,7 +1014,7 @@ export default function Home() {
 
             {/* Right: SCROLL Indicator */}
             <div className="flex items-center select-none">
-              <span className="text-[9px] tracking-[0.25em] font-bold uppercase text-slate-500">
+              <span className="text-[9px] 2xl:text-xs tracking-[0.25em] font-bold uppercase text-slate-500">
                 SCROLL
               </span>
             </div>
