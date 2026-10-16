@@ -294,32 +294,32 @@
   }
 }
 
-/* 3.7 Doctor Pages 2K and Greater Layout (Exactly 1/2 height each for Hero and Testimonial) */
+/* 3.7 Doctor Pages 2K and Greater Layout (Fluid height for Hero and Testimonial) */
 @media (min-width: 1536px) {
   .doctor-profile-hero-2k {
-    height: calc((100vh - var(--nav-height, 72px)) * 0.48) !important;
     min-height: calc((100vh - var(--nav-height, 72px)) * 0.48) !important;
-    max-height: calc((100vh - var(--nav-height, 72px)) * 0.48) !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    padding-top: clamp(1rem, 2vh, 2rem) !important;
+    padding-bottom: clamp(1rem, 2vh, 2rem) !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     box-sizing: border-box !important;
-    overflow: hidden !important;
+    overflow: visible !important;
   }
 
   .doctor-testimonials-2k {
-    height: calc((100vh - var(--nav-height, 72px)) * 0.52) !important;
     min-height: calc((100vh - var(--nav-height, 72px)) * 0.52) !important;
-    max-height: calc((100vh - var(--nav-height, 72px)) * 0.52) !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    padding-top: clamp(1rem, 2vh, 2rem) !important;
+    padding-bottom: clamp(1rem, 2vh, 2.5rem) !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     box-sizing: border-box !important;
-    overflow: hidden !important;
+    overflow: visible !important;
   }
 
   .contact-section-2k {
@@ -421,29 +421,29 @@
   /* Doctor Profile Hero Viewport on Laptop */
   .doctor-profile-hero-laptop {
     min-height: calc(100vh - var(--nav-height, 72px)) !important;
-    height: calc(100vh - var(--nav-height, 72px)) !important;
-    max-height: calc(100vh - var(--nav-height, 72px)) !important;
+    height: auto !important;
+    max-height: none !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     box-sizing: border-box !important;
-    padding-top: clamp(0.75rem, 1.8vh, 1.5rem) !important;
-    padding-bottom: clamp(0.75rem, 1.8vh, 1.5rem) !important;
-    overflow: hidden !important;
+    padding-top: clamp(1rem, 2.5vh, 2rem) !important;
+    padding-bottom: clamp(1rem, 2.5vh, 2rem) !important;
+    overflow: visible !important;
   }
 
   /* Doctor Testimonials 100vh Viewport on Laptop */
   .doctor-testimonials-laptop {
-    height: 100vh !important;
     min-height: 100vh !important;
-    max-height: 100vh !important;
+    height: auto !important;
+    max-height: none !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
     box-sizing: border-box !important;
-    padding-top: clamp(0.75rem, 1.8vh, 1.25rem) !important;
-    padding-bottom: clamp(1rem, 2.2vh, 1.75rem) !important;
-    overflow: hidden !important;
+    padding-top: clamp(1rem, 2.5vh, 2rem) !important;
+    padding-bottom: clamp(1rem, 2.5vh, 2.5rem) !important;
+    overflow: visible !important;
   }
 }
 
@@ -512,5 +512,73 @@
     object-position: center !important;
   }
 }
+
+/* Healthcare Solutions Header & Badges upward shift */
+@media (min-width: 1200px) and (min-height: 720px) {
+  .healthcare-solutions-header-shift {
+    transform: translateY(-0.85rem);
+    transition: transform 0.3s ease-out;
+  }
+}
+
+@media (min-width: 2000px) and (min-height: 1100px) {
+  .healthcare-solutions-header-shift {
+    transform: translateY(-1.5rem);
+  }
+}
+
+/* Bento Grid 2K, 2.5K, and 3K+ Proportional Dual-Axis Scaling (Strict Aspect Ratio & Zero Overflow) */
+@media (min-width: 2000px) {
+  .healthcare-bento-container {
+    max-width: 2100px !important;
+    width: 100% !important;
+  }
+  .healthcare-bento-grid {
+    height: 700px !important;
+    gap: 1.5rem !important;
+  }
+  .healthcare-bento-grid .healthcare-se-body {
+    padding: 1.25rem 1.35rem !important;
+  }
+  .healthcare-bento-grid .healthcare-se-card-fullbleed {
+    padding: 1.25rem 1.35rem !important;
+  }
+}
+
+@media (min-width: 2560px) {
+  .healthcare-bento-container {
+    max-width: 2360px !important;
+    width: 100% !important;
+  }
+  .healthcare-bento-grid {
+    height: 780px !important;
+    gap: 1.75rem !important;
+  }
+  .healthcare-bento-grid .healthcare-se-body {
+    padding: 1.35rem 1.5rem !important;
+  }
+  .healthcare-bento-grid .healthcare-se-card-fullbleed {
+    padding: 1.35rem 1.5rem !important;
+  }
+}
+
+@media (min-width: 3200px) {
+  .healthcare-bento-container {
+    max-width: 2700px !important;
+    width: 100% !important;
+  }
+  .healthcare-bento-grid {
+    height: 890px !important;
+    gap: 2rem !important;
+  }
+  .healthcare-bento-grid .healthcare-se-body {
+    padding: 1.6rem 1.75rem !important;
+  }
+  .healthcare-bento-grid .healthcare-se-card-fullbleed {
+    padding: 1.6rem 1.75rem !important;
+  }
+}
+
+
 
 

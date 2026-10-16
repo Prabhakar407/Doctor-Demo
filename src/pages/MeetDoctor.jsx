@@ -91,14 +91,14 @@ export default function MeetDoctor() {
           </motion.div>
 
           {/* 2 Doctor Cards Grid */}
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-10 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-10 2xl:gap-12 max-w-5xl 2xl:max-w-6xl mx-auto">
             
             {/* Doctor 1: Dr. Parul Gupta */}
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15 }}
-              className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 sm:p-7 flex flex-col justify-between space-y-5 hover:border-[#38BDF8] transition-all shadow-xl group"
+              className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 sm:p-7 2xl:p-8 flex flex-col justify-between space-y-5 hover:border-[#38BDF8] transition-all shadow-xl group"
             >
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
@@ -109,10 +109,10 @@ export default function MeetDoctor() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <span className="text-xs font-bold text-[#38BDF8] uppercase tracking-wider block">Obstetrician &amp; Gynaecologist</span>
-                    <h2 className="text-2xl font-serif font-bold text-white">Dr. Parul Gupta</h2>
-                    <span className="inline-block bg-amber-400/20 text-amber-300 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-amber-400/40 mt-1">
+                    <h2 className="text-2xl font-serif font-bold text-white truncate">Dr. Parul Gupta</h2>
+                    <span className="inline-flex items-center gap-1 bg-amber-400/20 text-amber-300 text-[11px] 2xl:text-xs font-bold px-2.5 py-0.5 rounded-full border border-amber-400/40 mt-1 max-w-full">
                       <i className="fa-solid fa-award mr-1"></i> Gold Medalist (KGMU Lucknow)
                     </span>
                   </div>
@@ -150,7 +150,7 @@ export default function MeetDoctor() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.25 }}
-              className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 sm:p-7 flex flex-col justify-between space-y-5 hover:border-[#38BDF8] transition-all shadow-xl group"
+              className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 sm:p-7 2xl:p-8 flex flex-col justify-between space-y-5 hover:border-[#38BDF8] transition-all shadow-xl group"
             >
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
@@ -161,10 +161,10 @@ export default function MeetDoctor() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <span className="text-xs font-bold text-[#38BDF8] uppercase tracking-wider block">Physician &amp; Diabetologist</span>
-                    <h2 className="text-2xl font-serif font-bold text-white">Dr. Sanjay Gupta</h2>
-                    <span className="inline-block bg-sky-400/20 text-sky-300 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-sky-400/40 mt-1">
+                    <h2 className="text-2xl font-serif font-bold text-white truncate">Dr. Sanjay Gupta</h2>
+                    <span className="inline-flex items-center gap-1 bg-sky-400/20 text-sky-300 text-[11px] 2xl:text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-400/40 mt-1 max-w-full">
                       <i className="fa-solid fa-graduation-cap mr-1"></i> MBBS, DGO (KGMU Lucknow)
                     </span>
                   </div>

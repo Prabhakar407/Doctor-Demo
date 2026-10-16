@@ -442,8 +442,8 @@ export default function DoctorTestimonials({
           </div>
         </div>
 
-        {/* Quick CTA button to book appointment - Moved more upward on 2K/3K screens closer to left/right arrow keys */}
-        <div className="text-center shrink-0 2xl:pt-0 2xl:pb-0 2xl:-mt-7 2xl:-translate-y-6 3xl:-mt-9 3xl:-translate-y-8">
+        {/* Quick CTA button to book appointment with clean spacing */}
+        <div className="text-center shrink-0 pt-2 pb-1 2xl:pt-1 2xl:pb-1">
           <Link
             to={bookingUrl}
             className="inline-flex items-center gap-2 bg-[#1B365D] hover:bg-[#13294B] text-white font-serif font-bold px-7 py-3 2xl:py-2 2xl:px-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform text-xs sm:text-sm 2xl:text-xs 3xl:text-sm border border-transparent hover:border-slate-300"

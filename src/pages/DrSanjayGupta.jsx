@@ -88,14 +88,14 @@ export default function DrSanjayGupta() {
           </motion.div>
 
           {/* Doctor Profile Grid */}
-          <div className="grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-32 xl:gap-40 2xl:gap-52 3xl:gap-60 items-center justify-center max-w-5xl lg:max-w-7xl 2xl:max-w-[95rem] 3xl:max-w-[105rem] mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-14 xl:gap-16 2xl:gap-16 3xl:gap-20 items-center justify-center max-w-5xl lg:max-w-7xl 2xl:max-w-[95rem] 3xl:max-w-[105rem] mx-auto">
             
             {/* Doctor Image Card */}
             <motion.div 
               initial={{ opacity: 0, x: -60, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="flex justify-center md:justify-end items-center w-full lg:pr-6 xl:pr-10 2xl:pr-14 3xl:pr-16"
+              className="flex justify-center md:justify-end items-center w-full lg:pr-4 xl:pr-6 2xl:pr-8"
             >
               <div className="w-56 h-64 sm:w-68 sm:h-76 md:w-72 md:h-80 lg:w-60 lg:h-68 xl:w-72 xl:h-80 2xl:w-[16.5rem] 2xl:h-[19rem] 3xl:w-[19rem] 3xl:h-[22rem] rounded-2xl bg-white border border-white/30 flex items-center justify-center text-[#1B365D] shadow-[0_20px_50px_-10px_rgba(2,132,199,0.5)] relative overflow-hidden group">
                 <img 
@@ -114,7 +114,7 @@ export default function DrSanjayGupta() {
               initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col justify-center items-start space-y-3 sm:space-y-3.5 lg:space-y-2 xl:space-y-2.5 2xl:space-y-2 text-white w-full md:pl-2 lg:pl-8 xl:pl-12 2xl:pl-16 3xl:pl-20"
+              className="flex flex-col justify-center items-start space-y-3 sm:space-y-3.5 lg:space-y-2 xl:space-y-2.5 2xl:space-y-2 text-white w-full md:pl-2 lg:pl-4 xl:pl-6 2xl:pl-8 3xl:pl-10 min-w-0"
             >
               <div className="space-y-1 lg:space-y-0.5">
                 <span className="text-[11px] sm:text-xs font-bold text-[#38BDF8] uppercase tracking-widest block">Senior Physician &amp; Diabetologist</span>
