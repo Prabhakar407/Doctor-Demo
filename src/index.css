@@ -376,6 +376,284 @@
   }
 }
 
+/* 3.7.1 Home Page 1920x1080 Layout (Combined 100vh for Consultation Banner + Why Book Online ONLY) */
+@media screen and (min-width: 1536px) and (max-width: 2000px) and (max-height: 1150px) {
+  #consultation-prescriptions {
+    height: 35vh !important;
+    min-height: 35vh !important;
+    max-height: 35vh !important;
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  #consultation-prescriptions .banner-inner-card {
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: 100% !important;
+  }
+
+  #why-book-online {
+    height: 65vh !important;
+    min-height: 65vh !important;
+    max-height: 65vh !important;
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.6rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  #why-book-online .why-book-card {
+    height: clamp(14rem, 40vh, 16.5rem) !important;
+    min-height: 0 !important;
+  }
+
+  /* Reduce testimonial card width slightly on 1920x1080 screen size ONLY */
+  .patient-reviews-section .review-card-item {
+    width: 490px !important;
+    min-width: 490px !important;
+  }
+
+  /* 1920x1080 Viewport Lock for About Doctor Section (No empty gaps, no overflow/overlap) */
+  #about-doctor {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    overflow: hidden !important;
+  }
+
+  /* Doctor card: reduce width slightly and increase height slightly on 1920x1080 */
+  #about-doctor .doctor-photo-card-wrapper {
+    max-width: 440px !important;
+    width: 440px !important;
+  }
+
+  #about-doctor .doctor-photo-card-inner {
+    height: 33.5rem !important;
+    max-height: 62vh !important;
+  }
+
+  #about-doctor h2 {
+    font-size: 2.35rem !important;
+    line-height: 1.15 !important;
+  }
+
+  #about-doctor .doctor-content-col {
+    gap: 0.65rem !important;
+  }
+
+  #about-doctor .doctor-content-col > div {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  #about-doctor .credential-cards-grid {
+    gap: 0.55rem !important;
+  }
+
+  #about-doctor .credential-cards-grid > div {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  #about-doctor .action-buttons-hub {
+    padding-top: 0.25rem !important;
+  }
+
+  #about-doctor .action-buttons-hub a {
+    padding-top: 0.65rem !important;
+    padding-bottom: 0.65rem !important;
+  }
+}
+
+/* Base background colors for Consultation Banner & Why Book Online sections (Light blue from flag icon) */
+#consultation-prescriptions,
+#why-book-online {
+  background: linear-gradient(to bottom right, #F0F9FF, #E0F2FE) !important;
+  background-color: #E0F2FE !important;
+}
+
+/* Full HD and Greater: Move Why Book Appointment Online text slightly upside without altering section height */
+@media screen and (min-width: 1536px) {
+  #why-book-online .why-book-header {
+    transform: translateY(-0.85rem) !important;
+  }
+}
+
+/* 3.7.2 2K and Greater (2560px+) Screens: restore generous padding and card heights without empty gaps */
+@media (min-width: 2001px), (min-width: 1536px) and (min-height: 1151px) {
+  #consultation-prescriptions {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  #consultation-prescriptions .banner-inner-card {
+    height: 19rem !important;
+    min-height: 19rem !important;
+    max-height: none !important;
+  }
+
+  #why-book-online {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding-top: 4.5rem !important;
+    padding-bottom: 5rem !important;
+  }
+
+  #why-book-online .why-book-card {
+    height: 22rem !important;
+    min-height: 22rem !important;
+    max-height: none !important;
+  }
+}
+
+/* 3.10 About Clinic Page: Layout Improvements for Full HD, 2K, 2.5K, 3K */
+/* Full HD and greater: Move Leading Care Facility text upward without reducing section height */
+@media screen and (min-width: 1536px) {
+  .about-clinic-header {
+    transform: translateY(-1.25rem) !important;
+  }
+}
+
+/* 2K Screens (2000px - 2559px) */
+@media screen and (min-width: 2000px) {
+  .about-clinic-hero-inner {
+    max-width: 105rem !important;
+  }
+
+  .about-clinic-header {
+    transform: translateY(-2rem) !important;
+  }
+
+  .about-clinic-header h1 {
+    font-size: 3.25rem !important;
+  }
+
+  /* Left Image: Rectangular shape maintaining aspect ratio with rounded border, scaled for 2K */
+  .about-clinic-facility-img-wrap {
+    width: 760px !important;
+    height: 530px !important;
+    max-width: 100% !important;
+    max-height: 530px !important;
+    aspect-ratio: 16 / 11 !important;
+    border-radius: 1.5rem !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+  }
+
+  /* Right Column: Increased vertical spacing between content */
+  .about-clinic-right-col {
+    gap: 1.35rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+
+  .about-clinic-right-col h2 {
+    font-size: 2.25rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .about-clinic-right-col .clinic-desc {
+    font-size: 1.05rem !important;
+    line-height: 1.6 !important;
+  }
+}
+
+/* 2.5K Screens (2560px - 3199px) */
+@media screen and (min-width: 2560px) {
+  .about-clinic-hero-inner {
+    max-width: 120rem !important;
+  }
+
+  .about-clinic-header {
+    transform: translateY(-2.75rem) !important;
+  }
+
+  .about-clinic-header h1 {
+    font-size: 3.85rem !important;
+  }
+
+  /* Left Image: Rectangular shape maintaining aspect ratio, scaled for 2.5K */
+  .about-clinic-facility-img-wrap {
+    width: 880px !important;
+    height: 620px !important;
+    max-width: 100% !important;
+    max-height: 620px !important;
+    aspect-ratio: 16 / 11 !important;
+    border-radius: 1.75rem !important;
+  }
+
+  /* Right Column: Further increased vertical spacing */
+  .about-clinic-right-col {
+    gap: 1.85rem !important;
+  }
+
+  .about-clinic-right-col h2 {
+    font-size: 2.75rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .about-clinic-right-col .clinic-desc {
+    font-size: 1.15rem !important;
+    line-height: 1.65 !important;
+  }
+}
+
+/* 3K Screens (3200px+) */
+@media screen and (min-width: 3200px) {
+  .about-clinic-hero-inner {
+    max-width: 140rem !important;
+  }
+
+  .about-clinic-header {
+    transform: translateY(-3.5rem) !important;
+  }
+
+  .about-clinic-header h1 {
+    font-size: 4.5rem !important;
+  }
+
+  /* Left Image: Rectangular shape maintaining aspect ratio, scaled for 3K */
+  .about-clinic-facility-img-wrap {
+    width: 1040px !important;
+    height: 730px !important;
+    max-width: 100% !important;
+    max-height: 730px !important;
+    aspect-ratio: 16 / 11 !important;
+    border-radius: 2rem !important;
+  }
+
+  /* Right Column: Generous vertical spacing */
+  .about-clinic-right-col {
+    gap: 2.35rem !important;
+  }
+
+  .about-clinic-right-col h2 {
+    font-size: 3.25rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .about-clinic-right-col .clinic-desc {
+    font-size: 1.3rem !important;
+    line-height: 1.7 !important;
+  }
+}
+
 /* 3.8 Home Page Laptop Screen Layout (Combined 100vh for Consultation Banner + Why Book Online) */
 @media (min-width: 1024px) and (max-width: 1535px) {
   .consultation-banner-laptop {
@@ -579,6 +857,44 @@
   }
 }
 
+/* 3.11 Doctor Detail Cards: Equal Font and Unified Readable Size */
+.doctor-info-text,
+.doctor-badge-text {
+  font-family: var(--font-sans) !important;
+  font-size: clamp(0.95rem, 0.85rem + 0.25vw, 1.1rem) !important;
+}
 
+.doctor-info-text {
+  line-height: 1.55 !important;
+}
 
+.doctor-badge-text {
+  line-height: 1.4 !important;
+}
+
+/* 3.12 Contact Page: Match address and everyday timings to contact form placeholder size */
+.contact-details-box .contact-scale-text {
+  font-size: 0.75rem !important; /* text-xs */
+  line-height: 1.45 !important;
+}
+
+@media screen and (min-width: 640px) {
+  .contact-details-box .contact-scale-text {
+    font-size: 0.875rem !important; /* text-sm, equal to contact form placeholder size */
+    line-height: 1.45 !important;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .contact-details-box .contact-scale-text {
+    font-size: 0.875rem !important; /* text-sm, equal to contact form placeholder size */
+    line-height: 1.45 !important;
+  }
+
+  .contact-details-box .contact-icon-badge {
+    width: 1.55rem !important;
+    height: 1.55rem !important;
+    font-size: 0.7rem !important;
+  }
+}
 

@@ -121,22 +121,22 @@ export default function DrSanjayGupta() {
                 <h2 className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-serif font-extrabold text-white leading-tight">
                   Dr. Sanjay Gupta
                 </h2>
-                <p className="text-[#38BDF8] font-semibold text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-sm">MBBS, DGO — King George's Medical University (KGMU) Lucknow</p>
-                <p className="text-slate-200 font-medium text-xs sm:text-sm lg:text-[11px] xl:text-xs 2xl:text-xs">Specialist in Internal Medicine, Diabetology &amp; Chronic Illness Management</p>
+                <p className="doctor-info-text text-[#38BDF8] font-semibold">MBBS, DGO — King George's Medical University (KGMU) Lucknow</p>
+                <p className="doctor-info-text text-slate-100 font-medium">Specialist in Internal Medicine, Diabetology &amp; Chronic Illness Management</p>
               </div>
 
-              <p className="text-slate-200 text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-xs leading-relaxed max-w-xl">
+              <p className="doctor-info-text text-slate-200 leading-relaxed max-w-xl">
                 Dr. Sanjay Gupta is a seasoned Physician and Diabetologist with over 30+ years of distinguished practice since the founding of R. K. Medical Centre in 1992. Educated at KGMU Lucknow, he specializes in diabetes mellitus, hypertension, metabolic care, and comprehensive adult internal medicine.
               </p>
               
-              <div className="flex flex-wrap gap-1.5 sm:gap-2 2xl:gap-1.5 pt-0.5">
-                <span className="bg-white/10 backdrop-blur-md text-[#38BDF8] font-semibold px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs lg:text-[11px] xl:text-xs 2xl:text-xs border border-white/20">
-                  <i className="fa-solid fa-graduation-cap mr-1.5"></i> KGMU Alumnus
+              <div className="flex flex-wrap gap-2 pt-1">
+                <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5">
+                  <i className="fa-solid fa-graduation-cap"></i> KGMU Alumnus
                 </span>
-                <span className="bg-white/10 backdrop-blur-md text-[#38BDF8] font-semibold px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs lg:text-[11px] xl:text-xs 2xl:text-xs border border-white/20">
-                  <i className="fa-solid fa-clock mr-1.5"></i> 10 AM–1 PM &amp; 6 PM–8 PM Everyday
+                <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5">
+                  <i className="fa-solid fa-clock"></i> 10 AM–1 PM &amp; 6 PM–8 PM Everyday
                 </span>
-                <span className="bg-emerald-500/20 text-emerald-300 font-semibold px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs lg:text-[11px] xl:text-xs 2xl:text-xs border border-emerald-400/30 inline-flex items-center gap-1.5">
+                <span className="doctor-badge-text bg-emerald-500/20 text-emerald-300 font-medium px-3 py-1 rounded-full border border-emerald-400/30 inline-flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Consultation Fee: ₹800
                 </span>
               </div>

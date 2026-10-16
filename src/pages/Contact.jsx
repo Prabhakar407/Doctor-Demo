@@ -113,12 +113,12 @@ export default function Contact() {
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="md:col-span-6 space-y-3 2xl:space-y-1.5"
+                className="md:col-span-6 space-y-3 2xl:space-y-3.5 3xl:space-y-4"
               >
                 
                 <div className="space-y-0.5">
-                  <span className="text-[11px] 2xl:text-[10px] font-bold text-[#0284C7] uppercase tracking-wider block">Clinic Location</span>
-                  <h2 className="text-xl 2xl:text-lg font-serif font-bold text-[#0F172A]">Find Our Clinic</h2>
+                  <span className="text-[11px] 2xl:text-xs font-bold text-[#0284C7] uppercase tracking-wider block">Clinic Location</span>
+                  <h2 className="text-xl 2xl:text-2xl font-serif font-bold text-[#0F172A] leading-tight">Find Our Clinic</h2>
                 </div>
 
                 {/* Styled Map Container linking to Google Maps */}
@@ -157,44 +157,44 @@ export default function Contact() {
                 </a>
 
                 {/* Location & Hours Details */}
-                <div className="space-y-1.5 2xl:space-y-0.5 text-xs 2xl:text-[11px] font-semibold text-[#0F172A] pt-0.5">
+                <div className="contact-details-box space-y-2 lg:space-y-2.5 font-semibold text-[#0F172A] pt-1">
                   <a 
                     href="https://maps.app.goo.gl/Km4kFB8jUNJY6bhE9" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="flex items-start gap-2 hover:text-[#0284C7] transition-colors group cursor-pointer"
+                    className="flex items-start gap-2.5 hover:text-[#0284C7] transition-colors group cursor-pointer"
                   >
-                    <span className="w-6 h-6 rounded-full bg-[#F8FAFC] border border-slate-200 text-[#0284C7] group-hover:bg-[#0284C7] group-hover:text-white flex items-center justify-center shrink-0 text-[10px] shadow-xs mt-0.5 transition-colors">
+                    <span className="contact-icon-badge w-6 h-6 lg:w-6.5 lg:h-6.5 rounded-full bg-[#F8FAFC] border border-slate-200 text-[#0284C7] group-hover:bg-[#0284C7] group-hover:text-white flex items-center justify-center shrink-0 text-[11px] shadow-xs mt-0.5 transition-colors">
                       <i className="fa-solid fa-location-dot"></i>
                     </span>
-                    <span className="leading-tight group-hover:underline">18/469/1, Tedhi Pulia Ring Road, Sector 18, Indira Nagar, Lucknow, UP - 226016</span>
+                    <span className="contact-scale-text text-xs sm:text-sm 2xl:text-sm leading-snug group-hover:underline">18/469/1, Tedhi Pulia Ring Road, Sector 18, Indira Nagar, Lucknow, UP - 226016</span>
                   </a>
 
-                  <div className="flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-[#F8FAFC] border border-slate-200 text-[#0284C7] flex items-center justify-center shrink-0 text-[10px] shadow-xs">
+                  <div className="flex items-center gap-2.5">
+                    <span className="contact-icon-badge w-6 h-6 lg:w-6.5 lg:h-6.5 rounded-full bg-[#F8FAFC] border border-slate-200 text-[#0284C7] flex items-center justify-center shrink-0 text-[11px] shadow-xs">
                       <i className="fa-solid fa-clock"></i>
                     </span>
-                    <span>Everyday: 10:00 AM – 1:00 PM &amp; 6:00 PM – 8:00 PM</span>
+                    <span className="contact-scale-text text-xs sm:text-sm 2xl:text-sm leading-snug">Everyday: 10:00 AM – 1:00 PM &amp; 6:00 PM – 8:00 PM</span>
                   </div>
                 </div>
 
-                {/* Buttons: WhatsApp & Book Appointment (Neat compact width, no overflow) */}
-                <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-2.5 pt-1 w-full max-w-sm">
+                {/* Buttons: WhatsApp & Book Appointment (Text size equal to left Submit button) */}
+                <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 sm:gap-3 pt-1 w-full max-w-md">
                   <a 
                     href="https://wa.me/919838655095" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold py-2 sm:py-2.5 2xl:py-2 px-3 sm:px-4 rounded-lg flex items-center justify-center gap-1.5 text-[11px] sm:text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 whitespace-nowrap shrink-0"
+                    className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold py-2 sm:py-2.5 2xl:py-2.5 px-3.5 sm:px-4 rounded-lg flex items-center justify-center gap-2 text-xs sm:text-sm 2xl:text-sm shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 whitespace-nowrap shrink-0"
                   >
                     <i className="fa-brands fa-whatsapp text-base"></i>
                     <span className="whitespace-nowrap">WhatsApp Us</span>
                   </a>
                   <Link 
                     to="/booking" 
-                    className="group bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2 sm:py-2.5 2xl:py-2 px-3 sm:px-4 rounded-lg flex items-center justify-center gap-1.5 text-[11px] sm:text-xs shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 text-center whitespace-nowrap shrink-0"
+                    className="group bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold py-2 sm:py-2.5 2xl:py-2.5 px-3.5 sm:px-4 rounded-lg flex items-center justify-center gap-2 text-xs sm:text-sm 2xl:text-sm shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 text-center whitespace-nowrap shrink-0"
                   >
                     <span className="whitespace-nowrap">Book Appointment</span>
-                    <i className="fa-solid fa-arrow-right text-[10px] sm:text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
+                    <i className="fa-solid fa-arrow-right text-xs sm:text-sm inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                   </Link>
                 </div>
 

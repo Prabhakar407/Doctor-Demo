@@ -110,27 +110,27 @@ export default function MeetDoctor() {
                     />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <span className="text-xs font-bold text-[#38BDF8] uppercase tracking-wider block">Obstetrician &amp; Gynaecologist</span>
                     <h2 className="text-2xl font-serif font-bold text-white truncate">Dr. Parul Gupta</h2>
-                    <span className="inline-flex items-center gap-1 bg-amber-400/20 text-amber-300 text-[11px] 2xl:text-xs font-bold px-2.5 py-0.5 rounded-full border border-amber-400/40 mt-1 max-w-full">
-                      <i className="fa-solid fa-award mr-1"></i> Gold Medalist (KGMU Lucknow)
+                    <span className="doctor-info-text text-[#38BDF8] font-semibold block leading-tight mt-1">
+                      Obstetrics, Gynaecology, Maternal Care &amp; 3D/4D Ultrasound
                     </span>
                   </div>
                 </div>
 
-                <p className="text-slate-200 text-xs sm:text-sm leading-relaxed">
-                  Specialist in maternal care, high-risk pregnancy management, pelvic health, and 3D/4D ultrasound diagnostics.
+                <p className="doctor-info-text text-slate-200 leading-relaxed">
+                  Dr. Parul Gupta is a distinguished Obstetrician and Gynaecologist, recognized as a Gold Medalist from King George's Medical University (KGMU), Lucknow. Practicing since 1992 at R. K. Medical Centre, she provides comprehensive maternal healthcare, prenatal &amp; postnatal management, and high-precision ultrasound diagnostics.
                 </p>
 
-                <div className="space-y-1.5 text-xs text-slate-300 pt-1 border-t border-white/10">
-                  <div className="flex items-center gap-2">
-                    <i className="fa-solid fa-clock text-[#38BDF8]"></i>
-                    <span>Everyday: 10:00 AM – 1:00 PM &amp; 6:00 PM – 8:00 PM</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <i className="fa-solid fa-indian-rupee-sign text-[#38BDF8]"></i>
-                    <span>Consultation Fee: ₹800</span>
-                  </div>
+                <div className="flex flex-wrap gap-2 pt-2 border-t border-white/10">
+                  <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5">
+                    <i className="fa-solid fa-graduation-cap"></i> KGMU Gold Medalist
+                  </span>
+                  <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5">
+                    <i className="fa-solid fa-clock"></i> 10 AM–1 PM &amp; 6 PM–8 PM Everyday
+                  </span>
+                  <span className="doctor-badge-text bg-emerald-500/20 text-emerald-300 font-medium px-3 py-1 rounded-full border border-emerald-400/30 inline-flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Consultation Fee: ₹800
+                  </span>
                 </div>
               </div>
 
@@ -162,27 +162,27 @@ export default function MeetDoctor() {
                     />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <span className="text-xs font-bold text-[#38BDF8] uppercase tracking-wider block">Physician &amp; Diabetologist</span>
                     <h2 className="text-2xl font-serif font-bold text-white truncate">Dr. Sanjay Gupta</h2>
-                    <span className="inline-flex items-center gap-1 bg-sky-400/20 text-sky-300 text-[11px] 2xl:text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-400/40 mt-1 max-w-full">
-                      <i className="fa-solid fa-graduation-cap mr-1"></i> MBBS, DGO (KGMU Lucknow)
+                    <span className="doctor-info-text text-[#38BDF8] font-semibold block leading-tight mt-1">
+                      Specialist in Internal Medicine, Diabetology &amp; Chronic Illness Management
                     </span>
                   </div>
                 </div>
 
-                <p className="text-slate-200 text-xs sm:text-sm leading-relaxed">
-                  Specialist in diabetes mellitus control, hypertension, metabolic therapies, and comprehensive adult internal medicine.
+                <p className="doctor-info-text text-slate-200 leading-relaxed">
+                  Dr. Sanjay Gupta is a seasoned Physician and Diabetologist with over 30+ years of distinguished practice since the founding of R. K. Medical Centre in 1992. Educated at KGMU Lucknow, he specializes in diabetes mellitus, hypertension, metabolic care, and comprehensive adult internal medicine.
                 </p>
 
-                <div className="space-y-1.5 text-xs text-slate-300 pt-1 border-t border-white/10">
-                  <div className="flex items-center gap-2">
-                    <i className="fa-solid fa-clock text-[#38BDF8]"></i>
-                    <span>Everyday: 10:00 AM – 1:00 PM &amp; 6:00 PM – 8:00 PM</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <i className="fa-solid fa-indian-rupee-sign text-[#38BDF8]"></i>
-                    <span>Consultation Fee: ₹800</span>
-                  </div>
+                <div className="flex flex-wrap gap-2 pt-2 border-t border-white/10">
+                  <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5">
+                    <i className="fa-solid fa-graduation-cap"></i> KGMU Alumnus
+                  </span>
+                  <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5">
+                    <i className="fa-solid fa-clock"></i> 10 AM–1 PM &amp; 6 PM–8 PM Everyday
+                  </span>
+                  <span className="doctor-badge-text bg-emerald-500/20 text-emerald-300 font-medium px-3 py-1 rounded-full border border-emerald-400/30 inline-flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Consultation Fee: ₹800
+                  </span>
                 </div>
               </div>
 

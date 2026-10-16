@@ -917,12 +917,17 @@ export default function Home() {
       </section>
 
             {/* HEALTHCARE SOLUTIONS / SERVICES SECTION */}
+      <AnimatePresence mode="wait">
       {isLaptopOrGreater && !hasCompletedServicesWalkthrough ? (
-      <section
+      <motion.section
+        key="services-walkthrough"
         ref={healthcareSectionRef}
         id="healthcare-solutions"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0, transition: { duration: 0.45, ease: "easeInOut" } }}
         className="w-full min-h-screen h-screen max-h-screen lg:min-h-screen lg:h-screen lg:max-h-screen bg-gradient-to-br from-[#F0F6FB] via-[#E8F1F9] to-[#DFECF7] relative overflow-hidden border-b border-slate-200 flex flex-col justify-between pt-2 pb-5 sm:pt-3 sm:pb-7 lg:pt-5 lg:pb-8 xl:pt-6 xl:pb-9 px-4 sm:px-8 lg:px-14 2xl:px-20 select-text box-border"
       >
         {/* Simple Clean Circle Geometry on Left */}
@@ -1066,29 +1071,33 @@ export default function Home() {
           </div>
         </div>
 
-      </section>
+      </motion.section>
       ) : (
-      <section 
+      <motion.section 
+        key="healthcare-bento"
         id="healthcare-solutions"
+        initial={isLaptopOrGreater ? { opacity: 0, y: 15 } : false}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, transition: { duration: 0.45, ease: "easeInOut" } }}
+        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
         className="w-full bg-[#E2EAF2] min-h-screen flex flex-col justify-center py-3 sm:py-4 lg:py-5 px-4 sm:px-6 lg:px-[8%] border-b border-slate-200 relative"
       >
         <div className="healthcare-bento-container w-full max-w-7xl mx-auto flex flex-col justify-center items-center">
           
           {/* Header + Badges Wrapper: Shifted upward on screen size > 1200*720, guaranteed visible and zero overlap */}
-          <div className="healthcare-solutions-header-shift w-full flex flex-col items-center shrink-0">
+          <motion.div 
+            initial={isLaptopOrGreater ? { opacity: 0, y: -16, scale: 0.98 } : false}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="healthcare-solutions-header-shift w-full flex flex-col items-center shrink-0"
+          >
             {/* Section Header */}
-            <motion.div 
-              initial={hasCompletedServicesWalkthrough ? false : { opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="text-center space-y-0.5 sm:space-y-1 shrink-0 mb-1 lg:mb-2"
-            >
+            <div className="text-center space-y-0.5 sm:space-y-1 shrink-0 mb-1 lg:mb-2">
               <h2 className="text-2xl sm:text-3xl lg:text-[clamp(1.5rem,1.8vw,2.4rem)] font-serif font-bold text-[#0F172A] tracking-tight">
                 Healthcare Solutions
               </h2>
               <div className="w-14 sm:w-16 2xl:w-20 h-1 2xl:h-1.5 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
-            </motion.div>
+            </div>
 
             {/* Specialty Service Names in 2 Rows (3 in 1st row, 2 in 2nd row - Small Laptop and Greater) */}
             <div className="hidden lg:flex flex-col items-center gap-1.5 xl:gap-2 mb-2 lg:mb-3 shrink-0">
@@ -1124,7 +1133,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Bento Grid Layout - Aspect-ratio locked dual-axis scaling: 1.38:1 on 1080p, 1.35:1 on 2K */}
           <div className="healthcare-bento-grid w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-3 xl:gap-3.5 items-stretch lg:h-[370px] xl:h-[425px]">
@@ -1133,10 +1142,9 @@ export default function Home() {
             <MotionLink 
               to={getTreatmentLink('gynecology')}
               onClick={(e) => handleServiceClick(e, 'gynecology')}
-              initial={hasCompletedServicesWalkthrough ? false : { opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.5, delay: 0.05, ease: "easeInOut" }}
+              initial={isLaptopOrGreater ? { opacity: 0, y: 20, scale: 0.97 } : false}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: isLaptopOrGreater ? 0.08 : 0, ease: [0.22, 1, 0.36, 1] }}
               className="healthcare-se-card bg-[#1B365D] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-full min-h-[300px] lg:min-h-0"
             >
               {/* Flexible Image: takes remaining card space, never compresses text */}
@@ -1169,10 +1177,9 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('ultrasound')}
                 onClick={(e) => handleServiceClick(e, 'ultrasound')}
-                initial={hasCompletedServicesWalkthrough ? false : { opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0 }}
-                transition={{ duration: 0.5, delay: 0.10, ease: "easeInOut" }}
+                initial={isLaptopOrGreater ? { opacity: 0, y: 20, scale: 0.97 } : false}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: isLaptopOrGreater ? 0.16 : 0, ease: [0.22, 1, 0.36, 1] }}
                 className="healthcare-se-card healthcare-se-card-fullbleed flex-1 min-h-[140px] lg:min-h-0 rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-end p-2.5 sm:p-3 xl:p-3.5 group cursor-pointer bg-[#1B365D]"
               >
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -1198,10 +1205,9 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('ultrasound')}
                 onClick={(e) => handleServiceClick(e, 'ultrasound')}
-                initial={hasCompletedServicesWalkthrough ? false : { opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0 }}
-                transition={{ duration: 0.5, delay: 0.15, ease: "easeInOut" }}
+                initial={isLaptopOrGreater ? { opacity: 0, y: 20, scale: 0.97 } : false}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: isLaptopOrGreater ? 0.22 : 0, ease: [0.22, 1, 0.36, 1] }}
                 className="healthcare-se-card flex-1 min-h-[140px] lg:min-h-0 bg-[#1B365D] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group relative cursor-pointer"
               >
                 <div className="healthcare-se-img w-full flex-1 min-h-0 overflow-hidden bg-[#1B365D] relative">
@@ -1224,10 +1230,9 @@ export default function Home() {
             <MotionLink 
               to={getTreatmentLink('pregnancy')}
               onClick={(e) => handleServiceClick(e, 'pregnancy')}
-              initial={hasCompletedServicesWalkthrough ? false : { opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.5, delay: 0.20, ease: "easeInOut" }}
+              initial={isLaptopOrGreater ? { opacity: 0, y: 20, scale: 0.97 } : false}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: isLaptopOrGreater ? 0.28 : 0, ease: [0.22, 1, 0.36, 1] }}
               className="healthcare-se-card bg-[#1B365D] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-full min-h-[300px] lg:min-h-0"
             >
               {/* Flexible Image: takes remaining card space, never compresses text */}
@@ -1260,10 +1265,9 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('physician')}
                 onClick={(e) => handleServiceClick(e, 'physician')}
-                initial={hasCompletedServicesWalkthrough ? false : { opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0 }}
-                transition={{ duration: 0.5, delay: 0.25, ease: "easeInOut" }}
+                initial={isLaptopOrGreater ? { opacity: 0, y: 20, scale: 0.97 } : false}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: isLaptopOrGreater ? 0.34 : 0, ease: [0.22, 1, 0.36, 1] }}
                 className="healthcare-se-card healthcare-se-card-fullbleed flex-1 min-h-[140px] lg:min-h-0 rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-end p-2.5 sm:p-3 xl:p-3.5 group cursor-pointer bg-[#1B365D]"
               >
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -1289,10 +1293,9 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('physician')}
                 onClick={(e) => handleServiceClick(e, 'physician')}
-                initial={hasCompletedServicesWalkthrough ? false : { opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0 }}
-                transition={{ duration: 0.5, delay: 0.30, ease: "easeInOut" }}
+                initial={isLaptopOrGreater ? { opacity: 0, y: 20, scale: 0.97 } : false}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: isLaptopOrGreater ? 0.40 : 0, ease: [0.22, 1, 0.36, 1] }}
                 className="healthcare-se-card healthcare-se-card-fullbleed flex-1 min-h-[140px] lg:min-h-0 rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-end p-2.5 sm:p-3 xl:p-3.5 group cursor-pointer bg-[#1B365D]"
               >
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -1317,8 +1320,9 @@ export default function Home() {
 
           </div>
         </div>
-      </section>
+      </motion.section>
       )}
+      </AnimatePresence>
 
 {/* ABOUT DOCTOR SECTION (Expanded Height with Detailed Credentials) */}
       <section id="about-doctor" className="w-full bg-white py-12 sm:py-16 lg:py-20 2xl:py-24 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 relative">
@@ -1365,8 +1369,8 @@ export default function Home() {
               </div>
 
               {/* Doctor Photo Card Container - Full generous width on 2K/3K screens without reduction */}
-              <div className="w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[440px] 2xl:max-w-none bg-gradient-to-b from-[#F8FAFC] to-slate-100 rounded-2xl border border-slate-200 p-3 sm:p-4 2xl:p-6 shadow-[0_12px_35px_-5px_rgba(2,132,199,0.22)] relative overflow-hidden group">
-                <div className="w-full h-80 sm:h-96 lg:h-[28rem] 2xl:h-[38rem] 3xl:h-[44rem] rounded-xl overflow-hidden relative bg-[#1B365D]">
+              <div className="doctor-photo-card-wrapper w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[440px] 2xl:max-w-none bg-gradient-to-b from-[#F8FAFC] to-slate-100 rounded-2xl border border-slate-200 p-3 sm:p-4 2xl:p-6 shadow-[0_12px_35px_-5px_rgba(2,132,199,0.22)] relative overflow-hidden group">
+                <div className="doctor-photo-card-inner w-full h-80 sm:h-96 lg:h-[28rem] 2xl:h-[38rem] 3xl:h-[44rem] rounded-xl overflow-hidden relative bg-[#1B365D]">
                   <img
                     src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1400&q=85"
                     alt="Dr. Sanjay Gupta"
@@ -1391,7 +1395,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="lg:col-span-7 xl:col-span-8 2xl:col-span-6 space-y-4 sm:space-y-5 2xl:space-y-6 flex flex-col justify-center w-full"
+              className="doctor-content-col lg:col-span-7 xl:col-span-8 2xl:col-span-6 space-y-4 sm:space-y-5 2xl:space-y-6 flex flex-col justify-center w-full"
             >
               
               {/* Desktop Doctor Header & Designation Pill (Hidden on mobile < lg, visible on desktop lg+) */}
@@ -1435,7 +1439,7 @@ export default function Home() {
               </div>
 
               {/* 4 Interactive Feature Credential Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 2xl:gap-4 pt-0">
+              <div className="credential-cards-grid grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 2xl:gap-4 pt-0">
                 
                 {/* 1. 30+ Years Experience */}
                 <div className="bg-gradient-to-br from-white to-slate-50/90 rounded-xl py-2.5 sm:py-3 px-3 sm:px-3.5 2xl:px-4 border border-slate-200/90 shadow-sm hover:border-[#0284C7] hover:shadow-[0_8px_25px_-5px_rgba(2,132,199,0.2)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default relative overflow-hidden">
@@ -1500,7 +1504,7 @@ export default function Home() {
               </div>
 
               {/* Action Buttons Hub (Tightly connected to divs above) */}
-              <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3 pt-1 w-full">
+              <div className="action-buttons-hub flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3 pt-1 w-full">
                 <motion.div
                   initial={{ opacity: 0, y: 60 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -1557,14 +1561,14 @@ export default function Home() {
       </section>
 
       {/* APPOINTMENT BOOKING & DIGITAL PRESCRIPTIONS BANNER SECTION */}
-      <section id="consultation-prescriptions" className="w-full bg-[#F1F5F9] py-0.5 sm:py-1 md:py-1.5 lg:py-[2px] xl:py-[2px] 2xl:py-3.5 3xl:py-4 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 consultation-banner-laptop">
+      <section id="consultation-prescriptions" className="w-full bg-gradient-to-br from-sky-50 to-sky-100 py-0.5 sm:py-1 md:py-1.5 lg:py-[2px] xl:py-[2px] 2xl:py-1 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-sky-200/70 consultation-banner-laptop">
         <div className="max-w-6xl 2xl:max-w-[100rem] w-full mx-auto h-full flex flex-col justify-center">
           <motion.div 
             initial={{ opacity: 0, y: 40, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="banner-inner-card interactive-lift relative w-full rounded-2xl overflow-hidden shadow-[0_12px_35px_-10px_rgba(2,132,199,0.3)] border border-slate-200 group flex items-center min-h-[16rem] sm:min-h-[17.5rem] md:min-h-[19rem] lg:min-h-0 2xl:min-h-[22rem]"
+            className="banner-inner-card interactive-lift relative w-full rounded-2xl overflow-hidden shadow-[0_12px_35px_-10px_rgba(2,132,199,0.3)] border border-slate-200 group flex items-center min-h-[16rem] sm:min-h-[17.5rem] md:min-h-[19rem] lg:min-h-0 2xl:min-h-0 2xl:h-full"
           >
             {/* Background Generated 3D Banner Image */}
             <img
@@ -1576,26 +1580,26 @@ export default function Home() {
             {/* Dark Gradient Overlay for optimal contrast & readability */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#1B365D]/95 via-[#1B365D]/85 md:via-[#1B365D]/65 to-transparent pointer-events-none"></div>
 
-            {/* Content in Normal Flow - Auto-scaling and Zero Overflow */}
-            <div className="relative z-10 w-full p-5 sm:p-7 md:p-8 lg:p-4 xl:p-6 2xl:p-12 text-white">
-              <div className="max-w-xl 2xl:max-w-3xl space-y-2 lg:space-y-1 xl:space-y-2 2xl:space-y-3">
-                <div className="space-y-1 lg:space-y-0.5 xl:space-y-1 2xl:space-y-2">
-                  <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-xl xl:text-2xl 2xl:text-4xl font-serif font-bold text-white tracking-tight leading-tight m-0">
+            {/* Content in Normal Flow - Reduced top/bottom padding between text and border on 1920x1080 */}
+            <div className="relative z-10 w-full p-5 sm:p-7 md:p-8 lg:p-4 xl:p-6 2xl:py-4 2xl:px-10 3xl:py-5 3xl:px-12 text-white">
+              <div className="max-w-xl 2xl:max-w-3xl space-y-2 lg:space-y-1 xl:space-y-2 2xl:space-y-1.5">
+                <div className="space-y-1 lg:space-y-0.5 xl:space-y-1 2xl:space-y-1">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-xl xl:text-2xl 2xl:text-2xl 3xl:text-3xl font-serif font-bold text-white tracking-tight leading-tight m-0">
                     Book Doctor Consultation &amp; <br className="hidden sm:inline" />
                     <span className="text-[#38BDF8] italic">Get Digital Prescriptions</span>
                   </h2>
-                  <p className="text-slate-100 text-xs sm:text-sm md:text-base lg:text-xs xl:text-sm 2xl:text-lg leading-relaxed max-w-lg 2xl:max-w-2xl m-0">
+                  <p className="text-slate-100 text-xs sm:text-sm md:text-base lg:text-xs xl:text-sm 2xl:text-xs 3xl:text-sm leading-relaxed max-w-lg 2xl:max-w-2xl m-0">
                     Schedule appointments with senior healthcare specialists, access verified digital prescriptions, and receive comprehensive personalized medical care.
                   </p>
                 </div>
                 
-                <div className="flex flex-wrap items-center gap-2.5 pt-1.5 lg:pt-0.5 xl:pt-1.5 2xl:pt-3">
+                <div className="flex flex-wrap items-center gap-2.5 pt-1.5 lg:pt-0.5 xl:pt-1.5 2xl:pt-1.5">
                   <Link
                     to="/booking"
-                    className="group bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base px-5 py-2 sm:py-2.5 lg:px-4 lg:py-1.5 xl:px-5 xl:py-2 2xl:px-7 2xl:py-3 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform flex items-center gap-2 border border-transparent hover:border-slate-300"
+                    className="group bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-xs 3xl:text-sm px-5 py-2 sm:py-2.5 lg:px-4 lg:py-1.5 xl:px-5 xl:py-2 2xl:px-5 2xl:py-2 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform flex items-center gap-2 border border-transparent hover:border-slate-300"
                   >
                     <span>Book Appointment Now</span>
-                    <i className="fa-solid fa-arrow-right text-xs 2xl:text-sm inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
+                    <i className="fa-solid fa-arrow-right text-xs 2xl:text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                   </Link>
                 </div>
               </div>
@@ -1607,9 +1611,9 @@ export default function Home() {
       {/* WHY BOOK OUR CONSULTATION SECTION */}
       <section 
         id="why-book-online"
-        className="w-full bg-[#F1F5F9] py-10 sm:py-12 md:py-14 lg:py-8 xl:py-10 2xl:py-20 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-slate-200 flex flex-col justify-center"
+        className="w-full bg-gradient-to-br from-sky-50 to-sky-100 py-10 sm:py-12 md:py-14 lg:py-8 xl:py-10 2xl:py-2 3xl:py-3 px-4 sm:px-8 lg:px-14 2xl:px-20 border-b border-sky-200/70 flex flex-col justify-center"
       >
-        <div className="max-w-7xl 2xl:max-w-[100rem] w-full mx-auto space-y-6 sm:space-y-8 lg:space-y-6 xl:space-y-8 2xl:space-y-12">
+        <div className="max-w-7xl 2xl:max-w-[100rem] w-full mx-auto space-y-6 sm:space-y-8 lg:space-y-6 xl:space-y-8 2xl:space-y-2 3xl:space-y-3">
           
           {/* Section Header */}
           <motion.div 
@@ -1617,16 +1621,16 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-center space-y-1.5 shrink-0 pt-0"
+            className="why-book-header text-center space-y-1.5 2xl:space-y-1 shrink-0 pt-0 2xl:-translate-y-3 3xl:-translate-y-4"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-serif font-bold text-[#0F172A] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-3xl xl:text-4xl 2xl:text-2xl 3xl:text-3xl font-serif font-bold text-[#0F172A] tracking-tight">
               Why Book Appointment Online
             </h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
+            <div className="w-16 h-1 2xl:h-0.5 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
           </motion.div>
           
           {/* Grid of Cards: 1 col on mobile, 2 cols on tablet/small laptop, 4 cols on wide screens */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-6 lg:gap-6 xl:gap-6 2xl:gap-8 w-full items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-6 lg:gap-6 xl:gap-6 2xl:gap-4 3xl:gap-5 w-full items-stretch">
             
             {/* Card 1: Instant Booking & Confirmation */}
             <motion.div 
@@ -1634,7 +1638,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.65, delay: 0.10, ease: "easeInOut" }}
-              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17rem] lg:h-[16.5rem] xl:h-[17rem] 2xl:h-[20rem]"
+              className="why-book-card bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[16.5rem] sm:h-[17rem] md:h-[17.5rem] lg:h-[17rem] xl:h-[18rem] 2xl:h-[19rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
@@ -1647,10 +1651,10 @@ export default function Home() {
               </div>
               
               {/* Bottom Text Content */}
-              <div className="shrink-0 w-full py-2.5 sm:py-3 px-3.5 sm:px-4 bg-[#1B365D] text-white border-t border-[#13294B] space-y-1 relative z-10">
+              <div className="shrink-0 w-full py-2.5 sm:py-3 2xl:py-2 px-3.5 sm:px-4 bg-[#1B365D] text-white border-t border-[#13294B] space-y-1 2xl:space-y-0.5 relative z-10">
                 <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                <h3 className="text-xs sm:text-sm lg:text-sm xl:text-base 2xl:text-lg font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Instant Booking &amp; Confirmation</h3>
-                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-xs xl:text-sm 2xl:text-base leading-snug">Schedule your visit in minutes. Instant digital confirmation, no calls needed.</p>
+                <h3 className="text-xs sm:text-sm lg:text-sm xl:text-base 2xl:text-sm 3xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Instant Booking &amp; Confirmation</h3>
+                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-xs xl:text-sm 2xl:text-[11px] 3xl:text-xs leading-snug">Schedule your visit in minutes. Instant digital confirmation, no calls needed.</p>
               </div>
             </motion.div>
 
@@ -1660,7 +1664,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.65, delay: 0.85, ease: "easeInOut" }}
-              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17rem] lg:h-[16.5rem] xl:h-[17rem] 2xl:h-[20rem]"
+              className="why-book-card bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[16.5rem] sm:h-[17rem] md:h-[17.5rem] lg:h-[17rem] xl:h-[18rem] 2xl:h-[19rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
@@ -1673,10 +1677,10 @@ export default function Home() {
               </div>
               
               {/* Bottom Text Content */}
-              <div className="shrink-0 w-full py-2.5 sm:py-3 px-3.5 sm:px-4 bg-[#1B365D] text-white border-t border-[#13294B] space-y-1 relative z-10">
+              <div className="shrink-0 w-full py-2.5 sm:py-3 2xl:py-2 px-3.5 sm:px-4 bg-[#1B365D] text-white border-t border-[#13294B] space-y-1 2xl:space-y-0.5 relative z-10">
                 <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                <h3 className="text-xs sm:text-sm lg:text-sm xl:text-base 2xl:text-lg font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">24/7 Access</h3>
-                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-xs xl:text-sm 2xl:text-base leading-snug">Select available slots anytime, anywhere—even outside of business hours.</p>
+                <h3 className="text-xs sm:text-sm lg:text-sm xl:text-base 2xl:text-sm 3xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">24/7 Access</h3>
+                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-xs xl:text-sm 2xl:text-[11px] 3xl:text-xs leading-snug">Select available slots anytime, anywhere—even outside of business hours.</p>
               </div>
             </motion.div>
 
@@ -1686,7 +1690,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.65, delay: 1.60, ease: "easeInOut" }}
-              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17rem] lg:h-[16.5rem] xl:h-[17rem] 2xl:h-[20rem]"
+              className="why-book-card bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[16.5rem] sm:h-[17rem] md:h-[17.5rem] lg:h-[17rem] xl:h-[18rem] 2xl:h-[19rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
@@ -1699,10 +1703,10 @@ export default function Home() {
               </div>
               
               {/* Bottom Text Content */}
-              <div className="shrink-0 w-full py-2.5 sm:py-3 px-3.5 sm:px-4 bg-[#1B365D] text-white border-t border-[#13294B] space-y-1 relative z-10">
+              <div className="shrink-0 w-full py-2.5 sm:py-3 2xl:py-2 px-3.5 sm:px-4 bg-[#1B365D] text-white border-t border-[#13294B] space-y-1 2xl:space-y-0.5 relative z-10">
                 <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                <h3 className="text-xs sm:text-sm lg:text-sm xl:text-base 2xl:text-lg font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Time Efficiency</h3>
-                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-xs xl:text-sm 2xl:text-base leading-snug">Optimize your schedule. Minimal check-in time and direct care access upon arrival.</p>
+                <h3 className="text-xs sm:text-sm lg:text-sm xl:text-base 2xl:text-sm 3xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Time Efficiency</h3>
+                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-xs xl:text-sm 2xl:text-[11px] 3xl:text-xs leading-snug">Optimize your schedule. Minimal check-in time and direct care access upon arrival.</p>
               </div>
             </motion.div>
 
@@ -1712,7 +1716,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.65, delay: 2.35, ease: "easeInOut" }}
-              className="bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[15.5rem] sm:h-[16.5rem] md:h-[17rem] lg:h-[16.5rem] xl:h-[17rem] 2xl:h-[20rem]"
+              className="why-book-card bg-white rounded-xl sm:rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_20px_-4px_rgba(2,132,199,0.22)] hover:shadow-[0_16px_32px_-6px_rgba(2,132,199,0.32)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group h-[16.5rem] sm:h-[17rem] md:h-[17.5rem] lg:h-[17rem] xl:h-[18rem] 2xl:h-[19rem]"
             >
               {/* Glass Numbered Step Badge */}
               <div className="absolute top-2.5 right-2.5 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-600 font-serif font-bold text-xs flex items-center justify-center transition-all duration-300 group-hover:bg-[#0284C7] group-hover:text-white group-hover:border-[#0284C7] group-hover:scale-110 group-hover:shadow-[0_4px_12px_rgba(2,132,199,0.45)]">
@@ -1725,10 +1729,10 @@ export default function Home() {
               </div>
               
               {/* Bottom Text Content */}
-              <div className="shrink-0 w-full py-2.5 sm:py-3 px-3.5 sm:px-4 bg-[#1B365D] text-white border-t border-[#13294B] space-y-1 relative z-10">
+              <div className="shrink-0 w-full py-2.5 sm:py-3 2xl:py-2 px-3.5 sm:px-4 bg-[#1B365D] text-white border-t border-[#13294B] space-y-1 2xl:space-y-0.5 relative z-10">
                 <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#38BDF8] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                <h3 className="text-xs sm:text-sm lg:text-sm xl:text-base 2xl:text-lg font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Total Flexibility</h3>
-                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-xs xl:text-sm 2xl:text-base leading-snug">Easily modify or cancel your booking with full control over upcoming visits.</p>
+                <h3 className="text-xs sm:text-sm lg:text-sm xl:text-base 2xl:text-sm 3xl:text-base font-serif font-bold text-white tracking-tight leading-snug group-hover:text-sky-300 transition-colors duration-300">Total Flexibility</h3>
+                <p className="text-slate-200 text-[11px] sm:text-xs lg:text-xs xl:text-sm 2xl:text-[11px] 3xl:text-xs leading-snug">Easily modify or cancel your booking with full control over upcoming visits.</p>
               </div>
             </motion.div>
 
