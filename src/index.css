@@ -572,9 +572,16 @@
     font-size: 1.05rem !important;
     line-height: 1.6 !important;
   }
+
+  /* Reduce vertical gap from top and bottom of Key Facility Details on 2K */
+  .about-clinic-facility-details {
+    margin-top: -0.65rem !important;
+    margin-bottom: -0.65rem !important;
+    padding-top: 0 !important;
+  }
 }
 
-/* 2.5K Screens (2560px - 3199px) */
+/* 2.5K Screens (2560px - 2879px) */
 @media screen and (min-width: 2560px) {
   .about-clinic-hero-inner {
     max-width: 120rem !important;
@@ -612,12 +619,19 @@
     font-size: 1.15rem !important;
     line-height: 1.65 !important;
   }
+
+  /* Reduce vertical gap from top and bottom of Key Facility Details on 2.5K */
+  .about-clinic-facility-details {
+    margin-top: -0.95rem !important;
+    margin-bottom: -0.95rem !important;
+    padding-top: 0 !important;
+  }
 }
 
-/* 3K Screens (3200px+) */
-@media screen and (min-width: 3200px) {
+/* 3K Screens (2880px+ e.g. 2880 * 1800) */
+@media screen and (min-width: 2880px) {
   .about-clinic-hero-inner {
-    max-width: 140rem !important;
+    max-width: 152rem !important;
   }
 
   .about-clinic-header {
@@ -628,12 +642,12 @@
     font-size: 4.5rem !important;
   }
 
-  /* Left Image: Rectangular shape maintaining aspect ratio, scaled for 3K */
+  /* Left Image: Rectangular shape maintaining aspect ratio, scaled for 3K (2880x1800) */
   .about-clinic-facility-img-wrap {
-    width: 1040px !important;
-    height: 730px !important;
+    width: 1140px !important;
+    height: 800px !important;
     max-width: 100% !important;
-    max-height: 730px !important;
+    max-height: 800px !important;
     aspect-ratio: 16 / 11 !important;
     border-radius: 2rem !important;
   }
@@ -651,6 +665,13 @@
   .about-clinic-right-col .clinic-desc {
     font-size: 1.3rem !important;
     line-height: 1.7 !important;
+  }
+
+  /* Reduce vertical gap from top and bottom of Key Facility Details on 3K */
+  .about-clinic-facility-details {
+    margin-top: -1.25rem !important;
+    margin-bottom: -1.25rem !important;
+    padding-top: 0 !important;
   }
 }
 

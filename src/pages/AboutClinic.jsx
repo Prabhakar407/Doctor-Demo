@@ -75,7 +75,7 @@ export default function AboutClinic() {
               </div>
 
               {/* Key Facility Details */}
-              <div className="grid grid-cols-2 gap-2 sm:gap-2.5 lg:gap-2 xl:gap-2.5 pt-0.5 text-xs lg:text-[11px] xl:text-xs 2xl:text-sm text-slate-100">
+              <div className="about-clinic-facility-details grid grid-cols-2 gap-2 sm:gap-2.5 lg:gap-2 xl:gap-2.5 pt-0.5 text-xs lg:text-[11px] xl:text-xs 2xl:text-sm text-slate-100">
                 <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-1.5 border border-white/10">
                   <i className="fa-solid fa-laptop-medical text-[#38BDF8] shrink-0 text-sm"></i>
                   <span className="font-medium truncate">Digital Prescriptions & E-Records</span>
