@@ -320,6 +320,7 @@
     justify-content: center !important;
     box-sizing: border-box !important;
     overflow: visible !important;
+    border-bottom: none !important;
   }
 
   .contact-section-2k {
@@ -474,6 +475,30 @@
   #about-doctor .action-buttons-hub a {
     padding-top: 0.65rem !important;
     padding-bottom: 0.65rem !important;
+  }
+
+  /* Doctor profile hero: move image on left side more left on 1920x1080 resolution */
+  .doctor-profile-image-col {
+    padding-right: 8rem !important;
+  }
+}
+
+/* Doctor profile hero: move image on left side more left for screen size 1200*720 and greater (Full HD laptop, 2K, 2.5K, 3K) */
+@media screen and (min-width: 1200px) {
+  .doctor-profile-image-col {
+    padding-right: 6.5rem !important;
+  }
+}
+
+@media screen and (min-width: 1536px) {
+  .doctor-profile-image-col {
+    padding-right: 8rem !important;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .doctor-profile-image-col {
+    padding-right: 8.5rem !important;
   }
 }
 
@@ -746,6 +771,161 @@
   }
 }
 
+/* =========================================================================
+   Home Page & Doctor Pages Laptop Screen Range (1280*800, 1366*768, 1200*720)
+   Make sections below the hero acquire their natural content height (no fixed height, no empty space)
+   ========================================================================= */
+@media screen and (min-width: 1180px) and (max-width: 1535px) and (max-height: 880px) {
+  /* 1. Healthcare Solutions: Natural content height (remove 100vh lock) */
+  #healthcare-solutions {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2.25rem !important;
+  }
+
+  #healthcare-solutions .healthcare-bento-container {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+  }
+
+  /* 2. About Doctor: Natural content height (remove fixed height and excessive padding) */
+  #about-doctor {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding-top: 2.25rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  #about-doctor > div {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+  }
+
+  /* 3. Consultation Prescriptions: Natural content height (remove 38vh fixed height) */
+  #consultation-prescriptions,
+  #consultation-prescriptions.consultation-banner-laptop,
+  .consultation-banner-laptop {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding-top: 1.75rem !important;
+    padding-bottom: 1.75rem !important;
+  }
+
+  .consultation-banner-laptop .banner-inner-card {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 1.25rem 2rem !important;
+  }
+
+  /* 4. Why Book Online: Natural content height */
+  #why-book-online {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2.25rem !important;
+  }
+
+  #why-book-online .why-book-card {
+    height: auto !important;
+    min-height: 15rem !important;
+  }
+
+  /* 5. Patient Reviews: Natural content height (remove 100vh viewport lock) */
+  .patient-reviews-section {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2.5rem !important;
+    overflow: hidden !important;
+  }
+
+  .patient-reviews-section .reviews-header {
+    margin-bottom: 1rem !important;
+  }
+
+  .patient-reviews-section .review-card-item {
+    height: auto !important;
+    min-height: 175px !important;
+    padding: 1rem 1.25rem !important;
+  }
+
+  /* Doctor Testimonials on Laptop (Existing behavior preserved) */
+  .doctor-testimonials-laptop {
+    min-height: calc(100vh - var(--nav-height, 72px)) !important;
+    height: calc(100vh - var(--nav-height, 72px)) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    border-bottom: none !important;
+  }
+
+  .doctor-testimonials-laptop .doctor-testimonials-inner {
+    height: auto !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Remove straight line at the bottom of the testimonial cards showcase so only the card and its shadow show */
+  .doctor-testimonials-laptop .testimonial-cards-showcase {
+    overflow: visible !important;
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  /* 7. Treatment Page: Move the 4 cards & content to the vertical and horizontal center */
+  .treatments-hero-section {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .treatments-hero-section > div {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .treatments-hero-section .grid {
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+}
+
+/* Doctor Testimonials: Ensure no straight clipping line at the bottom of cards across bigger screen sizes too */
+.testimonial-cards-showcase {
+  overflow: visible !important;
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+
+.doctor-testimonials-section,
+.doctor-testimonials-2k {
+  border-bottom: none !important;
+}
+
 /* 3.9 iPhone SE and Small Screen Equal Height Healthcare Cards */
 @media (max-width: 480px) {
   .healthcare-se-card {
@@ -879,18 +1059,24 @@
 }
 
 /* 3.11 Doctor Detail Cards: Equal Font and Unified Readable Size */
-.doctor-info-text,
-.doctor-badge-text {
+.doctor-info-text {
   font-family: var(--font-sans) !important;
   font-size: clamp(0.95rem, 0.85rem + 0.25vw, 1.1rem) !important;
-}
-
-.doctor-info-text {
   line-height: 1.55 !important;
 }
 
+/* Doctor badge text size strictly equal to button text size (text-xs on mobile, text-sm on sm+) */
 .doctor-badge-text {
+  font-family: var(--font-sans) !important;
+  font-size: 0.75rem !important; /* text-xs */
   line-height: 1.4 !important;
+}
+
+@media screen and (min-width: 640px) {
+  .doctor-badge-text {
+    font-size: 0.875rem !important; /* text-sm (14px) - exactly equal to button text size */
+    line-height: 1.4 !important;
+  }
 }
 
 /* 3.12 Contact Page: Match address and everyday timings to contact form placeholder size */
@@ -918,4 +1104,486 @@
     font-size: 0.7rem !important;
   }
 }
+
+/* =========================================================================
+   3.12 Mobile Navigation Drawer (Global): Prevent GPU Quad-Rotation Texture Glitch
+   Strictly disable backdrop-filter blur on drawer backdrop across ALL pages and devices
+   ========================================================================= */
+.navbar-mobile-drawer {
+  z-index: 999999 !important;
+}
+
+.navbar-mobile-drawer,
+.navbar-mobile-drawer *,
+.navbar-mobile-backdrop {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+}
+
+.navbar-mobile-backdrop {
+  background-color: rgba(11, 26, 48, 0.85) !important;
+}
+
+/* =========================================================================
+   3.12B Booking Page Mobile Form Fix: Strictly Equal Left & Right Padding
+   Prevents input boxes & selects from touching right border on Realme & small phones
+   ========================================================================= */
+@media screen and (max-width: 640px) {
+  .booking-main-card {
+    padding-left: 1rem !important; /* 16px */
+    padding-right: 1rem !important; /* 16px - strictly symmetric */
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  .booking-main-card * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .booking-main-card input,
+  .booking-main-card select,
+  .booking-main-card textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .booking-main-card .grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+/* =========================================================================
+   3.12C Home Hero Section Small Screens (< 1000px):
+   Content on top appears first, inquiry form appears below it with clean spacing
+   ========================================================================= */
+@media screen and (max-width: 999px) {
+  .home-hero-section {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding-top: 2.25rem !important;
+    padding-bottom: 3.5rem !important;
+    overflow: visible !important;
+    justify-content: flex-start !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .home-hero-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 3.25rem !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .home-hero-content {
+    order: 1 !important;
+    width: 100% !important;
+    max-width: 680px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .home-hero-content h1 {
+    text-align: center !important;
+  }
+
+  .home-hero-content p {
+    text-align: center !important;
+  }
+
+  .home-hero-content .flex-wrap {
+    justify-content: center !important;
+  }
+
+  .home-hero-content .grid-cols-3 {
+    justify-content: center !important;
+    max-width: 520px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .home-hero-form-col {
+    order: 2 !important;
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .home-hero-form-col > div {
+    width: 100% !important;
+    max-width: 480px !important;
+  }
+}
+
+/* =========================================================================
+   3.13 iPad Pro 13" & 12.9" Portrait (1024x1366 / 1032x1376) Specific Overrides
+   Strictly scoped to iPad Pro portrait devices to preserve all other resolutions
+   ========================================================================= */
+@media screen and (min-width: 1000px) and (max-width: 1050px) and (min-height: 1250px) and (max-height: 1450px) {
+  /* 1. NAVBAR: Hamburger icon & mobile drawer toggle on iPad Pro without error */
+  .navbar-desktop-nav {
+    display: none !important;
+  }
+
+  .navbar-mobile-toggle {
+    display: flex !important;
+  }
+
+  .navbar-mobile-drawer {
+    display: block !important;
+  }
+
+  .navbar-mobile-drawer > div:last-child {
+    max-width: 330px !important;
+    max-height: 65vh !important;
+  }
+
+  /* 2. HERO SECTION: Vertical center alignment with distinct gap between top content & inquiry form */
+  .home-hero-section {
+    height: auto !important;
+    min-height: calc(100vh - var(--nav-height, 72px)) !important;
+    max-height: none !important;
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    overflow: visible !important;
+  }
+
+  .home-hero-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4.75rem !important;
+    width: 100% !important;
+    max-width: 820px !important;
+    margin: auto !important;
+  }
+
+  .home-hero-content {
+    width: 100% !important;
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .home-hero-content h1 {
+    text-align: center !important;
+  }
+
+  .home-hero-content p {
+    text-align: center !important;
+  }
+
+  .home-hero-content .flex-wrap {
+    justify-content: center !important;
+  }
+
+  .home-hero-content .grid-cols-3 {
+    justify-content: center !important;
+    max-width: 600px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .home-hero-form-col {
+    width: 100% !important;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .home-hero-form-col > div {
+    width: 100% !important;
+    max-width: 520px !important;
+  }
+
+  /* 3. HEALTHCARE SOLUTIONS + ABOUT DOCTOR: COMBINED HEIGHT = 100vh (Viewport Height) */
+  /* Healthcare Solutions = 50vh */
+  #healthcare-solutions {
+    height: 50vh !important;
+    min-height: 50vh !important;
+    max-height: 50vh !important;
+    overflow: hidden !important;
+    padding: 0.75rem 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  #healthcare-solutions .healthcare-bento-container {
+    height: 100% !important;
+    max-width: 980px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+
+  #healthcare-solutions .healthcare-solutions-header-shift {
+    transform: none !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  #healthcare-solutions .healthcare-solutions-header-shift h2 {
+    font-size: 1.5rem !important;
+  }
+
+  #healthcare-solutions .healthcare-solutions-header-shift .hidden.lg\:flex {
+    margin-bottom: 0.35rem !important;
+    gap: 0.35rem !important;
+  }
+
+  #healthcare-solutions .healthcare-bento-grid {
+    height: 380px !important;
+    min-height: 380px !important;
+    max-height: 380px !important;
+    gap: 0.75rem !important;
+  }
+
+  #healthcare-solutions .healthcare-se-card {
+    min-height: 0 !important;
+  }
+
+  #healthcare-solutions .healthcare-se-body {
+    padding: 0.5rem 0.65rem !important;
+  }
+
+  #healthcare-solutions .healthcare-se-body h3 {
+    font-size: 0.8rem !important;
+  }
+
+  #healthcare-solutions .healthcare-se-body p {
+    font-size: 0.68rem !important;
+    line-height: 1.25 !important;
+  }
+
+  #healthcare-solutions .healthcare-se-card.healthcare-se-card-fullbleed {
+    padding: 0.65rem !important;
+  }
+
+  #healthcare-solutions .healthcare-se-card.healthcare-se-card-fullbleed h3 {
+    font-size: 0.8rem !important;
+  }
+
+  #healthcare-solutions .healthcare-se-card.healthcare-se-card-fullbleed p {
+    font-size: 0.68rem !important;
+  }
+
+  /* About Doctor Section = 50vh (Combined 50vh + 50vh = 100vh) */
+  #about-doctor {
+    height: 50vh !important;
+    min-height: 50vh !important;
+    max-height: 50vh !important;
+    overflow: hidden !important;
+    padding: 0.75rem 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  #about-doctor > div {
+    height: 100% !important;
+    max-width: 980px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+
+  #about-doctor .grid {
+    gap: 1.5rem !important;
+    align-items: center !important;
+    height: 100% !important;
+  }
+
+  #about-doctor .doctor-photo-card-wrapper {
+    max-width: 330px !important;
+    padding: 0.65rem !important;
+  }
+
+  #about-doctor .doctor-photo-card-inner {
+    height: 370px !important;
+    max-height: 32vh !important;
+  }
+
+  #about-doctor h2 {
+    font-size: 1.45rem !important;
+    margin-bottom: 0.15rem !important;
+  }
+
+  #about-doctor .relative.bg-gradient-to-r {
+    /* Philosophy quote box */
+    padding: 0.45rem 0.65rem !important;
+    margin-top: 0.35rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  #about-doctor .relative.bg-gradient-to-r p {
+    font-size: 0.72rem !important;
+    line-height: 1.35 !important;
+  }
+
+  #about-doctor .credential-cards-grid {
+    gap: 0.45rem !important;
+    padding-top: 0 !important;
+  }
+
+  #about-doctor .credential-cards-grid > div {
+    padding: 0.4rem 0.55rem !important;
+  }
+
+  #about-doctor .credential-cards-grid h4 {
+    font-size: 0.76rem !important;
+  }
+
+  #about-doctor .credential-cards-grid p {
+    font-size: 0.67rem !important;
+  }
+
+  #about-doctor .credential-cards-grid .w-10 {
+    width: 2rem !important;
+    height: 2rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  #about-doctor .action-buttons-hub {
+    padding-top: 0.35rem !important;
+    gap: 0.5rem !important;
+  }
+
+  #about-doctor .action-buttons-hub a {
+    padding: 0.45rem 0.9rem !important;
+    font-size: 0.78rem !important;
+  }
+
+  /* 4. SECTIONS BELOW ABOUT DOCTOR: Remove huge vertical gaps and disable 100vh locks */
+  #consultation-prescriptions.consultation-banner-laptop,
+  .consultation-banner-laptop {
+    min-height: auto !important;
+    height: auto !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    overflow: visible !important;
+  }
+
+  .consultation-banner-laptop .banner-inner-card {
+    min-height: 13.5rem !important;
+    height: auto !important;
+    padding: 1.5rem 2rem !important;
+  }
+
+  #why-book-online {
+    min-height: auto !important;
+    height: auto !important;
+    padding-top: 2.25rem !important;
+    padding-bottom: 2.25rem !important;
+  }
+
+  .patient-reviews-section {
+    min-height: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2.5rem !important;
+    overflow: hidden !important;
+  }
+
+  .patient-reviews-section .review-card-item {
+    height: auto !important;
+    min-height: 170px !important;
+    padding: 1rem 1.25rem !important;
+  }
+
+  .doctor-profile-hero-laptop {
+    min-height: auto !important;
+    height: auto !important;
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  .doctor-testimonials-laptop {
+    min-height: auto !important;
+    height: auto !important;
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  /* 5. ABOUT CLINIC & TREATMENTS PAGES: Natural acquired height (remove huge empty space, no fixed height) */
+  .about-clinic-hero-section {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+
+  .about-clinic-hero-section .about-clinic-hero-inner {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .treatments-hero-section {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding-top: 3rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+
+  .treatments-hero-section > div {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* 6. MEET DOCTOR PAGES: Increase photo dimensions on left while maintaining exact 15:17 aspect ratio */
+  .doctor-profile-image-col > div {
+    width: 300px !important;
+    height: 340px !important;
+    max-width: 100% !important;
+  }
+
+  /* 7. CLEAN MOBILE DRAWER ON IPAD PRO: Strictly no backdrop-filter blur */
+  .navbar-mobile-drawer {
+    z-index: 999999 !important;
+  }
+
+  .navbar-mobile-drawer,
+  .navbar-mobile-drawer *,
+  .navbar-mobile-backdrop {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+  }
+
+  .navbar-mobile-backdrop {
+    background-color: rgba(11, 26, 48, 0.88) !important;
+  }
+}
+
 

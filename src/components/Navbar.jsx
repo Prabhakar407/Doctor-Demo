@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import logoImg from '@/Images/Logo1.png';
 
@@ -33,11 +34,14 @@ export default function Navbar() {
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.classList.add('mobile-menu-open');
     } else {
       document.body.style.overflow = 'unset';
+      document.body.classList.remove('mobile-menu-open');
     }
     return () => {
       document.body.style.overflow = 'unset';
+      document.body.classList.remove('mobile-menu-open');
     };
   }, [mobileMenuOpen]);
 
@@ -48,7 +52,7 @@ export default function Navbar() {
                          location.pathname === '/dr-priya-nair';
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#1B365D] border-b border-white/10 shadow-md px-4 sm:px-8 lg:px-16 2xl:px-20 py-2 sm:py-2.5 2xl:py-3 transition duration-300">
+    <header className={`sticky top-0 ${mobileMenuOpen ? 'z-[99999]' : 'z-50'} w-full bg-[#1B365D] border-b border-white/10 shadow-md px-4 sm:px-8 lg:px-16 2xl:px-20 py-2 sm:py-2.5 2xl:py-3 transition duration-300`}>
       <div className="max-w-7xl 2xl:max-w-[100rem] mx-auto flex justify-between items-center gap-4">
         {/* Brand Logo & Name */}
         <Link to="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0">
@@ -64,7 +68,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation Links (>= lg screens) */}
-        <nav className="hidden lg:flex items-center gap-5 lg:gap-8 text-sm lg:text-base font-serif font-medium">
+        <nav className="navbar-desktop-nav hidden lg:flex items-center gap-5 lg:gap-8 text-sm lg:text-base font-serif font-medium">
           <NavLink
             to="/"
             end
@@ -220,7 +224,7 @@ export default function Navbar() {
         </nav>
 
         {/* Mobile / Tablet Hamburger Button (Strictly >= 48px tap target) */}
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="navbar-mobile-toggle flex items-center gap-2 lg:hidden">
           <NavLink
             to="/booking"
             className="group bg-[#0284C7] text-white font-bold px-3.5 py-2 rounded-lg text-xs font-serif shadow-sm border border-transparent hover:border-slate-300 inline-flex items-center gap-1.5"
@@ -240,12 +244,12 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile / Tablet Navigation Drawer */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[100] lg:hidden">
-          {/* Backdrop */}
+      {/* Mobile / Tablet Navigation Drawer (Rendered via Portal to avoid stacking context & GPU compositor artifacts) */}
+      {mobileMenuOpen && typeof document !== 'undefined' && createPortal(
+        <div className="navbar-mobile-drawer fixed inset-0 z-[999999] lg:hidden">
+          {/* Backdrop: Solid dark overlay WITHOUT backdrop-blur to prevent GPU quad-rotation texture glitch */}
           <div 
-            className="fixed inset-0 bg-[#0F172A]/75 backdrop-blur-xs transition-opacity"
+            className="navbar-mobile-backdrop fixed inset-0 bg-[#0B1A30]/85 transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
           ></div>
 
@@ -393,7 +397,8 @@ export default function Navbar() {
               </p>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </header>
   );

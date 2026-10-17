@@ -95,7 +95,7 @@ export default function DrSanjayGupta() {
               initial={{ opacity: 0, x: -60, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="flex justify-center md:justify-end items-center w-full lg:pr-4 xl:pr-6 2xl:pr-8"
+              className="doctor-profile-image-col flex justify-center md:justify-end items-center w-full lg:pr-4 xl:pr-6 2xl:pr-8"
             >
               <div className="w-56 h-64 sm:w-68 sm:h-76 md:w-72 md:h-80 lg:w-60 lg:h-68 xl:w-72 xl:h-80 2xl:w-[16.5rem] 2xl:h-[19rem] 3xl:w-[19rem] 3xl:h-[22rem] rounded-2xl bg-white border border-white/30 flex items-center justify-center text-[#1B365D] shadow-[0_20px_50px_-10px_rgba(2,132,199,0.5)] relative overflow-hidden group">
                 <img 
@@ -117,7 +117,7 @@ export default function DrSanjayGupta() {
               className="flex flex-col justify-center items-start space-y-3 sm:space-y-3.5 lg:space-y-2 xl:space-y-2.5 2xl:space-y-2 text-white w-full md:pl-2 lg:pl-4 xl:pl-6 2xl:pl-8 3xl:pl-10 min-w-0"
             >
               <div className="space-y-1 lg:space-y-0.5">
-                <span className="text-[11px] sm:text-xs font-bold text-[#38BDF8] uppercase tracking-widest block">Senior Physician &amp; Diabetologist</span>
+                <span className="doctor-badge-text text-xs sm:text-sm font-bold text-[#38BDF8] uppercase tracking-wider block">Senior Physician &amp; Diabetologist</span>
                 <h2 className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-serif font-extrabold text-white leading-tight">
                   Dr. Sanjay Gupta
                 </h2>
@@ -130,13 +130,13 @@ export default function DrSanjayGupta() {
               </p>
               
               <div className="flex flex-wrap gap-2 pt-1">
-                <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5">
+                <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5 text-xs sm:text-sm">
                   <i className="fa-solid fa-graduation-cap"></i> KGMU Alumnus
                 </span>
-                <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5">
+                <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5 text-xs sm:text-sm">
                   <i className="fa-solid fa-clock"></i> 10 AM–1 PM &amp; 6 PM–8 PM Everyday
                 </span>
-                <span className="doctor-badge-text bg-emerald-500/20 text-emerald-300 font-medium px-3 py-1 rounded-full border border-emerald-400/30 inline-flex items-center gap-1.5">
+                <span className="doctor-badge-text bg-emerald-500/20 text-emerald-300 font-medium px-3 py-1 rounded-full border border-emerald-400/30 inline-flex items-center gap-1.5 text-xs sm:text-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Consultation Fee: ₹800
                 </span>
               </div>
@@ -145,16 +145,16 @@ export default function DrSanjayGupta() {
               <div className="flex flex-wrap sm:flex-nowrap lg:flex-nowrap items-center gap-2.5 sm:gap-3 lg:gap-3 2xl:gap-2.5 pt-1 lg:pt-1.5 w-full">
                 <Link 
                   to="/booking" 
-                  className="group bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-4 py-2 sm:px-5 sm:py-2.5 lg:px-4 lg:py-2 xl:px-5 xl:py-2.5 2xl:py-2 2xl:px-5 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 transform text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-xs 3xl:text-sm flex items-center justify-center gap-2 border border-transparent hover:border-slate-300 whitespace-nowrap shrink-0"
+                  className="group bg-[#0284C7] hover:bg-[#0369A1] text-white font-serif font-bold px-4 py-2 sm:px-5 sm:py-2.5 lg:px-4 lg:py-2 xl:px-5 xl:py-2.5 2xl:py-2 2xl:px-5 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 transform text-xs sm:text-sm flex items-center justify-center gap-2 border border-transparent hover:border-slate-300 whitespace-nowrap shrink-0"
                 >
-                  <span>Book Consultation</span>
+                  <span>Book Appointment</span>
                   <i className="fa-solid fa-arrow-right text-xs inline-block -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out"></i>
                 </Link>
                 <a 
                   href="https://wa.me/919415049410" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold px-4 py-2 sm:px-5 sm:py-2.5 lg:px-4 lg:py-2 xl:px-5 xl:py-2.5 2xl:py-2 2xl:px-5 rounded-lg inline-flex items-center justify-center gap-2 text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-xs 3xl:text-sm shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 whitespace-nowrap shrink-0"
+                  className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold px-4 py-2 sm:px-5 sm:py-2.5 lg:px-4 lg:py-2 xl:px-5 xl:py-2.5 2xl:py-2 2xl:px-5 rounded-lg inline-flex items-center justify-center gap-2 text-xs sm:text-sm shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 transform border border-transparent hover:border-slate-300 whitespace-nowrap shrink-0"
                 >
                   <i className="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                   <span>WhatsApp</span>

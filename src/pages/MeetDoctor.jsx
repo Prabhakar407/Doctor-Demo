@@ -122,13 +122,13 @@ export default function MeetDoctor() {
                 </p>
 
                 <div className="flex flex-wrap gap-2 pt-2 border-t border-white/10">
-                  <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5">
+                  <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5 text-xs sm:text-sm">
                     <i className="fa-solid fa-graduation-cap"></i> KGMU Gold Medalist
                   </span>
-                  <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5">
+                  <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5 text-xs sm:text-sm">
                     <i className="fa-solid fa-clock"></i> 10 AM–1 PM &amp; 6 PM–8 PM Everyday
                   </span>
-                  <span className="doctor-badge-text bg-emerald-500/20 text-emerald-300 font-medium px-3 py-1 rounded-full border border-emerald-400/30 inline-flex items-center gap-1.5">
+                  <span className="doctor-badge-text bg-emerald-500/20 text-emerald-300 font-medium px-3 py-1 rounded-full border border-emerald-400/30 inline-flex items-center gap-1.5 text-xs sm:text-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Consultation Fee: ₹800
                   </span>
                 </div>
@@ -174,13 +174,13 @@ export default function MeetDoctor() {
                 </p>
 
                 <div className="flex flex-wrap gap-2 pt-2 border-t border-white/10">
-                  <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5">
+                  <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5 text-xs sm:text-sm">
                     <i className="fa-solid fa-graduation-cap"></i> KGMU Alumnus
                   </span>
-                  <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5">
+                  <span className="doctor-badge-text bg-white/10 backdrop-blur-md text-[#38BDF8] font-medium px-3 py-1 rounded-full border border-white/20 inline-flex items-center gap-1.5 text-xs sm:text-sm">
                     <i className="fa-solid fa-clock"></i> 10 AM–1 PM &amp; 6 PM–8 PM Everyday
                   </span>
-                  <span className="doctor-badge-text bg-emerald-500/20 text-emerald-300 font-medium px-3 py-1 rounded-full border border-emerald-400/30 inline-flex items-center gap-1.5">
+                  <span className="doctor-badge-text bg-emerald-500/20 text-emerald-300 font-medium px-3 py-1 rounded-full border border-emerald-400/30 inline-flex items-center gap-1.5 text-xs sm:text-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Consultation Fee: ₹800
                   </span>
                 </div>

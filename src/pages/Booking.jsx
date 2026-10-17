@@ -331,7 +331,7 @@ export default function Booking() {
           </motion.div>
 
           {/* MAIN CONTAINER: Dynamic Step Views */}
-          <div className="bg-white text-[#0F172A] rounded-xl border border-slate-500 hover:border-[#0284C7] shadow-[0_15px_40px_rgba(56,189,248,0.45),0_0_20px_rgba(56,189,248,0.25)] hover:shadow-[0_20px_50px_rgba(56,189,248,0.6),0_0_30px_rgba(56,189,248,0.4)] hover:-translate-y-1 transition-all duration-300 overflow-hidden p-3.5 sm:p-5 lg:p-3 2xl:p-8 3xl:p-10">
+          <div className="booking-main-card bg-white text-[#0F172A] rounded-xl border border-slate-500 hover:border-[#0284C7] shadow-[0_15px_40px_rgba(56,189,248,0.45),0_0_20px_rgba(56,189,248,0.25)] hover:shadow-[0_20px_50px_rgba(56,189,248,0.6),0_0_30px_rgba(56,189,248,0.4)] hover:-translate-y-1 transition-all duration-300 overflow-hidden px-4 py-3.5 sm:p-5 lg:p-3 2xl:p-8 3xl:p-10 w-full min-w-0 box-border">
             
             <AnimatePresence mode="wait">
               {/* ================= STEP 1: BOOKING FORM ================= */}
@@ -344,13 +344,13 @@ export default function Booking() {
                   transition={{ duration: 0.35, ease: "easeOut" }}
                   onSubmit={handleStep1Submit} 
                   autoComplete="off"
-                  className="animate-fadeIn"
+                  className="animate-fadeIn w-full min-w-0 max-w-full"
                 >
-                  <div className="grid md:grid-cols-2 gap-4 lg:gap-5 2xl:gap-8 items-start">
+                  <div className="grid md:grid-cols-2 gap-4 lg:gap-5 2xl:gap-8 items-start w-full min-w-0">
                   
                   {/* LEFT: Patient Details */}
-                  <div className="space-y-2.5 lg:space-y-2 2xl:space-y-3.5">
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-1.5 2xl:pb-2.5">
+                  <div className="space-y-2.5 lg:space-y-2 2xl:space-y-3.5 w-full min-w-0">
+                    <div className="flex items-center justify-between border-b border-slate-100 pb-1.5 2xl:pb-2.5 w-full min-w-0">
                       <div>
                         <span className="text-[10px] 2xl:text-xs font-bold text-orange-500 uppercase tracking-wider block">Step 1 of 3</span>
                         <h2 className="text-base sm:text-lg lg:text-base 2xl:text-xl font-serif font-bold text-[#0F172A]">Patient Details</h2>
@@ -359,7 +359,7 @@ export default function Booking() {
                     </div>
 
                     {/* Full Name */}
-                    <div>
+                    <div className="w-full min-w-0">
                       <label className="block text-xs lg:text-[11px] 2xl:text-xs font-bold text-[#0F172A] mb-0.5 2xl:mb-1">Full Name *</label>
                       <input 
                         type="text" 
@@ -367,13 +367,13 @@ export default function Booking() {
                         placeholder="Enter full name" 
                         value={patientData.name}
                         onChange={(e) => setPatientData({ ...patientData, name: e.target.value })}
-                        className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] transition-colors duration-200" 
+                        className="w-full min-w-0 max-w-full box-border px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] transition-colors duration-200" 
                       />
                     </div>
 
                     {/* Email & Phone in 2 compact columns */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 2xl:gap-3">
-                      <div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 2xl:gap-3 w-full min-w-0">
+                      <div className="w-full min-w-0">
                         <label className="block text-xs lg:text-[11px] 2xl:text-xs font-bold text-[#0F172A] mb-0.5 2xl:mb-1">Email Address *</label>
                         <input 
                           type="email" 
@@ -381,10 +381,10 @@ export default function Booking() {
                           placeholder="email@domain.com" 
                           value={patientData.email}
                           onChange={(e) => setPatientData({ ...patientData, email: e.target.value })}
-                          className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] transition-colors duration-200" 
+                          className="w-full min-w-0 max-w-full box-border px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] transition-colors duration-200" 
                         />
                       </div>
-                      <div>
+                      <div className="w-full min-w-0">
                         <label className="block text-xs lg:text-[11px] 2xl:text-xs font-bold text-[#0F172A] mb-0.5 2xl:mb-1">Phone Number *</label>
                         <input 
                           type="tel" 
@@ -392,30 +392,30 @@ export default function Booking() {
                           placeholder="+91 98765 43210" 
                           value={patientData.phone}
                           onChange={(e) => setPatientData({ ...patientData, phone: e.target.value })}
-                          className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] transition-colors duration-200" 
+                          className="w-full min-w-0 max-w-full box-border px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] transition-colors duration-200" 
                         />
                       </div>
                     </div>
 
                     {/* Doctor Selection & Reason in 2 columns */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 2xl:gap-3">
-                      <div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 2xl:gap-3 w-full min-w-0">
+                      <div className="w-full min-w-0">
                         <label className="block text-xs lg:text-[11px] 2xl:text-xs font-bold text-[#0F172A] mb-0.5 2xl:mb-1">Assigned Specialist *</label>
                         <select 
                           value={patientData.doctor}
                           onChange={(e) => setPatientData({ ...patientData, doctor: e.target.value })}
-                          className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm text-[#0F172A] transition-colors duration-200"
+                          className="w-full min-w-0 max-w-full box-border truncate px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm text-[#0F172A] transition-colors duration-200"
                         >
-                          <option value="Dr. Parul Gupta">Dr. Parul Gupta (Obstetrics &amp; Gynaecology)</option>
-                          <option value="Dr. Sanjay Gupta">Dr. Sanjay Gupta (Physician &amp; Diabetology)</option>
+                          <option value="Dr. Parul Gupta">Dr. Parul Gupta (Gynaecology)</option>
+                          <option value="Dr. Sanjay Gupta">Dr. Sanjay Gupta (Diabetology)</option>
                         </select>
                       </div>
-                      <div>
+                      <div className="w-full min-w-0">
                         <label className="block text-xs lg:text-[11px] 2xl:text-xs font-bold text-[#0F172A] mb-0.5 2xl:mb-1">Consultation Reason *</label>
                         <select 
                           value={patientData.reason}
                           onChange={(e) => setPatientData({ ...patientData, reason: e.target.value })}
-                          className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm text-[#0F172A] transition-colors duration-200"
+                          className="w-full min-w-0 max-w-full box-border truncate px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm text-[#0F172A] transition-colors duration-200"
                         >
                           <option value="Obstetrician & Gynaecology">Obstetrician &amp; Gynaecology</option>
                           <option value="Ultrasound & Diagnostics">Ultrasound &amp; Diagnostics</option>
@@ -427,19 +427,19 @@ export default function Booking() {
                     </div>
 
                     {/* Medical Notes */}
-                    <div>
+                    <div className="w-full min-w-0">
                       <label className="block text-xs lg:text-[11px] 2xl:text-xs font-bold text-[#0F172A] mb-0.5 2xl:mb-1">Medical Notes (Optional)</label>
                       <textarea 
                         rows={1} 
                         placeholder="Brief symptoms or prior medical history" 
                         value={patientData.message}
                         onChange={(e) => setPatientData({ ...patientData, message: e.target.value })}
-                        className="w-full px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] resize-none transition-colors duration-200"
+                        className="w-full min-w-0 max-w-full box-border px-3 py-1.5 lg:py-1.5 lg:px-2.5 2xl:py-2.5 2xl:px-3 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-xs 2xl:text-sm placeholder:text-[#64748B] resize-none transition-colors duration-200"
                       ></textarea>
                     </div>
 
                     {/* Fee Summary Pill */}
-                    <div className="flex items-center justify-between p-2 2xl:p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs 2xl:text-sm">
+                    <div className="flex items-center justify-between p-2 2xl:p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs 2xl:text-sm w-full min-w-0 box-border">
                       <span className="text-[#64748B]">Consultation Booking Fee:</span>
                       <span className="font-bold text-[#0F172A] text-sm 2xl:text-base font-serif">₹800</span>
                     </div>
@@ -447,21 +447,21 @@ export default function Booking() {
                   </div>
 
                   {/* RIGHT: Calendar & Time Slots */}
-                  <div className="space-y-2.5 lg:space-y-2 2xl:space-y-3.5">
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-1.5 2xl:pb-2.5">
+                  <div className="space-y-2.5 lg:space-y-2 2xl:space-y-3.5 w-full min-w-0">
+                    <div className="flex items-center justify-between border-b border-slate-100 pb-1.5 2xl:pb-2.5 w-full min-w-0">
                       <div className="space-y-0.5">
                         <span className="text-[10px] 2xl:text-xs font-bold text-[#0284C7] uppercase tracking-wider block">Date &amp; Time</span>
                         <h2 className="text-base sm:text-lg lg:text-base 2xl:text-xl font-serif font-bold text-[#0F172A]">Select Consultation Slot</h2>
                       </div>
-                      <span className="text-[11px] 2xl:text-xs font-semibold text-[#0284C7] bg-sky-50 px-2 py-0.5 2xl:px-3 2xl:py-1 rounded-full border border-sky-200">
+                      <span className="text-[11px] 2xl:text-xs font-semibold text-[#0284C7] bg-sky-50 px-2 py-0.5 2xl:px-3 2xl:py-1 rounded-full border border-sky-200 shrink-0">
                         {formatSelectedDate()}
                       </span>
                     </div>
 
                     {/* Calendar Widget */}
-                    <div className="bg-white rounded-xl border border-slate-500 hover:border-[#0284C7] p-2.5 lg:p-2.5 2xl:p-3.5 shadow-xs transition-colors duration-200">
+                    <div className="bg-white rounded-xl border border-slate-500 hover:border-[#0284C7] p-2.5 lg:p-2.5 2xl:p-3.5 shadow-xs transition-colors duration-200 w-full min-w-0 box-border">
                       {/* Month Header */}
-                      <div className="flex justify-between items-center text-xs 2xl:text-sm font-bold text-[#0F172A] mb-1.5 2xl:mb-2 px-1">
+                      <div className="flex justify-between items-center text-xs 2xl:text-sm font-bold text-[#0F172A] mb-1.5 2xl:mb-2 px-1 w-full min-w-0">
                         <button 
                           type="button" 
                           onClick={handlePrevMonth}
@@ -484,12 +484,12 @@ export default function Booking() {
                       </div>
 
                       {/* Days of Week */}
-                      <div className="grid grid-cols-7 text-center text-[9px] 2xl:text-[11px] font-semibold text-[#64748B] mb-1 2xl:mb-1.5">
+                      <div className="grid grid-cols-7 text-center text-[9px] 2xl:text-[11px] font-semibold text-[#64748B] mb-1 2xl:mb-1.5 w-full min-w-0">
                         <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
                       </div>
 
                       {/* Dates Grid */}
-                      <div className="grid grid-cols-7 text-center text-[10px] lg:text-[11px] 2xl:text-xs gap-y-0.5 2xl:gap-y-1 font-medium text-[#0F172A]">
+                      <div className="grid grid-cols-7 text-center text-[10px] lg:text-[11px] 2xl:text-xs gap-y-0.5 2xl:gap-y-1 font-medium text-[#0F172A] w-full min-w-0">
                         {calendarDays.map((d, index) => {
                           if (d === null) {
                             return <span key={index} className="text-transparent">0</span>;
@@ -520,8 +520,8 @@ export default function Booking() {
                         })}
                       </div>
 
-                      {/* Time Slot Pills */}
-                      <div className="flex items-center gap-1.5 2xl:gap-2 mt-2 pt-2 2xl:mt-3 2xl:pt-3 border-t border-slate-100">
+                      {/* Time Slot Pills: Responsive 3-columns on small screens, flex on sm+ */}
+                      <div className="grid grid-cols-3 sm:flex sm:items-center gap-1.5 2xl:gap-2 mt-2 pt-2 2xl:mt-3 2xl:pt-3 border-t border-slate-100 w-full min-w-0">
                         {timeSlots.map((time) => {
                           const isSelected = selectedTime === time;
                           return (
@@ -529,7 +529,7 @@ export default function Booking() {
                               key={time}
                               type="button"
                               onClick={() => setSelectedTime(time)}
-                              className={`text-[10px] 2xl:text-xs font-semibold px-2 py-0.5 2xl:py-1.5 rounded-lg transition cursor-pointer flex-1 text-center ${
+                              className={`text-[10px] 2xl:text-xs font-semibold px-1.5 sm:px-2 py-1 sm:py-0.5 2xl:py-1.5 rounded-lg transition cursor-pointer flex-1 text-center whitespace-nowrap ${
                                 isSelected
                                   ? "bg-[#0284C7] text-white shadow-xs font-bold"
                                   : "bg-[#F8FAFC] border border-slate-200 text-[#0284C7] hover:bg-[#0284C7] hover:text-white"
@@ -570,9 +570,9 @@ export default function Booking() {
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 onSubmit={handlePaymentSubmit} 
                 autoComplete="off"
-                className="animate-fadeIn space-y-2.5 lg:space-y-1.5 2xl:space-y-4"
+                className="animate-fadeIn space-y-2.5 lg:space-y-1.5 2xl:space-y-4 w-full min-w-0 max-w-full"
               >
-                <div className="flex items-center justify-between border-b border-slate-100 pb-1.5 lg:pb-1 2xl:pb-2">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-1.5 lg:pb-1 2xl:pb-2 w-full min-w-0">
                   <div>
                     <span className="text-[10px] font-bold text-orange-500 uppercase tracking-wider block">Step 2 of 3</span>
                     <h2 className="text-base sm:text-xl font-serif font-bold text-[#0F172A]">Payment &amp; Consultation Verification</h2>
@@ -581,7 +581,7 @@ export default function Booking() {
                   <button
                     type="button"
                     onClick={handleGoBackToStep1}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-slate-200 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] transition cursor-pointer"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-slate-200 bg-[#F8FAFC] hover:bg-slate-100 text-xs font-semibold text-[#0284C7] transition cursor-pointer shrink-0"
                   >
                     <i className="fa-solid fa-arrow-left text-[10px]"></i>
                     <span>Back to Booking Form</span>
@@ -589,37 +589,37 @@ export default function Booking() {
                 </div>
 
                 {/* Summary Pill from Step 1 */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 lg:gap-1.5 2xl:gap-2.5 p-2 lg:p-1.5 2xl:p-3 rounded-lg bg-sky-50/70 border border-sky-100 text-xs">
-                  <div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 lg:gap-1.5 2xl:gap-2.5 p-2 lg:p-1.5 2xl:p-3 rounded-lg bg-sky-50/70 border border-sky-100 text-xs w-full min-w-0 box-border">
+                  <div className="min-w-0">
                     <span className="text-[#64748B] block text-[10px]">Patient:</span>
-                    <strong className="text-[#0F172A]">{patientData.name || 'Patient'}</strong>
+                    <strong className="text-[#0F172A] truncate block">{patientData.name || 'Patient'}</strong>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <span className="text-[#64748B] block text-[10px]">Doctor:</span>
-                    <strong className="text-[#0F172A]">{patientData.doctor}</strong>
+                    <strong className="text-[#0F172A] truncate block">{patientData.doctor}</strong>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <span className="text-[#64748B] block text-[10px]">Schedule:</span>
-                    <strong className="text-[#0284C7]">{formatSelectedDate()} ({selectedTime})</strong>
+                    <strong className="text-[#0284C7] truncate block">{formatSelectedDate()} ({selectedTime})</strong>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <span className="text-[#64748B] block text-[10px]">Consultation Fee:</span>
-                    <strong className="text-emerald-700 font-bold">₹800</strong>
+                    <strong className="text-emerald-700 font-bold block">₹800</strong>
                   </div>
                 </div>
 
                 {/* iPad mini and greater (md+): 2 Columns (Left: Payment Details, Right: Select Payment Option in 1 col x 4 rows) */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-3 lg:gap-3 2xl:gap-4 items-start">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-3 lg:gap-3 2xl:gap-4 items-start w-full min-w-0">
                   
                   {/* Left Column (1st Column on md+): Payment Details Form */}
-                  <div className="order-2 md:order-1 md:col-span-7 space-y-1 lg:space-y-1 2xl:space-y-2">
+                  <div className="order-2 md:order-1 md:col-span-7 space-y-1 lg:space-y-1 2xl:space-y-2 w-full min-w-0">
                     <label className="block text-xs font-bold text-[#0F172A]">
                       Payment Details
                     </label>
-                    <div className="p-3 lg:p-2.5 2xl:p-4 rounded-xl border border-slate-500 hover:border-[#0284C7] bg-white space-y-2.5 lg:space-y-1.5 2xl:space-y-3 transition-colors duration-200">
+                    <div className="p-3 lg:p-2.5 2xl:p-4 rounded-xl border border-slate-500 hover:border-[#0284C7] bg-white space-y-2.5 lg:space-y-1.5 2xl:space-y-3 transition-colors duration-200 w-full min-w-0 box-border">
                       {paymentMethod === 'card' && (
-                        <div className="space-y-2 lg:space-y-1.5 2xl:space-y-2.5">
-                          <div>
+                        <div className="space-y-2 lg:space-y-1.5 2xl:space-y-2.5 w-full min-w-0">
+                          <div className="w-full min-w-0">
                             <label className="block text-xs lg:text-[11px] 2xl:text-xs font-bold text-[#0F172A] mb-0.5">Cardholder Name</label>
                             <input
                               type="text"
@@ -627,10 +627,10 @@ export default function Booking() {
                               value={cardData.name}
                               onChange={(e) => setCardData({ ...cardData, name: e.target.value })}
                               placeholder="Name on Card"
-                              className="w-full px-3 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
+                              className="w-full min-w-0 max-w-full box-border px-3 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
                             />
                           </div>
-                          <div>
+                          <div className="w-full min-w-0">
                             <label className="block text-xs lg:text-[11px] 2xl:text-xs font-bold text-[#0F172A] mb-0.5">Card Number (16 Digits)</label>
                             <input
                               type="text"
@@ -639,11 +639,11 @@ export default function Booking() {
                               onChange={handleCardNumberChange}
                               placeholder="XXXX XXXX XXXX XXXX"
                               maxLength={19}
-                              className="w-full px-3 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
+                              className="w-full min-w-0 max-w-full box-border px-3 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
                             />
                           </div>
-                          <div className="grid grid-cols-2 gap-2.5">
-                            <div>
+                          <div className="grid grid-cols-2 gap-2.5 w-full min-w-0">
+                            <div className="w-full min-w-0">
                               <label className="block text-xs lg:text-[11px] 2xl:text-xs font-bold text-[#0F172A] mb-0.5">Expiry Date (MM/YY)</label>
                               <input
                                 type="text"
@@ -652,10 +652,10 @@ export default function Booking() {
                                 onChange={handleExpiryChange}
                                 placeholder="01/26"
                                 maxLength={5}
-                                className="w-full px-2 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs text-center focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
+                                className="w-full min-w-0 max-w-full box-border px-2 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs text-center focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
                               />
                             </div>
-                            <div>
+                            <div className="w-full min-w-0">
                               <label className="block text-xs lg:text-[11px] 2xl:text-xs font-bold text-[#0F172A] mb-0.5">CVV / CVC</label>
                               <input
                                 type="password"
@@ -664,7 +664,7 @@ export default function Booking() {
                                 onChange={handleCvvChange}
                                 placeholder="XXX"
                                 maxLength={4}
-                                className="w-full px-2 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs text-center focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
+                                className="w-full min-w-0 max-w-full box-border px-2 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs text-center focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
                               />
                             </div>
                           </div>
@@ -672,8 +672,8 @@ export default function Booking() {
                       )}
 
                       {paymentMethod === 'upi' && (
-                        <div className="space-y-2 text-xs">
-                          <div>
+                        <div className="space-y-2 text-xs w-full min-w-0">
+                          <div className="w-full min-w-0">
                             <label className="block text-xs font-bold text-[#0F172A] mb-0.5">Enter UPI ID / VPA</label>
                             <input
                               type="text"
@@ -681,24 +681,24 @@ export default function Booking() {
                               value={upiId}
                               onChange={(e) => setUpiId(e.target.value)}
                               placeholder="XXXXX@okhdfcbank or XXXXX@upi"
-                              className="w-full px-3 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
+                              className="w-full min-w-0 max-w-full box-border px-3 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200"
                             />
                           </div>
-                          <div className="p-2 lg:p-1.5 2xl:p-2.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] flex items-center gap-2">
-                            <i className="fa-solid fa-shield-halved text-emerald-600 text-sm"></i>
+                          <div className="p-2 lg:p-1.5 2xl:p-2.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] flex items-center gap-2 w-full min-w-0 box-border">
+                            <i className="fa-solid fa-shield-halved text-emerald-600 text-sm shrink-0"></i>
                             <span>Zero transaction fee on UPI payments. Dynamic QR will be displayed upon verification.</span>
                           </div>
                         </div>
                       )}
 
                       {paymentMethod === 'netbanking' && (
-                        <div className="space-y-2 text-xs">
-                          <div>
+                        <div className="space-y-2 text-xs w-full min-w-0">
+                          <div className="w-full min-w-0">
                             <label className="block text-xs font-bold text-[#0F172A] mb-0.5">Select Participating Bank</label>
                             <select
                               value={selectedBank}
                               onChange={(e) => setSelectedBank(e.target.value)}
-                              className="w-full px-3 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200 cursor-pointer"
+                              className="w-full min-w-0 max-w-full box-border truncate px-3 py-1.5 lg:py-1 2xl:py-2 rounded-lg bg-[#F8FAFC] border border-slate-500 hover:border-[#0284C7] focus:border-[#0284C7] text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0284C7] transition-colors duration-200 cursor-pointer"
                             >
                               <option value="HDFC Bank">HDFC Bank</option>
                               <option value="State Bank of India">State Bank of India (SBI)</option>
@@ -714,8 +714,8 @@ export default function Booking() {
                       )}
 
                       {paymentMethod === 'reception' && (
-                        <div className="p-2.5 lg:p-2 2xl:p-3 rounded-lg bg-sky-50 border border-sky-200 text-[#0284C7] text-xs flex items-start gap-2">
-                          <i className="fa-solid fa-circle-info text-base mt-0.5 text-[#0284C7]"></i>
+                        <div className="p-2.5 lg:p-2 2xl:p-3 rounded-lg bg-sky-50 border border-sky-200 text-[#0284C7] text-xs flex items-start gap-2 w-full min-w-0 box-border">
+                          <i className="fa-solid fa-circle-info text-base mt-0.5 text-[#0284C7] shrink-0"></i>
                           <span className="leading-relaxed">You can pay the ₹800 consultation fee directly at the R. K. Medical Centre reception desk via Cash, POS Card, or UPI on the day of your appointment.</span>
                         </div>
                       )}
@@ -723,7 +723,7 @@ export default function Booking() {
                   </div>
 
                   {/* Right Column (2nd Column on md+): Select Payment Option 1 Column in 4 Rows */}
-                  <div className="order-1 md:order-2 md:col-span-5 space-y-1 lg:space-y-1 2xl:space-y-2">
+                  <div className="order-1 md:order-2 md:col-span-5 space-y-1 lg:space-y-1 2xl:space-y-2 w-full min-w-0">
                     <label className="block text-xs font-bold text-[#0F172A]">Select Payment Option</label>
                     <div className="flex flex-col gap-1.5 lg:gap-1.5 2xl:gap-2">
                       {[

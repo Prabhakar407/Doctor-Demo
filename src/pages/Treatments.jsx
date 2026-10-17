@@ -92,8 +92,8 @@ export default function Treatments() {
   return (
     <div className="w-full flex-grow flex flex-col p-0 m-0">
       {/* SECTION 1: HEALTHCARE SOLUTIONS (Hidden on Mobile, Visible on iPad/Tablet and Greater) */}
-      <section className="hidden md:block w-full min-h-[calc(100vh-73px)] lg:h-[calc(100vh-73px)] lg:min-h-0 lg:max-h-[calc(100vh-73px)] xl:h-[calc(100vh-73px)] xl:min-h-0 xl:max-h-[calc(100vh-73px)] 2xl:min-h-0 2xl:h-auto 2xl:max-h-none bg-[#F8FAFC] py-6 sm:py-8 lg:py-3 xl:py-4 2xl:pt-8 2xl:pb-16 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200 flex flex-col justify-center">
-        <div className="max-w-7xl 2xl:max-w-[100rem] mx-auto space-y-6 sm:space-y-8 lg:space-y-3.5 xl:space-y-4.5 2xl:space-y-12 my-auto 2xl:my-0">
+      <section className="treatments-hero-section hidden md:flex flex-col justify-center items-center w-full min-h-[calc(100vh-73px)] lg:h-[calc(100vh-73px)] lg:min-h-0 lg:max-h-[calc(100vh-73px)] xl:h-[calc(100vh-73px)] xl:min-h-0 xl:max-h-[calc(100vh-73px)] 2xl:min-h-0 2xl:h-auto 2xl:max-h-none bg-[#F8FAFC] py-6 sm:py-8 lg:py-3 xl:py-4 2xl:pt-8 2xl:pb-16 px-4 sm:px-8 lg:px-12 2xl:px-20 border-b border-slate-200">
+        <div className="w-full max-w-7xl 2xl:max-w-[100rem] mx-auto space-y-6 sm:space-y-8 lg:space-y-3.5 xl:space-y-4.5 2xl:space-y-12 my-auto flex flex-col justify-center items-center">
           
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -110,7 +110,7 @@ export default function Treatments() {
             <div className="w-14 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto"></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-4 xl:gap-5 2xl:gap-6">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-4 xl:gap-5 2xl:gap-6 justify-center items-center">
             
             {/* 1: Obstetrician - Gynaecologist */}
             <motion.div 
@@ -125,7 +125,7 @@ export default function Treatments() {
               } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer lg:min-h-[345px] xl:min-h-[385px] 2xl:min-h-0`}
             >
               <div className="p-3 pb-0 lg:p-2.5 lg:pb-0 xl:p-3 xl:pb-0 2xl:p-3 2xl:pb-0">
-                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-xl bg-white border border-slate-100 overflow-hidden relative">
+                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-44 2xl:h-48 rounded-xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
                     src={healthcareGynecologyImg} 
                     alt="Obstetrician - Gynaecologist" 
@@ -161,7 +161,7 @@ export default function Treatments() {
               } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer lg:min-h-[345px] xl:min-h-[385px] 2xl:min-h-0`}
             >
               <div className="p-3 pb-0 lg:p-2.5 lg:pb-0 xl:p-3 xl:pb-0 2xl:p-3 2xl:pb-0">
-                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-xl bg-white border border-slate-100 overflow-hidden relative">
+                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-44 2xl:h-48 rounded-xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
                     src={healthcareUltrasoundImg} 
                     alt="Ultrasound Diagnostics" 
@@ -197,7 +197,7 @@ export default function Treatments() {
               } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer lg:min-h-[345px] xl:min-h-[385px] 2xl:min-h-0`}
             >
               <div className="p-3 pb-0 lg:p-2.5 lg:pb-0 xl:p-3 xl:pb-0 2xl:p-3 2xl:pb-0">
-                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-xl bg-white border border-slate-100 overflow-hidden relative">
+                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-44 2xl:h-48 rounded-xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
                     src={healthcarePregnancyImg} 
                     alt="Pregnancy Management" 
@@ -233,7 +233,7 @@ export default function Treatments() {
               } transition-all duration-300 overflow-hidden flex flex-col group cursor-pointer lg:min-h-[345px] xl:min-h-[385px] 2xl:min-h-0`}
             >
               <div className="p-3 pb-0 lg:p-2.5 lg:pb-0 xl:p-3 xl:pb-0 2xl:p-3 2xl:pb-0">
-                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-46 2xl:h-48 rounded-xl bg-white border border-slate-100 overflow-hidden relative">
+                <div className="w-full h-44 sm:h-48 lg:h-40 xl:h-44 2xl:h-48 rounded-xl bg-white border border-slate-100 overflow-hidden relative">
                   <img 
                     src={physicianImg} 
                     alt="Physician & Diabetologist" 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logoImg from '@/Images/Logo1.png';
 
 export default function Footer() {
   const [modalContent, setModalContent] = useState(null); // 'privacy' | 'terms' | null
@@ -14,12 +15,15 @@ export default function Footer() {
             
             {/* Column 1: Brand & Mission (4 cols on lg) */}
             <div className="lg:col-span-4 space-y-4">
-              <Link to="/" className="inline-flex items-center gap-2.5 text-white group">
-                <span className="w-10 h-10 rounded-xl bg-[#0284C7] text-white flex items-center justify-center text-lg shadow-md group-hover:bg-[#0369A1] transition-colors">
-                  <i className="fa-solid fa-user-doctor"></i>
-                </span>
-                <span className="font-serif text-2xl font-bold tracking-tight text-white group-hover:text-[#38BDF8] transition-colors">
-                  R. K. Medical Centre
+              <Link to="/" className="inline-flex items-center gap-2.5 sm:gap-3 shrink-0 group">
+                <img 
+                  src={logoImg} 
+                  alt="R. K. Medical Centre" 
+                  className="h-12 sm:h-13 lg:h-14 2xl:h-15 w-auto object-contain -my-1 rotate-[2deg] transform"
+                />
+                <span className="playfair-display font-serif font-bold text-lg sm:text-xl lg:text-2xl tracking-tight leading-none whitespace-nowrap">
+                  <span className="text-[#60BF8F]">R K </span>
+                  <span className="text-[#00A68F]">Medical Centre</span>
                 </span>
               </Link>
               

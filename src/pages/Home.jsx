@@ -551,16 +551,16 @@ export default function Home() {
     <main className="w-full flex-grow flex flex-col p-0 m-0">
 
       {/* HERO SECTION */}
-      <section className="w-full min-h-[calc(100svh-var(--nav-height,72px))] lg:h-[calc(100svh-var(--nav-height,72px))] lg:max-h-[calc(100svh-var(--nav-height,72px))] hero-ambient-glow short-laptop-compact text-white flex flex-col justify-center relative overflow-hidden py-4 sm:py-6 lg:py-4 px-4 sm:px-8 lg:px-14">
+      <section className="home-hero-section w-full min-h-[calc(100svh-var(--nav-height,72px))] lg:h-[calc(100svh-var(--nav-height,72px))] lg:max-h-[calc(100svh-var(--nav-height,72px))] hero-ambient-glow short-laptop-compact text-white flex flex-col justify-center relative overflow-hidden py-4 sm:py-6 lg:py-4 px-4 sm:px-8 lg:px-14">
         
         {/* Right Background Image: isolated slider component so slide changes do not re-render Home */}
         <HeroBackgroundSlider />
 
-        {/* Hero Grid: Left Content + Right Floating Form (Same Level, Upward Shifted) */}
-        <div className="w-full max-w-7xl 2xl:max-w-[100rem] mx-auto relative z-10 grid lg:grid-cols-12 gap-6 lg:gap-10 2xl:gap-16 items-center">
+        {/* Hero Grid: Left Content + Right Floating Form (Content First, Form Second on Small Screens) */}
+        <div className="home-hero-grid w-full max-w-7xl 2xl:max-w-[100rem] mx-auto relative z-10 flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-10 2xl:gap-16 items-center">
           
-          {/* Left Column: Headline & Action Buttons */}
-          <div className="lg:col-span-7 space-y-3.5 sm:space-y-4.5 flex flex-col justify-center">
+          {/* Left Column: Headline & Action Buttons (Appears FIRST on small screens) */}
+          <div className="home-hero-content order-1 lg:col-span-7 space-y-3.5 sm:space-y-4.5 flex flex-col justify-center w-full">
             <h1 className="playfair-display text-[clamp(1.95rem,3.8vw,3.65rem)] font-semibold text-white leading-tight not-italic tracking-tight">
               <motion.span
                 initial={{ opacity: 0, y: 15 }}
@@ -712,13 +712,13 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right Column: Glassmorphic Space Floating Form */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end items-center w-full">
+          {/* Right Column: Glassmorphic Space Floating Form (Appears SECOND below content on small screens) */}
+          <div className="home-hero-form-col order-2 lg:col-span-5 flex justify-center lg:justify-end items-center w-full">
             {showHeroForm ? (
               <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
+                initial={{ opacity: 0, y: 25, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: 5.5, ease: "easeOut" }}
                 className="w-full max-w-sm 2xl:max-w-[28rem] 3xl:max-w-[32rem] bg-white/12 backdrop-blur-2xl text-white rounded-xl 2xl:rounded-2xl p-5 sm:p-6 2xl:p-7 3xl:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.45),0_0_30px_rgba(2,132,199,0.25)] hover:shadow-[0_25px_65px_rgba(2,132,199,0.45)] border border-white/25 hover:border-[#0284C7] transition-all duration-300 space-y-3 2xl:space-y-4 relative"
               >
                 
@@ -1076,8 +1076,9 @@ export default function Home() {
       <motion.section 
         key="healthcare-bento"
         id="healthcare-solutions"
-        initial={isLaptopOrGreater ? { opacity: 0, y: 15 } : false}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
         exit={{ opacity: 0, transition: { duration: 0.45, ease: "easeInOut" } }}
         transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
         className="w-full bg-[#E2EAF2] min-h-screen flex flex-col justify-center py-3 sm:py-4 lg:py-5 px-4 sm:px-6 lg:px-[8%] border-b border-slate-200 relative"
@@ -1086,8 +1087,9 @@ export default function Home() {
           
           {/* Header + Badges Wrapper: Shifted upward on screen size > 1200*720, guaranteed visible and zero overlap */}
           <motion.div 
-            initial={isLaptopOrGreater ? { opacity: 0, y: -16, scale: 0.98 } : false}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: -16, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="healthcare-solutions-header-shift w-full flex flex-col items-center shrink-0"
           >
@@ -1142,9 +1144,10 @@ export default function Home() {
             <MotionLink 
               to={getTreatmentLink('gynecology')}
               onClick={(e) => handleServiceClick(e, 'gynecology')}
-              initial={isLaptopOrGreater ? { opacity: 0, y: 20, scale: 0.97 } : false}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: isLaptopOrGreater ? 0.08 : 0, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 20, scale: 0.97 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
               className="healthcare-se-card bg-[#1B365D] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-full min-h-[300px] lg:min-h-0"
             >
               {/* Flexible Image: takes remaining card space, never compresses text */}
@@ -1177,9 +1180,10 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('ultrasound')}
                 onClick={(e) => handleServiceClick(e, 'ultrasound')}
-                initial={isLaptopOrGreater ? { opacity: 0, y: 20, scale: 0.97 } : false}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.8, delay: isLaptopOrGreater ? 0.16 : 0, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.7, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
                 className="healthcare-se-card healthcare-se-card-fullbleed flex-1 min-h-[140px] lg:min-h-0 rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-end p-2.5 sm:p-3 xl:p-3.5 group cursor-pointer bg-[#1B365D]"
               >
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -1205,9 +1209,10 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('ultrasound')}
                 onClick={(e) => handleServiceClick(e, 'ultrasound')}
-                initial={isLaptopOrGreater ? { opacity: 0, y: 20, scale: 0.97 } : false}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.8, delay: isLaptopOrGreater ? 0.22 : 0, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.7, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
                 className="healthcare-se-card flex-1 min-h-[140px] lg:min-h-0 bg-[#1B365D] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group relative cursor-pointer"
               >
                 <div className="healthcare-se-img w-full flex-1 min-h-0 overflow-hidden bg-[#1B365D] relative">
@@ -1230,9 +1235,10 @@ export default function Home() {
             <MotionLink 
               to={getTreatmentLink('pregnancy')}
               onClick={(e) => handleServiceClick(e, 'pregnancy')}
-              initial={isLaptopOrGreater ? { opacity: 0, y: 20, scale: 0.97 } : false}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: isLaptopOrGreater ? 0.28 : 0, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 20, scale: 0.97 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.7, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
               className="healthcare-se-card bg-[#1B365D] rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group cursor-pointer h-full min-h-[300px] lg:min-h-0"
             >
               {/* Flexible Image: takes remaining card space, never compresses text */}
@@ -1265,9 +1271,10 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('physician')}
                 onClick={(e) => handleServiceClick(e, 'physician')}
-                initial={isLaptopOrGreater ? { opacity: 0, y: 20, scale: 0.97 } : false}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.8, delay: isLaptopOrGreater ? 0.34 : 0, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.7, delay: 0.34, ease: [0.22, 1, 0.36, 1] }}
                 className="healthcare-se-card healthcare-se-card-fullbleed flex-1 min-h-[140px] lg:min-h-0 rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-end p-2.5 sm:p-3 xl:p-3.5 group cursor-pointer bg-[#1B365D]"
               >
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -1293,9 +1300,10 @@ export default function Home() {
               <MotionLink 
                 to={getTreatmentLink('physician')}
                 onClick={(e) => handleServiceClick(e, 'physician')}
-                initial={isLaptopOrGreater ? { opacity: 0, y: 20, scale: 0.97 } : false}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.8, delay: isLaptopOrGreater ? 0.40 : 0, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.7, delay: 0.40, ease: [0.22, 1, 0.36, 1] }}
                 className="healthcare-se-card healthcare-se-card-fullbleed flex-1 min-h-[140px] lg:min-h-0 rounded-2xl border border-slate-300 hover:border-[#0284C7] shadow-[0_8px_25px_-4px_rgba(2,132,199,0.18)] hover:shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-end p-2.5 sm:p-3 xl:p-3.5 group cursor-pointer bg-[#1B365D]"
               >
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -1745,7 +1753,7 @@ export default function Home() {
         <div className="max-w-7xl 2xl:max-w-[100rem] mx-auto px-4 sm:px-8 lg:px-14 2xl:px-20 space-y-2.5 sm:space-y-4 lg:space-y-2.5 2xl:space-y-6 w-full">
           
           <div className="reviews-header space-y-1 sm:space-y-1.5 text-center md:text-left">
-            <h2 className="text-3xl sm:text-4xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-serif font-bold text-[#0F172A] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-3xl xl:text-4xl 2xl:text-2xl 3xl:text-3xl font-serif font-bold text-[#0F172A] tracking-tight">
               Patient review section
             </h2>
             <div className="w-16 h-1 bg-gradient-to-r from-[#0284C7] to-[#1B365D] rounded-full mx-auto md:mx-0"></div>

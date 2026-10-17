@@ -14,8 +14,8 @@ const StaggerTestimonialCard = ({
 }) => {
   const isCenter = position === 0;
   const lift = isCenter 
-    ? (is2kOrHigher ? -32 : -65) 
-    : (position % 2 ? (is2kOrHigher ? 8 : 15) : (is2kOrHigher ? -8 : -15));
+    ? (is2kOrHigher ? -26 : -32) 
+    : (position % 2 ? (is2kOrHigher ? 8 : 10) : (is2kOrHigher ? -8 : -10));
   const tilt = isCenter ? 0 : (position % 2 ? 2.5 : -2.5);
   const horizontalSpacing = is2kOrHigher 
     ? (cardSize >= 315 ? 260 : 240) 
@@ -25,7 +25,7 @@ const StaggerTestimonialCard = ({
     <div
       onClick={() => handleMove(position)}
       className={cn(
-        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-6 sm:p-7 lg:p-8 2xl:p-4.5 2xl:pt-3.5 3xl:p-5.5 transition-all duration-500 ease-in-out select-none rounded-xl md:rounded-2xl",
+        "stagger-testimonial-card absolute left-1/2 top-1/2 cursor-pointer border-2 p-5 sm:p-6 lg:p-5.5 xl:p-6 2xl:p-4.5 2xl:pt-3.5 3xl:p-5.5 transition-all duration-500 ease-in-out select-none rounded-xl md:rounded-2xl",
         isCenter
           ? "z-20 bg-white text-[#0F172A] border-slate-200 shadow-[0_20px_45px_-10px_rgba(2,132,199,0.35)] ring-1 ring-sky-500/20"
           : "z-0 bg-[#1B365D] text-white border-[#13294B] shadow-[0_10px_30px_-5px_rgba(0,0,0,0.3)] hover:border-[#0284C7]/60"
@@ -71,7 +71,7 @@ const StaggerTestimonialCard = ({
       {/* Author Name and Role */}
       <p
         className={cn(
-          "absolute bottom-6 left-6 right-6 lg:bottom-8 lg:left-8 lg:right-8 2xl:bottom-3.5 2xl:left-4.5 2xl:right-4.5 3xl:bottom-4.5 3xl:left-5.5 3xl:right-5.5 mt-2 text-sm 2xl:text-xs 3xl:text-sm italic truncate",
+          "absolute bottom-4 left-5 right-5 lg:bottom-4.5 lg:left-5.5 lg:right-5.5 2xl:bottom-3.5 2xl:left-4.5 2xl:right-4.5 3xl:bottom-4.5 3xl:left-5.5 3xl:right-5.5 mt-2 text-sm 2xl:text-xs 3xl:text-sm italic truncate",
           isCenter ? "text-[#475569]" : "text-sky-200"
         )}
       >
@@ -109,13 +109,13 @@ export default function DoctorTestimonials({
       if (w >= 2560) {
         setCardSize(330);
       } else if (w >= 1920) {
-        setCardSize(315);
-      } else if (w >= 1536) {
-        setCardSize(295);
-      } else if (w >= 1024) {
-        setCardSize(340);
-      } else if (w >= 768) {
         setCardSize(310);
+      } else if (w >= 1536) {
+        setCardSize(290);
+      } else if (w >= 1024) {
+        setCardSize(285);
+      } else if (w >= 768) {
+        setCardSize(280);
       } else {
         setCardSize(280);
       }
@@ -224,7 +224,7 @@ export default function DoctorTestimonials({
   const sectionTitle = title || `Patient Testimonials for ${doctorName}`;
   const is2kOrHigher = windowWidth >= 1536;
   const isLaptop = windowWidth >= 1024 && windowWidth < 1536;
-  const staggerHeight = windowWidth >= 2560 ? 370 : windowWidth >= 1920 ? 355 : windowWidth >= 1536 ? 340 : isLaptop ? 490 : 580;
+  const staggerHeight = windowWidth >= 2560 ? 375 : windowWidth >= 1920 ? 350 : windowWidth >= 1536 ? 335 : isLaptop ? 345 : 360;
 
   // =========================================================================
   // MOBILE VIEW (< 768px): Exact original mobile card preserved without alteration
@@ -380,11 +380,11 @@ export default function DoctorTestimonials({
   // - 2K/3K screens: Precisely fitted to 52% of (100vh - 72px) with zero cutoff or overlapping
   // =========================================================================
   return (
-    <section className="w-full bg-white py-12 md:py-16 lg:py-0 2xl:py-2 doctor-testimonials-2k doctor-testimonials-laptop px-4 sm:px-8 lg:px-14 2xl:px-20 3xl:px-24 border-b border-slate-200 flex flex-col justify-center overflow-hidden relative">
-      <div className="max-w-6xl 2xl:max-w-[96rem] 3xl:max-w-[110rem] w-full mx-auto h-full flex flex-col justify-between 2xl:justify-between items-center py-2 lg:py-0 2xl:py-1">
+    <section className="doctor-testimonials-section w-full bg-white py-12 md:py-16 lg:py-0 2xl:py-2 doctor-testimonials-2k doctor-testimonials-laptop px-4 sm:px-8 lg:px-14 2xl:px-20 3xl:px-24 border-b-0 flex flex-col justify-center overflow-hidden relative">
+      <div className="doctor-testimonials-inner max-w-6xl 2xl:max-w-[96rem] 3xl:max-w-[110rem] w-full mx-auto h-full flex flex-col justify-between 2xl:justify-between items-center py-2 lg:py-0 2xl:py-1">
         
         {/* Section Header */}
-        <div className="text-center space-y-1.5 lg:space-y-1 2xl:space-y-1 shrink-0 pt-0 2xl:pt-2 3xl:pt-3">
+        <div className="testimonial-section-header text-center space-y-1.5 lg:space-y-1 2xl:space-y-1 shrink-0 pt-0 2xl:pt-2 3xl:pt-3 mb-3 lg:mb-3.5 xl:mb-4 2xl:mb-2 3xl:mb-3">
           <h2 className="text-2xl sm:text-3xl lg:text-3xl xl:text-4xl 2xl:text-3xl 3xl:text-4xl font-serif font-bold text-[#0F172A] tracking-tight">
             {sectionTitle}
           </h2>
@@ -393,7 +393,7 @@ export default function DoctorTestimonials({
 
         {/* Stagger Testimonial Arc Showcase */}
         <div
-          className="relative w-full overflow-hidden bg-transparent select-none"
+          className="testimonial-cards-showcase relative w-full overflow-visible overflow-x-clip bg-transparent select-none shrink-0"
           style={{ height: staggerHeight }}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
@@ -412,41 +412,42 @@ export default function DoctorTestimonials({
               />
             );
           })}
+        </div>
 
+        {/* Navigation & CTA Controls: positioned little bit below the cards */}
+        <div className="flex flex-col items-center gap-2.5 2xl:gap-2 shrink-0 pt-2.5 2xl:pt-1.5 pb-1">
           {/* Square Navigation Buttons (Left & Right) with rounded corners */}
-          <div className="absolute bottom-4 2xl:bottom-1 left-1/2 flex -translate-x-1/2 gap-2 z-30">
+          <div className="flex items-center justify-center gap-2.5 z-30">
             <button
               type="button"
               onClick={() => handleMove(-1)}
               className={cn(
-                "flex h-12 w-12 sm:h-14 sm:w-14 2xl:h-8 2xl:w-8 items-center justify-center text-xl sm:text-2xl 2xl:text-base transition-all duration-200 rounded-lg sm:rounded-xl 2xl:rounded-md",
+                "flex h-9 w-9 sm:h-10 sm:w-10 2xl:h-7.5 2xl:w-7.5 items-center justify-center text-base sm:text-lg 2xl:text-sm transition-all duration-200 rounded-lg sm:rounded-xl 2xl:rounded-md",
                 "bg-white border border-slate-300 hover:bg-[#1B365D] hover:text-white hover:border-[#1B365D] text-[#1B365D] cursor-pointer active:scale-95 shadow-sm",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0284C7] focus-visible:ring-offset-2"
               )}
               aria-label="Previous testimonial"
             >
-              <ChevronLeft className="w-6 h-6 2xl:w-4 2xl:h-4" />
+              <ChevronLeft className="w-4.5 h-4.5 2xl:w-3.5 2xl:h-3.5" />
             </button>
             <button
               type="button"
               onClick={() => handleMove(1)}
               className={cn(
-                "flex h-12 w-12 sm:h-14 sm:w-14 2xl:h-8 2xl:w-8 items-center justify-center text-xl sm:text-2xl 2xl:text-base transition-all duration-200 rounded-lg sm:rounded-xl 2xl:rounded-md",
+                "flex h-9 w-9 sm:h-10 sm:w-10 2xl:h-7.5 2xl:w-7.5 items-center justify-center text-base sm:text-lg 2xl:text-sm transition-all duration-200 rounded-lg sm:rounded-xl 2xl:rounded-md",
                 "bg-white border border-slate-300 hover:bg-[#1B365D] hover:text-white hover:border-[#1B365D] text-[#1B365D] cursor-pointer active:scale-95 shadow-sm",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0284C7] focus-visible:ring-offset-2"
               )}
               aria-label="Next testimonial"
             >
-              <ChevronRight className="w-6 h-6 2xl:w-4 2xl:h-4" />
+              <ChevronRight className="w-4.5 h-4.5 2xl:w-3.5 2xl:h-3.5" />
             </button>
           </div>
-        </div>
 
-        {/* Quick CTA button to book appointment with clean spacing */}
-        <div className="text-center shrink-0 pt-2 pb-1 2xl:pt-1 2xl:pb-1">
+          {/* Quick CTA button to book appointment little bit below cards and arrows */}
           <Link
             to={bookingUrl}
-            className="inline-flex items-center gap-2 bg-[#1B365D] hover:bg-[#13294B] text-white font-serif font-bold px-7 py-3 2xl:py-2 2xl:px-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform text-xs sm:text-sm 2xl:text-xs 3xl:text-sm border border-transparent hover:border-slate-300"
+            className="inline-flex items-center gap-2 bg-[#1B365D] hover:bg-[#13294B] text-white font-serif font-bold px-6 py-2 sm:px-7 sm:py-2.5 2xl:py-1.5 2xl:px-5 rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 transform text-xs sm:text-sm 2xl:text-xs 3xl:text-sm border border-transparent hover:border-slate-300"
           >
             <i className="fa-solid fa-calendar-check"></i>
             <span>Book Appointment with {doctorName}</span>

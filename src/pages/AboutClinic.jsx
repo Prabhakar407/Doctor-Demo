@@ -14,7 +14,7 @@ export default function AboutClinic() {
   return (
     <div className="w-full flex-grow flex flex-col p-0 m-0">
       {/* LEADING CARE FACILITY HERO SECTION (Screen Height Blue Background with Seamless Left Image) */}
-      <section className="w-full min-h-[calc(100vh-72px)] lg:h-[calc(100vh-72px)] lg:max-h-[calc(100vh-72px)] bg-gradient-to-br from-[#1B365D] via-[#13294B] to-[#0B1A30] text-white py-6 sm:py-8 lg:py-3 xl:py-4 px-4 sm:px-8 lg:px-12 xl:px-14 2xl:px-20 flex flex-col justify-center border-b border-white/10 relative overflow-hidden">
+      <section className="about-clinic-hero-section w-full min-h-[calc(100vh-72px)] lg:h-[calc(100vh-72px)] lg:max-h-[calc(100vh-72px)] bg-gradient-to-br from-[#1B365D] via-[#13294B] to-[#0B1A30] text-white py-6 sm:py-8 lg:py-3 xl:py-4 px-4 sm:px-8 lg:px-12 xl:px-14 2xl:px-20 flex flex-col justify-center border-b border-white/10 relative overflow-hidden">
         <div className="about-clinic-hero-inner max-w-7xl xl:max-w-[85rem] 2xl:max-w-[86rem] w-full mx-auto space-y-3 sm:space-y-4 lg:space-y-2.5 xl:space-y-3.5 relative z-10 my-auto">
           
           {/* Section Header */}
